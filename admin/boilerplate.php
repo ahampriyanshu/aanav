@@ -21,8 +21,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-        
-<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 <link rel="stylesheet" type="text/css" href="css/nav.css">
 <script type="text/javascript">
   $(document).ready(function(){
@@ -38,9 +36,6 @@
     );
 });
 </script>
-
-
-
 <script src="angular.min.js"></script>
 </head>
 <body ng-app='myapp' >
@@ -49,12 +44,8 @@
 
     max-width: 1280px;
     padding: 0;
-
-
   }
 
-
-  
     .label-warning {
     background-color: #FFC107;
     color : black;
@@ -96,8 +87,6 @@
 
 }
 
-
-
 .display p strong{
     color: #2e405e;
     font-size: 12px;
@@ -132,7 +121,4 @@
   
   color: #007BFF;
 }
-
-
-
-  </style>
+</style>

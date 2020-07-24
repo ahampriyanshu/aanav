@@ -1,6 +1,5 @@
 <?php
-session_start();
-  include('../config/config.php');
+  require_once('../config/config.php');
   include('../function/function.php');
   ?>
 <!DOCTYPE html>

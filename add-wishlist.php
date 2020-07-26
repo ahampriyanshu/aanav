@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('config/config.php');
+include('essentials/config.php');
 $customer = $_SESSION['email'];
 if($customer == null){
   echo "<script>window.open('checkout.php','_self')</script>";

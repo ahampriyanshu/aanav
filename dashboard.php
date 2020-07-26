@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include('config/config.php');
-  include('function/function.php');
+  include('essentials/config.php');
+  include('essentials/function.php');
   
   include('boilerplate.php');
   include('navbar.php');
@@ -84,7 +84,7 @@
               <div class="col-md-6">
               <table class="table haha">
               <tr>
-                <td><img src="admin/cover/<?php echo $obj->cover ?>" width="110" height="140"/></td>
+                <td><img src="admin/file/<?php echo $obj->file ?>" width="110" height="140"/></td>
                 <td>
                 <p><strong><i><a href="detail.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></i></strong></p>
                 <p><strong>US$ <?php echo  $obj->price ?></strong></p>

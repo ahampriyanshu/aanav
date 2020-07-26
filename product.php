@@ -1,7 +1,7 @@
 <?php
    session_start();
-   include('config/config.php');
-   include('function/function.php');
+   include('essentials/config.php');
+   include('essentials/function.php');
 ?>
 <?php  include('boilerplate.php'); ?>
 <?php  include('navbar.php'); ?>
@@ -80,7 +80,7 @@ input[type=radio] + label>img {
 </style>
 
 <?php
-include('config/config.php');
+include('essentials/config.php');
 
    $id = $_GET['id'];
    $result = mysqli_query($mysqli, "SELECT * FROM product LEFT JOIN categories 
@@ -95,8 +95,8 @@ include('config/config.php');
         <div class="section-content">
             <div class="product-details">
                 <ul class="product-img">
-                    <li class="preview"><img src="admin/cover/<?php echo $row2['cover'] ?> " alt="" ></li>
-                    <li class="javascript:void(0)"><img src="admin/cover/<?php echo $row2['cover'] ?> " alt="" ></li>
+                    <li class="preview"><img src="admin/file/<?php echo $row2['file'] ?> " alt="" ></li>
+                    <li class="javascript:void(0)"><img src="admin/file/<?php echo $row2['file'] ?> " alt="" ></li>
                     <?php
                       $sql2 = "SELECT * FROM image_attributes
                               WHERE product_id = $id";
@@ -111,7 +111,7 @@ include('config/config.php');
                     
                 </ul>
                 <?php
-include('config/config.php');
+include('essentials/config.php');
 
    $id = $_GET['id'];
    $result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
@@ -266,7 +266,7 @@ include('config/config.php');
 
       <?php
 
-   include('config/config.php');
+   include('essentials/config.php');
    $id = $_GET['id'];
    $result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
@@ -401,7 +401,7 @@ background: teal;
 </script>
 <?php
 
-    include('config/config.php');
+    include('essentials/config.php');
     $smilar = mysqli_query($mysqli, "SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 0,4");
     
     
@@ -425,7 +425,7 @@ background: teal;
                                   <?php while ($row_similar = mysqli_fetch_assoc($smilar)):?>
                                     <div class="col-md-3">
                                         <a href="product.php?id=<?php echo $row_similar['id'] ?>">
-                                            <img src="admin/cover/<?php echo $row_similar['cover'] ?>" alt="Image" style="width: 250px; height:250px;">
+                                            <img src="admin/file/<?php echo $row_similar['file'] ?>" alt="Image" style="width: 250px; height:250px;">
                                             
                                         </a>
                                         <p><?php echo $row_similar['name']; ?></p>
@@ -441,7 +441,7 @@ background: teal;
                                 <div class="row">
                   <?php
 
-                  include('config/config.php');
+                  include('essentials/config.php');
                   $smilar2 = mysqli_query($mysqli, "SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 4,4");
                   while ($row_similar2 = mysqli_fetch_assoc($smilar2)):
     
@@ -449,7 +449,7 @@ background: teal;
           
                                     <div class="col-md-3">
                                         <a href="product.php?id=<?php echo $row_similar2['id'] ?>">
-                                           <img src="admin/cover/<?php echo $row_similar2['cover'] ?>" alt="Image" style="width: 250px; height:250px;">
+                                           <img src="admin/file/<?php echo $row_similar2['file'] ?>" alt="Image" style="width: 250px; height:250px;">
                                         </a>
                                         <p><?php echo $row_similar2['name']; ?></p>
                                         <p><strong>US$<?php echo $row_similar2['price']; ?></strong></p>

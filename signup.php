@@ -38,7 +38,7 @@
     height: 85%;
     width: 100%;
     overflow: hidden;
-    background-size:     cover;               
+    background-size:     file;               
     background-repeat:   no-repeat;
     background-position: center;
     }

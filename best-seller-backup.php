@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include('config/config.php');
-  include('function/function.php');
+  include('essentials/config.php');
+  include('essentials/function.php');
     include('boilerplate.php');
   include('navbar.php');
 ?>
@@ -125,7 +125,7 @@
               echo '<div class="display">';
               
             
-         echo '<a href="product.php?id='.$obj->id.'"><img src="admin/cover/'.$obj->cover.'" width="220" height="300"/></a><br>';
+         echo '<a href="product.php?id='.$obj->id.'"><img src="admin/file/'.$obj->file.'" width="220" height="300"/></a><br>';
               // echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
                if($obj->qty < 5){
@@ -171,7 +171,7 @@
 </html>
 
 <?php
-include('config/config.php');
+include('essentials/config.php');
 $sel = "SELECT product_id, SUM(units) AS TotalQuantity
 FROM order_items
 GROUP BY product_id

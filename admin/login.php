@@ -1,6 +1,6 @@
 <?php
-  require_once('../config/config.php');
-  include('../function/function.php');
+  require_once('../essentials/config.php');
+  include('../essentials/function.php');
   ?>
 <!DOCTYPE html>
 <html lang="en">

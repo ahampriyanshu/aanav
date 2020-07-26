@@ -1,6 +1,6 @@
 <?php 
 	  session_start();
-          include('config/config.php');
+          include('essentials/config.php');
 	
 	if(isset($_POST['country_id']) && $_POST['country_id'] !='')
 	{ ?>

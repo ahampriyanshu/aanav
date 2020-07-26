@@ -1,9 +1,9 @@
 <?php
 	session_start();
-	include('config/config.php');
+	include('essentials/config.php');
   include('boilerplate.php');
   include('navbar.php');
-  include('function/function.php');
+  include('essentials/function.php');
 ?>
 
 <?php
@@ -78,7 +78,7 @@
               echo '<div class="display">';
               
             
-              echo '<img src="admin/cover/'.$obj->cover.'" width="210" height="290"/>';
+              echo '<img src="admin/file/'.$obj->file.'" width="210" height="290"/>';
               // echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
               echo '<p><strong><i><a href="detail.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>';

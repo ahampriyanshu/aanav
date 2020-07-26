@@ -1,7 +1,7 @@
 
 <?php
   session_start();
-  include('config/config.php');
+  include('essentials/config.php');
   
   
 
@@ -73,7 +73,7 @@ ul.list i,ul.list small{
 <img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dw0ea1ad9f/visa_card_icon_new.png">
 <img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dwe5aabfdc/amex_card_icon.png">
 <img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dw8dd2a717/master_card_icon_new.png">
-<img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dw37610a52/discover_card_icon.png">
+<img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dw37610a52/disfile_card_icon.png">
 </div>
 </div>
 <hr>
@@ -284,7 +284,7 @@ ul.list i,ul.list small{
           
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  name, qty, price,cover FROM product WHERE id = $product_id";
+            $result = "SELECT  name, qty, price,file FROM product WHERE id = $product_id";
             $run = mysqli_query($mysqli,$result);
                
             if($run){
@@ -297,7 +297,7 @@ ul.list i,ul.list small{
                 
                 
                echo '<li>';
-               echo '<img src="admin/cover/'.$obj->cover.'" width="100" height="140" align="right" align="right" alt="">';
+               echo '<img src="admin/file/'.$obj->file.'" width="100" height="140" align="right" align="right" alt="">';
                 echo '<b>'.$obj->name.'</b>';
                 echo '<h6 class="my-0">US$'.$obj->price.'</h6>';
                 echo '<small>quantity: '.$quantity.'</small>';
@@ -327,7 +327,7 @@ ul.list i,ul.list small{
     
         </div><!--  inner order end -->
             <?php 
-      include('config/config.php'); 
+      include('essentials/config.php'); 
       $shipping = $_SESSION['shipping'];
       $sql = "SELECT * FROM shipping WHERE shipping_id = $shipping";
       $run = mysqli_query($mysqli,$sql);

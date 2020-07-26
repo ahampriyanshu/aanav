@@ -65,7 +65,7 @@ include('config.php');
                       echo '<div class="display">';
              
             
-                      echo '<a href="product.php?id='.$obj->id.'"><img src="../uploads/'.$obj->file.'" width="250" height="300"/></a><br>';
+                      echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="250" height="300"/></a><br>';
                       echo '<p><strong>Product Code</strong>: '.$obj->code.'</p>';
                       if ($obj->qty < 7) {
                           echo "<span class='badge badge-warning pull-left' style='margin-top: 6px;'>Low In Stock</span>";
@@ -82,11 +82,14 @@ include('config.php');
    
               echo '<div class="box"><p><strong><i><a href="product.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>';
 
-                          
-                    echo '<p><strong style="color: #DC3545" >&#x20B9;&nbsp; '.$obj->cost.'</strong> <strong class="price_dis"> &#x20B9;&nbsp;'.$obj->MRP.'</strong>';
+                    echo '<p><strong style="color: #DC3545" >&#x20B9;&nbsp; '.$obj->cost.'</strong> <strong class="price_dis"> &#x20B9;&nbsp;'.$obj->cost.'</strong>';
+                       
                     echo '</p></div>';
                     echo'<div class="box2"><hr>';
+     
+              
 
+                      
                       $sql ="SELECT distinct a.*,p.color,p.product_id FROM variant p
                    LEFT JOIN attribute a
                    ON p.color = a.attr_id
@@ -103,7 +106,7 @@ include('config.php');
   
 
  <img 
-    src="../uploads/gallery<?php echo $row['attr_img'] ?>" 
+    src="uploads/gallery<?php echo $row['attr_img'] ?>" 
     alt="<?php echo $row['value'] ?>" />
     <?php
 
@@ -144,7 +147,7 @@ include('config.php');
                   echo '<div class="display">';
               
             
-                  echo '<a href="product.php?id='.$obj->id.'"><img src="../uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
+                  echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
                   echo '<p><strong>Product Code</strong>: '.$obj->code.'</p>';
                   // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
                   if ($obj->qty < 7) {
@@ -227,8 +230,8 @@ function productBrand()
                 echo '<div class="display">';
               
             
-                echo '<a href="product.php?id='.$obj->id.'"><img src="../uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
-                // echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
+                echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
+                echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
                 // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
                 if ($obj->qty < 7) {
                     echo "<span class='badge badge-warning pull-left' style='margin-top: 6px;'>Low In Stock</span>";
@@ -326,7 +329,7 @@ function getcom()
              echo '<div class="col-md-6">';
              echo '<table class="table haha">
               <tr>
-                <td><img src="../uploads/'.$obj->file.'" width="110" height="140"/></td>
+                <td><img src="uploads/'.$obj->file.'" width="110" height="140"/></td>
                 <td>
                 <p><strong><i><a href="detail.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>
                 <p><strong>&#x20B9;&nbsp; '.$obj->price.'</strong></p>
@@ -374,9 +377,6 @@ function getcom()
             ON product.id = order_items.product_id
             GROUP BY order_items.product_id
             ORDER BY TotalQuantity DESC");
-              // if($result === FALSE){
-              //   die(mysql_error());
-              // }
 
               if ($result) {
                   while ($obj = mysqli_fetch_object($result)) {
@@ -384,35 +384,20 @@ function getcom()
                       echo '<div class="display">';
               
             
-                      echo '<a href="product.php?id='.$obj->id.'"><img src="../uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
-                      // echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
+                      echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
+                      echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
                       // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
                       if ($obj->qty < 5) {
                           echo "<span class='badge badge-warning pull-left' style='margin-top: 6px;'>Low In Stock</span>";
                       }
 
-
-
-         
                       echo '<img src="image/bestseller.png" width="90" height="20" style="margin-left: 65px;">';
           
-
-              
-
-              
-                  
-              
                       echo "<br><br>";
 
                       echo '<div class="box"><p><strong><i><a href="product.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>';
                       echo '<p><strong>&#x20B9;&nbsp; '.$obj->price.'</strong></p>';
                       echo '</div>';
-              
-
-           
-
-              
-
                       echo '</div>';
                       echo '</div>';
 

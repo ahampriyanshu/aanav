@@ -1,6 +1,6 @@
 <?php
 
-include('config/config.php');
+include('essentials/config.php');
 
 $user_id = $_POST['user_id'];
 $productid = $_POST['productid'];

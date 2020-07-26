@@ -1,5 +1,5 @@
 <?php
-   include('config/config.php');
+   include('essentials/config.php');
    include('boilerplate.php');
     $id = $_GET['id'];
    $result = mysqli_query($mysqli,"SELECT * FROM shipping WHERE shipping_id=$id");

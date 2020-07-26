@@ -1,6 +1,6 @@
 <?php
         session_start();
-        include('config/config.php');
+        include('essentials/config.php');
         $name = $_POST['name'];
         $street = $_POST['street'];
         $country = $_POST['country'];

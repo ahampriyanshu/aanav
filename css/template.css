@@ -298,20 +298,20 @@ ul.multi-column-dropdown h6 {
 .banner{
 	background:url(../img/b1.jpg) no-repeat 0px 0px;
 /*-- w3layouts --*/
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 	min-height:700px;
 }
 .banner10{
 	background:url(../img/b1.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 	min-height:300px;
 }
 .banner1,.banner2,.banner3,.banner4,.banner5,.banner6,.banner7,.banner8,.banner9{
@@ -325,76 +325,76 @@ ul.multi-column-dropdown h6 {
 }
 .banner1{
 	background:url(../img/banner3.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .banner2{
 	background:url(../img/b3.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .banner3{
 	background:url(../img/banner4.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 /*-- agileits --*/
 .banner4{
 	background:url(../img/banner2.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .banner5{
 	background:url(../img/banner5.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .banner6{
 	background:url(../img/banner6.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .banner7{
 	background:url(../img/banner7.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .banner8{
 	background:url(../img/banner8.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .banner9{
 	background:url(../img/banner9.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .banner h3{
 	font-size: 2em;
@@ -437,11 +437,11 @@ ul.multi-column-dropdown h6 {
 }
 .video-img {
     background: url(../img/2.jpg)no-repeat center;
-    -webkit-background-size: cover;
-    background-size: cover;
-    -moz-background-size: cover;
-	-o-background-size: cover;
-	-ms-background-size: cover;
+    -webkit-background-size: file;
+    background-size: file;
+    -moz-background-size: file;
+	-o-background-size: file;
+	-ms-background-size: file;
 	min-height: 455px;
 }
 .video-img a {
@@ -950,11 +950,11 @@ ul.wmuSliderPagination {
 /*-- banner-bottom1 --*/
 .agileinfo_banner_bottom1_grid_left{
 	background:url(../img/44.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .agileinfo_banner_bottom1_grid_left,.agileinfo_banner_bottom1_grid_right{
 	padding:0;
@@ -995,11 +995,11 @@ ul.wmuSliderPagination {
 }
 .agileinfo_banner_bottom1_grid_right{
 	background:url(../img/45.jpg) no-repeat 0px 0px;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	-ms-background-size:cover;
+	background-size:file;
+	-webkit-background-size:file;
+	-moz-background-size:file;
+	-o-background-size:file;
+	-ms-background-size:file;
 }
 .agileinfo_banner_bottom1_grid_left,.agileinfo_banner_bottom1_grid_right{
 	min-height:400px;

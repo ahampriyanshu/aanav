@@ -1,7 +1,7 @@
 <?php
  session_start();
 
-  include('config/config.php');
+  include('essentials/config.php');
 
 $product_id = $_GET['id'];
 $action = $_GET['action'];

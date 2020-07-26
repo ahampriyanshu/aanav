@@ -3,7 +3,7 @@
 //if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
  session_start();
 
-  include('config/config.php');
+  include('essentials/config.php');
 
 $product_id = $_GET['id'];
 $action = $_GET['action'];

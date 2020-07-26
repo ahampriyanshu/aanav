@@ -1,4 +1,4 @@
-<?php include_once("config/config.php"); ?>
+<?php include_once("essentials/config.php"); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,7 +88,7 @@
 			<div class="carousel slide multi-image-slider" id="theCarousel">
 				<div class="carousel-inner">			
 				 <?php
-					$sqlQuery = "SELECT id, cover FROM product ORDER BY id DESC LIMIT 8";
+					$sqlQuery = "SELECT id, file FROM product ORDER BY id DESC LIMIT 8";
 					$resultSet = mysqli_query($mysqli, $sqlQuery);
 					$setActive = 0;				
 					$sliderHtml = '';				
@@ -100,7 +100,7 @@
 						}						
 						$sliderHtml.= "<div class='item ".$activeClass."'>";
 						$sliderHtml.= "<div class='col-xs-4'><a href='".$sliderImage['id']."'>";
-						$sliderHtml.= "<img src='admin/cover/".$sliderImage['cover']."' class='img-responsive' height='100'";
+						$sliderHtml.= "<img src='admin/file/".$sliderImage['file']."' class='img-responsive' height='100'";
 						$sliderHtml.= "</a></div></div>";					
 					}
 					echo $sliderHtml;

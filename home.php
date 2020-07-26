@@ -1,19 +1,17 @@
 <?php
-	session_start();
-	include('config/config.php');
-  include('function/function.php');
+  session_start();
+  include('essentials/config.php');
+  include('essentials/function.php');
+  include('boilerplate.php');
+  include('navbar.php');
 ?>
 
+<!-- <b>
 
-<?php echo $_SESSION['color'];?></b> 
+<?php echo $_SESSION['color'];?></b> -->
 
-  <?php include('boilerplate.php'); ?>
-  <?php include('navbar.php'); ?>
  <link rel="stylesheet" type="text/css" href="style.css">
  <script src="angular.min.js"></script>
-
-        
-        
 
 <style type="text/css">
 
@@ -99,7 +97,7 @@ box-sizing: border-box;
       
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  name, qty, price FROM product WHERE id = $product_id";
+            $result = "SELECT  product_name, qty, price FROM product WHERE id = $product_id";
             $run = mysqli_query($mysqli,$result);
 
             if($run){
@@ -121,13 +119,9 @@ box-sizing: border-box;
 
 <br>
 </div>
-    <div class="col-md-3">
-    <!--   <h3>MEN'S COLLECTION &raquo;</h3> -->
-    </div>
   </div>
 </div>
 
-<hr>
  <div class="container">
    <div class="row">
      <div class="col-md-2">
@@ -147,32 +141,26 @@ box-sizing: border-box;
           
            <?php getbrand(); ?>
         </ul>
-     
-   
+     </div> 
 
-
-
-     </div> <!-- col-md-4 end-->
      <div class="col-md-10">
       <div class="row">
-        <?php getpro(); ?>
-       <?php getcatpro(); ?>
-       <?php getbrandpro(); ?>
+        <?php product(); ?>
+       <?php productCategories(); ?>
+       <?php productBrand(); ?>
        </div>
-     </div> <!-- col-md-8 end-->
+     </div>
    </div>
  </div>
 
-<!-- // <?php echo date("D M j G:i:s T Y", time()); ?><br>
-
-<?php echo  date("F j, Y g:i A", time()); ?> -->
-<?php include('003latest_home.php'); ?>
+<?php include('latest_product.php'); ?>
 <?php include('footer.php'); ?>
-</body>  
+</body>
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+   
+
+
+  
 </html>
 
-
-
-
-
-        

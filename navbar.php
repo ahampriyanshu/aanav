@@ -79,7 +79,7 @@
             <ul id='searchResult' >
                 <li ng-click='setValue($index,$event)' ng-repeat="result in searchResult" >
                   <a href="product.php?id={{result.id}}">
-                  <img ng-src="admin/cover/{{ result.cover }}" alt="search_image_result" width="30px" height="40px"> {{ result.name }}</a>
+                  <img ng-src="admin/file/{{ result.file }}" alt="search_image_result" width="30px" height="40px"> {{ result.name }}</a>
                 </li>
             </ul>  
         </div>

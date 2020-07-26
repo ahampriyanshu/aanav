@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include('config/config.php');
-  include('function/function.php');
+  include('essentials/config.php');
+  include('essentials/function.php');
   include('boilerplate.php');
   include('navbar.php');
 ?>

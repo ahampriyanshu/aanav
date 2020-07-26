@@ -1,7 +1,7 @@
 <?php
  session_start();
 
-include('config/config.php');
+include('essentials/config.php');
 $id = $_GET['id'];
 $email = $_SESSION['email'];
 $sql = "DELETE FROM `cart` WHERE `product_id` = $id and `customer` = $email ";

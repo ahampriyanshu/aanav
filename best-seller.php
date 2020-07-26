@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include('config/config.php');
-  include('function/function.php');
+  include('essentials/config.php');
+  include('essentials/function.php');
     include('boilerplate.php');
   include('navbar.php');
 ?>
@@ -106,7 +106,7 @@
               <div class="display" >
               
             
-         <a href="product.php?id={{ product.id }}"><img ng-src='admin/cover/{{ product.cover }}' width='220' height='300'/></a>
+         <a href="product.php?id={{ product.id }}"><img ng-src='admin/file/{{ product.file }}' width='220' height='300'/></a>
                 
              
                
@@ -208,7 +208,7 @@
 </html>
 
 <?php
-include('config/config.php');
+include('essentials/config.php');
 $sel = "SELECT product_id, SUM(units) AS TotalQuantity
 FROM order_items
 GROUP BY product_id

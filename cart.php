@@ -1,8 +1,6 @@
 <?php
   session_start();
-  error_reporting(0);
-  ini_set('display_errors', 0);
-  include('config/config.php');
+  include('essentials/config.php');
   include('boilerplate.php');
   include('navbar.php');
 ?>
@@ -97,7 +95,7 @@ h3{
               echo '<tr>';
               echo '</tr>';
               foreach ($_SESSION['cart'] as $product_id => $quantity) {
-                  $result = "SELECT  name, qty, price,cover FROM product WHERE id = $product_id";
+                  $result = "SELECT  name, qty, price,file FROM product WHERE id = $product_id";
                   $run = mysqli_query($mysqli, $result);
 
                   $email=$_SESSION['email'];
@@ -145,7 +143,7 @@ h3{
 
                 
                           echo '<tr>';
-                          echo '<td><img src="admin/cover/'.$obj->cover.'" width="100" height="140" align="right" align="right" alt=""></td>';
+                          echo '<td><img src="admin/file/'.$obj->file.'" width="100" height="140" align="right" align="right" alt=""></td>';
                 
                           echo '<td><b style="color: #4d5656;font-size:12px;" >'.$obj->name.'</b>';
                           if ($pp_id == 0) {
@@ -217,7 +215,7 @@ h3{
            
           
           foreach ($_SESSION['cart'] as $product_id => $quantity) {
-              $result = "SELECT  name, qty, price,cover FROM product WHERE id = $product_id";
+              $result = "SELECT  name, qty, price,file FROM product WHERE id = $product_id";
               $run = mysqli_query($mysqli, $result);
                
               if ($run) {

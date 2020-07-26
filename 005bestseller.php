@@ -39,7 +39,7 @@ background: #000 ;
 </script>
 <?php
 
-    include('config/config.php');
+    include('essentials/config.php');
     $result = mysqli_query($mysqli,"SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
@@ -70,7 +70,7 @@ background: #000 ;
                                   <?php while($row2 = mysqli_fetch_assoc($result)):?>
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="product.php?id=<?php echo $row2['id']; ?>">
-                                            <img src="admin/cover/<?php echo $row2['cover'] ?>" alt="Image" style="width: 250px; height:250px;">
+                                            <img src="admin/file/<?php echo $row2['file'] ?>" alt="Image" style="width: 250px; height:250px;">
                                             
                                         </a>
                                         <p><?php echo $row2['name']; ?></p>
@@ -87,7 +87,7 @@ background: #000 ;
                                 <div class="row">
                   <?php
 
-                  include('config/config.php');
+                  include('essentials/config.php');
                   $result = mysqli_query($mysqli,"SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
@@ -99,7 +99,7 @@ background: #000 ;
           
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="product.php?id=<?php echo $row3['id']; ?>">
-                                           <img src="admin/cover/<?php echo $row3['cover'] ?>" alt="Image" style="width: 250px; height:250px;">
+                                           <img src="admin/file/<?php echo $row3['file'] ?>" alt="Image" style="width: 250px; height:250px;">
                                         </a>
                                          <p><?php echo $row3['name']; ?></p>
                                         <p><strong>US$<?php echo $row3['price']; ?></strong></p>
@@ -114,7 +114,7 @@ background: #000 ;
                                 <div class="row">
                   <?php
 
-                  include('config/config.php');
+                  include('essentials/config.php');
                   $result = mysqli_query($mysqli,"SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
@@ -126,7 +126,7 @@ background: #000 ;
           
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="product.php?id=<?php echo $row4['id']; ?>">
-                                           <img src="admin/cover/<?php echo $row4['cover'] ?>" alt="Image" style="width: 250px; height:250px;">
+                                           <img src="admin/file/<?php echo $row4['file'] ?>" alt="Image" style="width: 250px; height:250px;">
                                         </a>
                                          <p><?php echo $row4['name']; ?></p>
                                         <p><strong>US$<?php echo $row4['price']; ?></strong></p>

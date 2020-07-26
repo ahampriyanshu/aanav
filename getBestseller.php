@@ -1,7 +1,7 @@
 <?php
 
 // configuration
-include 'config/config.php';
+include 'essentials/config.php';
 
 $data = json_decode(file_get_contents("php://input"));
 
@@ -24,11 +24,11 @@ while($datarow = mysqli_fetch_assoc($result)){
     $id = $datarow['id'];
     $name = $datarow['name'];
     $price = $datarow['price'];
-    $cover = $datarow['cover'];
+    $file = $datarow['file'];
     $qty = $datarow['qty'];
 
  
-    $response_arr[] = array('id'=>$id,'name'=>$name,'price'=>$price,'cover'=>$cover,'qty'=>$qty);
+    $response_arr[] = array('id'=>$id,'name'=>$name,'price'=>$price,'file'=>$file,'qty'=>$qty);
  
 }
 

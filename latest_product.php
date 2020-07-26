@@ -39,7 +39,7 @@ background: #000;
 </script>
 <?php
 
-    include('config/config.php');
+    include('essentials/config.php');
     $result = mysqli_query($mysqli,"SELECT * FROM product ORDER BY id DESC LIMIT 0,4");
     
 ?>
@@ -63,11 +63,11 @@ background: #000;
                                 <div class="row">
                                   <?php while($row2 = mysqli_fetch_assoc($result)):?>
                                     <div class="col-sm-3 col-xs-6">
-                                        <a href="product.php?id=<?php echo $row2['id']; ?>">
-                                            <img src="admin/cover/<?php echo $row2['cover'] ?>" alt="Image" style="width: 250px; height:250px;" class="img-responsive">
+                                        <a href="detail2.php?id=<?php echo $row2['id']; ?>">
+                                            <img src="admin/file/<?php echo $row2['file'] ?>" alt="Image" style="width: 250px; height:250px;" class="img-responsive">
                                             
                                         </a>
-                                        <p><?php echo $row2['name']; ?></p>
+                                        <p><?php echo $row2['product_name']; ?></p>
                                         <p><strong>US$<?php echo $row2['price']; ?></strong></p>
                                     </div>
                                   <?php endwhile; ?>
@@ -81,16 +81,16 @@ background: #000;
                                 <div class="row">
                   <?php
 
-                  include('config/config.php');
+                  include('essentials/config.php');
                   $result3 = mysqli_query($mysqli,"SELECT * FROM product ORDER BY id DESC LIMIT 4,4");
                   while($row3 = mysqli_fetch_assoc($result3)):
                   ?>
           
                                     <div class="col-sm-3 col-xs-6">
-                                        <a href="product.php?id=<?php echo $row3['id']; ?>">
-                                           <img src="admin/cover/<?php echo $row3['cover'] ?>" alt="Image" style="width: 250px; height:250px;" class="img-responsive">
+                                        <a href="detail2.php?id=<?php echo $row3['id']; ?>">
+                                           <img src="admin/file/<?php echo $row3['file'] ?>" alt="Image" style="width: 250px; height:250px;" class="img-responsive">
                                         </a>
-                                         <p><?php echo $row3['name']; ?></p>
+                                         <p><?php echo $row3['product_name']; ?></p>
                                         <p><strong>US$<?php echo $row3['price']; ?></strong></p>
                                     </div>
                                     <?php endwhile; ?>

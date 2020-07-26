@@ -3,7 +3,7 @@
 session_start();
   $user = $_SESSION['email'];  
   $shipping = $_SESSION['shipping'];
-  include('config/config.php');
+  include('essentials/config.php');
 
   $name = $_POST['name'];
   $card = $_POST['card'];

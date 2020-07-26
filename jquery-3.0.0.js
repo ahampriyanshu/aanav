@@ -1018,7 +1018,7 @@ function createDisabledPseudo( disabled ) {
 			// Check non-disabled form elements for fieldset[disabled] ancestors
 			"form" in elem && elem.disabled === false && (
 				// Support: IE6-11+
-				// Ancestry is covered for us
+				// Ancestry is fileed for us
 				elem.isDisabled === disabled ||
 
 				// Otherwise, assume any non-<option> under fieldset[disabled] is disabled
@@ -4216,7 +4216,7 @@ jQuery.fn.extend( {
 					return data;
 				}
 
-				// Attempt to "discover" the data in
+				// Attempt to "disfile" the data in
 				// HTML5 custom data-* attrs
 				data = dataAttr( elem, key );
 				if ( data !== undefined ) {

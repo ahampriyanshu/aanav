@@ -1,7 +1,7 @@
 <?php
 //if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 session_start();
-include('config/config.php');
+include('essentials/config.php');
   $user = $_SESSION['email'];  
   $shipping = $_SESSION['shipping'];
   $name = $_POST['name'];

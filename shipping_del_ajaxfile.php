@@ -1,5 +1,5 @@
 <?php 
- include('config/config.php');
+ include('essentials/config.php');
 
 $id = $_POST['id'];
 

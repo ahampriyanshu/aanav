@@ -3,7 +3,7 @@
 <?php
 
   session_start();
-  include('config/config.php');
+  include('essentials/config.php');
   
   
 
@@ -255,7 +255,7 @@ ul.list i,ul.list small{
           
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  name, qty, price,cover FROM product WHERE id = $product_id";
+            $result = "SELECT  name, qty, price,file FROM product WHERE id = $product_id";
             $run = mysqli_query($mysqli,$result);
                
             if($run){
@@ -268,7 +268,7 @@ ul.list i,ul.list small{
                 
                 
                echo '<li>';
-               echo '<img src="admin/cover/'.$obj->cover.'" width="100" height="140" align="right" align="right" alt="">';
+               echo '<img src="admin/file/'.$obj->file.'" width="100" height="140" align="right" align="right" alt="">';
                 echo '<b>'.$obj->name.'</b>';
                 echo '<h6 class="my-0">US$'.$obj->price.'</h6>';
                 echo '<small>quantity: '.$quantity.'</small>';

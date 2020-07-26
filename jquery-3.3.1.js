@@ -4298,7 +4298,7 @@ jQuery.fn.extend( {
 					return data;
 				}
 
-				// Attempt to "discover" the data in
+				// Attempt to "disfile" the data in
 				// HTML5 custom data-* attrs
 				data = dataAttr( elem, key );
 				if ( data !== undefined ) {

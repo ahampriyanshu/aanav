@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include('../config/config.php');
-  include('../function/function.php');
+  include('../essentials/config.php');
+  include('../essentials/function.php');
   include('sidebar.php');
 
 
@@ -43,7 +43,6 @@ if(isset($_POST['submit'])){
   $sub_cat = $_POST['sub_cat'];
   $brand = $_POST['brand'];
   $supplier = $_POST['supplier'];
-  $qty = $_POST['qty'];
   $MRP = $_POST['MRP'] ;
   $cost = $_POST['cost'];
   $description = $_POST['description'];
@@ -56,8 +55,8 @@ if(isset($_POST['submit'])){
     move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
 }
 
-  $sql = "INSERT INTO product (name,code,categories,sub_cat,brand,supplier,description,MRP,cost,qty,cover,created)
-             VALUES ('$name','$code','$cat','$sub_cat','$brand','$supplier','$description','$MRP','$cost','$qty','$file','$date')";
+  $sql = "INSERT INTO product (name,code,categories,sub_cat,brand,supplier,description,MRP,cost,file,created)
+             VALUES ('$name','$code','$cat','$sub_cat','$brand','$supplier','$description','$MRP','$cost','$file','$date')";
 
   $run=mysqli_query($mysqli, $sql);
 
@@ -168,12 +167,6 @@ if(isset($_POST['submit'])){
           <div class="login-wrapper">
             <h1 class="login-title">Step 2</h1> 
 
-
-            <div class="form-group mb-4">
-                                          <label for="email">Quantity</label>
-                                          <input type="number" name="qty" class="form-control" id="email" placeholder="200" required/> 
-                                          </div> 
-
                                           <div class="form-group mb-4">
                                           <label for="email">Other's Price</label>
                                           <input type="number" name="MRP"  class="form-control" id="email" placeholder="1000"required/>  
@@ -190,7 +183,7 @@ if(isset($_POST['submit'])){
                                           </div> 
 
                                           <div class="form-group mb-4">
-                                          <label for="email">Cover Image</label>
+                                          <label for="email">file Image</label>
                                           <input type="file" name="file" id="email" required />
                                           </div> 
 

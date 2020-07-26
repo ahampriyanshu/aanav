@@ -43,7 +43,7 @@ include('config.php');
           if (!isset($_GET['brand'])) {
               global $mysqli;
               $i=0;
-              $per_page = 12;
+              $per_page = 6;
 
               if (isset($_GET['page'])) {
                   $page = $_GET['page'];
@@ -57,6 +57,7 @@ include('config.php');
               $product_quantity = array();
 
               $result = mysqli_query($mysqli, "SELECT * FROM product ORDER BY 1 DESC LIMIT $start_from, $per_page");
+
          
 
               if ($result) {
@@ -67,14 +68,14 @@ include('config.php');
             
                       echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="250" height="300"/></a><br>';
                       echo '<p><strong>Product Code</strong>: '.$obj->code.'</p>';
-                      if ($obj->qty < 7) {
+                      if ($obj->cost < 7) {
                           echo "<span class='badge badge-warning pull-left' style='margin-top: 6px;'>Low In Stock</span>";
                       }
 
 
 
 
-                      if ($obj->qty < 3) {
+                      if ($obj->cost < 3) {
                           echo '<img src="image/bestseller.png" width="90" height="20" style="margin-left: 65px; margin-bottom:5px;">';
                       }
                       echo "<br>"; ?>
@@ -82,7 +83,7 @@ include('config.php');
    
               echo '<div class="box"><p><strong><i><a href="product.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>';
 
-                    echo '<p><strong style="color: #DC3545" >&#x20B9;&nbsp; '.$obj->cost.'</strong> <strong class="price_dis"> &#x20B9;&nbsp;'.$obj->cost.'</strong>';
+                    echo '<p><strong style="color: #DC3545" >&#x20B9;&nbsp; '.$obj->cost.'</strong> <strong class="price_dis"> &#x20B9;&nbsp;'.$obj->MRP.'</strong>';
                        
                     echo '</p></div>';
                     echo'<div class="box2"><hr>';
@@ -150,13 +151,13 @@ include('config.php');
                   echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
                   echo '<p><strong>Product Code</strong>: '.$obj->code.'</p>';
                   // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
-                  if ($obj->qty < 7) {
+                  if ($obj->cost < 7) {
                       echo "<span class='badge badge-warning pull-left' style='margin-top: 6px;'>Low In Stock</span>";
                   }
 
 
 
-                  if ($obj->qty < 3) {
+                  if ($obj->cost < 3) {
                       echo '<img src="image/bestseller.png" width="90" height="20" style="margin-left: 65px;">';
                   }
                   echo "<br><br>";
@@ -233,13 +234,13 @@ function productBrand()
                 echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
                 echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
                 // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
-                if ($obj->qty < 7) {
+                if ($obj->cost < 7) {
                     echo "<span class='badge badge-warning pull-left' style='margin-top: 6px;'>Low In Stock</span>";
                 }
 
 
 
-                if ($obj->qty < 3) {
+                if ($obj->cost < 3) {
                     echo '<img src="image/bestseller.png" width="90" height="20" style="margin-left: 65px;">';
                 }
                 echo "<br><br>";
@@ -334,14 +335,14 @@ function getcom()
                 <p><strong><i><a href="detail.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>
                 <p><strong>&#x20B9;&nbsp; '.$obj->price.'</strong></p>
                 <a href="">Remove</a>';
-             if ($obj->qty < 7 && $obj->qty > 0) {
+             if ($obj->cost < 7 && $obj->cost > 0) {
                  echo "<span class='badge badge-warning' style='margin-top: 2px;'>Low In Stock</span>";
-             } elseif ($obj->qty == 0) {
+             } elseif ($obj->cost == 0) {
                  echo "<span class='badge badge-warning' style='margin-top: 2px;'>SOLD OUT</span>";
              } else {
              }
 
-             if ($obj->qty < 5) {
+             if ($obj->cost < 5) {
                  echo '<img src="image/bestseller.png" width="85" height="18" style="margin-left: 2px;">';
              }
              echo'</td>
@@ -387,7 +388,7 @@ function getcom()
                       echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
                       echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
                       // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
-                      if ($obj->qty < 5) {
+                      if ($obj->cost < 5) {
                           echo "<span class='badge badge-warning pull-left' style='margin-top: 6px;'>Low In Stock</span>";
                       }
 

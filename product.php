@@ -30,6 +30,11 @@
     <script src="jquery-3.2.1.min.js"></script>
    
   <style>
+
+.price_dis{
+  text-decoration: line-through; 
+  font-size: 12px;
+}
     .input-hidden {
   position: absolute;
   left: -9999px;
@@ -168,7 +173,7 @@ input[type=radio] + label>img {
           ?>
 
            <div class="col-md-6 mb-3">
-            <p class="col_size">Sizes</p>
+            <p class="col_size">Size</p>
          
                 <select name="size" class="custom-select d-block w-100" id="size" required>
                   <option value="">Choose...</option>
@@ -185,20 +190,14 @@ input[type=radio] + label>img {
                                     $size = $row['size'];
                                                   ?>
 
-                                    <?php if($size == 0){ ?>
-                                      <option value='ONE SIZE'>ONE SIZE</option>
-                                   <?php  }else{ ?>                                               
+                                    
+                                 
+                                                                                 
                                   <option value='<?php echo $row['value']; ?>'><?php echo $row['value']; ?></option>
                                         <?php } ?>          
-                                              <?php  } ?>
+                                          
                 </select>
-                <div class="invalid-feedback">
-                  Please provide a valid state.
-                </div>
               </div>
-
-               
-                          <br><br>
 
                           <div class="col-md-8">
 
@@ -214,14 +213,6 @@ input[type=radio] + label>img {
                           }
 
                           ?>
-<!--      ----------------------------------- In stock & sold out end------------------------ -->
-                     <br><br>
- 
-                            
-
-              
-
-                           
 
          <?php
               $sql ="SELECT distinct a.*,p.color,p.product_id FROM variant p
@@ -258,7 +249,7 @@ input[type=radio] + label>img {
       
  
 <!--      ----------------------------------- Add To cart Button------------------------ -->
-      <?php if($qty > 0){ ?>
+<?php if($qty > 0){ ?>
               <input type="submit" name="submit" value="Add To Cart" style="clear:both; background: #48c9b0; border: none; color: #fff; font-size: 14px; padding: 10px; cursor: pointer;" /> <a href="product.php">Back</a>
       <?php }else{ ?>
      </form>
@@ -267,13 +258,14 @@ input[type=radio] + label>img {
 <!--      ----------------------------------- SOLD OUT MODAL DIALOG ------------------------ -->
       <?php
 
-   include('confs/config.php');
    $id = $_GET['id'];
    $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    
    ?>
-     <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $row['id']; ?>" id="getUser" style="clear:both; background: #48c9b0; border: none; color: #fff; font-size: 14px; padding: 10px;cursor: pointer;">Add To Cart</button>
+     <button data-toggle="modal" data-target="#view-modal" 
+     data-id="<?php echo $row['id']; ?>" id="getUser" style="clear:both; background: #48c9b0; 
+     border: none; color: #fff; font-size: 14px; padding: 10px;cursor: pointer;">Add To Cart</button>
      <?php } ?>
 
        <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
@@ -347,7 +339,7 @@ $(document).ready(function(){
 <!--      -----------------------------------Add To Whilist ------------------------ -->
        <br><br>
 
-       <?php  if ($fav == 0) { ?>
+       <?php  if ($fav == null) { ?>
          
          <a href="add-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="material-icons">favorite</i></a>
 
@@ -356,9 +348,6 @@ $(document).ready(function(){
      
      <?php } ?>
     
-       
-         
-     
       </div>
           
     </div><!-- col8 -->
@@ -451,12 +440,12 @@ background: teal;
                                 <div class="row">
                                   <?php while($row_similar = mysqli_fetch_assoc($smilar)):?>
                                     <div class="col-md-3">
-                                        <a href="detail2.php?id=<?php echo $row_similar['id'] ?>">
+                                        <a href="product.php?id=<?php echo $row_similar['id'] ?>">
                                             <img src="uploads/<?php echo $row_similar['file'] ?>" alt="Image" style="width: 250px; height:250px;">
                                             
                                         </a>
-                                        <p><?php echo $row_similar['product_name']; ?></p>
-                                        <p><strong>US$<?php echo $row_similar['price']; ?></strong></p>
+                                        <p><?php echo $row_similar['name']; ?></p>
+                                        <p><strong>US$<?php echo $row_similar['cost']; ?></strong></p>
                                     </div>
                                   <?php endwhile; ?>
                              
@@ -476,11 +465,12 @@ background: teal;
                   ?>
           
                                     <div class="col-md-3">
-                                        <a href="detail2.php?id=<?php echo $row_similar2['id'] ?>">
+                                        <a href="product.php?id=<?php echo $row_similar2['id'] ?>">
                                            <img src="uploads/<?php echo $row_similar2['file'] ?>" alt="Image" style="width: 250px; height:250px;">
                                         </a>
                                         <p><?php echo $row_similar2['product_name']; ?></p>
-                                        <p><strong>US$<?php echo $row_similar2['price']; ?></strong></p>
+                                        <p><strong  style="color: #DC3545" >&#x20B9;&nbsp;<?php echo $row_similar2['price']; ?></strong>
+                                        <strong class="price_dis">&#x20B9;&nbsp;<?php echo $row_similar2['MRP']; ?></strong></p>
                                     </div>
                                     <?php endwhile; ?>
                                 </div>

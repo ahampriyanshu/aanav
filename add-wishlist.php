@@ -8,7 +8,6 @@ if($customer == null){
 else{
 
 $id = $_GET['id'];
-print_r($_SESSION);
 
   $customer = $_SESSION['email']; 
   $sql = "SELECT * FROM customer WHERE email = '$customer'";
@@ -17,10 +16,9 @@ print_r($_SESSION);
 
   $customer_id = $row['id'];
 
-  echo "$customer_id<br>";
-  echo "$id";
 
-  $sql2 = "INSERT INTO wishlist(product_id,customer_id,fav_date)
+
+  $sql2 = "INSERT INTO wishlist( product_id,customer_id,fav_date)
   			VALUES('$id','$customer_id',NOW())";
 
   mysqli_query($mysqli,$sql2);

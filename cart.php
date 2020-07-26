@@ -3,6 +3,7 @@
   include('essentials/config.php');
   include('boilerplate.php');
   include('navbar.php');
+  error_reporting(E_ALL);
 ?>
 <script src="js/vendor/modernizr.js"></script>
 <script src="js/vendor/jquery.js"></script>
@@ -15,6 +16,7 @@
   .price_dis{
   text-decoration: line-through; 
   font-size: 12px;
+  color: blue;
 }
 
         .securepayment{
@@ -83,9 +85,7 @@ h3{
         <?php
            
            $variant = $_SESSION['variant'];
-
-           
-         
+        
 
           if (isset($_SESSION['cart'])) {
               $total = 0;
@@ -95,7 +95,8 @@ h3{
               echo '<tr>';
               echo '</tr>';
               foreach ($_SESSION['cart'] as $product_id => $quantity) {
-                  $result = "SELECT  name, qty, price,file FROM product WHERE id = $product_id";
+               
+                  $result = "SELECT  name, qty, MRP, cost, file FROM product WHERE id = $product_id";
                   $run = mysqli_query($mysqli, $result);
 
                   $email=$_SESSION['email'];
@@ -105,9 +106,9 @@ h3{
 
                   if ($run) {
                       while ($obj = mysqli_fetch_object($run)) {
-                          $cost = $obj->price * $quantity; //work out the line cost
+                          $price = $obj->cost * $quantity; //work out the line price
 
-                          $total = $total + $cost; //add to the total cost
+                          $total = $total + $price; //add to the total price
                           $itemqty = $itemqty+$quantity;
 
                           $color = $_SESSION['color'];
@@ -116,7 +117,6 @@ h3{
                           $result_c = mysqli_query($mysqli, "SELECT * FROM attribute where attr_id='$color'");
                           $row_c = mysqli_fetch_assoc($result_c);
                           $attr = $row_c['attr_id'];
-                          $attr_img = $row_c['attr_img'];
                           $value_c = $row_c['value'];
 
                           $result_s = mysqli_query($mysqli, "SELECT * FROM attribute where attr_id='$size'");
@@ -124,36 +124,14 @@ h3{
                           $attr = $row_s['attr_id'];
                           $value_s = $row_s['value'];
 
-             
-                          $result_cart = mysqli_query($mysqli, "SELECT * FROM cart where product_id='$product_id'");
-                          $row_cart = mysqli_fetch_assoc($result_cart);
-                          $cart_id = $row_cart['cart_id'];
-                          $col = $row_cart['color'];
-                          $siz = $row_cart['size'];
-                          $pp_id = $row_cart['product_id'];
-
-                          $sql_dis = mysqli_query($mysqli, "SELECT * FROM discount 
-                            LEFT JOIN product ON discount.product_id = product.id
-                            WHERE product.id = '$product_id'");
-                          $result_dis = mysqli_fetch_assoc($sql_dis);
-                          $percentage = $result_dis['percentage'];
-                          $discount_id = $result_dis['discount_id'];
-
-
-
-                
                           echo '<tr>';
                           echo '<td><img src="admin/file/'.$obj->file.'" width="100" height="140" align="right" align="right" alt=""></td>';
                 
                           echo '<td><b style="color: #4d5656;font-size:12px;" >'.$obj->name.'</b>';
-                          if ($pp_id == 0) {
+                         
                               echo '<p style="font-size:12px;" >Color: '.$value_c.'</p>';
                               echo '<p style="font-size:12px;">Size: '.$value_s.' </p>';
-                          } else {
-                              echo '<p style="font-size:12px;" >Color: '.$col.'</p>';
-                              echo '<p style="font-size:12px;">Size: '.$siz.' </p>';
-                          }
-                          echo '<a href="" style="font-size:12px;">Edit</a>';
+              
                           echo '<a href="delete-cart-detail.php?id='.$product_id.'" style="font-size:12px; margin-left: 12px;">Delete</a>';
                           echo '<a href="" style="font-size:12px; margin-left: 12px;">Move To Wishlist</a>';
                           echo '</td>';
@@ -161,15 +139,16 @@ h3{
        
                
                           echo '<td>Product ID&emsp;'.$product_id.'</td>';
-                          echo '<td>'.$quantity.'&nbsp;<a class="button [secondary success alert]" style="padding:5px;" href="update-cart.php?action=add&id='.$product_id.'">+</a>&nbsp;<a class="button alert" style="padding:5px;" href="update-cart.php?action=remove&id='.$product_id.'">-</a></td>';
-                          if ($discount_id == 0) {
-                              echo '<td>&#x20B9;&nbsp;'.$cost.'</td>';
-                          } else {
-                              $selling_price = $obj->price-($obj->price*($percentage/100));
-                              $selling_dis = $selling_price * $quantity;
-                              echo '<td>&#x20B9;&nbsp; '.$selling_dis.'<strong class="price_dis"> &#x20B9;&nbsp;'.$cost.'</strong></td>';
-                          }
-                
+                          echo '<td>'.$quantity.'&nbsp;<a class="button [secondary success alert]" style="padding:5px;" 
+                          href="update-cart.php?action=add&id='.$product_id.'">+</a>&nbsp;<a class="button alert" 
+                          style="padding:5px;" href="update-cart.php?action=remove&id='.$product_id.'">-</a></td>';
+                 
+                              $selling_price = $obj->cost * $quantity;
+                              $savings = ($obj->MRP - $obj->cost) * $quantity;
+                              $selling_MRP = $obj->MRP * $quantity;
+
+                              echo '<td>&#x20B9;&nbsp; '.$selling_price.'&emsp;<strong class="price_dis"> &#x20B9;&nbsp;'.$selling_MRP.'</strong></td>';
+                   
                           echo '</tr>';
                       }
 
@@ -192,13 +171,11 @@ h3{
               echo '<a style="clear:both; background: linear-gradient(to right, #025F8E, #0286CD) repeat scroll 0% 0% transparent; border: none; color: #fff; font-size: 1em; padding: 10px;" href="checkout.php" >Checkout
           <span class="fa fa-chevron-circle-right"></span></a>';
         
-
               echo '</td>';
-
               echo '</tr>';
               echo '</table>';
           } else {
-            echo "<div class='alert alert-danger'><span class='fa fa-exclamation'> You have no items in your shopping cart.</span></div>";
+            echo "<div class='alert alert-info'><span class='fa fa-exclamation'> You have no items in your shopping cart.</span></div>";
         }        
           ?>
       </div>
@@ -215,35 +192,38 @@ h3{
            
           
           foreach ($_SESSION['cart'] as $product_id => $quantity) {
-              $result = "SELECT  name, qty, price,file FROM product WHERE id = $product_id";
+              $result = "SELECT  name, qty, MRP, cost,file FROM product WHERE id = $product_id";
               $run = mysqli_query($mysqli, $result);
                
               if ($run) {
                   while ($obj = mysqli_fetch_object($run)) {
-                      $cost = $obj->price * $quantity; //work out the line cost
-                $total = $total + $cost; //add to the total cost
-                $itemqty = $itemqty+$quantity;
+
+                      $price = $obj->cost * $quantity; 
+                      $saving = ($obj->MRP - $obj->cost) * $quantity;
+                      $savings = $savings + $saving;
+                      $total = $total + $price; 
+                      $itemqty = $itemqty+$quantity;
                   }
               }
           }
 
           echo '<table class="table">';
           echo '<tr>';
-          echo '<td>Product total</td>';
-          echo '<td></td>';
-          echo '<td></td>';
-          echo '<td></td>';
-          echo '<td>$'.$total.'</td>';
-          echo '</tr>';
-          echo '<tr>';
-          echo '<td>Quantiy</td>';
+          echo '<td>Total Quantiy</td>';
           echo '<td></td>';
           echo '<td></td>';
           echo '<td></td>';
           echo '<td>'.$itemqty.'</td>';
           echo '</tr>';
           echo '<tr>';
-          echo '<td>TOTAL</td>';
+          echo '<td>Total Savings</td>';
+          echo '<td></td>';
+          echo '<td></td>';
+          echo '<td></td>';
+          echo '<td>$'.$savings.'</td>';
+          echo '</tr>';
+          echo '<tr>';
+          echo '<td> Total</td>';
           echo '<td></td>';
           echo '<td></td>';
           echo '<td></td>';

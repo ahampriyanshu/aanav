@@ -333,7 +333,7 @@ function getcom()
                 <td><img src="uploads/'.$obj->file.'" width="110" height="140"/></td>
                 <td>
                 <p><strong><i><a href="detail.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>
-                <p><strong>&#x20B9;&nbsp; '.$obj->price.'</strong></p>
+                <p><strong>&#x20B9;&nbsp; '.$obj->cost.'</strong></p>
                 <a href="">Remove</a>';
              if ($obj->cost < 7 && $obj->cost > 0) {
                  echo "<span class='badge badge-warning' style='margin-top: 2px;'>Low In Stock</span>";

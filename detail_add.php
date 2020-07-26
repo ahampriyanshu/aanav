@@ -14,7 +14,6 @@
      $result = mysqli_query($mysqli,"SELECT * FROM attribute where value='$color'");
      $row = mysqli_fetch_assoc($result);
      $attr = $row['attr_id'];
-     $attr_img = $row['attr_img'];
 
      // GET SIZE
      $result2 = mysqli_query($mysqli,"SELECT * FROM attribute where value='$size'");
@@ -34,23 +33,6 @@
 
      $_SESSION['variant'] = $variant;
 
- 
+     echo "<script>window.location='update-cart.php?action=add&id=$id'</script>";
 
-             
-
-
-
-
-
-
-
-print_r($_SESSION);
-echo "<pre>$id <br>$color <br>Color : <b>$attr</b>, $attr_img <br> SIZE : $attr2
-<br> variant : $variant</pre>";
-
-
-echo "<script>window.location='update-cart.php?action=add&id=$id'</script>";
-
-
-
-// header("location: cart.php");
+?>

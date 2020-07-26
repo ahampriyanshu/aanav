@@ -190,7 +190,6 @@ box1 img,.box1:after,.box1:before{width:100%;transition:all .3s ease 0s}
 </style>       
 <br>
 <?php include('footer.php'); ?>
-
 </body>
 </html>
 

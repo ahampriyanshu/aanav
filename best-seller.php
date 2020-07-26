@@ -48,7 +48,7 @@
       
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  product_name, qty, price FROM product WHERE id = $product_id";
+            $result = "SELECT  name, qty, price FROM product WHERE id = $product_id";
             $run = mysqli_query($mysqli,$result);
 
             if($run){
@@ -120,7 +120,7 @@
   
               <br><br>
 
-              <div class="box"><p><strong><i><a href="product.php?id={{ product.id }}">{{ product.product_name }}</a></i></strong></p>
+              <div class="box"><p><strong><i><a href="product.php?id={{ product.id }}">{{ product.name }}</a></i></strong></p>
                <p><strong>US$ {{ product.price }}</strong></p>
               </div>
        

@@ -14,7 +14,7 @@
       
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  product_name, qty, price FROM product WHERE id = $product_id";
+            $result = "SELECT  name, qty, price FROM product WHERE id = $product_id";
             $run = mysqli_query($mysqli,$result);
 
             if($run){
@@ -69,7 +69,7 @@
       $search = $_GET['user_query'];
     
 
-    $get_pro = "SELECT * FROM product WHERE product_name LIKE '%$search%'";
+    $get_pro = "SELECT * FROM product WHERE name LIKE '%$search%'";
     $result = mysqli_query($mysqli,$get_pro);
 
     while($obj = mysqli_fetch_object($result)) {
@@ -81,7 +81,7 @@
               echo '<img src="admin/cover/'.$obj->cover.'" width="210" height="290"/>';
               // echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
-              echo '<p><strong><i><a href="detail.php?id='.$obj->id.'">'.$obj->product_name.'</a></i></strong></p>';
+              echo '<p><strong><i><a href="detail.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>';
                echo '<p><strong>US$ '.$obj->price.'</strong></p>';
               echo '<p><strong>Item Left</strong>: '.$obj->qty.'</p>';
               

@@ -20,7 +20,7 @@
   $run = mysqli_query($mysqli,$sql);
   $count = mysqli_num_rows($run);
 
-  $sql2 = "SELECT * FROM add_to_favourite WHERE customer_id='$customer_id'";
+  $sql2 = "SELECT * FROM wishlist WHERE customer_id='$customer_id'";
   $run2 =mysqli_query($mysqli,$sql2);
   $count_fav = mysqli_num_rows($run2);
   
@@ -66,9 +66,9 @@
             $row_c =mysqli_fetch_assoc($r);
              $customer_id = $row_c['id'];
 
-          $result = mysqli_query($mysqli,"SELECT distinct product.*,add_to_favourite.product_id,add_to_favourite.customer_id FROM product LEFT JOIN add_to_favourite
-          ON product.id = add_to_favourite.product_id
-          WHERE add_to_favourite.customer_id = '$customer_id'");
+          $result = mysqli_query($mysqli,"SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
+          ON product.id = wishlist.product_id
+          WHERE wishlist.customer_id = '$customer_id'");
           // if($result === FALSE){
           //   die(mysql_error());
           // }
@@ -86,7 +86,7 @@
               <tr>
                 <td><img src="admin/cover/<?php echo $obj->cover ?>" width="110" height="140"/></td>
                 <td>
-                <p><strong><i><a href="detail.php?id=<?php echo  $obj->id ?>"><?php echo $obj->product_name ?></a></i></strong></p>
+                <p><strong><i><a href="detail.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></i></strong></p>
                 <p><strong>US$ <?php echo  $obj->price ?></strong></p>
                 <a href="">Remove</a>
                 <?php if($obj->qty < 7 && $obj->qty > 0 ){ ?>

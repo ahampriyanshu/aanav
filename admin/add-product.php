@@ -33,9 +33,10 @@ header('location:login.php');}
 <body >
 
 <?php
-extract($_POST);
 
-if(isset($submit)) {
+if(isset($_POST['submit'])){
+
+  date_default_timezone_set('Asia/Kolkata');
   $name = $_POST['name'];
   $code = $_POST['code'];
   $cat = $_POST['cat'];
@@ -46,15 +47,22 @@ if(isset($submit)) {
   $MRP = $_POST['MRP'] ;
   $cost = $_POST['cost'];
   $description = $_POST['description'];
+  $temp = explode(".", $_FILES["file"]["name"]);
+  $file = round(microtime(true)) . '.' . end($temp);
+  $date = date('d/m/Y h:i:s', time());
+  $dirpath = realpath(dirname(getcwd()));
 
-  $sql = "INSERT INTO product (name,code,categories,sub_cat,brand,supplier,description,MRP,cost,qty)
-             VALUES('$name','$code','$cat','$sub_cat','$brand','$supplier','$description','$MRP','$cost','$qty')";
+  if ($file) {
+    move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
+}
+
+  $sql = "INSERT INTO product (name,code,categories,sub_cat,brand,supplier,description,MRP,cost,qty,cover,created)
+             VALUES ('$name','$code','$cat','$sub_cat','$brand','$supplier','$description','$MRP','$cost','$qty','$file','$date')";
 
   $run=mysqli_query($mysqli, $sql);
 
   if ($run) {
-      echo "<script>alert('Product has been inserted')</script>";
-      echo "<script>window.open('product_2nd.php','_self')</script>";
+      echo "<script>window.open('add-image.php','_self')</script>";
   } else {
       echo "error";
   }
@@ -153,12 +161,12 @@ if(isset($submit)) {
                                                 ?>
                                           </select> 
                                           </div> 
+                                          </div>
+                                          </div>
 
-          
-
-                                  <!--        <div class="col-sm-6 login-section-wrapper pl-5">
+      <div class="col-sm-6 login-section-wrapper pl-1">
           <div class="login-wrapper">
-            <h1 class="login-title">Step 2</h1> -->
+            <h1 class="login-title">Step 2</h1> 
 
 
             <div class="form-group mb-4">
@@ -181,7 +189,10 @@ if(isset($submit)) {
                                           <textarea type="text" name="description"  class="form-control" id="email" rows="4" cols="50" required/> </textarea>
                                           </div> 
 
-                        
+                                          <div class="form-group mb-4">
+                                          <label for="email">Cover Image</label>
+                                          <input type="file" name="file" id="email" required />
+                                          </div> 
 
               <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Add Product">
             </form>
@@ -190,8 +201,6 @@ if(isset($submit)) {
 
       </div>     
 </div>    
-
-
 
 </body>
 </html>

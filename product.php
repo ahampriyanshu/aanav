@@ -7,7 +7,7 @@
 <?php  include('navbar.php'); ?>
 <?php
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+   $result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    $product_id = $row['id'];
    $categories = $row['categories'];
@@ -17,7 +17,7 @@
 
         $get_customer = "SELECT * FROM customer WHERE email ='$customer'";
 
-        $run_customer = mysqli_query($mysqli,$get_customer);
+        $run_customer = mysqli_query($mysqli, $get_customer);
 
         $row_customer = mysqli_fetch_assoc($run_customer);
 
@@ -71,7 +71,7 @@ input[type=radio] + label>img {
 </style>
 
 <style type="text/css">
-  .product-details .product-images img {
+  .product-details .product-img img {
 
     display: block;
     width: 500px;
@@ -83,7 +83,7 @@ input[type=radio] + label>img {
 include('config/config.php');
 
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product LEFT JOIN categories 
+   $result = mysqli_query($mysqli, "SELECT * FROM product LEFT JOIN categories 
                                    ON categories.cat_id = product.categories WHERE product.id=$id");
    $row2 = mysqli_fetch_assoc($result);
    $cat_id = $row2['cat_id'];
@@ -94,14 +94,14 @@ include('config/config.php');
     <div class="section section-gray">
         <div class="section-content">
             <div class="product-details">
-                <ul class="product-images">
+                <ul class="product-img">
                     <li class="preview"><img src="admin/cover/<?php echo $row2['cover'] ?> " alt="" ></li>
                     <li class="javascript:void(0)"><img src="admin/cover/<?php echo $row2['cover'] ?> " alt="" ></li>
                     <?php
                       $sql2 = "SELECT * FROM image_attributes
                               WHERE product_id = $id";
-                      $run = mysqli_query($mysqli,$sql2);
-                    while($row2 = mysqli_fetch_assoc($run)):
+                      $run = mysqli_query($mysqli, $sql2);
+                    while ($row2 = mysqli_fetch_assoc($run)):
                     ?>
                     
                     <li>
@@ -114,13 +114,13 @@ include('config/config.php');
 include('config/config.php');
 
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+   $result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
    $row3 = mysqli_fetch_assoc($result);
 ?>              
 
                 <ul class="product-info">
                  
-                    <li><p id="title"><?php echo $row3['product_name']?><br>
+                    <li><p id="title"><?php echo $row3['name']?><br>
                     <span class="badge badge-primary">&#x20B9;&nbsp;<?php echo $row3['price']?></span>
                   
                   </p></li>
@@ -135,41 +135,37 @@ include('config/config.php');
        <input type="hidden" name="id" value="<?php echo $id?>">
          <?php
 
-            $sql ="SELECT distinct a.*,p.color,p.product_id FROM product_attribute p
+            $sql ="SELECT distinct a.*,p.color,p.product_id FROM variant p
                    LEFT JOIN attribute a
                    ON p.color = a.attr_id
                    WHERE p.product_id = '$id'";
-                   $ret = mysqli_query($mysqli,$sql);
+                   $ret = mysqli_query($mysqli, $sql);
                   $num_results=mysqli_num_rows($ret);
-                  for($i=0;$i<$num_results;$i++)
-  {
-    $row=mysqli_fetch_array($ret);
+                  for ($i=0;$i<$num_results;$i++) {
+                      $row=mysqli_fetch_array($ret);
 
-    echo"<input type=\"radio\" name=\"rdocolor\" value=\"".$row['value']."\"
+                      echo"<input type=\"radio\" name=\"rdocolor\" value=\"".$row['value']."\"
   id=\"happy_".$row['attr_id']."\" class=\"custom-control-input\"/>";
-    echo "<label for=\"happy_".$row['attr_id']."\">";
-    ?>
+                      echo "<label for=\"happy_".$row['attr_id']."\">"; ?>
      
      <img 
-    src="admin/images/<?php echo $row['attr_img'] ?>" 
+    src="admin/img/<?php echo $row['attr_img'] ?>" 
     alt="<?php echo $row['value'] ?>" />
     <?php
 
     echo "<label>";
-  
-  }
+                  }
  ?>
            
                           </div>
                             </div>
-                          </div>  
-
+                          </div> 
       <div class="row">
 
-          <?php 
-            $result = "SELECT * FROM product_attribute where product_id = $id";
-            $sql = mysqli_query($mysqli,$result);
-            $row = mysqli_fetch_assoc($sql);             
+          <?php
+            $result = "SELECT * FROM variant where product_id = $id";
+            $sql = mysqli_query($mysqli, $result);
+            $row = mysqli_fetch_assoc($sql);
           ?>
 
            <div class="col-md-6 mb-3">
@@ -179,23 +175,23 @@ include('config/config.php');
                   <option value="">Choose...</option>
                            <?php
 
-                                    $sql ="SELECT distinct a.*,p.size,p.product_id FROM product_attribute p
+                                    $sql ="SELECT distinct a.*,p.size,p.product_id FROM variant p
                                      LEFT JOIN attribute a
                                      ON p.size = a.attr_id
                                      WHERE p.product_id = '$id'";
 
-                               $result = mysqli_query($mysqli,$sql);
+                               $result = mysqli_query($mysqli, $sql);
 
-                               while($row = mysqli_fetch_assoc($result)){
-                                    $size = $row['size'];
-                                                  ?>
+                               while ($row = mysqli_fetch_assoc($result)) {
+                                   $size = $row['size']; ?>
 
-                                    <?php if($size == 0){ ?>
+                                    <?php if ($size == 0) { ?>
                                       <option value='ONE SIZE'>ONE SIZE</option>
-                                   <?php  }else{ ?>                                               
+                                   <?php  } else { ?>                                               
                                   <option value='<?php echo $row['value']; ?>'><?php echo $row['value']; ?></option>
                                         <?php } ?>          
-                                              <?php  } ?>
+                                              <?php
+                               } ?>
                 </select>   
               </div>
 
@@ -208,12 +204,11 @@ include('config/config.php');
                           
                           </style>
 <!--      ----------------------------------- In stock & sold out ------------------------ -->
-                          <?php if($qty == 0){
-                            echo "<span class='badge badge-danger'>SOLD OUT</span>";
-                          }
-                          else{
-                            echo "<span class='badge badge-success'>In Stock</span>";
-                          }
+                          <?php if ($qty == 0) {
+                                   echo "<span class='badge badge-danger'>SOLD OUT</span>";
+                               } else {
+                                   echo "<span class='badge badge-success'>In Stock</span>";
+                               }
 
                           ?>
 <!--      ----------------------------------- In stock & sold out end------------------------ -->
@@ -226,52 +221,54 @@ include('config/config.php');
                            
 
          <?php
-              $sql ="SELECT distinct a.*,p.color,p.product_id FROM product_attribute p
+              $sql ="SELECT distinct a.*,p.color,p.product_id FROM variant p
                      LEFT JOIN attribute a
                      ON p.size = a.attr_id
                      WHERE p.product_id = '$id'";
 
-             $result = mysqli_query($mysqli,$sql);
+             $result = mysqli_query($mysqli, $sql);
 
-             while($row = mysqli_fetch_assoc($result)){
-
-        ?>
+             while ($row = mysqli_fetch_assoc($result)) {
+                 ?>
    
 
-         <?php } ?>
+         <?php
+             } ?>
 
           
-          <?php 
+          <?php
       $s = "SELECT * FROM product WHERE id = '$id'";
-      $r = mysqli_query($mysqli,$s);
+      $r = mysqli_query($mysqli, $s);
       $row_r = mysqli_fetch_assoc($r);
         $product_id = $row_r['id'];
         $customer = $_SESSION['email'];
 
     
       $sql5 = "SELECT * FROM customer WHERE email = '$customer'";
-      $run5 = mysqli_query($mysqli,$sql5);
+      $run5 = mysqli_query($mysqli, $sql5);
       $row5 =mysqli_fetch_assoc($run5);
       $customer_id = $row5['id'];
       $customer_name = $row5['name'];
       
       
-      $sql_fav = "SELECT * FROM add_to_favourite WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
-      $run_fav = mysqli_query($mysqli,$sql_fav);
+      $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
+      $run_fav = mysqli_query($mysqli, $sql_fav);
       $row_fav = mysqli_fetch_assoc($run_fav);
         $fav = $row_fav['fav_id'];
        
         ?>
 
-      <?php if($qty > 0){ ?>
-              <input type="submit" name="submit" value="Add To Cart" style="clear:both; background: #48c9b0; border: none; color: #fff; font-size: 14px; padding: 10px; cursor: pointer;" /> <a href="cart.php">View Cart</a>
-      <?php }else{ ?>
+      <?php if ($qty > 0) { ?>
+              <input type="submit" name="submit" value="Add To Cart" 
+              style="clear:both; background: #48c9b0; border: none; color: #fff; font-size: 14px; padding: 10px; cursor: pointer;" />
+               
+      <?php } else { ?>
 
       <?php
 
    include('config/config.php');
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+   $result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    
    ?>
@@ -292,7 +289,6 @@ include('config/config.php');
                        <div class="modal-body"> 
                        
                            <div id="modal-loader" style="display: none; text-align: center;">
-                            <img src="ajax-loader.gif">
                            </div>
                             
                            <!-- content will be load here -->                          
@@ -344,29 +340,20 @@ $(document).ready(function(){
 <!--      -----------------------------------Add To Whilist ------------------------ -->
        <br><br>
 
-          <?php  if($fav == 0){ ?>
+          <?php  if ($fav == 0) { ?>
          
-            <a href="add_fav.php?id=<?php echo $row_r['id']; ?>" ><i class="material-icons">favorite</i></a>
+            <a href="add-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="material-icons">favorite</i></a>
 
-        <?php }else{ ?>
-            <a href="remove_wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="material-icons">favorite_border</i></a>
+        <?php } else { ?>
+            <a href="remove-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="material-icons">favorite_border</i></a>
         
         <?php } ?>
     
        
          
      
-      </div>
-
-      <!--      -----------------------------------Add To Whilist  end------------------------ -->
-
-
-          
-    </div><!-- col8 -->
-                    <li class="product-description">
-                       
-                    </li>
-                </ul>
+             </div>
+              </div>
             </div>
         </div>
     </div>
@@ -415,7 +402,7 @@ background: teal;
 <?php
 
     include('config/config.php');
-    $smilar = mysqli_query($mysqli,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 0,4");
+    $smilar = mysqli_query($mysqli, "SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 0,4");
     
     
 ?>
@@ -435,13 +422,13 @@ background: teal;
 
                             <div class="carousel-item active">
                                 <div class="row">
-                                  <?php while($row_similar = mysqli_fetch_assoc($smilar)):?>
+                                  <?php while ($row_similar = mysqli_fetch_assoc($smilar)):?>
                                     <div class="col-md-3">
                                         <a href="product.php?id=<?php echo $row_similar['id'] ?>">
                                             <img src="admin/cover/<?php echo $row_similar['cover'] ?>" alt="Image" style="width: 250px; height:250px;">
                                             
                                         </a>
-                                        <p><?php echo $row_similar['product_name']; ?></p>
+                                        <p><?php echo $row_similar['name']; ?></p>
                                         <p><strong>US$<?php echo $row_similar['price']; ?></strong></p>
                                     </div>
                                   <?php endwhile; ?>
@@ -455,8 +442,8 @@ background: teal;
                   <?php
 
                   include('config/config.php');
-                  $smilar2 = mysqli_query($mysqli,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 4,4");
-                  while($row_similar2 = mysqli_fetch_assoc($smilar2)):
+                  $smilar2 = mysqli_query($mysqli, "SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 4,4");
+                  while ($row_similar2 = mysqli_fetch_assoc($smilar2)):
     
                   ?>
           
@@ -464,7 +451,7 @@ background: teal;
                                         <a href="product.php?id=<?php echo $row_similar2['id'] ?>">
                                            <img src="admin/cover/<?php echo $row_similar2['cover'] ?>" alt="Image" style="width: 250px; height:250px;">
                                         </a>
-                                        <p><?php echo $row_similar2['product_name']; ?></p>
+                                        <p><?php echo $row_similar2['name']; ?></p>
                                         <p><strong>US$<?php echo $row_similar2['price']; ?></strong></p>
                                     </div>
                                     <?php endwhile; ?>

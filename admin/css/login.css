@@ -4,7 +4,6 @@ body {
   min-height: 100vh; }
 
 .brand-wrapper {
-  padding-top: 7px;
   padding-bottom: 8px; }
   .brand-wrapper .logo {
     height: 100px; }
@@ -15,7 +14,7 @@ body {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
-  padding: 68px 100px;
+  padding: 50px 100px;
   background-color: #fff; }
   @media (max-width: 991px) {
     .login-section-wrapper {
@@ -23,14 +22,12 @@ body {
       padding-right: 50px; } }
   @media (max-width: 575px) {
     .login-section-wrapper {
-      padding-top: 20px;
       padding-bottom: 20px;
       min-height: 100vh; } }
 
 .login-wrapper {
   width: 300px;
   max-width: 100%;
-  padding-top: 24px;
   padding-bottom: 24px; }
   @media (max-width: 575px) {
     .login-wrapper {
@@ -96,5 +93,3 @@ body {
      object-fit: cover;
   -o-object-position: left;
      object-position: left; }
-
-/*# sourceMappingURL=login.css.map */

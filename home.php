@@ -99,7 +99,7 @@ box-sizing: border-box;
       
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  product_name, qty, price FROM product WHERE id = $product_id";
+            $result = "SELECT  name, qty, price FROM product WHERE id = $product_id";
             $run = mysqli_query($mysqli,$result);
 
             if($run){

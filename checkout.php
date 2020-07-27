@@ -1,10 +1,8 @@
 <?php
   session_start();
   include('essentials/config.php');
-?>
-
-<?php include('boilerplate.php'); ?>
-<?php include('navbar.php'); ?>
+  include('boilerplate.php'); 
+  include('navbar.php'); ?>
 
 <style type="text/css">
 
@@ -49,23 +47,21 @@ ul.list i,ul.list small{
  
 
 </style>
-
-
-<br><br>
+<br>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
 			<h1>DELIVERY METHOD</h1>
-      
+
 	  <div class="row">
 	  <div class="col-xs-4">
       <label>
       <input type="radio" name="ship" value="home" id="rdoship_0" required/>
-      FREE TO HOME</label><br>
+      Home Delivery</label><br>
 
 	  <label>
 	    <input type="radio" name="ship" value="store" id="rdoship_1" required/>
-	    Free In STORE Pick Up</label>
+	   Store Pick Up</label>
 	    <span class="fa fa-shipping-fast"></span>
 	    </div>
 	    
@@ -119,10 +115,6 @@ ul.list i,ul.list small{
 		})
 	});
 </script>
-
-	   
-
-
                           </div><!--  row end -->
                           <hr>
                          
@@ -163,8 +155,8 @@ ul.list i,ul.list small{
                  	<td><small><?php echo $row['phone'] ?></small></td>
                  </tr>
                   <tr>
-                 	<td>City&Country</td>
-                 	<td><small><?php echo $row['city'] ?>,<?php echo $row['state'] ?><br>,In <?php echo $row['country'] ?></small></td>
+                 	<td>City</td>
+                 	<td><small><?php echo $row['city'] ?>,<?php echo $row['state'] ?></small></td>
                  </tr>
                 </table>
               
@@ -184,7 +176,7 @@ ul.list i,ul.list small{
                 </div><br><br>
                       
 	 
-		</div><!--  col-md-8 end -->
+		</div>
 		     <style type="text/css">
          .table td, .table th {
     padding: 0.75rem;
@@ -238,33 +230,34 @@ ul.list i,ul.list small{
             <div class="col-md-12 col-xs-12 col-sm-8">
               <div class="inner-order">
   <?php
-      if(isset($_SESSION['cart'])) {
-
+     if(isset($_SESSION['cart'])) {
             $total = 0;
             $itemqty = 0;
            
           
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  name, qty, price,file FROM product WHERE id = $product_id";
+          
+            $result = "SELECT  name, cost, qty, file FROM product WHERE id = '$product_id'";
             $run = mysqli_query($mysqli,$result);
+        
                
             if($run){
 
                 echo '<ul class="list">';
               while($obj = mysqli_fetch_object($run)) {
-                $cost = $obj->price * $quantity; //work out the line cost
-                $total = $total + $cost; //add to the total cost
+                $price = $obj->cost * $quantity; //work out the line cost
+                $total = $total + $price; //add to the total cost
                 $itemqty = $itemqty+$quantity;
                 
                 
                echo '<li>';
                echo '<img src="uploads/'.$obj->file.'" width="100" height="140" align="right" align="right" alt="">';
                 echo '<b>'.$obj->name.'</b>';
-                echo '<h6 class="my-0">&#x20B9;&nbsp;'.$obj->price.'</h6>';
+                echo '<h6 class="my-0">&#x20B9;&nbsp;'.$obj->cost.'</h6>';
                 echo '<small>quantity: '.$quantity.'</small>';
                 echo '<a href="cart.php" style="font-size: 12px;">Edit</a>';
-                // echo 'amount: &#x20B9;&nbsp;'.$cost.'<br>';
+                // echo 'amount: &#x20B9;&nbsp;'.$price.'<br>';
                 echo '</li>';
               }
               echo '</ul>';
@@ -274,7 +267,14 @@ ul.list i,ul.list small{
 
           echo '<table class="table">';
           echo '<tr>';
-          echo '<td>TOTAL('.$itemqty.')</td>';
+          echo '<td>Total Quantity</td>';
+           echo '<td></td>';
+           echo '<td></td>';
+           echo '<td></td>';
+          echo '<td><strong>'.$itemqty.'</strong></td>';
+          echo '</tr>';
+          echo '<tr>';
+          echo '<td>Total Sum</td>';
            echo '<td></td>';
            echo '<td></td>';
            echo '<td></td>';
@@ -294,15 +294,11 @@ ul.list i,ul.list small{
 
         </div>
 
-      </div> <!-- ====== -->
+      </div> 
 
         </div>
-         <div class="securepayment"><span class="fa fa-lock"></span> All transactions are safe and secure</div>
-         <br>
-         <img src="https://www.adidas.com/static/on/demandware.static/-/Sites-adidas-US-Library/en_US/dw88ec105e/us_payment_methods.png" height="40px">
-    </div><!--  col-md-4 end -->
-	</div> <!-- row end -->
-	<div class="row"></div><!-- row end -->
+     </div>
+	</div>
 </div>
 
 <br><br><br>

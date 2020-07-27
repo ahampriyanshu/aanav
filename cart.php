@@ -132,7 +132,7 @@ h3{
                               echo '<p style="font-size:12px;" >Color: '.$value_c.'</p>';
                               echo '<p style="font-size:12px;">Size: '.$value_s.' </p>';
               
-                          echo '<a href="delete-cart-detail.php?id='.$product_id.'" style="font-size:12px; margin-left: 12px;">Delete</a>';
+                          echo '<a href="update-cart.php?action=del&id='.$product_id.'" style="font-size:12px; margin-left: 12px;">Delete</a>';
                           echo '<a href="cart-to-wishlist.php?id='.$product_id.'" style="font-size:12px; margin-left: 12px;">Move To Wishlist</a>';
                           echo '</td>';
               

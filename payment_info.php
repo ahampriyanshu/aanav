@@ -60,52 +60,10 @@ ul.list i,ul.list small{
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <h2>PAYMENT METHOD</h2> 
+      <h2>Payment Method</h2> 
     
 
-<!-- 26 form start -->
 
-
-<div class="custom-control custom-radio">
-  <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio1"><span class="fa fa-credit-card"></span>  CREDIT CARD</label>
-  <div class="card-img">
-<img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dw0ea1ad9f/visa_card_icon_new.png">
-<img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dwe5aabfdc/amex_card_icon.png">
-<img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dw8dd2a717/master_card_icon_new.png">
-<img src="https://www.adidas.com/static/on/demandware.static/-/Sites/en_US/dw37610a52/disfile_card_icon.png">
-</div>
-</div>
-<hr>
-
-
-<div class="custom-control custom-radio">
-  <input type="radio" id="customRadio4" name="customRadio" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio4"><span class="fa fa-credit-card"></span>  DEBIT CARD</label>
-  <div class="card-img2">
-<img src="image/bank (1).png" width="100" height="40">
-<img src="image/bank (2).png" width="100" height="40">
-<img src="image/bank (4).png" width="100" height="40">
-</div>
-</div>
-
-<style type="text/css">
-  .card-img{
-    margin-left: 450px;
-   
-  }
-  .card-img2{
-    margin-left: 366px;
-    margin-top: 0;
-   
-  }
-  .card-img2 img{
-    border: 1px solid whitesmoke;
-    margin-left: 10px;
-    padding: 5px;
-    border-radius: 2px;
-  }
-</style>
 <hr>
 <div class="custom-control custom-radio">
   <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
@@ -113,15 +71,10 @@ ul.list i,ul.list small{
 
   
 </div>
-<hr>
-<div class="custom-control custom-radio">
-  <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio3"><img src="https://www.adidas.com/static/on/demandware.static/-/Sites-adidas-US-Library/en_US/dw65738826/paypal-payment-image.png" class="pay-lo"></label>
-  
-      <div class="pay-container">
-                  <!--   AJAX PAY HERE  -->    
-            </div>
+
+<div class="pay-container">
 </div>
+
 <hr>
 <script src="jquery.min.js" integrity "sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
@@ -149,73 +102,7 @@ ul.list i,ul.list small{
     })
   });
 
-    $(document).ready(function(){
-    $("#customRadio3").change(function(){
-      var getCountryID = $(this).val();
-      
-      if(getCountryID !='')
-      {
-        $("#loader").show();
-        $(".pay-container").html("");
-        
-        $.ajax({
-          type:'post',
-          data:{country_id:getCountryID},
-          url: 'ajax_request_paypal.php',
-          success:function(returnData){
-            $("#loader").hide();  
-            $(".pay-container").html(returnData);
-          }
-        }); 
-      }
-      
-    })
-  });
-
-    $(document).ready(function(){
-    $("#customRadio1").change(function(){
-      var getCountryID = $(this).val();
-      
-      if(getCountryID !='')
-      {
-        $("#loader").show();
-        $(".pay-container").html("");
-        
-        $.ajax({
-          type:'post',
-          data:{country_id:getCountryID},
-          url: 'ajax_request_credit.php',
-          success:function(returnData){
-            $("#loader").hide();  
-            $(".pay-container").html(returnData);
-          }
-        }); 
-      }
-      
-    })
-  });
-     $(document).ready(function(){
-    $("#customRadio4").change(function(){
-      var getCountryID = $(this).val();
-      
-      if(getCountryID !='')
-      {
-        $("#loader").show();
-        $(".pay-container").html("");
-        
-        $.ajax({
-          type:'post',
-          data:{country_id:getCountryID},
-          url: 'ajax_request_debit.php',
-          success:function(returnData){
-            $("#loader").hide();  
-            $(".pay-container").html(returnData);
-          }
-        }); 
-      }
-      
-    })
-  });
+ 
 </script>
 
 
@@ -284,14 +171,14 @@ ul.list i,ul.list small{
           
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  name, qty, price,file FROM product WHERE id = $product_id";
+            $result = "SELECT  name, qty, cost,file FROM product WHERE id = $product_id";
             $run = mysqli_query($mysqli,$result);
                
             if($run){
 
                 echo '<ul class="list">';
               while($obj = mysqli_fetch_object($run)) {
-                $cost = $obj->price * $quantity; //work out the line cost
+                $cost = $obj->cost * $quantity; //work out the line cost
                 $total = $total + $cost; //add to the total cost
                 $itemqty = $itemqty+$quantity;
                 
@@ -299,7 +186,7 @@ ul.list i,ul.list small{
                echo '<li>';
                echo '<img src="uploads/'.$obj->file.'" width="100" height="140" align="right" align="right" alt="">';
                 echo '<b>'.$obj->name.'</b>';
-                echo '<h6 class="my-0">&#x20B9;&nbsp;'.$obj->price.'</h6>';
+                echo '<h6 class="my-0">&#x20B9;&nbsp;'.$obj->cost.'</h6>';
                 echo '<small>quantity: '.$quantity.'</small>';
                 // echo 'amount: &#x20B9;&nbsp;'.$cost.'<br>';
                 echo '</li>';
@@ -357,48 +244,10 @@ ul.list i,ul.list small{
       </div> <!-- ====== -->
 
         </div>
-         <div class="securepayment"><span class="fa fa-lock"></span> All transactions are safe and secure</div>
-         <br>
-         <img src="https://www.adidas.com/static/on/demandware.static/-/Sites-adidas-US-Library/en_US/dw88ec105e/us_payment_methods.png" height="40px">
-    </div>
+  </div>
   </div>
 </div>
 
-
-
-
-
-
-
-
-<!--
-The MIT License (MIT)
-
-Copyright (c) 2015 William Hilton
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
--->
-<!-- Vendor libraries -->
-
-
-
-<!-- If you're using Stripe for payments -->
 <script type="text/javascript" src=""></script>
 <style type="text/css">
 
@@ -450,12 +299,6 @@ color: #000;
 
 <br><br><br>
 <?php include('footer.php'); ?>
-
-
-
-
-
-
 
 <script src='jquery-3.3.1.js' type='text/javascript'></script>
 <script src='bootbox.min.js'></script>

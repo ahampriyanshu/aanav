@@ -30,6 +30,10 @@
          unset($_SESSION['cart'][$product_id]);
          break;
 
+         case "del":
+          unset($_SESSION['cart'][$product_id]);
+            break;
+
  
      }
    }

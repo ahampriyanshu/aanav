@@ -141,7 +141,7 @@
 
 </div>
 <br>
-<?php include('003latest_home.php'); ?>
+<?php include('latest.php'); ?>
 <style type="text/css">
   .forever21{
      padding: 15px 0px;
@@ -152,7 +152,7 @@
   }
 </style>
 <br>
-<?php include('005bestseller.php'); ?>
+<?php include('bestseller.php'); ?>
 
 <style type="text/css">
 

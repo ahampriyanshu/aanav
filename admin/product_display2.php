@@ -76,16 +76,16 @@
                 $count = 1;
                 while($row = mysqli_fetch_assoc($result) ){
                     $id = $row['id'];
-                    $product_name = $row['product_name'];
+                    $name = $row['name'];
                     $created_date = $row['created_date'];
-                    $price = $row['price'];
+                    $price = $row['cost'];
 
                 ?>
 
                     <tr>
                       <div class="display">
                       <input type="hidden" name="<?php echo $row['id']; ?>">
-                      <td><b><?= $product_name ?></b><br>
+                      <td><b><?= $name ?></b><br>
                       <i style="color: #aeb6bf">by <?php echo $row['brand_name']; ?> 
                          <small> (in <?php echo $row['cat_name']; ?>)</small></i><br>
                        <p><i>from</i> <?php echo $row['supplier_name']; ?></p>
@@ -106,8 +106,8 @@
                           <?php
                             $selling_price = $price-($price*($percentage/100))
                           ?>
-                          <span style="text-decoration: line-through; color: #DC3545; ">US$<?php echo $price ?></span>
-                          US$<?php echo $selling_price; ?>
+                          <span style="text-decoration: line-through; color: #DC3545; ">&#x20B9;&nbsp;<?php echo $price ?></span>
+                          &#x20B9;&nbsp;<?php echo $selling_price; ?>
                           <?php } ?>
                           
 

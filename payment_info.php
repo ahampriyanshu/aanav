@@ -297,11 +297,11 @@ ul.list i,ul.list small{
                 
                 
                echo '<li>';
-               echo '<img src="admin/file/'.$obj->file.'" width="100" height="140" align="right" align="right" alt="">';
+               echo '<img src="uploads/'.$obj->file.'" width="100" height="140" align="right" align="right" alt="">';
                 echo '<b>'.$obj->name.'</b>';
-                echo '<h6 class="my-0">US$'.$obj->price.'</h6>';
+                echo '<h6 class="my-0">&#x20B9;&nbsp;'.$obj->price.'</h6>';
                 echo '<small>quantity: '.$quantity.'</small>';
-                // echo 'amount: US$'.$cost.'<br>';
+                // echo 'amount: &#x20B9;&nbsp;'.$cost.'<br>';
                 echo '</li>';
               }
               echo '</ul>';
@@ -315,7 +315,7 @@ ul.list i,ul.list small{
            echo '<td></td>';
            echo '<td></td>';
            echo '<td></td>';
-          echo '<td><strong>US$'.$total.'</strong></td>';
+          echo '<td><strong>&#x20B9;&nbsp;'.$total.'</strong></td>';
           echo '</tr>';
           
           echo '</table>';

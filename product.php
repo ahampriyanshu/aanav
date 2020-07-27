@@ -445,7 +445,7 @@ background: teal;
                                             
                                         </a>
                                         <p><?php echo $row_similar['name']; ?></p>
-                                        <p><strong>US$<?php echo $row_similar['cost']; ?></strong></p>
+                                        <p><strong>&#x20B9;&nbsp;<?php echo $row_similar['cost']; ?></strong></p>
                                     </div>
                                   <?php endwhile; ?>
                              
@@ -468,8 +468,8 @@ background: teal;
                                         <a href="product.php?id=<?php echo $row_similar2['id'] ?>">
                                            <img src="uploads/<?php echo $row_similar2['file'] ?>" alt="Image" style="width: 250px; height:250px;">
                                         </a>
-                                        <p><?php echo $row_similar2['product_name']; ?></p>
-                                        <p><strong  style="color: #DC3545" >&#x20B9;&nbsp;<?php echo $row_similar2['price']; ?></strong>
+                                        <p><?php echo $row_similar2['name']; ?></p>
+                                        <p><strong  style="color: #DC3545" >&#x20B9;&nbsp;<?php echo $row_similar2['cost']; ?></strong>
                                         <strong class="price_dis">&#x20B9;&nbsp;<?php echo $row_similar2['MRP']; ?></strong></p>
                                     </div>
                                     <?php endwhile; ?>

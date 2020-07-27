@@ -23,12 +23,12 @@ while($datarow = mysqli_fetch_assoc($result)){
  
     $id = $datarow['id'];
     $name = $datarow['name'];
-    $price = $datarow['price'];
+    $price = $datarow['cost'];
     $file = $datarow['file'];
     $qty = $datarow['qty'];
 
  
-    $response_arr[] = array('id'=>$id,'name'=>$name,'price'=>$price,'file'=>$file,'qty'=>$qty);
+    $response_arr[] = array('id'=>$id,'name'=>$name,'cost'=>$price,'file'=>$file,'qty'=>$qty);
  
 }
 

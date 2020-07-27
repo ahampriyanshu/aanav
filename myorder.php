@@ -58,7 +58,7 @@
 				?>
 				<tr>
 					<td>ORD_<?php echo $row['order_id'] ?></td>
-					<td>US$<?php echo $row['total_amt'] ?></td>
+					<td>&#x20B9;&nbsp;<?php echo $row['total_amt'] ?></td>
 					<td><?php echo $row['total_qty'] ?></td>
 					<td><?php echo $row['payment_type'] ?></td>
 					<td>

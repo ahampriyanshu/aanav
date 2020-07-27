@@ -41,6 +41,14 @@
  color: teal;
 }
 
+/*input[type=text]{
+ padding: 5px;
+ width: 400px;
+ letter-spacing: 1px;
+ margin-left: 4px;
+
+
+}*/
 .bg-light {
     background-color: #FFF !important;
 }
@@ -53,8 +61,9 @@
 
 </style>
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="index.php"><img alt="logo_nav" src="img/logo_nav.png" width="100" height="40"></a>
+<!--  2nd nav bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="index.php"><img src="image/ACTIVE.png" width="30" height="35"><strong style="color: #FFC107; font-size: 13px;">ACTIVE FASHION</strong> </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -62,10 +71,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="home.php">New Arrivals</a>
+        <a class="nav-link" href="sale.php">Sale</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="product.php">New Arrivals</a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="best-seller.php">Best Seller</a>
@@ -73,28 +85,33 @@
       
       
    <form method="get" action="search.php" class="form-inline my-2 my-lg-0">
-   <div class="soso" ng-controller="fetchCtrl" ng-click='containerClicked();' >
+   <div class='soso' ng-controller="fetchCtrl" ng-click='containerClicked();' >
         
-           <input type='text' name="user_query" class="form-control mr-sm-2" ng-keyup='fetchUsers()' ng-click='searchboxClicked($event);' ng-model='searchText' placeholder='Search'><br>
+           <input type='text' name="user_query" class="form-control mr-sm-2" ng-keyup='fetchUsers()' ng-click='searchboxClicked($event);' ng-model='searchText' placeholder='Search...'><br>
             <ul id='searchResult' >
                 <li ng-click='setValue($index,$event)' ng-repeat="result in searchResult" >
                   <a href="product.php?id={{result.id}}">
-                  <img ng-src="uploads/{{ result.file }}" alt="search_image_result" width="30px" height="40px"> {{ result.name }}</a>
+                  <img ng-src="admin/cover/{{ result.cover }}" width="30px" height="40px"> {{ result.name }}</a>
                 </li>
             </ul>  
         </div>
-       </form>
+          <button name="search" class="btn btn-outline-primary my-2 my-sm-0" type="submit"><span class="fa fa-search"></span></button>
+    </form>
     </ul>
     
+            
+        <!-- Script -->
         <script>
         var fetch = angular.module('myapp', []);
 
         fetch.controller('fetchCtrl', ['$scope', '$http', function ($scope, $http) {
             
+            // Fetch data
             $scope.fetchUsers = function(){
                 
                 var searchText_len = $scope.searchText.trim().length;
 
+                // Check search text length
                 if(searchText_len > 0){
                     $http({
                     method: 'post',
@@ -109,6 +126,7 @@
                 
             }
 
+            // Set value to search box
             $scope.setValue = function(index,$event){
                 $scope.searchText = $scope.searchResult[index].name;
                 $scope.searchResult = {};
@@ -126,9 +144,43 @@
         }]);
 
         </script>
+      <!-- ----  search engin angular & php end --- -->
 
+  
+      
       <ul class="navbar-nav">
-       <?php if (!isset($_SESSION['email'])) { ?>
+
+        <?php
+          if(isset($_SESSION['cart'])) {
+
+            $total = 0;
+            $itemqty = 0;
+      
+            foreach($_SESSION['cart'] as $product_id => $quantity) {
+
+            $result = "SELECT  name, qty, price FROM product WHERE id = $product_id";
+            $run = mysqli_query($mysqli,$result);
+
+            if($run){
+
+              while($obj = mysqli_fetch_object($run)) {
+                $cost = $obj->price * $quantity; //work out the line cost
+                $total = $total + $cost; //add to the total cost
+                $itemqty = $itemqty+$quantity;               
+              }
+            }
+          }
+          ?>
+          
+     
+
+        
+        
+           <li class="nav-item">
+        <a class="nav-link" href="cart.php"><img src="image/shopping-bag.png" width="20px" height="20px"></a>
+      </li>
+       <?php  } ?>
+       <?php if(!isset($_SESSION['email'])){ ?>
         
          
             <li class="nav-item dropdown">
@@ -136,29 +188,31 @@
           LOGIN/REGISTER
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="login.php">LOGIN</a>
-          <a class="dropdown-item" href="register.php">REGISTER</a>
+          <a class="dropdown-item" href="checkout.php">LOGIN</a>
+          <a class="dropdown-item" href="ajax-registration-script-with-php-mysql-and-jquery/index.php">REGISTER</a>
           
         </div>
       </li>
-       <?php } else { ?>
+       <?php } else{ ?>
 
         <?php
       //get user
     $email = $_SESSION['email'];
-    $sql_customer = mysqli_query($mysqli, "SELECT * FROM customer WHERE email = '$email'");
+    $sql_customer = mysqli_query($mysqli,"SELECT * FROM customer WHERE email = '$email'");
     $row_customer = mysqli_fetch_assoc($sql_customer);
 
-?>   
-      <li class="nav-item dropdown">
-        <a class="dropdown-item" href="cart.php"><i class="material-icons">shopping_cart</i></a>
+?>
+          <li class="nav-item">
+        <a class="nav-link" href="" style="font-size: 11px;"><?php echo $row_customer['name'] ?></a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="dropdown-item" href="dashboard.php"><i class="material-icons">dashboard</i></a>
-      </li>
-      <li>
+   
+             <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          LOGOUT
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="logout.php">LOGOUT</a>
-          </li>
+          <a class="dropdown-item" href="dashboard.php">Dashboard</a>
           
         </div>
       </li>

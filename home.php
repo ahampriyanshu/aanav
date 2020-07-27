@@ -97,7 +97,7 @@ box-sizing: border-box;
       
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-            $result = "SELECT  product_name, qty, price FROM product WHERE id = $product_id";
+            $result = "SELECT  name, qty, price FROM product WHERE id = $product_id";
             $run = mysqli_query($mysqli,$result);
 
             if($run){
@@ -109,7 +109,7 @@ box-sizing: border-box;
               }
             }
           }
-           echo "US$ $total<br>";
+           echo "&#x20B9;&nbsp; $total<br>";
           echo "
                 <a href='cart.php'>($itemqty) items in your cart</a>";
         }
@@ -156,11 +156,5 @@ box-sizing: border-box;
 <?php include('latest_product.php'); ?>
 <?php include('footer.php'); ?>
 </body>
- <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
-   
-
-
-  
 </html>
 

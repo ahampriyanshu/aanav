@@ -84,10 +84,10 @@
               <div class="col-md-6">
               <table class="table haha">
               <tr>
-                <td><img src="admin/file/<?php echo $obj->file ?>" width="110" height="140"/></td>
+                <td><img src="uploads/<?php echo $obj->file ?>" width="110" height="140"/></td>
                 <td>
                 <p><strong><i><a href="detail.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></i></strong></p>
-                <p><strong>US$ <?php echo  $obj->price ?></strong></p>
+                <p><strong>&#x20B9;&nbsp; <?php echo  $obj->price ?></strong></p>
                 <a href="">Remove</a>
                 <?php if($obj->qty < 7 && $obj->qty > 0 ){ ?>
                 <span class='badge badge-warning' style='margin-top: 2px;'>Low In Stock</span>

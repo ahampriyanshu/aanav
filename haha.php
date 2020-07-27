@@ -100,7 +100,7 @@
 						}						
 						$sliderHtml.= "<div class='item ".$activeClass."'>";
 						$sliderHtml.= "<div class='col-xs-4'><a href='".$sliderImage['id']."'>";
-						$sliderHtml.= "<img src='admin/file/".$sliderImage['file']."' class='img-responsive' height='100'";
+						$sliderHtml.= "<img src='uploads/".$sliderImage['file']."' class='img-responsive' height='100'";
 						$sliderHtml.= "</a></div></div>";					
 					}
 					echo $sliderHtml;

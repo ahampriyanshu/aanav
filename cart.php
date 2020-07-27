@@ -125,7 +125,7 @@ h3{
                           $value_s = $row_s['value'];
 
                           echo '<tr>';
-                          echo '<td><img src="admin/file/'.$obj->file.'" width="100" height="140" align="right" align="right" alt=""></td>';
+                          echo '<td><img src="uploads/'.$obj->file.'" width="100" height="140" align="right" align="right" alt=""></td>';
                 
                           echo '<td><b style="color: #4d5656;font-size:12px;" >'.$obj->name.'</b>';
                          

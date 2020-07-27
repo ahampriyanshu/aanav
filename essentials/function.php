@@ -198,31 +198,31 @@ function productBrand()
         if ($result) {
             if ($brand_id == 2) {
                 echo '<div class="col-md-3 col-sm-6 col-xs-12">';
-                echo '<img src="admin/file/a (7).png" width="250" height="190" style="margin-top: 80px;">';
+                echo '<img src="uploads/a (7).png" width="250" height="190" style="margin-top: 80px;">';
                 echo '</div>';
             } elseif ($brand_id == 1) {
                 echo '<div class="col-md-3 col-sm-6 col-xs-12">';
-                echo '<img src="admin/file/a (4).png" width="180" height="90" style="margin-top: 110px;">';
+                echo '<img src="uploads/a (4).png" width="180" height="90" style="margin-top: 110px;">';
                 echo '</div>';
             } elseif ($brand_id == 3) {
                 echo '<div class="col-md-3 col-sm-6 col-xs-12">';
-                echo '<img src="admin/file/a (2).png" width="200" height="110" style="margin-top: 110px;">';
+                echo '<img src="uploads/a (2).png" width="200" height="110" style="margin-top: 110px;">';
                 echo '</div>';
             } elseif ($brand_id == 4) {
                 echo '<div class="col-md-3 col-sm-6 col-xs-12">';
-                echo '<img src="admin/file/a (8).png" width="200" height="100" style="margin-top: 110px;">';
+                echo '<img src="uploads/a (8).png" width="200" height="100" style="margin-top: 110px;">';
                 echo '</div>';
             } elseif ($brand_id == 5) {
                 echo '<div class="col-md-3 col-sm-6 col-xs-12">';
-                echo '<img src="admin/file/a (1).png" width="200" height="100" style="margin-top: 110px;">';
+                echo '<img src="uploads/a (1).png" width="200" height="100" style="margin-top: 110px;">';
                 echo '</div>';
             } elseif ($brand_id == 10) {
                 echo '<div class="col-md-3 col-sm-6 col-xs-12">';
-                echo '<img src="admin/file/gap.jpg" width="200" height="100" style="margin-top: 110px;">';
+                echo '<img src="uploads/gap.jpg" width="200" height="100" style="margin-top: 110px;">';
                 echo '</div>';
             } elseif ($brand_id == 11) {
                 echo '<div class="col-md-3 col-sm-6 col-xs-12">';
-                echo '<img src="admin/file/cropped-19632487f1e7c995b9c6f504964d07b8-top-beans.jpg" width="200" height="100" style="margin-top: 110px;">';
+                echo '<img src="uploads/cropped-19632487f1e7c995b9c6f504964d07b8-top-beans.jpg" width="200" height="100" style="margin-top: 110px;">';
                 echo '</div>';
             }
               

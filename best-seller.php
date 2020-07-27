@@ -2,11 +2,10 @@
   session_start();
   include('essentials/config.php');
   include('essentials/function.php');
-    include('boilerplate.php');
+  include('boilerplate.php');
   include('navbar.php');
 ?>
 
-<!-- <b>
 
 <?php echo $_SESSION['color'];?></b> -->
 <style type="text/css">
@@ -22,23 +21,13 @@
     border-radius: 0.25rem;
 }
 </style>
-
-
-
-
-
-
       <div class="container">
-
         <div class="row">
           <div class="col-md-5"></div>
           <div class="col-md-7">
-          
           </div>
         </div>
       </div>
-        
-
 
 <?php
           if(isset($_SESSION['cart'])) {
@@ -60,7 +49,7 @@
               }
             }
           }
-          echo "US$ $total<br>";
+          echo "&#x20B9;&nbsp; $total<br>";
           echo "<span class='badge progress-bar-danger'>
                 $itemqty</span><br>";
         }
@@ -106,7 +95,7 @@
               <div class="display" >
               
             
-         <a href="product.php?id={{ product.id }}"><img ng-src='admin/file/{{ product.file }}' width='220' height='300'/></a>
+         <a href="product.php?id={{ product.id }}"><img ng-src='uploads/{{ product.file }}' width='220' height='300'/></a>
                 
              
                
@@ -121,7 +110,7 @@
               <br><br>
 
               <div class="box"><p><strong><i><a href="product.php?id={{ product.id }}">{{ product.name }}</a></i></strong></p>
-               <p><strong>US$ {{ product.price }}</strong></p>
+               <p><strong>&#x20B9;&nbsp; {{ product.price }}</strong></p>
               </div>
        
               </div>
@@ -192,7 +181,7 @@
    </div>
  </div>
 
-<?php include('003latest_home.php'); ?>
+<?php include('latest.php'); ?>
 <?php include('footer.php'); ?>
 </body>
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

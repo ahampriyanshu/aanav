@@ -60,7 +60,7 @@
               }
             }
           }
-          echo "US$ $total<br>";
+          echo "&#x20B9;&nbsp; $total<br>";
           echo "<span class='badge progress-bar-danger'>
                 $itemqty</span><br>";
         }
@@ -125,7 +125,7 @@
               echo '<div class="display">';
               
             
-         echo '<a href="product.php?id='.$obj->id.'"><img src="admin/file/'.$obj->file.'" width="220" height="300"/></a><br>';
+         echo '<a href="product.php?id='.$obj->id.'"><img src="uploads/'.$obj->file.'" width="220" height="300"/></a><br>';
               // echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
                if($obj->qty < 5){
@@ -137,7 +137,7 @@
               echo "<br><br>";
 
               echo '<div class="box"><p><strong><i><a href="product.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>';
-               echo '<p><strong>US$ '.$obj->price.'</strong></p>';
+               echo '<p><strong>&#x20B9;&nbsp; '.$obj->price.'</strong></p>';
               echo '</div>';
        
               echo '</div>';
@@ -155,7 +155,7 @@
    </div>
  </div>
 
-<?php include('003latest_home.php'); ?>
+<?php include('latest.php'); ?>
 <?php include('footer.php'); ?>
 </body>
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -26,7 +26,7 @@
               }
             }
           }
-          echo "US$ $total<br>";
+          echo "&#x20B9;&nbsp; $total<br>";
           echo "<span class='badge progress-bar-danger'>
                 $itemqty</span><br>";
         }
@@ -78,11 +78,11 @@
               echo '<div class="display">';
               
             
-              echo '<img src="admin/file/'.$obj->file.'" width="210" height="290"/>';
+              echo '<img src="uploads/'.$obj->file.'" width="210" height="290"/>';
               // echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               // echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
               echo '<p><strong><i><a href="detail.php?id='.$obj->id.'">'.$obj->name.'</a></i></strong></p>';
-               echo '<p><strong>US$ '.$obj->price.'</strong></p>';
+               echo '<p><strong>&#x20B9;&nbsp; '.$obj->price.'</strong></p>';
               echo '<p><strong>Item Left</strong>: '.$obj->qty.'</p>';
               
 

@@ -4,21 +4,15 @@
  
  $product_id = $_GET['id'];
  $action = $_GET['action'];
-   $color = $_SESSION['color'];
-   $size = $_SESSION['size']; 
-    $product_attribute = $_SESSION['variant'];
+ $color = $_SESSION['color'];
+ $size = $_SESSION['size']; 
+ $product_attribute = $_SESSION['variant'];
 
- 
- print_r($_SESSION);
- 
  if($action === 'empty')
    unset($_SESSION['cart']);
-  
- 
+
  $result = $mysqli->query("SELECT qty FROM product WHERE id = ".$product_id);
-   
-   
- 
+
  if($result){
  
    if($obj = $result->fetch_object()) {
@@ -40,9 +34,7 @@
      }
    }
  }
- 
- 
- 
+
 header("location: cart.php");
  
  ?>

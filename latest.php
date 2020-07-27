@@ -112,4 +112,6 @@ background: #000;
              
             </div>
 </div>
-</div> <!-- ftr2 end -->
+</div>
+<br>
+<br>

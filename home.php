@@ -78,9 +78,6 @@ box-sizing: border-box;
 
 </style>
 
-
-
-
 <div class="container cart-style">
   <div class="row">
     <div class="col-md-9">
@@ -109,8 +106,6 @@ box-sizing: border-box;
           echo "
                 <a href='cart.php'>($itemqty) items in your cart</a>";
         }
-
-        
         ?>
 
 <br>

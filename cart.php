@@ -84,10 +84,10 @@ h3{
 
         <?php
            
-           $variant = $_SESSION['variant'];
-        
+           
 
           if (isset($_SESSION['cart'])) {
+            $variant = $_SESSION['variant'];
               $total = 0;
               $itemqty = 0;
             
@@ -133,14 +133,14 @@ h3{
                               echo '<p style="font-size:12px;">Size: '.$value_s.' </p>';
               
                           echo '<a href="delete-cart-detail.php?id='.$product_id.'" style="font-size:12px; margin-left: 12px;">Delete</a>';
-                          echo '<a href="" style="font-size:12px; margin-left: 12px;">Move To Wishlist</a>';
+                          echo '<a href="cart-to-wishlist.php?id='.$product_id.'" style="font-size:12px; margin-left: 12px;">Move To Wishlist</a>';
                           echo '</td>';
               
        
                
                           echo '<td>Product ID&emsp;'.$product_id.'</td>';
-                          echo '<td>'.$quantity.'&nbsp;<a class="button [secondary success alert]" style="padding:5px;" 
-                          href="update-cart.php?action=add&id='.$product_id.'">+</a>&nbsp;<a class="button alert" 
+                          echo '<td><a class="button [secondary success alert]" style="padding:5px;" 
+                          href="update-cart.php?action=add&id='.$product_id.'">+</a>&nbsp;'.$quantity.'&nbsp;<a class="button alert" 
                           style="padding:5px;" href="update-cart.php?action=remove&id='.$product_id.'">-</a></td>';
                  
                               $selling_price = $obj->cost * $quantity;
@@ -167,8 +167,11 @@ h3{
               }
               echo '<tr>';
               echo '<td colspan="7" align="right">
-          <a href="delete-cart.php" class="button alert">Empty Cart</a>&nbsp;<a href="product.php" class="button [secondary success alert]">Continue Shopping </a>';
-              echo '<a style="clear:both; background: linear-gradient(to right, #025F8E, #0286CD) repeat scroll 0% 0% transparent; border: none; color: #fff; font-size: 1em; padding: 10px;" href="checkout.php" >Checkout
+          <a href="delete-cart.php" class="button alert">Empty Cart</a>&nbsp;
+          <a href="product.php" class="button [secondary success alert]">Continue Shopping </a>';
+              echo '<a style="clear:both; background: linear-gradient(to right, #025F8E, #0286CD) 
+              repeat scroll 0% 0% transparent; border: none; color: #fff; font-size: 1em; padding: 
+              10px;" href="checkout.php" >Checkout
           <span class="fa fa-chevron-circle-right"></span></a>';
         
               echo '</td>';

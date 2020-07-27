@@ -1,7 +1,7 @@
 <?php
   session_start();
-  include('../config/config.php');
-  include('../function/function.php');
+  include('../essentials/config.php');
+  include('../essentials/function.php');
   include('sidebar.php');
 
 error_reporting(E_ALL);
@@ -54,7 +54,7 @@ if(isset($_POST['submit'])){
     move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
 }
 
-  $sql = "INSERT INTO product (name,code,categories,sub_cat,brand,supplier,description,MRP,cost,qty,cover,created)
+  $sql = "INSERT INTO product (name,code,categories,sub_cat,brand,supplier,description,MRP,cost,qty,file,created)
              VALUES ('$name','$code','$cat','$sub_cat','$brand','$supplier','$description','$MRP','$cost','$qty','$file','$date')";
 
   $run=mysqli_query($mysqli, $sql);

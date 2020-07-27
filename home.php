@@ -3,13 +3,9 @@
   include('essentials/config.php');
   include('essentials/function.php');
   include('boilerplate.php');
+
   include('navbar.php');
 ?>
-
-<!-- <b>
-
-<?php echo $_SESSION['color'];?></b> -->
-
  <link rel="stylesheet" type="text/css" href="style.css">
  <script src="angular.min.js"></script>
 
@@ -153,7 +149,7 @@ box-sizing: border-box;
    </div>
  </div>
 
-<?php include('latest_product.php'); ?>
+<?php include('latest.php'); ?>
 <?php include('footer.php'); ?>
 </body>
 </html>

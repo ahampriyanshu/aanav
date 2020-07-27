@@ -65,7 +65,6 @@ background: #000;
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="product.php?id=<?php echo $row2['id']; ?>">
                                             <img src="uploads/<?php echo $row2['file'] ?>" alt="Image" style="width: 250px; height:250px;" class="img-responsive">
-                                            
                                         </a>
                                         <p><?php echo $row2['name']; ?></p>
                                         <p><strong>&#x20B9;&nbsp;<?php echo $row2['cost']; ?></strong></p>
@@ -73,10 +72,8 @@ background: #000;
                                   <?php endwhile; ?>
                              
                                 </div>
-                                <!--.row-->
                             </div>
-                            <!--.item-->
-
+                            
                             <div class="carousel-item">
                                 <div class="row">
                   <?php

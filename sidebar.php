@@ -9,9 +9,6 @@
 	<meta name="description" content="Blueprint: A basic template for a responsive multi-level menu" />
 	<meta name="keywords" content="blueprint, template, html, css, menu, responsive, mobile-friendly" />
 	<meta name="author" content="Codrops" />
-	<link rel="shortcut icon" href="favicon.ico">
-	<!-- food icons -->
-	<link rel="stylesheet" type="text/css" href="css/organicfoodicons.css" />
 	<!-- demo styles -->
 	<link rel="stylesheet" type="text/css" href="css/demo.css" />
 	<!-- menu styles -->
@@ -44,44 +41,44 @@
 			<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
 			<div class="menu__wrap">
 				<ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="All">
-					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1" href="#">Vegetables</a></li>
-					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2" href="#">Fruits</a></li>
-					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3" href="#">Grains</a></li>
+					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1" href="#">Categories</a></li>
+					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2" href="#">Brands</a></li>
+					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3" href="#">Price</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-4" aria-owns="submenu-4" href="#">Mylk &amp; Drinks</a></li>
 				</ul>
-				<!-- Submenu 1 -->
-				<ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="Vegetables">
-					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Stalk Vegetables</a></li>
+				
+				<ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="Categories">
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Stalk Categories</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Roots &amp; Seeds</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Cabbages</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Salad Greens</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Mushrooms</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1-1" aria-owns="submenu-1-1" href="#">Sale %</a></li>
 				</ul>
-				<!-- Submenu 1-1 -->
+				
 				<ul data-menu="submenu-1-1" id="submenu-1-1" class="menu__level" tabindex="-1" role="menu" aria-label="Sale %">
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Fair Trade Roots</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Dried Veggies</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Our Brand</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Homemade</a></li>
 				</ul>
-				<!-- Submenu 2 -->
-				<ul data-menu="submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Fruits">
-					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Citrus Fruits</a></li>
+				
+				<ul data-menu="submenu-2" id="submenu-2" class="menu__level" tabindex="-1" role="menu" aria-label="Brands">
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Citrus Brands</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Berries</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2-1" aria-owns="submenu-2-1" href="#">Special Selection</a></li>
-					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Tropical Fruits</a></li>
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Tropical Brands</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Melons</a></li>
 				</ul>
-				<!-- Submenu 2-1 -->
+				
 				<ul data-menu="submenu-2-1" id="submenu-2-1" class="menu__level" tabindex="-1" role="menu" aria-label="Special Selection">
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Exotic Mixes</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Wild Pick</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Vitamin Boosters</a></li>
 				</ul>
-				<!-- Submenu 3 -->
-				<ul data-menu="submenu-3" id="submenu-3" class="menu__level" tabindex="-1" role="menu" aria-label="Grains">
-					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Buckwheat</a></li>
+				
+				<ul data-menu="submenu-3" id="submenu-3" class="menu__level" tabindex="-1" role="menu" aria-label="Price">
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">500 - 2000</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Millet</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Quinoa</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Wild Rice</a></li>
@@ -95,7 +92,7 @@
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Bolivian Secrets</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Flour Packs</a></li>
 				</ul>
-				<!-- Submenu 4 -->
+				
 				<ul data-menu="submenu-4" id="submenu-4" class="menu__level" tabindex="-1" role="menu" aria-label="Mylk &amp; Drinks">
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Grain Mylks</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Seed Mylks</a></li>
@@ -124,14 +121,10 @@
 	(function() {
 		var menuEl = document.getElementById('ml-menu'),
 			mlmenu = new MLMenu(menuEl, {
-				// breadcrumbsCtrl : true, // show breadcrumbs
-				// initialBreadcrumb : 'all', // initial breadcrumb text
-				backCtrl : false, // show back button
-				// itemsDelayInterval : 60, // delay between each menu item sliding animation
-				onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+				backCtrl : false, 
+				onItemClick: loadDummyData 
 			});
 
-		// mobile menu toggle
 		var openMenuCtrl = document.querySelector('.action--open'),
 			closeMenuCtrl = document.querySelector('.action--close');
 
@@ -148,7 +141,6 @@
 			openMenuCtrl.focus();
 		}
 
-		// simulate grid content loading
 		var gridWrapper = document.querySelector('.content');
 
 		function loadDummyData(ev, itemName) {
@@ -165,5 +157,4 @@
 	})();
 	</script>
 </body>
-
 </html>

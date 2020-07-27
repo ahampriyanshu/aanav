@@ -1,3 +1,6 @@
+<?php
+include('essentials/config.php');
+?>
 <style type="text/css">
     .blog2 .carousel-indicators {
     left: 0;
@@ -39,8 +42,7 @@ background: #000 ;
 </script>
 <?php
 
-    include('essentials/config.php');
-    $result = mysqli_query($mysqli,"SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+    $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
             ON product.id = order_items.product_id
@@ -67,7 +69,7 @@ background: #000 ;
 
                             <div class="carousel-item active">
                                 <div class="row">
-                                  <?php while($row2 = mysqli_fetch_assoc($result)):?>
+                                  <?php while ($row2 = mysqli_fetch_assoc($result)):?>
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="product.php?id=<?php echo $row2['id']; ?>">
                                             <img src="uploads/<?php echo $row2['file'] ?>" alt="Image" style="width: 250px; height:250px;">
@@ -86,16 +88,13 @@ background: #000 ;
                             <div class="carousel-item">
                                 <div class="row">
                   <?php
-
-                  include('essentials/config.php');
-                  $result = mysqli_query($mysqli,"SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+                  $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
             ON product.id = order_items.product_id
             GROUP BY order_items.product_id
             ORDER BY TotalQuantity ASC LIMIT 4,4");
-                  while($row3 = mysqli_fetch_assoc($result)):
-                  ?>
+                  while ($row3 = mysqli_fetch_assoc($result)):?>
           
                                     <div class="col-sm-3 col-xs-6">
                                         <a href="product.php?id=<?php echo $row3['id']; ?>">
@@ -113,15 +112,13 @@ background: #000 ;
                              <div class="carousel-item">
                                 <div class="row">
                   <?php
-
-                  include('essentials/config.php');
-                  $result = mysqli_query($mysqli,"SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+                  $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
             ON product.id = order_items.product_id
             GROUP BY order_items.product_id
             ORDER BY TotalQuantity ASC LIMIT 8,4");
-                  while($row4 = mysqli_fetch_assoc($result)):
+                  while ($row4 = mysqli_fetch_assoc($result)):
                   ?>
           
                                     <div class="col-sm-3 col-xs-6">
@@ -148,9 +145,6 @@ background: #000 ;
     <span class="sr-only">Next</span>
   </a>
                     </div>
-                    <!--.Carousel-->
-
-           
             </div>
 </div>
-</div> <!-- ftr2 end -->
+</div> 

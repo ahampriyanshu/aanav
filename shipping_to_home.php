@@ -1,9 +1,8 @@
 <?php
         session_start();
-        require_once('essentials/config.php');
+        include('essentials/config.php');
         $name = $_POST['name'];
         $street = $_POST['street'];
-        $country = $_POST['country'];
         $state = $_POST['state'];
         $city = $_POST['city'];
         $zip = $_POST['zip'];
@@ -12,8 +11,8 @@
 
         $email = $_SESSION['email'];
 
-        $sql = "INSERT INTO shipping(full_name,email,store_id,phone,status,shipping_type,street_address,country,state,city,zipcode,created_date,modified_date,shipping_time)
-                VALUES('$name','$email',0,'$phone','register','home','$street','$country','$state','$city','$zip',NOW(),NOW(),NOW())";
+        $sql = "INSERT INTO shipping(full_name, email, store_id, phone, status, shipping_type, street_address, state, city, zipcode, created_date, modified_date, shipping_time)
+                VALUES('$name', '$email', 0, '$phone', 'register', 'home', '$street', '$state', '$city', '$zip', NOW(), NOW(), NOW())";
 
        mysqli_query($mysqli,$sql);
 

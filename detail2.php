@@ -165,7 +165,7 @@ include('confs/config.php');
                     <li class="javascript:void(0)"><img src="admin/cover/<?php echo $row2['cover'] ?> " alt="" ></li>
                     <!-- Don't show small pictures if there's only 1 -->
                     <?php
-                      $sql2 = "SELECT * FROM image_attributes
+                      $sql2 = "SELECT * FROM gallery
                               WHERE product_id = $id";
                       $run = mysqli_query($mysqli,$sql2);
                     while($row2 = mysqli_fetch_assoc($run)):

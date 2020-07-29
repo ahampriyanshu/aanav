@@ -1,6 +1,6 @@
 <?php
-include_once("essentials/config.php");
-$sql = "SELECT id, name FROM product LIMIT 10";
+require_once("essentials/config.php");
+$sql = "SELECT id, name , qty FROM product ";
 $resultset = mysqli_query($mysqli, $sql) or die("database error:". mysqli_error($mysqli));
 require('fpdf/fpdf.php');
 $pdf = new FPDF();

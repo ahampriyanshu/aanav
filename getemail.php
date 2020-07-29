@@ -41,7 +41,7 @@
 
               <img src="image/ACTIVE.png" width="35" height="40">
               <br>
-              <strong style="color: #FFC107; font-size: 14px;">ACTIVE FASHION</strong><br>
+              <strong style="color: #FFC107; font-size: 14px;">ACTIVE ON</strong><br>
               <h2>SOLD OUT, Email will sent when product is in stock.</h2>
 
       

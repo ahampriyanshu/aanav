@@ -1,5 +1,6 @@
-
 <?php 
+
+error_reporting(E_ALL);
 	
 	session_start();
         require_once('essentials/config.php');
@@ -24,18 +25,7 @@
                         </div>
                         
                       <div class="row">
-              <div class="col-md-5 mb-3">
-                <label for="country">Country</label>
-                <select name="country" class="custom-select d-block w-100" id="country" required>
-                  <option value="">Choose...</option>
-                  <option>Myanmar</option>
-                  <option>Thailand</option>
-                  
-                </select>
-                <div class="invalid-feedback">
-                  Please select a valid country.
-                </div>
-              </div>
+
               <div class="col-md-4 mb-3">
                 <label for="state">State</label>
                 <select name="state" class="custom-select d-block w-100" id="state" required>

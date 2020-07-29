@@ -106,7 +106,7 @@ if(isset($_POST['submit'])){
         <select id="email" class="form-control" name="sub_cat">
                                                 <option>Select Something</option>
                                                <?php
-                                                $get_sub_cat = "SELECT * FROM sub_category";
+                                                $get_sub_cat = "SELECT * FROM sub_catogories";
                                                 $run_sub_cat = mysqli_query($mysqli, $get_sub_cat);
                                                 while ($row_sub_cat= mysqli_fetch_array($run_sub_cat)) {
                                                     $sub_id = $row_sub_cat['sub_id'];

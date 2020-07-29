@@ -95,7 +95,7 @@ header('location:login.php');}
             if (move_uploaded_file($fileArray["tmp_name"], $targetPath)) 
             {
               
-              $qry ="insert into image_attributes (product_id,image) values ('".$id."','".$newFileName."')";
+              $qry ="insert into gallery (product_id,image) values ('".$id."','".$newFileName."')";
 
 
               $rs  = mysqli_query($mysqli, $qry);

@@ -96,7 +96,7 @@ input[type=radio] + label>img {
                     <li class="javascript:void(0)"><img src="uploads/<?php echo $row2['file'] ?> " alt="file image" ></li>
                     <!-- Don't show small pictures if there's only 1 -->
                     <?php
-                      $sql2 = "SELECT * FROM image_attributes
+                      $sql2 = "SELECT * FROM gallery
                               WHERE product_id = $id";
                       $run = mysqli_query($mysqli,$sql2);
                     while($row2 = mysqli_fetch_assoc($run)):

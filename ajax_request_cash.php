@@ -19,7 +19,7 @@
                     
                   <div class="notice notice-warning">
         <strong><p>Dear <?php echo $row['full_name'] ?>,</p></strong> 
-        <p>it is need to pay <a href="">within 2 day</a> to near CAPITALA Fashion Store after making order.
+        <p>it is need to pay <a href="">within 2 day</a> to near CAPITALA on Store after making order.
       If cash is not received by store specified day, <a href="">the order will auto cancel.</a></p>
     </div>
       

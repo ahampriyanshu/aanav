@@ -1,6 +1,6 @@
 <?php
  session_start();
- include('essentials/config.php');
+ require_once('essentials/config.php');
  
  $product_id = $_GET['id'];
  $action = $_GET['action'];

@@ -1,5 +1,5 @@
 <?php
-   include('essentials/config.php');
+   require_once('essentials/config.php');
    include('boilerplate.php');
     $id = $_GET['id'];
    $result = mysqli_query($mysqli,"SELECT * FROM shipping WHERE shipping_id=$id");
@@ -14,13 +14,12 @@
 		$id = $_POST['id'];
 		$name = $_POST['name'];
 		$street = $_POST['street'];
-		$country = $_POST['country'];
 		$state = $_POST['state'];
 		$city = $_POST['city'];
 		$zip = $_POST['zip'];
 		$phone = $_POST['phone'];
 
-		 $sql = "UPDATE shipping SET full_name='$name',street_address='$street',country='$country',state='$state',city='$city',zipcode='$zip',phone='$phone',modified_date=now() 
+		 $sql = "UPDATE shipping SET full_name='$name',street_address='$street',state='$state',city='$city',zipcode='$zip',phone='$phone',modified_date=now() 
           WHERE shipping_id = $id ";
 
 
@@ -54,11 +53,6 @@
 
                         <label>Street Address : </label>
                         <textarea type="text" name="street"  class="form-control"><?php echo $row['street_address'] ?></textarea>
-                        
-
-                        <label>Country : </label>
-                        <input type="text" name="country"  class="form-control" 
-                        value="<?php echo $row['country'] ?>"/>
 
                         <label>State : </label>
                         <input type="text" name="state"  class="form-control" 
@@ -73,8 +67,6 @@
                         <label>Phone Number : </label>
                         <input type="text" name="phone"  class="form-control" 
                         value="<?php echo $row['phone'] ?>"/>
-
-                        <br>
 
                         <a href="shipping_info.php" class="btn btn-default"> Back</a>
                         <input type="submit" name="submit" value="Update Address" class="btn btn-warning">

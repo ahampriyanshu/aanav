@@ -3,7 +3,7 @@
 session_start();
   $user = $_SESSION['email'];  
   $shipping = $_SESSION['shipping'];
-  include('essentials/config.php');
+  require_once('essentials/config.php');
 
 if(isset($_SESSION['cart'])) {
 

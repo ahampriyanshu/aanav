@@ -1,5 +1,5 @@
 <?php
-include('essentials/config.php');
+require_once('essentials/config.php');
 ?>
 <style type="text/css">
     .blog2 .carousel-indicators {
@@ -87,8 +87,8 @@ background: #000 ;
 
                             <div class="carousel-item">
                                 <div class="row">
-                  <?php
-                  $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+     <?php
+            $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
             ON product.id = order_items.product_id
@@ -105,10 +105,7 @@ background: #000 ;
                                     </div>
                                     <?php endwhile; ?>
                                 </div>
-                                <!--.row-->
                             </div>
-                            <!--.item-->
-
                              <div class="carousel-item">
                                 <div class="row">
                   <?php

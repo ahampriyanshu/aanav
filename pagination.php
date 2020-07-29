@@ -1,5 +1,5 @@
 <?php
-	include('essentials/config.php');
+	require_once('essentials/config.php');
 	$query = "select * from product";
 	$result = mysqli_query($mysqli, $query);
 

@@ -20,7 +20,7 @@
     function check()
     {
   
-    }
+    };
     
     </script>
 
@@ -34,10 +34,10 @@ if(isset($submit))
   $pass = $_POST['pass'];
   $name  = $_POST['name'];
   $phone = $_POST['phone'];
-  $date = date('m/d/Y h:i:s', time());
+  $now = date('d/m/Y h:i:s', time());
 
   $sql = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-  ('$name','$email','$pass','$phone','$date')";
+  ('$name','$email','$pass','$phone','$now')";
 
   $check = "SELECT * FROM customer WHERE `email` = '$email'";
   $result = mysqli_query($mysqli,$check);
@@ -48,7 +48,7 @@ if(isset($submit))
   }
   else {
   $create = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-  ('$name','$email','$pass','$phone','$date')";
+  ('$name','$email','$pass','$phone','$now')";
   mysqli_query($mysqli,$create);
   echo "<script>
   alert('New User Created');
@@ -82,7 +82,7 @@ if(isset($submit))
                </div>
               <div class="form-group mb-4">
                 <label for="password">Phone</label>
-                <input type="text" name="phone" id="email" class="form-control" placeholder="+91">
+                <input type="number" name="phone" id="email" class="form-control" placeholder="+91">
               </div>
               <?php  
 		  if(isset($found))
@@ -92,7 +92,7 @@ if(isset($submit))
 	?>
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Join Us">
             </form>
-            <p class="login-wrapper-footer-text">Already a customer&emsp;<a href="#!" class="text-reset">Welcome Back</a></p>
+            <p class="login-wrapper-footer-text">Already a customer&emsp;<a href="login.php" class="text-reset">Welcome Back</a></p>
           </div>
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block">

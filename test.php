@@ -2,7 +2,7 @@
 
 //if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
   session_start();
-  include('essentials/config.php');
+  require_once('essentials/config.php');
 
 
 ?>

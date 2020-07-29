@@ -1,6 +1,6 @@
 <?php
         session_start();
-        include('essentials/config.php');
+        require_once('essentials/config.php');
         $name = $_POST['name'];
         $email = $_POST['email'];
         $phone = $_POST['phone'];

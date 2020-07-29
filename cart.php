@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include('essentials/config.php');
+  require_once('essentials/config.php');
   include('boilerplate.php');
   include('navbar.php');
   error_reporting(E_ALL);
@@ -133,7 +133,22 @@ h3{
                               echo '<p style="font-size:12px;">Size: '.$value_s.' </p>';
               
                           echo '<a href="update-cart.php?action=del&id='.$product_id.'" style="font-size:12px; margin-left: 12px;">Delete</a>';
+                    
+                        
+                          $sql5 = "SELECT * FROM customer WHERE email = '$customer'";
+                          $run5 = mysqli_query($mysqli,$sql5);
+                          $row5 =mysqli_fetch_assoc($run5);
+                          $customer_id = $row5['id'];
+                          $customer_name = $row5['name'];      
+                          
+                          $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
+                          $run_fav = mysqli_query($mysqli,$sql_fav);
+                          $row_fav = mysqli_fetch_assoc($run_fav);
+                          $fav = $row_fav['fav_id'];
+
                           echo '<a href="cart-to-wishlist.php?id='.$product_id.'" style="font-size:12px; margin-left: 12px;">Move To Wishlist</a>';
+
+
                           echo '</td>';
               
        
@@ -168,7 +183,7 @@ h3{
               echo '<tr>';
               echo '<td colspan="7" align="right">
           <a href="delete-cart.php" class="button alert">Empty Cart</a>&nbsp;
-          <a href="product.php" class="button [secondary success alert]">Continue Shopping </a>';
+          <a href="home.php" class="button [secondary success alert]">Continue Shopping </a>';
               echo '<a style="clear:both; background: linear-gradient(to right, #025F8E, #0286CD) 
               repeat scroll 0% 0% transparent; border: none; color: #fff; font-size: 1em; padding: 
               10px;" href="checkout.php" >Checkout

@@ -2,7 +2,7 @@
 <?php 
 	
 	session_start();
-        include('essentials/config.php');
+        require_once('essentials/config.php');
         $email = $_SESSION['email'];
 	if(isset($_POST['country_id']) && $_POST['country_id'] !='')
 	{ ?>

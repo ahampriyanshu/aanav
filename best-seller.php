@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include('essentials/config.php');
+  require_once('essentials/config.php');
   include('essentials/function.php');
   include('boilerplate.php');
   include('navbar.php');
@@ -197,7 +197,7 @@
 </html>
 
 <?php
-include('essentials/config.php');
+require_once('essentials/config.php');
 $sel = "SELECT product_id, SUM(units) AS TotalQuantity
 FROM order_items
 GROUP BY product_id

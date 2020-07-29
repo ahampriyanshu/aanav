@@ -1,5 +1,5 @@
 <?php
-include_once("confs/config.php");
+include_once("essentials/config.php");
 $sql = "SELECT id, name FROM product LIMIT 10";
 $resultset = mysqli_query($mysqli, $sql) or die("database error:". mysqli_error($mysqli));
 require('fpdf/fpdf.php');

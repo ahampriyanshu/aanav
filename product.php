@@ -1,12 +1,19 @@
 <?php
    session_start();
-   include('essentials/config.php');
+   require_once('essentials/config.php');
    include('essentials/function.php');
 ?>
 <?php  include('boilerplate.php'); ?>
 <?php  include('navbar.php'); ?>
 <?php
    $id = $_GET['id'];
+
+   if (!$id) {
+    echo "<script>
+    document.location='home.php';
+    </script>";  
+  }
+
    $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    $product_id = $row['id'];
@@ -15,15 +22,8 @@
 
 ?>
 
-
-    
-     
-
-
-
 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
 <link rel="stylesheet" type="text/css" href="css/detail.css">
-
 
     <script src="bootstrap/js/jquery.js"></script>
     <script src="bootstrap/js/jquery.min.js"></script>
@@ -229,33 +229,32 @@ input[type=radio] + label>img {
 
          <?php } ?>
 
-          
-          <?php 
+         <?php 
       $s = "SELECT * FROM product WHERE id = '$id'";
       $r = mysqli_query($mysqli,$s);
       $row_r = mysqli_fetch_assoc($r);
         $product_id = $row_r['id'];
-        $customer_id = $_SESSION['email'];
-      
+        $customer = $_SESSION['email'];
+
+    
+      $sql5 = "SELECT * FROM customer WHERE email = '$customer'";
+      $run5 = mysqli_query($mysqli,$sql5);
+      $row5 =mysqli_fetch_assoc($run5);
+      $customer_id = $row5['id'];
+      $customer_name = $row5['name'];      
       
       $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
       $run_fav = mysqli_query($mysqli,$sql_fav);
       $row_fav = mysqli_fetch_assoc($run_fav);
-        $fav = $row_fav['fav_id'];
+      $fav = $row_fav['fav_id'];
        
         ?>
-       
-       
       
- 
-<!--      ----------------------------------- Add To cart Button------------------------ -->
 <?php if($qty > 0){ ?>
               <input type="submit" name="submit" value="Add To Cart" style="clear:both; background: #48c9b0; border: none; color: #fff; font-size: 14px; padding: 10px; cursor: pointer;" /> <a href="product.php">Back</a>
       <?php }else{ ?>
      </form>
-<!--      ----------------------------------- Add To cart Button end ------------------------ -->
 
-<!--      ----------------------------------- SOLD OUT MODAL DIALOG ------------------------ -->
       <?php
 
    $id = $_GET['id'];
@@ -421,7 +420,7 @@ background: teal;
     
 ?>
 <div class="ftr2">
-  <h2 style="text-align: center; color: #5d6d7e; font-weight: bold; font-size: 17px;">Similar Product</h2>
+  <h2 style="text-align: center; color: #5d6d7e; font-weight: bold; font-size: 17px;">Similar Products</h2>
   <br>
 <div class="container">
             <div class="row blog">

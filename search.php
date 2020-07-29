@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include('essentials/config.php');
+	require_once('essentials/config.php');
   include('boilerplate.php');
   include('navbar.php');
   include('essentials/function.php');

@@ -1,6 +1,6 @@
  <?php
     session_start();
-    include('essentials/config.php');
+    require_once('essentials/config.php');
 
       $email = $_POST['email'];
       $id = $_POST['id'];

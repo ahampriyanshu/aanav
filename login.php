@@ -26,12 +26,14 @@ if(isset($submit))
   if(mysqli_num_rows($rs)<1)
   {
     $found="N";
-    session_destroy();
   }
   else
   {
     session_start();
+    date_default_timezone_set('Asia/Kolkata');
+    $now = date('d/m/Y h:i:s', time());
     $_SESSION['email'] = $email;
+    $update = mysqli_query($mysqli, "UPDATE `customer` SET `last_login` = '$now' WHERE `email` = '$email' ");
     header('location:index.php');
   }
 }
@@ -62,7 +64,7 @@ if(isset($submit))
 	?>
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Login">
             </form>
-            <p class="login-wrapper-footer-text">New User&emsp;<a href="#!" class="text-reset">Join Us</a></p>
+            <p class="login-wrapper-footer-text">New User&emsp;<a href="register.php" class="text-reset">Join Us</a></p>
           </div>
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block">

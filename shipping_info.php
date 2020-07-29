@@ -3,12 +3,9 @@
 <?php
 
   session_start();
-  include('essentials/config.php');
+  require_once('essentials/config.php');
   
-  
-
-
-?>
+  ?>
 
 <style type="text/css">
 

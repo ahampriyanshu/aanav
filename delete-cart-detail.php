@@ -1,7 +1,7 @@
 <?php
  session_start();
 
-include('essentials/config.php');
+require_once('essentials/config.php');
 $key = $_GET['id'];
 
 

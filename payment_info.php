@@ -1,7 +1,7 @@
 
 <?php
   session_start();
-  include('essentials/config.php');
+  require_once('essentials/config.php');
   
   
 
@@ -214,7 +214,7 @@ ul.list i,ul.list small{
     
         </div><!--  inner order end -->
             <?php 
-      include('essentials/config.php'); 
+      require_once('essentials/config.php'); 
       $shipping = $_SESSION['shipping'];
       $sql = "SELECT * FROM shipping WHERE shipping_id = $shipping";
       $run = mysqli_query($mysqli,$sql);
@@ -306,7 +306,3 @@ color: #000;
 
 </body>
 </html>
-
-
-
-

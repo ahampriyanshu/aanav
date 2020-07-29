@@ -1,25 +1,18 @@
 <?php
   session_start();
-  include('essentials/config.php');
+  require_once('essentials/config.php');
   include('essentials/function.php');
-  
   include('boilerplate.php');
   include('navbar.php');
   $customer = $_SESSION['email']; 
+  
   $c = "SELECT * FROM customer WHERE email = '$customer'";
   $r = mysqli_query($mysqli,$c);
   $row_c =mysqli_fetch_assoc($r);
    $customer_id = $row_c['id'];
    $customer_name = $row_c['name'];
 
-
-
-
   $sql = "SELECT * FROM orders WHERE customer = '$customer' ORDER BY created_date DESC";
-  $run = mysqli_query($mysqli,$sql);
-  $count = mysqli_num_rows($run);
-
-    $sql = "SELECT * FROM orders WHERE customer = '$customer' ORDER BY created_date DESC";
   $run = mysqli_query($mysqli,$sql);
   $count = mysqli_num_rows($run);
 
@@ -108,20 +101,12 @@
         <li>
             <b><a href="index.php">Account Info</a></b>
           </li>
-          <table>
-          	
-          </table>
+
           <li><?php echo $customer_name ?></li>
           <li><?php echo $customer ?></li>
           <li>Member Since : </li>
-          <li>Last Login : </li>
-        </ul><br><br>
-     
-   
-
-
-
-     </div> <!-- col-md-4 end-->
+        </ul>
+     </div> 
    </div>
  </div>
 

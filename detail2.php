@@ -203,7 +203,7 @@ include('confs/config.php');
                   <p>Colors</p>
        <div class="form-group">
 
-       <form method="post" action="detail_add.php" enctype="multipart/form-data">
+       <form method="post" action="adding-to-cart.php" enctype="multipart/form-data">
        
        <input type="hidden" name="id" value="<?php echo $id?>">
          <?php

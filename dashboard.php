@@ -101,7 +101,7 @@
                   <img src="image/bestseller.png" width="85" height="18" style="margin-left: 2px;">
               <?php }  ?>
               <hr>
-                <form method="post" action="detail_add.php" enctype="multipart/form-data">
+                <form method="post" action="adding-to-cart.php" enctype="multipart/form-data">
               
                 <input type="hidden" name="id" value="<?php echo $obj->id?>">
                 <?php if($obj->qty > 0){ ?>

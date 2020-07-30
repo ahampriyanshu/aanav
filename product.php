@@ -240,11 +240,11 @@ $product = mysqli_fetch_assoc($result);
                                     <h4>&#x20B9;&nbsp; <?php echo $product['cost'] ?><span>
                                     &#x20B9;&nbsp; <?php echo $product['MRP'] ?></span></h4>
                                 </div>
-                                <div class="pd-color">
+                                <div class="custom-radio-button">
                                     <h6>Color</h6>
-                                    <div class="form-group">
-
-<form method="post" action="detail_add.php" enctype="multipart/form-data">
+  <div class="form-group">
+  
+<form method="post" action="adding-to-cart.php" enctype="multipart/form-data">
 
 <input type="hidden" name="id" value="<?php echo $id?>">
 
@@ -258,11 +258,66 @@ $product = mysqli_fetch_assoc($result);
            $num_results=mysqli_num_rows($ret);
            for ($i=0;$i<$num_results;$i++) {
                $row=mysqli_fetch_array($ret);
+               ?>
+
+                <input type="radio" id="color-<?php echo $row["value"]; ?>" name="radio_color" value="<?php echo $row["value"]; ?>" >
+               <label for="color-<?php echo $row["value"]; ?>">
+                 <span>
+                 </span>
+               </label>
+
+               <style>
+
+.custom-radio-button div {
+  display: inline-block;
+}
+.custom-radio-button input[type="radio"] {
+  display: none;
+}
+.custom-radio-button input[type="radio"] + label {
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.custom-radio-button input[type="radio"] + label span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  line-height: 44px;
+}
+.custom-radio-button input[type="radio"] + label span img {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.custom-radio-button input[type="radio"]#color-<?php echo $row["value"]; ?> + label span {
+  background-color: <?php echo $row["value"]; ?>;
+}
+.custom-radio-button input[type="radio"]:checked + label span {
+  opacity: 1;
+  background: url("https://www.positronx.io/wp-content/uploads/2019/06/tick-icon-4657-01.png")
+    center center no-repeat;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+}
+
+
+</style>
         
 
-               echo"<input type=\"radio\" name=\"radio_color\" value=\"".$row['value']."\"
+          <!--     echo"<input type=\"radio\" name=\"radio_color\" value=\"".$row['value'].."\"
                >";
-               echo "<label for=\"happy_".$row['attr_id']."\"></label>";
+               echo "<label for=\"happy_".$row['attr_id']."\"></label>"; -->
+               <?php
            }
 ?>
                                 <div class="pd-size-choose">

@@ -161,7 +161,7 @@ $product = mysqli_fetch_assoc($result);
 }
 .custom-radio-button input[type="radio"] + label span img {
   opacity: 0;
-  transition: all 1s ease;
+  transition: all .4s ease;
 }
 .custom-radio-button input[type="radio"]#color-<?php echo $row["value"]; ?> + label span {
   background-color: <?php echo $row["value"]; ?>;

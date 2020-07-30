@@ -138,36 +138,67 @@
                     <div class="product-list">
                         <div class="row">
 
-                        <?php product(); ?>
-       <?php productCategories(); ?>
-       <?php productBrand(); ?>
+                       <?php if (!isset($_GET['cat'])) {
+          if (!isset($_GET['brand'])) {
+              global $mysqli;
+              $i=0;
+              $per_page = 12;
 
-                            <div class="col-lg-4 col-sm-6">
+              if (isset($_GET['page'])) {
+                  $page = $_GET['page'];
+              } else {
+                  $page = 1;
+              }
+
+              $start_from = ($page-1) * $per_page;
+        
+              $product_id = array();
+              $product_quantity = array();
+
+              $result = mysqli_query($mysqli, "SELECT * FROM product ORDER BY 1 DESC LIMIT $start_from, $per_page");
+
+         
+
+              if ($result) {
+                  while ($obj = mysqli_fetch_object($result)) {  ?>
+
+<div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img src="img/products/product-1.jpg" alt="">
+                                    <a href="product.php?id=<?php echo $obj->id; ?>">
+                                        <img width="200" height="300" src="uploads/<?php echo $obj->file; ?>" alt="<?php echo $obj->file; ?>"></a>
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
-                                        <ul>
-                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                        </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">Towel</div>
+                                        <div class="catagory-name"><?php echo $obj->code; ?></div>
                                         <a href="#">
-                                            <h5>Pure Pineapple</h5>
+                                            <h5><?php echo $obj->name; ?></h5>
                                         </a>
                                         <div class="product-price">
-                                            $14.00
-                                            <span>$35.00</span>
+                                        &#x20B9;<?php echo $obj->cost; ?>&nbsp;
+                                        <span>&#x20B9;<?php echo $obj->MRP; ?></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                    <?php
+                      $i++;
+                  }
+          
+
+                  include("pagination.php");
+              }
+
+              $_SESSION['id'] = $product_id;
+          }
+      }
+      ?>
+
+                            
                            
                                         </div>
                                     </div>

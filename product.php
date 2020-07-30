@@ -15,7 +15,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <?php
@@ -63,149 +63,11 @@ $product = mysqli_fetch_assoc($result);
    $qty = $row['qty'];
 
 ?>
-  <!-- Page Preloder -->
-  <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
     <!-- Product Shop Section Begin -->
     <section class="product-shop spad page-details">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
-                        <ul class="filter-catagories">
-                          <?php
-                               $get_cat = "SELECT * FROM categories ";
-                               $run_cat = mysqli_query($mysqli, $get_cat);
-                               while ($row= mysqli_fetch_array($run_cat)) {
-                                   $cat_id = $row['cat_id'];
-                                   $cat_name = $row['cat_name'];
-                                   echo "<li><a href='home.php?cat=$cat_id'>$cat_name</a></li>";
-                               }
-                               ?>
-                        </ul>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Sub Categories</h4>
-                        <ul class="filter-catagories">
-                          <?php
-                               $get_sub_cat = "SELECT * FROM sub_catogories ";
-                               $run_sub_cat = mysqli_query($mysqli, $get_sub_cat);
-                               while ($row= mysqli_fetch_array($run_sub_cat)) {
-                                   $sub_cat_id = $row['sub_id'];
-                                   $sub_cat_name = $row['sub_name'];
-                                   echo "<li><a href='home.php?cat=$sub_cat_id'>$sub_cat_name</a></li>";
-                               }
-                               ?>
-                        </ul>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Brand</h4>
-                        <div class="fw-brand-check">
-                            <div class="bc-item">
-                              <?php
-                            $get_cat = "SELECT * FROM brand";
-         $run_cat = mysqli_query($mysqli, $get_cat);
-         while ($row= mysqli_fetch_array($run_cat)) {
-             $brand_id = $row['brand_id'];
-             $brand_name = $row['brand_name'];
-      
-
-             echo '<label for="bc-$brand_name">
-             '.$brand_name.'&emsp;
-                                    <input type="checkbox" id="bc-calvin">
-                                    <span class="checkmark"></span>
-                                </label>';
-         }
-                                ?>
-                            </div>
-      
-        
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Price</h4>
-                        <div class="filter-range-wrap">
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="98">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                        </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Color</h4>
-                        <div class="fw-color-choose">
-                            <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label class="cs-black" for="cs-black">Black</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label class="cs-violet" for="cs-violet">Violet</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label class="cs-blue" for="cs-blue">Blue</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label class="cs-red" for="cs-red">Red</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label class="cs-green" for="cs-green">Green</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Size</h4>
-                        <div class="fw-size-choose">
-                            <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">s</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">m</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">l</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="xs-size">
-                                <label for="xs-size">xs</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Tags</h4>
-                        <div class="fw-tags">
-                            <a href="#">Towel</a>
-                            <a href="#">Shoes</a>
-                            <a href="#">Coat</a>
-                            <a href="#">Dresses</a>
-                            <a href="#">Trousers</a>
-                            <a href="#">Men's hats</a>
-                            <a href="#">Backpack</a>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-lg-9">
                     <div class="row">
                         <div class="col-lg-6">
@@ -240,9 +102,13 @@ $product = mysqli_fetch_assoc($result);
                                     <h4>&#x20B9;&nbsp; <?php echo $product['cost'] ?><span>
                                     &#x20B9;&nbsp; <?php echo $product['MRP'] ?></span></h4>
                                 </div>
+
+                                <div class="pd-color">
+                                   
+                                    <div class="pd-color-choose">
+                               
                                 <div class="custom-radio-button">
-                                    <h6>Color</h6>
-  <div class="form-group">
+ 
   
 <form method="post" action="adding-to-cart.php" enctype="multipart/form-data">
 
@@ -265,7 +131,7 @@ $product = mysqli_fetch_assoc($result);
                  <span>
                  </span>
                </label>
-
+            &nbsp;
                <style>
 
 .custom-radio-button div {
@@ -281,13 +147,12 @@ $product = mysqli_fetch_assoc($result);
 }
 .custom-radio-button input[type="radio"] + label span {
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   margin: -1px 4px 0 0;
   vertical-align: middle;
   cursor: pointer;
   border-radius: 50%;
-  border: 2px solid #ffffff;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
   background-repeat: no-repeat;
   background-position: center;
@@ -296,7 +161,7 @@ $product = mysqli_fetch_assoc($result);
 }
 .custom-radio-button input[type="radio"] + label span img {
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: all 1s ease;
 }
 .custom-radio-button input[type="radio"]#color-<?php echo $row["value"]; ?> + label span {
   background-color: <?php echo $row["value"]; ?>;
@@ -305,21 +170,15 @@ $product = mysqli_fetch_assoc($result);
   opacity: 1;
   background: url("https://www.positronx.io/wp-content/uploads/2019/06/tick-icon-4657-01.png")
     center center no-repeat;
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   display: inline-block;
 }
-
-
 </style>
-        
-
-          <!--     echo"<input type=\"radio\" name=\"radio_color\" value=\"".$row['value'].."\"
-               >";
-               echo "<label for=\"happy_".$row['attr_id']."\"></label>"; -->
                <?php
            }
 ?>
+</div></div></div>
                                 <div class="pd-size-choose">
                                 <?php
             $result = "SELECT * FROM variant where product_id = $id";
@@ -367,7 +226,7 @@ $product = mysqli_fetch_assoc($result);
                               echo "<span class='badge badge-success'>In Stock</span>";
                           }
 
-                          ?>
+                          ?> &emsp;
                            <?php  if ($fav == null) { ?>
          
                             <a href="add-wishlist.php?id=<?php echo $row_r['id']; ?>" class="heart-icon"><i class="icon_heart_alt"></i></a>
@@ -706,8 +565,5 @@ $(document).on('click', '#getUser', function(e){
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="bootstrap/js/jquery.js"></script>
-    <script src="bootstrap/js/jquery.min.js"></script>
-    <script src="jquery-3.2.1.min.js"></script>
 </body>
 </html>

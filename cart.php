@@ -59,7 +59,7 @@
 echo'<tr>
                                                       <td class="cart-pic first-row"><img width="150" height="150" src="uploads/'.$obj->file.'" alt=""></td>
                                                       <td class="cart-title first-row">
-                                                          <h5>Pure Pineapple</h5>
+                                                          <h5>'.$obj->name.'</h5>
                                                            
                                              <h6 style="color:'.$value_c.';" > '.$value_c.'</h6>
                               <h6 ><strong> '.$value_s.'<strong> </h6>
@@ -72,8 +72,10 @@ echo'<tr>
                                                       <td class="qua-col">
                                                       <div class="quantity">
                                                           <div class="pro-qty">
-                                                             <a class="inc qtybtn" href="update-cart.php?action=add&id='.$product_id.'">+</a>&nbsp;'.$quantity.'&nbsp;
-                                                      <a class="dec qtybtn" href="update-cart.php?action=remove&id='.$product_id.'">-</a></td>
+                                                             
+                                                      <a class="dec qtybtn" href="update-cart.php?action=remove&id='.$product_id.'">-</a>
+                                                             <input type="text" value="'.$quantity.'">
+                                                             <a class="inc qtybtn" href="update-cart.php?action=add&id='.$product_id.'">+</a>
                                                         </div>
                                                       </div>
                                                   </td>';
@@ -85,9 +87,7 @@ echo'<tr>
                                                       echo'<td class="total-price first-row">&#x20B9;&nbsp;'.$selling_price.'
                                                       <strong style="text-decoration: line-through; color:grey; font-size:.8em;"> &#x20B9;&nbsp;'.$selling_MRP.'</strong></td>
                                                       <td class="close-td first-row"><a href="update-cart.php?action=del&id='.$product_id.'"<i class="ti-close"></i></a></td>';
-                                               
-
-                      }
+                     }
                   }
               }
               echo'   </tr>

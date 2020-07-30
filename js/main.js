@@ -1,3 +1,11 @@
+/*  ---------------------------------------------------
+    Template Name: Fashi
+    Description: Fashi eCommerce HTML Template
+    Author: Colorlib
+    Author URI: https://colorlib.com/
+    Version: 1.0
+    Created: Colorlib
+---------------------------------------------------------  */
 
 'use strict';
 
@@ -97,6 +105,9 @@
         }
     });
 
+    /*-----------------------
+       Product Single Slider
+    -------------------------*/
     $(".ps-slider").owlCarousel({
         loop: false,
         margin: 10,
@@ -109,6 +120,10 @@
         autoplay: true,
     });
     
+    /*------------------
+        CountDown
+    --------------------*/
+    // For demo preview
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -122,19 +137,24 @@
         mm = String(mm).padStart(2, '0');
     }
     var timerdate = mm + '/' + dd + '/' + yyyy;
-
+    // For demo preview end
 
     console.log(timerdate);
     
+
+    // Use this for real timer date
+    /* var timerdate = "2020/01/01"; */
 
 	$("#countdown").countdown(timerdate, function(event) {
         $(this).html(event.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>" + "<div class='cd-item'><span>%H</span> <p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span> <p>Mins</p> </div>" + "<div class='cd-item'><span>%S</span> <p>Secs</p> </div>"));
     });
 
         
-
+    /*----------------------------------------------------
+     Language Flag js 
+    ----------------------------------------------------*/
     $(document).ready(function(e) {
-  
+    //no use
     try {
         var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
             var val = data.value;
@@ -147,14 +167,17 @@
         pages.setIndexByValue(pagename[pagename.length-1]);
         $("#ver").html(msBeautify.version.msDropdown);
     } catch(e) {
-
+        // console.log(e);
     }
     $("#ver").html(msBeautify.version.msDropdown);
 
+    //convert
     $(".language_drop").msDropdown({roundedBorder:false});
         $("#tech").data("dd");
     });
-
+    /*-------------------
+		Range Slider
+	--------------------- */
 	var rangeSlider = $(".price-range"),
 		minamount = $("#minamount"),
 		maxamount = $("#maxamount"),
@@ -173,14 +196,22 @@
 	minamount.val('$' + rangeSlider.slider("values", 0));
     maxamount.val('$' + rangeSlider.slider("values", 1));
 
+    /*-------------------
+		Radio Btn
+	--------------------- */
     $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").on('click', function () {
         $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").removeClass('active');
         $(this).addClass('active');
     });
-
+    
+    /*-------------------
+		Nice Select
+    --------------------- */
     $('.sorting, .p-show').niceSelect();
 
-
+    /*------------------
+		Single Product
+	--------------------*/
 	$('.product-thumbs-track .pt').on('click', function(){
 		$('.product-thumbs-track .pt').removeClass('active');
 		$(this).addClass('active');
@@ -194,7 +225,9 @@
 
     $('.product-pic-zoom').zoom();
     
-  
+    /*-------------------
+		Quantity change
+	--------------------- */
     var proQty = $('.pro-qty');
 	proQty.prepend('<span class="dec qtybtn">-</span>');
 	proQty.append('<span class="inc qtybtn">+</span>');

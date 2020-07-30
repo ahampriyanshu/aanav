@@ -1,13 +1,58 @@
 <?php 
 
 error_reporting(E_ALL);
-	
 	session_start();
         require_once('essentials/config.php');
         $email = $_SESSION['email'];
-	if(isset($_POST['country_id']) && $_POST['country_id'] !='')
 	{ ?>
                 
+                <form  method="post" action="shipping_to_home.php" enctype="multipart/form-data" class="checkout-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Enter Shipping Address</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label for="fir">First Name<span>*</span></label>
+                                <input type="text" id="fir">
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="street">Street Address<span>*</span></label>
+                                <input type="text" id="street" class="street-first">
+                               
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="town">City<span>*</span></label>
+                                <input type="text" id="town">
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="zip">ZIP Code</label>
+                                <input type="text" id="zip">
+                            </div>
+                            <div class="col-lg-6">
+                            <label for="State">State<span>*</span></label>
+                <select name="state" class="custom-select d-block w-100" id="State" required>
+                  <option value="">Choose...</option>
+                  <option>Yangon</option>
+                  <option>Mandalay</option>
+                  <option>Naypyitaw</option>
+                  <option>Bangkok</option>
+                  <option>PhueKhet</option>
+                  <option>Pattaya</option>
+                </select>
+              </div>
+                            <div class="col-lg-6">
+                                <label for="phone">Phone<span>*</span></label>
+                                <input type="number" name="phone" class="form-control" placeholder="+91" type="text" id="phone">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" name="submit" value="Save Address" class="btn btn-primary pull-right" style="margin-left: 4px">
+                        <a href="home.php" class="btn btn-outline-primary pull-right">Back</a>
+                     </form>
+                </div>
+            </form>
+
+
 		 <h3>Confirm Shipping Address</h3>
 	    				<div class="panel-body">
                         <form method="post" action="shipping_to_home.php" enctype="multipart/form-data">
@@ -67,23 +112,8 @@ error_reporting(E_ALL);
         </div>
 </div>
                       
-
-
-                        <br>
-
-                        
-                        <input type="submit" name="submit" value="Save Address" class="btn btn-primary pull-right" style="margin-left: 4px">
-                        <a href="home.php" class="btn btn-outline-primary pull-right">Back</a>
-                        
-
-                        </form>
-                        </div> <!-- panel-body -->
-                        <br><br>
-                        <hr>
 		
-<?php	}
- print_r($_SESSION['email']);
-?>
+<?php	} ?>
 
 
 

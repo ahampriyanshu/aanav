@@ -35,6 +35,6 @@
 
      $_SESSION['variant'] = $variant;
 
-     //echo "<script>window.location='update-cart.php?action=add&id=$id'</script>";
+     echo "<script>window.location='update-cart.php?action=add&id=$id'</script>";
 
 ?>

@@ -202,7 +202,7 @@ ol {
 	50% {
 		-webkit-transform: rotate(180deg);
 		transform: rotate(180deg);
-		border: 4px solid #673ab7;
+		border: 4px solid #7EF9FF;
 		border-left-color: transparent;
 	}
 	100% {
@@ -221,7 +221,7 @@ ol {
 	}
 	50% {
 		-webkit-transform: rotate(180deg);
-		border: 4px solid #673ab7;
+		border: 4px solid #7EF9FF;
 		border-left-color: transparent;
 	}
 	100% {
@@ -2218,7 +2218,7 @@ ol {
 	margin-right: 0;
 }
 
-.product-details .pd-size-choose .sc-item input {
+.product-details .pd-size-choose . input {
 	position: absolute;
 	visibility: hidden;
 }
@@ -2629,7 +2629,7 @@ ol {
 }
 
 .cart-table table tr th.p-name {
-	text-align: left;
+	text-align: center !important;
 }
 
 .cart-table table tr td {
@@ -2646,7 +2646,7 @@ ol {
 }
 
 .cart-table table tr td.cart-title {
-	text-align: left;
+	text-align: center;
 }
 
 .cart-table table tr td.cart-title h5 {
@@ -2660,7 +2660,7 @@ ol {
 .cart-table table tr td.p-price,
 .cart-table table tr td.total-price {
 	color: #7EF9FF;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 700;
 }
 

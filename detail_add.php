@@ -5,8 +5,10 @@
 
 
      $id = $_POST['id'];
-     $color = $_POST['rdocolor'];
+     $color = $_POST['radio_color'];
      $size = $_POST['size'];
+
+     echo $id.$color.$size;
 
      
 

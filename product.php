@@ -7,7 +7,7 @@
 <?php
 
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product LEFT JOIN categories 
+   $result = mysqli_query($mysqli, "SELECT * FROM product LEFT JOIN categories 
                                    ON categories.cat_id = product.categories WHERE product.id=$id");
    $row2 = mysqli_fetch_assoc($result);
    $cat_id = $row2['cat_id'];
@@ -21,7 +21,7 @@
     <?php
 
 $id = $_GET['id'];
-$result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+$result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
 $product = mysqli_fetch_assoc($result);
 ?>   
     <meta name="description" content="<?php echo $product['description']; ?>">
@@ -51,12 +51,12 @@ $product = mysqli_fetch_assoc($result);
    $id = $_GET['id'];
 
    if (!$id) {
-    echo "<script>
+       echo "<script>
     document.location='home.php';
-    </script>";  
-  }
+    </script>";
+   }
 
-   $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+   $result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    $product_id = $row['id'];
    $categories = $row['categories'];
@@ -105,7 +105,7 @@ $product = mysqli_fetch_assoc($result);
                         <h4 class="fw-title">Brand</h4>
                         <div class="fw-brand-check">
                             <div class="bc-item">
-                              <?php 
+                              <?php
                             $get_cat = "SELECT * FROM brand";
          $run_cat = mysqli_query($mysqli, $get_cat);
          while ($row= mysqli_fetch_array($run_cat)) {
@@ -118,7 +118,7 @@ $product = mysqli_fetch_assoc($result);
                                     <input type="checkbox" id="bc-calvin">
                                     <span class="checkmark"></span>
                                 </label>';
-                              }
+         }
                                 ?>
                             </div>
       
@@ -219,8 +219,8 @@ $product = mysqli_fetch_assoc($result);
                                 <?php
                       $sql2 = "SELECT * FROM gallery
                               WHERE product_id = $id";
-                      $run = mysqli_query($mysqli,$sql2);
-                    while($row2 = mysqli_fetch_assoc($run)):
+                      $run = mysqli_query($mysqli, $sql2);
+                    while ($row2 = mysqli_fetch_assoc($run)):
                     ?>
                     <div class="pt active" data-imgbigurl="uploads/gallery/<?php echo $row2['image'] ?>">
                     <img src="uploads/gallery/<?php echo $row2['image'] ?>" alt="gallery"></div>
@@ -247,77 +247,69 @@ $product = mysqli_fetch_assoc($result);
 <form method="post" action="detail_add.php" enctype="multipart/form-data">
 
 <input type="hidden" name="id" value="<?php echo $id?>">
+
   <?php
 
      $sql ="SELECT distinct a.*,p.color,p.product_id FROM variant p
             LEFT JOIN attribute a
             ON p.color = a.attr_id
             WHERE p.product_id = '$id'";
-            $ret = mysqli_query($mysqli,$sql);
+            $ret = mysqli_query($mysqli, $sql);
            $num_results=mysqli_num_rows($ret);
            for ($i=0;$i<$num_results;$i++) {
                $row=mysqli_fetch_array($ret);
-              
+        
 
-                                    echo'<div class="pd-color-choose">
-                                        <div class="cc-item">
-                                            <input name="rdocolor" type="radio" id="cc-red" value='.$row['value'].' required>
-                                            <label for="cc-'.$row['value'].'"></label>
-                                        </div>
-                                    </div>';
-                                  }
+               echo"<input type=\"radio\" name=\"radio_color\" value=\"".$row['value']."\"
+               >";
+               echo "<label for=\"happy_".$row['attr_id']."\"></label>";
+           }
 ?>
-   
-                                </div>
                                 <div class="pd-size-choose">
-
                                 <?php
+            $result = "SELECT * FROM variant where product_id = $id";
+            $sql = mysqli_query($mysqli, $result);
+            $row = mysqli_fetch_assoc($sql);
+       
 
                                     $sql ="SELECT distinct a.*,p.size,p.product_id FROM variant p
                                      LEFT JOIN attribute a
                                      ON p.size = a.attr_id
                                      WHERE p.product_id = '$id'";
 
-                               $result = mysqli_query($mysqli,$sql);
+                               $result = mysqli_query($mysqli, $sql);
 
-                               while($row = mysqli_fetch_assoc($result)){
-                                    $size = $row['size'];
-                                                  ?>
-                                         
-                                    <div class="sc-item">
-                                        <input value='<?php echo $row['value']; ?>' type="radio" id="sm-size">
-                                        <label for="sm-size"><?php echo $row['value']; ?></label>
-                                    </div>
-                                    <?php } ?> 
-                                </div>
-
-
-         <?php 
+                               while ($row = mysqli_fetch_assoc($result)) {
+                                   echo'<div class="sc-item">
+ <input type="radio" name="size" value=\''.$row["value"].'\' id="'.$row["value"].'">
+ <label for="'.$row["value"].'">'.$row['value'].'</label>
+</div>';
+                               }  ?>
+         <?php
       $s = "SELECT * FROM product WHERE id = '$id'";
-      $r = mysqli_query($mysqli,$s);
+      $r = mysqli_query($mysqli, $s);
       $row_r = mysqli_fetch_assoc($r);
         $product_id = $row_r['id'];
         $customer = $_SESSION['email'];
 
     
       $sql5 = "SELECT * FROM customer WHERE email = '$customer'";
-      $run5 = mysqli_query($mysqli,$sql5);
+      $run5 = mysqli_query($mysqli, $sql5);
       $row5 =mysqli_fetch_assoc($run5);
       $customer_id = $row5['id'];
-      $customer_name = $row5['name'];      
+      $customer_name = $row5['name'];
       
       $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
-      $run_fav = mysqli_query($mysqli,$sql_fav);
+      $run_fav = mysqli_query($mysqli, $sql_fav);
       $row_fav = mysqli_fetch_assoc($run_fav);
       $fav = $row_fav['fav_id'];
        
         ?>
 
-                              <p>  <?php if($product['qty'] == 0){
-                            echo "<span class='badge badge-danger'>SOLD OUT</span>";
-                          }
-                          else{
-                            echo "<span class='badge badge-success'>In Stock</span>";
+                              <p>  <?php if ($product['qty'] == 0) {
+            echo "<span class='badge badge-danger'>Sold Out</span>";
+        } else {
+                              echo "<span class='badge badge-success'>In Stock</span>";
                           }
 
                           ?>
@@ -335,23 +327,92 @@ $product = mysqli_fetch_assoc($result);
                      ON p.size = a.attr_id
                      WHERE p.product_id = '$id'";
 
-             $result = mysqli_query($mysqli,$sql);
+             $result = mysqli_query($mysqli, $sql);
 
-             while($row = mysqli_fetch_assoc($result)){
-
-        ?>
-   
-
-         <?php } ?>
+             while ($row = mysqli_fetch_assoc($result)) ?>
 
       
-<?php if($qty > 0){ ?>
-              <input type="submit" name="submit" value="Add To Cart"  style="clear:both;  border: none;" class="primary-btn pd-cart">
-      <?php }else{ ?>
-     </form>
+<?php if ($qty > 0) { ?>
+
+    <input type="submit" name="submit" value="Add To Cart"  style="clear:both;  border: none;" class="primary-btn pd-cart">
+              </form>
+           
+      <?php } else { ?>
+      </form>
      
-                                    <a href="#" class="primary-btn pd-cart">NOT available</a>
-      <?php } ?>
+        <?php
+
+$id = $_GET['id'];
+$result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+$row = mysqli_fetch_assoc($result);
+
+?>
+  <button data-toggle="modal" data-target="#view-modal" 
+  data-id="<?php echo $row['id']; ?>" id="getUser" style="clear:both; background: #48c9b0; 
+  border: none; color: #fff; font-size: 14px; padding: 10px;cursor: pointer;">Notify me</button>
+  <?php } ?>
+
+    <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog"> 
+               <div class="modal-content"> 
+               
+                    <div class="modal-header"> 
+                     <h4 class="modal-title">
+                          
+                         </h4> 
+                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
+                         
+                    </div> 
+                    <div class="modal-body"> 
+                    
+                        <div id="modal-loader" style="display: none; text-align: center;">
+                         <img src="ajax-loader.gif">
+                        </div>
+                                                 
+                        <div id="dynamic-content">
+                        
+                        </div>
+                          
+                     </div> 
+                     
+                     
+              </div> 
+           </div>
+    </div>
+
+<script>
+$(document).ready(function(){
+
+$(document).on('click', '#getUser', function(e){
+ 
+ e.preventDefault();
+ 
+ var uid = $(this).data('id');   
+ 
+ $('#dynamic-content').html('');
+ $('#modal-loader').show(); 
+ $.ajax({
+   url: 'getemail.php',
+   type: 'POST',
+   data: 'id='+uid,
+   dataType: 'html'
+ })
+ .done(function(data){
+   console.log(data);  
+   $('#dynamic-content').html('');    
+   $('#dynamic-content').html(data); 
+   $('#modal-loader').hide();
+ })
+ .fail(function(){
+   $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+   $('#modal-loader').hide();
+ });
+ 
+});
+
+});
+
+</script>
                             </div>
                         </div>
                     </div>

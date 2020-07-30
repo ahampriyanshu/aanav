@@ -1,10 +1,7 @@
 <?php 
 	
 	session_start();
-    include('config/dbconfig.php');
-
-
-	
+  require_once('essentials/config.php');
 			
 		$id = intval($_REQUEST['id']);
 		$query = "SELECT * FROM product WHERE id=:id";

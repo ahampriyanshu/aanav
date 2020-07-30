@@ -8,7 +8,6 @@ if($customer == null){
 else{
 
 $id = $_GET['id'];
-print_r($_SESSION);
 
   $customer = $_SESSION['email']; 
   $sql = "SELECT * FROM customer WHERE email = '$customer'";

@@ -7,7 +7,7 @@
 <?php
 
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli, "SELECT * FROM product LEFT JOIN categories 
+   $result = mysqli_query($connect, "SELECT * FROM product LEFT JOIN categories 
                                    ON categories.cat_id = product.categories WHERE product.id=$id");
    $row2 = mysqli_fetch_assoc($result);
    $cat_id = $row2['cat_id'];
@@ -21,7 +21,7 @@
     <?php
 
 $id = $_GET['id'];
-$result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
+$result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
 $product = mysqli_fetch_assoc($result);
 ?>   
     <meta name="description" content="<?php echo $product['description']; ?>">
@@ -56,7 +56,7 @@ $product = mysqli_fetch_assoc($result);
     </script>";
    }
 
-   $result = mysqli_query($mysqli, "SELECT * FROM product WHERE id=$id");
+   $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    $product_id = $row['id'];
    $categories = $row['categories'];
@@ -81,7 +81,7 @@ $product = mysqli_fetch_assoc($result);
                                 <?php
                       $sql2 = "SELECT * FROM gallery
                               WHERE product_id = $id";
-                      $run = mysqli_query($mysqli, $sql2);
+                      $run = mysqli_query($connect, $sql2);
                     while ($row2 = mysqli_fetch_assoc($run)):
                     ?>
                     <div class="pt active" data-imgbigurl="uploads/gallery/<?php echo $row2['image'] ?>">
@@ -120,7 +120,7 @@ $product = mysqli_fetch_assoc($result);
             LEFT JOIN attribute a
             ON p.color = a.attr_id
             WHERE p.product_id = '$id'";
-            $ret = mysqli_query($mysqli, $sql);
+            $ret = mysqli_query($connect, $sql);
            $num_results=mysqli_num_rows($ret);
            for ($i=0;$i<$num_results;$i++) {
                $row=mysqli_fetch_array($ret);
@@ -182,7 +182,7 @@ $product = mysqli_fetch_assoc($result);
                                 <div class="pd-size-choose">
                                 <?php
             $result = "SELECT * FROM variant where product_id = $id";
-            $sql = mysqli_query($mysqli, $result);
+            $sql = mysqli_query($connect, $result);
             $row = mysqli_fetch_assoc($sql);
        
 
@@ -191,7 +191,7 @@ $product = mysqli_fetch_assoc($result);
                                      ON p.size = a.attr_id
                                      WHERE p.product_id = '$id'";
 
-                               $result = mysqli_query($mysqli, $sql);
+                               $result = mysqli_query($connect, $sql);
 
                                while ($row = mysqli_fetch_assoc($result)) {
                                    echo'<div class="sc-item">
@@ -201,20 +201,20 @@ $product = mysqli_fetch_assoc($result);
                                }  ?>
          <?php
       $s = "SELECT * FROM product WHERE id = '$id'";
-      $r = mysqli_query($mysqli, $s);
+      $r = mysqli_query($connect, $s);
       $row_r = mysqli_fetch_assoc($r);
         $product_id = $row_r['id'];
         $customer = $_SESSION['email'];
 
     
       $sql5 = "SELECT * FROM customer WHERE email = '$customer'";
-      $run5 = mysqli_query($mysqli, $sql5);
+      $run5 = mysqli_query($connect, $sql5);
       $row5 =mysqli_fetch_assoc($run5);
       $customer_id = $row5['id'];
       $customer_name = $row5['name'];
       
       $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
-      $run_fav = mysqli_query($mysqli, $sql_fav);
+      $run_fav = mysqli_query($connect, $sql_fav);
       $row_fav = mysqli_fetch_assoc($run_fav);
       $fav = $row_fav['fav_id'];
        
@@ -241,7 +241,7 @@ $product = mysqli_fetch_assoc($result);
                      ON p.size = a.attr_id
                      WHERE p.product_id = '$id'";
 
-             $result = mysqli_query($mysqli, $sql);
+             $result = mysqli_query($connect, $sql);
 
              while ($row = mysqli_fetch_assoc($result)) ?>
 
@@ -257,7 +257,7 @@ $product = mysqli_fetch_assoc($result);
         <?php
 
 $id = $_GET['id'];
-$result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+$result = mysqli_query($connect,"SELECT * FROM product WHERE id=$id");
 $row = mysqli_fetch_assoc($result);
 
 ?>

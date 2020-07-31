@@ -22,7 +22,7 @@ extract($_POST);
 
 if(isset($submit))
 {
-  $rs=mysqli_query($mysqli,"SELECT  * FROM customer WHERE email ='$email' and password='$pass'");
+  $rs=mysqli_query($connect,"SELECT  * FROM customer WHERE email ='$email' and password='$pass'");
   if(mysqli_num_rows($rs)<1)
   {
     $found="N";
@@ -33,7 +33,7 @@ if(isset($submit))
     date_default_timezone_set('Asia/Kolkata');
     $now = date('d/m/Y h:i:s', time());
     $_SESSION['email'] = $email;
-    $update = mysqli_query($mysqli, "UPDATE `customer` SET `last_login` = '$now' WHERE `email` = '$email' ");
+    $update = mysqli_query($connect, "UPDATE `customer` SET `last_login` = '$now' WHERE `email` = '$email' ");
     header('location:index.php');
   }
 }

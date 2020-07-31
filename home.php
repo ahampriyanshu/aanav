@@ -1,263 +1,199 @@
 <?php
-  session_start();
-  require_once('essentials/config.php');
-  include('essentials/function.php');
-  include('boilerplate.php');
-  error_reporting(E_ALL);
-  ?>
-   
+   session_start();
+   require_once('essentials/config.php');
+   include('essentials/function.php');  
+   include('boilerplate.php');
+
+?>
+
+
+
     <section class="product-shop spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                <div class="filter-widget">
-                        <h4 class="fw-title">Price</h4>
-                        <div class="filter-range-wrap">
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="98">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                        </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
-                        <ul class="filter-catagories">
-                          <?php
-                               $get_cat = "SELECT * FROM categories ";
-                               $run_cat = mysqli_query($mysqli, $get_cat);
-                               while ($row= mysqli_fetch_array($run_cat)) {
-                                   $cat_id = $row['cat_id'];
-                                   $cat_name = $row['cat_name'];
-                                   echo "<li><a href='home.php?cat=$cat_id'>$cat_name</a></li>";
-                               }
-                               ?>
-                        </ul>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Sub Categories</h4>
-                        <ul class="filter-catagories">
-                          <?php
-                               $get_sub_cat = "SELECT * FROM sub_catogories ";
-                               $run_sub_cat = mysqli_query($mysqli, $get_sub_cat);
-                               while ($row= mysqli_fetch_array($run_sub_cat)) {
-                                   $sub_cat_id = $row['sub_id'];
-                                   $sub_cat_name = $row['sub_name'];
-                                   echo "<li><a href='home.php?cat=$sub_cat_id'>$sub_cat_name</a></li>";
-                               }
-                               ?>
-                        </ul>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Brand</h4>
-                        <div class="fw-brand-check">
-                            <div class="bc-item">
-                              <?php
-                            $get_cat = "SELECT * FROM brand";
-         $run_cat = mysqli_query($mysqli, $get_cat);
-         while ($row= mysqli_fetch_array($run_cat)) {
-             $brand_id = $row['brand_id'];
-             $brand_name = $row['brand_name'];
-      
-
-             echo '<label for="bc-$brand_name">
-             '.$brand_name.'&emsp;
-                                    <input type="checkbox" id="bc-calvin">
-                                    <span class="checkmark"></span>
-                                </label>';
-         }
-                                ?>
-                            </div>
-      
-        
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Price</h4>
-                        <div class="filter-range-wrap">
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="98">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                        </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Color</h4>
-                        <div class="fw-color-choose">
-                            <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label class="cs-black" for="cs-black">Black</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label class="cs-violet" for="cs-violet">Violet</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label class="cs-blue" for="cs-blue">Blue</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label class="cs-red" for="cs-red">Red</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label class="cs-green" for="cs-green">Green</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Size</h4>
-                        <div class="fw-size-choose">
-                            <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">s</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">m</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">l</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="xs-size">
-                                <label for="xs-size">xs</label>
-                            </div>
-                        </div>
-                    </div>
-                   
+                <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
+         
+                <div class="list-group">
+                    <h3>Price</h3>
+                    <input type="hidden" id="min_price_hide" value="0" />
+                    <input type="hidden" id="max_price_hide" value="300" />
+                    <p id="price_show">$10 - $300</p>
+                    <div id="price_range"></div>
                 </div>
-                
+ 
+                <div class="list-group">
+                    <h3>Sections</h3>
+                    <?php
+                    $query = "
+                    SELECT DISTINCT(categories) FROM product  ORDER BY categories DESC
+                    ";
+                    $statement = $connect->prepare($query);
+                    $statement->execute();
+                    $result = $statement->fetchAll();
+                    foreach($result as $row)
+                    {
+                    ?>
+                        <div class="list-group-item checkbox">
+                            <label>
+                                <input type="checkbox" class="filter_all gender" value="<?php echo $row['categories']; ?>">
+                                <?php echo $row['categories']; ?>
+                            </label>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+
+                <div class="list-group">
+                    <h3>categories</h3>
+                    <?php
+                    $query = "
+                    SELECT DISTINCT(sub_cat) FROM product  ORDER BY sub_cat DESC
+                    ";
+                    $statement = $connect->prepare($query);
+                    $statement->execute();
+                    $result = $statement->fetchAll();
+                    foreach($result as $row)
+                    {
+                    ?>
+                        <div class="list-group-item checkbox">
+                            <label>
+                                <input type="checkbox" class="filter_all gender" value="<?php echo $row['sub_cat']; ?>">
+                                <?php echo $row['sub_cat']; ?>
+                            </label>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
+ 
+                <div class="list-group">
+                    <h3>Brand</h3>
+                         <?php
+ 
+                    $query = "
+                    SELECT DISTINCT(brand) FROM product ORDER BY brand DESC
+                    ";
+                    $statement = $connect->prepare($query);
+                    $statement->execute();
+                    $result = $statement->fetchAll();
+                    foreach($result as $row)
+                    {
+                    ?>
+                            <div class="list-group-item checkbox">
+                                <label>
+                                    <input type="checkbox" class="filter_all brand" value="<?php echo $row['brand']; ?>">
+                                    <?php echo $row['brand']; ?>
+                                </label>
+                            </div>
+                            <?php
+                    }
+ 
+                    ?>
+                 </div>
+ 
+              <!--  <div class="list-group">
+                    <h3>Color</h3>
+                    <?php
+ 
+                    $query = "
+                    SELECT DISTINCT(color) FROM variant  ORDER BY color DESC
+                    ";
+                    $statement = $connect->prepare($query);
+                    $statement->execute();
+                    $result = $statement->fetchAll();
+                    foreach($result as $row)
+                    {
+                    ?>
+                        <div class="list-group-item checkbox">
+                            <label>
+                                <input type="checkbox" class="filter_all color" value="<?php echo $row['color']; ?>">
+                                <?php echo $row['color']; ?>
+                            </label>
+                        </div>
+                        <?php    
+                    }
+ 
+                    ?>
+                </div> -->
+
+                </div>
 
                 <div class="col-lg-9 order-1 order-lg-2">
-                    <div class="product-list">
-                        <div class="row">
-
-                       <?php if (!isset($_GET['cat'])) {
-          if (!isset($_GET['brand'])) {
-              global $mysqli;
-              $i=0;
-              $per_page = 12;
-
-              if (isset($_GET['page'])) {
-                  $page = $_GET['page'];
-              } else {
-                  $page = 1;
-              }
-
-              $start_from = ($page-1) * $per_page;
-        
-              $product_id = array();
-              $product_quantity = array();
-
-              $result = mysqli_query($mysqli, "SELECT * FROM product ORDER BY 1 DESC LIMIT $start_from, $per_page");
-
-         
-
-              if ($result) {
-                  while ($obj = mysqli_fetch_object($result)) {  ?>
-
-<div class="col-lg-4 col-sm-6">
-                                <div class="product-item">
-                                    <div class="pi-pic">
-                                    <a href="product.php?id=<?php echo $obj->id; ?>">
-                                        <img width="200" height="300" src="uploads/<?php echo $obj->file; ?>" alt="<?php echo $obj->file; ?>"></a>
-                                        <div class="sale pp-sale">Sale</div>
-                                        <div class="icon">
-                                            <i class="icon_heart_alt"></i>
-                                        </div>
-                                    </div>
-                                    <div class="pi-text">
-                                        <div class="catagory-name"><?php echo $obj->code; ?></div>
-                                        <a href="#">
-                                            <h5><?php echo $obj->name; ?></h5>
-                                        </a>
-                                        <div class="product-price">
-                                        &#x20B9;<?php echo $obj->cost; ?>&nbsp;
-                                        <span>&#x20B9;<?php echo $obj->MRP; ?></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                    <?php
-                      $i++;
-                  }
-          
-
-                  include("pagination.php");
-              }
-
-              $_SESSION['id'] = $product_id;
-          }
-      }
-      ?>
-
-                            
-                           
-                                        </div>
-                                    </div>
-                                </div>
-                    </div>
+                    <div class="product-show-option">
+                        <div class="row filter_data">
                 </div>
-    </section>
-    <!-- Product Shop Section End -->
+                </div>
+                </div>
+                </section>
 
-    <!-- Partner Logo Section Begin -->
-    <div class="partner-logo">
-        <div class="container">
-            <div class="logo-carousel owl-carousel">
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-1.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-2.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-3.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-4.png" alt="">
-                    </div>
-                </div>
-                <div class="logo-item">
-                    <div class="tablecell-inner">
-                        <img src="img/logo-carousel/logo-5.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+ 
+    <script src="js/jquery-ui.js"></script>
+ 
+    <script>
+        $(document).ready(function() {
+ 
+            filter_data();
+ 
+            function filter_data() {
+                $('.filter_data');
+                var action = 'fetch_data';
+                var minimum_price = $('#min_price_hide').val();
+                var maximum_price = $('#max_price_hide').val();
+                var brand = get_filter('brand');
+                var color = get_filter('color');
+                var gender = get_filter('gender');
+                $.ajax({
+                    url: "fetch.php",
+                    method: "POST",
+                    data: {
+                        action: action,
+                        minimum_price: minimum_price,
+                        maximum_price: maximum_price,
+                        brand: brand,
+                        color: color,
+                        gender: gender
+                    },
+                    success: function(data) {
+                        $('.filter_data').html(data);
+                    }
+                });
+            }
+ 
+            function get_filter(class_name) {
+                var filter = [];
+                $('.' + class_name + ':checked').each(function() {
+                    filter.push($(this).val());
+                });
+                return filter;
+            }
+ 
+            $('.filter_all').click(function() {
+                filter_data();
+            });
+ 
+            $('#price_range').slider({
+                range: true,
+                min: 10,
+                max: 300,
+                values: [10, 300],
+                step: 10,
+                stop: function(event, ui) {
+                    $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
+                    $('#min_price_hide').val(ui.values[0]);
+                    $('#max_price_hide').val(ui.values[1]);
+                    filter_data();
+                }
+            });
+ 
+        });
+    </script>
+ 
+                
 </body>
+
 </html>

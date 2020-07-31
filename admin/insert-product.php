@@ -19,7 +19,7 @@
 $sql="INSERT INTO variant(product_id,color,size,qty) 
 	   VALUES('".$id."','".$color_id."','".$size_id."','".$qty."')";
 
-	   $sql = $mysqli->query($sql);		
+	   $sql = $connect->query($sql);		
    }
    
    if($sql)

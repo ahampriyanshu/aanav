@@ -14,7 +14,7 @@ if(!isset($_SESSION['admin'])){
 header('location:login.php');}
 
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product where id = $id");
+   $result = mysqli_query($connect,"SELECT * FROM product where id = $id");
    $row = mysqli_fetch_assoc($result);
 
 ?>
@@ -94,7 +94,7 @@ header('location:login.php');}
 
                                             $get_brand = "SELECT * FROM attribute 
                                                           WHERE name LIKE '%color%'";
-                                            $run_brand = mysqli_query($mysqli,$get_brand);
+                                            $run_brand = mysqli_query($connect,$get_brand);
                                             while($row_brand= mysqli_fetch_array($run_brand)){
                                               $color_id = $row_brand['attr_id'];
                                               $color_name = $row_brand['name'];
@@ -126,7 +126,7 @@ header('location:login.php');}
 
                                             $get_brand = "SELECT * FROM attribute 
                                                           WHERE name LIKE '%size%'";
-                                            $run_brand = mysqli_query($mysqli,$get_brand);
+                                            $run_brand = mysqli_query($connect,$get_brand);
                                             while($row_brand= mysqli_fetch_array($run_brand)){
                                               $size_id = $row_brand['attr_id'];
                                               $size_name = $row_brand['name'];

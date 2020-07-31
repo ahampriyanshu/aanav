@@ -38,7 +38,7 @@
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
             $result = "SELECT  name, qty, price FROM product WHERE id = $product_id";
-            $run = mysqli_query($mysqli,$result);
+            $run = mysqli_query($connect,$result);
 
             if($run){
 
@@ -202,7 +202,7 @@ $sel = "SELECT product_id, SUM(units) AS TotalQuantity
 FROM order_items
 GROUP BY product_id
 ORDER BY TotalQuantity DESC LIMIT 10";
-$run = mysqli_query($mysqli,$sel);
+$run = mysqli_query($connect,$sel);
 while($row = mysqli_fetch_assoc($run)): ?>
   
  

@@ -132,7 +132,7 @@ ul.list i,ul.list small{
                 $email = $_SESSION['email'];
                 $query = "SELECT * FROM shipping WHERE shipping_type= 'home'
                          and email = '$email' ORDER BY shipping_id DESC";
-                $result = mysqli_query($mysqli, $query);
+                $result = mysqli_query($connect, $query);
                   while ($row = mysqli_fetch_assoc($result)) {
                       $id = $row['shipping_id']; ?>
      
@@ -236,7 +236,7 @@ ul.list i,ul.list small{
           
          foreach ($_SESSION['cart'] as $product_id => $quantity) {
              $result = "SELECT  name, cost, qty, file FROM product WHERE id = '$product_id'";
-             $run = mysqli_query($mysqli, $result);
+             $run = mysqli_query($connect, $result);
         
                
              if ($run) {

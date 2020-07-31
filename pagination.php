@@ -1,7 +1,7 @@
 <?php
 	require_once('essentials/config.php');
 	$query = "select * from product";
-	$result = mysqli_query($mysqli, $query);
+	$result = mysqli_query($connect, $query);
 
 	//count the total records
 

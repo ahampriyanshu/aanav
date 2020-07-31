@@ -57,7 +57,7 @@ if(isset($_POST['submit'])){
   $sql = "INSERT INTO product (name,code,categories,sub_cat,brand,supplier,description,MRP,cost,qty,file,created)
              VALUES ('$name','$code','$cat','$sub_cat','$brand','$supplier','$description','$MRP','$cost','$qty','$file','$date')";
 
-  $run=mysqli_query($mysqli, $sql);
+  $run=mysqli_query($connect, $sql);
 
   if ($run) {
       echo "<script>window.open('add-image.php','_self')</script>";
@@ -88,7 +88,7 @@ if(isset($_POST['submit'])){
                                                 <option>Select Something</option>
                                                <?php
                                                 $get_cat = "SELECT * FROM categories";
-                                                $run_cat = mysqli_query($mysqli, $get_cat);
+                                                $run_cat = mysqli_query($connect, $get_cat);
                                                 while ($row_cat= mysqli_fetch_array($run_cat)) {
                                                     $id = $row_cat['cat_id'];
                                                     $name = $row_cat['cat_name'];
@@ -107,7 +107,7 @@ if(isset($_POST['submit'])){
                                                 <option>Select Something</option>
                                                <?php
                                                 $get_sub_cat = "SELECT * FROM sub_catogories";
-                                                $run_sub_cat = mysqli_query($mysqli, $get_sub_cat);
+                                                $run_sub_cat = mysqli_query($connect, $get_sub_cat);
                                                 while ($row_sub_cat= mysqli_fetch_array($run_sub_cat)) {
                                                     $sub_id = $row_sub_cat['sub_id'];
                                                     $sub_name = $row_sub_cat['sub_name'];
@@ -127,7 +127,7 @@ if(isset($_POST['submit'])){
                                                <?php
 
                                                 $get_brand = "SELECT * FROM brand";
-                                                $run_brand = mysqli_query($mysqli, $get_brand);
+                                                $run_brand = mysqli_query($connect, $get_brand);
                                                 while ($row_brand= mysqli_fetch_array($run_brand)) {
                                                     $brand_id = $row_brand['brand_id'];
                                                     $brand_title = $row_brand['brand_name'];
@@ -147,7 +147,7 @@ if(isset($_POST['submit'])){
                                                <?php
 
                                                 $get_brand = "SELECT * FROM supplier";
-                                                $run_brand = mysqli_query($mysqli, $get_brand);
+                                                $run_brand = mysqli_query($connect, $get_brand);
                                                 while ($row_brand= mysqli_fetch_array($run_brand)) {
                                                     $supplier_id = $row_brand['supplier_id'];
                                                     $supplier_title = $row_brand['supplier_name'];

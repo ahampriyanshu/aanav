@@ -71,7 +71,7 @@
                                    LEFT   JOIN supplier
                                    ON supplier.supplier_id = product.supplier
                                    ORDER BY 1 DESC LIMIT $start_from, $per_page";
-                $result = mysqli_query($mysqli,$query);
+                $result = mysqli_query($connect,$query);
 
                 $count = 1;
                 while($row = mysqli_fetch_assoc($result) ){
@@ -93,7 +93,7 @@
 
                         <?php
                           include('../essentials/config.php');
-                          $sql_dis = mysqli_query($mysqli,"SELECT * FROM discount 
+                          $sql_dis = mysqli_query($connect,"SELECT * FROM discount 
                             LEFT JOIN product ON discount.product_id = product.id
                             WHERE product.id = '$id'");
                           $result_dis = mysqli_fetch_assoc($sql_dis);
@@ -180,7 +180,7 @@
                      ON p.color = a.attr_id
                      WHERE p.product_id = '13'";
 
-             $result = mysqli_query($mysqli,$sql);
+             $result = mysqli_query($connect,$sql);
 
              while($row = mysqli_fetch_assoc($result)){
 
@@ -198,7 +198,7 @@
                      ON p.size = a.attr_id
                      WHERE p.product_id = '13'";
 
-             $result = mysqli_query($mysqli,$sql);
+             $result = mysqli_query($connect,$sql);
 
              while($row = mysqli_fetch_assoc($result)){
 

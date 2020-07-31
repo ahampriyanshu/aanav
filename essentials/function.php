@@ -4,10 +4,10 @@ include('config.php');
 
  function getcat()
  {
-     global $mysqli;
+     global $connect;
 
      $get_cat = "SELECT * FROM categories ";
-     $run_cat = mysqli_query($mysqli, $get_cat);
+     $run_cat = mysqli_query($connect, $get_cat);
      while ($row= mysqli_fetch_array($run_cat)) {
          $cat_id = $row['cat_id'];
          $cat_name = $row['cat_name'];
@@ -21,10 +21,10 @@ include('config.php');
 
      function getbrand()
      {
-         global $mysqli;
+         global $connect;
 
          $get_cat = "SELECT * FROM brand";
-         $run_cat = mysqli_query($mysqli, $get_cat);
+         $run_cat = mysqli_query($connect, $get_cat);
          while ($row= mysqli_fetch_array($run_cat)) {
              $brand_id = $row['brand_id'];
              $brand_name = $row['brand_name'];
@@ -41,9 +41,9 @@ include('config.php');
   {
       if (!isset($_GET['cat'])) {
           if (!isset($_GET['brand'])) {
-              global $mysqli;
+              global $connect;
               $i=0;
-              $per_page = 6;
+              $per_page = 12;
 
               if (isset($_GET['page'])) {
                   $page = $_GET['page'];
@@ -56,7 +56,7 @@ include('config.php');
               $product_id = array();
               $product_quantity = array();
 
-              $result = mysqli_query($mysqli, "SELECT * FROM product ORDER BY 1 DESC LIMIT $start_from, $per_page");
+              $result = mysqli_query($connect, "SELECT * FROM product ORDER BY 1 DESC LIMIT $start_from, $per_page");
 
          
 
@@ -95,7 +95,7 @@ include('config.php');
                    LEFT JOIN attribute a
                    ON p.color = a.attr_id
                    WHERE p.product_id = '$obj->id'";
-                      $ret = mysqli_query($mysqli, $sql);
+                      $ret = mysqli_query($connect, $sql);
                       $num_results=mysqli_num_rows($ret);
                       for ($i=0;$i<$num_results;$i++) {
                           $row=mysqli_fetch_array($ret);
@@ -135,12 +135,12 @@ include('config.php');
       if (isset($_GET['cat'])) {
           $cat_id = $_GET['cat'];
 
-          global $mysqli;
+          global $connect;
           $i=0;
           $product_id = array();
           $product_quantity = array();
 
-          $result = mysqli_query($mysqli, "SELECT * FROM product WHERE categories = '$cat_id'order by id DESC");
+          $result = mysqli_query($connect, "SELECT * FROM product WHERE categories = '$cat_id'order by id DESC");
 
           if ($result) {
               while ($obj = mysqli_fetch_object($result)) {
@@ -187,12 +187,12 @@ function productBrand()
     if (isset($_GET['brand'])) {
         $brand_id = $_GET['brand'];
 
-        global $mysqli;
+        global $connect;
         $i=0;
         $product_id = array();
         $product_quantity = array();
 
-        $result = mysqli_query($mysqli, "SELECT * FROM product WHERE brand = '$brand_id'order by id DESC");
+        $result = mysqli_query($connect, "SELECT * FROM product WHERE brand = '$brand_id'order by id DESC");
             
 
         if ($result) {
@@ -267,13 +267,13 @@ function productBrand()
 
 function getcom()
 {
-    global $mysqli;
+    global $connect;
 
     $get_id = $_GET['id'];
 
     $get_com = "SELECT * FROM feedback WHERE product_id = '$get_id' ORDER BY 1 DESC";
 
-    $run_com = mysqli_query($mysqli, $get_com);
+    $run_com = mysqli_query($connect, $get_com);
 
     while ($row = mysqli_fetch_assoc($run_com)) {
         $com = $row['comment'];
@@ -304,7 +304,7 @@ function getcom()
 
  function getfav()
  {
-     global $mysqli;
+     global $connect;
      $i=0;
 
       
@@ -314,11 +314,11 @@ function getcom()
 
      $customer = $_SESSION['email'];
      $c = "SELECT * FROM customer WHERE email = '$customer'";
-     $r = mysqli_query($mysqli, $c);
+     $r = mysqli_query($connect, $c);
      $row_c =mysqli_fetch_assoc($r);
      $customer_id = $row_c['id'];
 
-     $result = mysqli_query($mysqli, "SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
+     $result = mysqli_query($connect, "SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
           ON product.id = wishlist.product_id
           WHERE wishlist.customer_id = '$customer_id'");
      if ($result === false) {
@@ -364,7 +364,7 @@ function getcom()
   {
       if (!isset($_GET['cat'])) {
           if (!isset($_GET['brand'])) {
-              global $mysqli;
+              global $connect;
               $i=0;
 
       
@@ -372,7 +372,7 @@ function getcom()
               $product_id = array();
               $product_quantity = array();
 
-              $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+              $result = mysqli_query($connect, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
             ON product.id = order_items.product_id

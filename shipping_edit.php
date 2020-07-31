@@ -2,7 +2,7 @@
    require_once('essentials/config.php');
    include('boilerplate.php');
     $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM shipping WHERE shipping_id=$id");
+   $result = mysqli_query($connect,"SELECT * FROM shipping WHERE shipping_id=$id");
    $row = mysqli_fetch_assoc($result);
 
 
@@ -26,7 +26,7 @@
           // echo "$sql";
           
 
-      mysqli_query($mysqli,$sql);
+      mysqli_query($connect,$sql);
 
        echo "
           

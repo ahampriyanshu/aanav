@@ -7,17 +7,17 @@
   $customer = $_SESSION['email']; 
   
   $c = "SELECT * FROM customer WHERE email = '$customer'";
-  $r = mysqli_query($mysqli,$c);
+  $r = mysqli_query($connect,$c);
   $row_c =mysqli_fetch_assoc($r);
    $customer_id = $row_c['id'];
    $customer_name = $row_c['name'];
 
   $sql = "SELECT * FROM orders WHERE customer = '$customer' ORDER BY created_date DESC";
-  $run = mysqli_query($mysqli,$sql);
+  $run = mysqli_query($connect,$sql);
   $count = mysqli_num_rows($run);
 
   $sql2 = "SELECT * FROM wishlist WHERE customer_id='$customer_id'";
-  $run2 =mysqli_query($mysqli,$sql2);
+  $run2 =mysqli_query($connect,$sql2);
   $count_fav = mysqli_num_rows($run2);
   
 ?>

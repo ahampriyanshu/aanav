@@ -89,7 +89,7 @@
 				<div class="carousel-inner">			
 				 <?php
 					$sqlQuery = "SELECT id, file FROM product ORDER BY id DESC LIMIT 8";
-					$resultSet = mysqli_query($mysqli, $sqlQuery);
+					$resultSet = mysqli_query($connect, $sqlQuery);
 					$setActive = 0;				
 					$sliderHtml = '';				
 					while( $sliderImage = mysqli_fetch_assoc($resultSet)){	

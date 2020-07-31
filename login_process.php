@@ -12,7 +12,7 @@
 
         $sql = "SELECT * FROM customer WHERE pass='$password' AND email='$email'";
 
-        $run = mysqli_query($mysqli,$sql);
+        $run = mysqli_query($connect,$sql);
 
         $check_customer = mysqli_num_rows($run);
 
@@ -31,7 +31,7 @@
 
          $sel_customer = "SELECT * FROM customer WHERE email='$email'";
 
-      $run = mysqli_query($mysqli,$sel_customer);
+      $run = mysqli_query($connect,$sel_customer);
 
       $row = mysqli_fetch_array($run);
 

@@ -58,7 +58,7 @@ header('location:login.php');}
      <?php
     $sql = "SELECT * FROM product
         ORDER BY id DESC LIMIT 1";
-        $run = mysqli_query($mysqli,$sql);
+        $run = mysqli_query($connect,$sql);
         $row2 = mysqli_fetch_assoc($run);
 
    if(isset($_POST['submit']))
@@ -98,7 +98,7 @@ header('location:login.php');}
               $qry ="insert into gallery (product_id,image) values ('".$id."','".$newFileName."')";
 
 
-              $rs  = mysqli_query($mysqli, $qry);
+              $rs  = mysqli_query($connect, $qry);
 
               if($rs)
               {
@@ -159,7 +159,7 @@ header('location:login.php');}
       
    <form name="uploadFile" action="" method="post" enctype="multipart/form-data" id="upload-form">
             <?php 
-              $result = mysqli_query($mysqli,"SELECT * FROM product
+              $result = mysqli_query($connect,"SELECT * FROM product
         ORDER BY id DESC LIMIT 1");
               $row = mysqli_fetch_assoc($result);
             ?>

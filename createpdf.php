@@ -1,7 +1,7 @@
 <?php
 require_once("essentials/config.php");
 $sql = "SELECT id, name , qty FROM product ";
-$resultset = mysqli_query($mysqli, $sql) or die("database error:". mysqli_error($mysqli));
+$resultset = mysqli_query($connect, $sql) or die("database error:". mysqli_error($connect));
 require('fpdf/fpdf.php');
 $pdf = new FPDF();
 $pdf->AddPage();

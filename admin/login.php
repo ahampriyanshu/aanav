@@ -25,7 +25,7 @@ extract($_POST);
 
 if(isset($submit))
 {
-  $rs=mysqli_query($mysqli,"select * from admin where admin_id ='$username' and password='$password'");
+  $rs=mysqli_query($connect,"select * from admin where admin_id ='$username' and password='$password'");
   if(mysqli_num_rows($rs)<1)
   {
     $found="N";

@@ -72,7 +72,7 @@ ul.list i,ul.list small{
   
 </div>
 
-<div class="pay-container">
+<div id="pay-container">
 </div>
 
 <hr>
@@ -306,3 +306,7 @@ color: #000;
 
 </body>
 </html>
+
+
+
+

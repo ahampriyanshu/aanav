@@ -11,7 +11,7 @@
  if($action === 'empty')
    unset($_SESSION['cart']);
 
- $result = $mysqli->query("SELECT qty FROM product WHERE id = ".$product_id);
+ $result = $connect->query("SELECT qty FROM product WHERE id = ".$product_id);
 
  if($result){
  

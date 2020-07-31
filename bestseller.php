@@ -42,7 +42,7 @@ background: #000 ;
 </script>
 <?php
 
-    $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+    $result = mysqli_query($connect, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
             ON product.id = order_items.product_id
@@ -88,7 +88,7 @@ background: #000 ;
                             <div class="carousel-item">
                                 <div class="row">
      <?php
-            $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+            $result = mysqli_query($connect, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
             ON product.id = order_items.product_id
@@ -109,7 +109,7 @@ background: #000 ;
                              <div class="carousel-item">
                                 <div class="row">
                   <?php
-                  $result = mysqli_query($mysqli, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+                  $result = mysqli_query($connect, "SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
             FROM product 
             LEFT JOIN order_items 
             ON product.id = order_items.product_id

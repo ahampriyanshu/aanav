@@ -5,7 +5,7 @@
         require_once('essentials/config.php');
         $email = $_SESSION['email'];
         $shipping = $_SESSION['shipping'];
-        $result = mysqli_query($mysqli,"SELECT * FROM shipping where shipping_id='$shipping'");
+        $result = mysqli_query($connect,"SELECT * FROM shipping where shipping_id='$shipping'");
         $row = mysqli_fetch_assoc($result);
 
 

@@ -15,7 +15,7 @@ $query = 'SELECT product.*,order_items.product_id, SUM(order_items.units) AS Tot
             ON product.id = order_items.product_id
             GROUP BY order_items.product_id
             ORDER BY TotalQuantity DESC limit '.$row.','.$rowperpage;
-$result = mysqli_query($mysqli,$query);
+$result = mysqli_query($connect,$query);
 
 $response_arr = array();
 

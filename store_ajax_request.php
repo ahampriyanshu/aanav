@@ -39,7 +39,7 @@
                                                <?php
 
                                                 $sql = "SELECT * FROM store";
-                                                $run = mysqli_query($mysqli,$sql);
+                                                $run = mysqli_query($connect,$sql);
                                                 while($row= mysqli_fetch_array($run)){
                                                   $store_id = $row['store_id'];
                                                   $store_name = $row['store_name'];

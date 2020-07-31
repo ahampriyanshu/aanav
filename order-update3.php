@@ -17,14 +17,14 @@ if(isset($_SESSION['cart'])) {
   $total = 0;
   $itemqty = 0;
 
-  $query = $mysqli->query("INSERT INTO orders(customer,shipping_id,status,total_amt,total_qty,payment_type,created_date,modified_date) 
+  $query = $connect->query("INSERT INTO orders(customer,shipping_id,status,total_amt,total_qty,payment_type,created_date,modified_date) 
                            VALUES('$user','$shipping',3,0,0,'Credit',NOW(),NOW())");
 
-  $order_id = mysqli_insert_id($mysqli);
+  $order_id = mysqli_insert_id($connect);
 
   foreach($_SESSION['cart'] as $product_id => $quantity) {
 
-    $result = $mysqli->query("SELECT * FROM product WHERE id = ".$product_id);
+    $result = $connect->query("SELECT * FROM product WHERE id = ".$product_id);
 
     if($result){
 
@@ -40,26 +40,26 @@ if(isset($_SESSION['cart'])) {
 
         
 
-        $query2 = $mysqli->query("INSERT INTO order_items (order_id,product_id, name, price, units, total, customer) 
+        $query2 = $connect->query("INSERT INTO order_items (order_id,product_id, name, price, units, total, customer) 
                                  VALUES('$order_id','$obj->id', '$obj->name', $obj->price, $quantity, $cost, '$user')");
 
 
 
         if($query2){
           $newqty = $obj->qty - $quantity;
-          if($mysqli->query("UPDATE product SET qty = ".$newqty." WHERE id = ".$product_id)){
+          if($connect->query("UPDATE product SET qty = ".$newqty." WHERE id = ".$product_id)){
 
           }
         }
 
-        if($mysqli->query("UPDATE orders SET total_amt = ".$total.",total_qty =".$itemqty." WHERE order_id = ".$order_id)){
+        if($connect->query("UPDATE orders SET total_amt = ".$total.",total_qty =".$itemqty." WHERE order_id = ".$order_id)){
 
         }
 
 
 
         //send mail script
-        /*$query = $mysqli->query("SELECT * from orders order by date desc");
+        /*$query = $connect->query("SELECT * from orders order by date desc");
         if($query){
           while ($obj = $query->fetch_object()){
             $subject = "Your Order ID ".$obj->id;
@@ -96,13 +96,13 @@ if(isset($_SESSION['cart'])) {
     $sql = "INSERT INTO payment(order_id,payment_type,amount,payamount,payment_date)
                    VALUES('$order_id','Credit','$total','$total',NOW())";
 
-    $run=mysqli_query($mysqli,$sql);
+    $run=mysqli_query($connect,$sql);
 
-    $payment_id = mysqli_insert_id($mysqli);
+    $payment_id = mysqli_insert_id($connect);
     $sql2 = "INSERT INTO payment_detail(payment_id,name,card_no,exp_month,exp_year,security_code,created_date)
                    VALUES('$payment_id','$name','$card','$month','$year','$sc',NOW())";
 
-    $run2=mysqli_query($mysqli,$sql2);
+    $run2=mysqli_query($connect,$sql2);
 
 unset($_SESSION['shipping']);
 unset($_SESSION['cart']);

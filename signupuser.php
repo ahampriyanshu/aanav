@@ -13,7 +13,7 @@ $date = date('m/d/Y h:i:s', time());
 $sql = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
 ('$name','$email','$pass','$phone','$email','$date')";
 $q = "select * from userbase where username = '$newuser'";
-$result = mysqli_query($mysqli,$q);
+$result = mysqli_query($connect,$q);
 $num = mysqli_num_rows($result);
 if ($num == 1) {
 echo "<script>
@@ -23,7 +23,7 @@ document.location='signup.php';
 }
 else {
 $qy = "INSERT INTO userbase(name,password,security,phone,email,datetym) VALUES ('$a$newuser','$pass','$name','$secu','$phone','$email','$date')";
-mysqli_query($mysqli,$qy);
+mysqli_query($connect,$qy);
 echo "<script>
 alert('Login ID successfully created');
 document.location='login.php';

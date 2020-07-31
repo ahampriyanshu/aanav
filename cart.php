@@ -31,7 +31,7 @@
               foreach ($_SESSION['cart'] as $product_id => $quantity) {
                
                   $result = "SELECT  name,code, qty, MRP, cost, file FROM product WHERE id = $product_id";
-                  $run = mysqli_query($mysqli, $result);
+                  $run = mysqli_query($connect, $result);
 
                   $email=$_SESSION['email'];
 
@@ -46,12 +46,12 @@
                           $color = $_SESSION['color'];
                           $size = $_SESSION['size'];
 
-                          $result_c = mysqli_query($mysqli, "SELECT * FROM attribute where attr_id='$color'");
+                          $result_c = mysqli_query($connect, "SELECT * FROM attribute where attr_id='$color'");
                           $row_c = mysqli_fetch_assoc($result_c);
                           $attr = $row_c['attr_id'];
                           $value_c = $row_c['value'];
 
-                          $result_s = mysqli_query($mysqli, "SELECT * FROM attribute where attr_id='$size'");
+                          $result_s = mysqli_query($connect, "SELECT * FROM attribute where attr_id='$size'");
                           $row_s = mysqli_fetch_assoc($result_s);
                           $attr = $row_s['attr_id'];
                           $value_s = $row_s['value'];
@@ -117,7 +117,7 @@ echo'<tr>
           
           foreach ($_SESSION['cart'] as $product_id => $quantity) {
               $result = "SELECT  name, qty, MRP, cost,file FROM product WHERE id = $product_id";
-              $run = mysqli_query($mysqli, $result);
+              $run = mysqli_query($connect, $result);
                
               if ($run) {
                   while ($obj = mysqli_fetch_object($run)) {

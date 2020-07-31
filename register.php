@@ -40,7 +40,7 @@ if(isset($submit))
   ('$name','$email','$pass','$phone','$now')";
 
   $check = "SELECT * FROM customer WHERE `email` = '$email'";
-  $result = mysqli_query($mysqli,$check);
+  $result = mysqli_query($connect,$check);
   $num = mysqli_num_rows($result);
 
   if ($num > 0) {
@@ -49,7 +49,7 @@ if(isset($submit))
   else {
   $create = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
   ('$name','$email','$pass','$phone','$now')";
-  mysqli_query($mysqli,$create);
+  mysqli_query($connect,$create);
   echo "<script>
   alert('New User Created');
   document.location='login.php';

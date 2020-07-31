@@ -40,7 +40,7 @@ background: #000;
 <?php
 
     require_once('essentials/config.php');
-    $result = mysqli_query($mysqli,"SELECT * FROM product ORDER BY id DESC LIMIT 0,4");
+    $result = mysqli_query($connect,"SELECT * FROM product ORDER BY id DESC LIMIT 0,4");
     
 ?>
 <div class="ftr2">
@@ -79,7 +79,7 @@ background: #000;
                   <?php
 
                   require_once('essentials/config.php');
-                  $result3 = mysqli_query($mysqli,"SELECT * FROM product ORDER BY id DESC LIMIT 4,4");
+                  $result3 = mysqli_query($connect,"SELECT * FROM product ORDER BY id DESC LIMIT 4,4");
                   while($row3 = mysqli_fetch_assoc($result3)):
                   ?>
           

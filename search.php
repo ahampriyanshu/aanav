@@ -15,7 +15,7 @@
             foreach($_SESSION['cart'] as $product_id => $quantity) {
 
             $result = "SELECT  name, qty, price FROM product WHERE id = $product_id";
-            $run = mysqli_query($mysqli,$result);
+            $run = mysqli_query($connect,$result);
 
             if($run){
 
@@ -70,7 +70,7 @@
     
 
     $get_pro = "SELECT * FROM product WHERE name LIKE '%$search%'";
-    $result = mysqli_query($mysqli,$get_pro);
+    $result = mysqli_query($connect,$get_pro);
 
     while($obj = mysqli_fetch_object($result)) {
 

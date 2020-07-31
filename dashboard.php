@@ -8,7 +8,7 @@
 
   $customer = $_SESSION['email']; 
   $c = "SELECT * FROM customer WHERE email = '$customer'";
-  $r = mysqli_query($mysqli,$c);
+  $r = mysqli_query($connect,$c);
   $row_c =mysqli_fetch_assoc($r);
    $customer_id = $row_c['id'];
    $customer_name = $row_c['name'];
@@ -17,11 +17,11 @@
 
 
   $sql = "SELECT * FROM orders WHERE customer = '$customer' ORDER BY created_date DESC";
-  $run = mysqli_query($mysqli,$sql);
+  $run = mysqli_query($connect,$sql);
   $count = mysqli_num_rows($run);
 
   $sql2 = "SELECT * FROM wishlist WHERE customer_id='$customer_id'";
-  $run2 =mysqli_query($mysqli,$sql2);
+  $run2 =mysqli_query($connect,$sql2);
   $count_fav = mysqli_num_rows($run2);
   
 ?>
@@ -62,11 +62,11 @@
           <?php
     $customer = $_SESSION['email']; 
             $c = "SELECT * FROM customer WHERE email = '$customer'";
-            $r = mysqli_query($mysqli,$c);
+            $r = mysqli_query($connect,$c);
             $row_c =mysqli_fetch_assoc($r);
              $customer_id = $row_c['id'];
 
-          $result = mysqli_query($mysqli,"SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
+          $result = mysqli_query($connect,"SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
           ON product.id = wishlist.product_id
           WHERE wishlist.customer_id = '$customer_id'");
           // if($result === FALSE){
@@ -110,7 +110,7 @@
                 <?php }else{ ?>
                   
                <?php 
-                 $result2 = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+                 $result2 = mysqli_query($connect,"SELECT * FROM product WHERE id=$id");
                  $row2 = mysqli_fetch_assoc($result2);
 
                  ?>

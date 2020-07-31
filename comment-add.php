@@ -8,10 +8,10 @@ $date = date('Y-m-d H:i:s');
 
 $sql = "INSERT INTO comment(parent_comment_id,comment,sender_name,product_id,date) VALUES ('" . $commentId . "','" . $comment . "','" . $commentSenderName . "','" . $product_id . "','" . $date . "')";
 
-$result = mysqli_query($mysqli, $sql);
+$result = mysqli_query($connect, $sql);
 
 if (! $result) {
-    $result = mysqli_error($mysqli);
+    $result = mysqli_error($connect);
 }
 echo $result;
 ?>

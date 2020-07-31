@@ -7,7 +7,7 @@
 <?php  include('004navbar.php'); ?>
 <?php
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+   $result = mysqli_query($connect,"SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    $product_id = $row['id'];
    $categories = $row['categories'];
@@ -19,7 +19,7 @@
 
         $get_customer = "SELECT * FROM customer WHERE email ='$customer'";
 
-        $run_customer = mysqli_query($mysqli,$get_customer);
+        $run_customer = mysqli_query($connect,$get_customer);
 
         $row_customer = mysqli_fetch_assoc($run_customer);
 
@@ -35,13 +35,13 @@
 
                   //   // User rating
                   //   // $query = "SELECT * FROM rating WHERE product_id=".$id." and user_id=".$user_id;
-                  //   // $userresult = mysqli_query($mysqli,$query) or die(mysqli_error());
+                  //   // $userresult = mysqli_query($connect,$query) or die(mysqli_error());
                   //   // $fetchRating = mysqli_fetch_array($userresult);
                   //   // $rating = $fetchRating['rating'];
 
                   //   // // get average
                   //   // $query = "SELECT ROUND(AVG(rating),1) as averageRating FROM rating WHERE product_id=".$id;
-                  //   // $avgresult = mysqli_query($mysqli,$query) or die(mysqli_error());
+                  //   // $avgresult = mysqli_query($connect,$query) or die(mysqli_error());
                   //   // $fetchAverage = mysqli_fetch_array($avgresult);
                   //   // $averageRating = $fetchAverage['averageRating'];
 
@@ -149,7 +149,7 @@ input[type=radio] + label>img {
 include('confs/config.php');
 
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product LEFT JOIN categories 
+   $result = mysqli_query($connect,"SELECT * FROM product LEFT JOIN categories 
                                    ON categories.cat_id = product.categories WHERE product.id=$id");
    $row2 = mysqli_fetch_assoc($result);
    $cat_id = $row2['cat_id'];
@@ -167,7 +167,7 @@ include('confs/config.php');
                     <?php
                       $sql2 = "SELECT * FROM gallery
                               WHERE product_id = $id";
-                      $run = mysqli_query($mysqli,$sql2);
+                      $run = mysqli_query($connect,$sql2);
                     while($row2 = mysqli_fetch_assoc($run)):
                     ?>
                     
@@ -181,7 +181,7 @@ include('confs/config.php');
 include('confs/config.php');
 
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+   $result = mysqli_query($connect,"SELECT * FROM product WHERE id=$id");
    $row3 = mysqli_fetch_assoc($result);
 ?>              
 
@@ -212,7 +212,7 @@ include('confs/config.php');
                    LEFT JOIN attribute a
                    ON p.color = a.attr_id
                    WHERE p.product_id = '$id'";
-                   $ret = mysqli_query($mysqli,$sql);
+                   $ret = mysqli_query($connect,$sql);
                   $num_results=mysqli_num_rows($ret);
                   for($i=0;$i<$num_results;$i++)
   {
@@ -243,7 +243,7 @@ include('confs/config.php');
 
           <?php 
             $result = "SELECT * FROM product_attribute where product_id = $id";
-            $sql = mysqli_query($mysqli,$result);
+            $sql = mysqli_query($connect,$result);
             $row = mysqli_fetch_assoc($sql);             
           ?>
 
@@ -259,7 +259,7 @@ include('confs/config.php');
                                      ON p.size = a.attr_id
                                      WHERE p.product_id = '$id'";
 
-                               $result = mysqli_query($mysqli,$sql);
+                               $result = mysqli_query($connect,$sql);
 
                                while($row = mysqli_fetch_assoc($result)){
                                     $size = $row['size'];
@@ -309,7 +309,7 @@ include('confs/config.php');
                      ON p.size = a.attr_id
                      WHERE p.product_id = '$id'";
 
-             $result = mysqli_query($mysqli,$sql);
+             $result = mysqli_query($connect,$sql);
 
              while($row = mysqli_fetch_assoc($result)){
 
@@ -321,21 +321,21 @@ include('confs/config.php');
           
           <?php 
       $s = "SELECT * FROM product WHERE id = '$id'";
-      $r = mysqli_query($mysqli,$s);
+      $r = mysqli_query($connect,$s);
       $row_r = mysqli_fetch_assoc($r);
         $product_id = $row_r['id'];
         $customer = $_SESSION['email'];
 
     
       $sql5 = "SELECT * FROM customer WHERE email = '$customer'";
-      $run5 = mysqli_query($mysqli,$sql5);
+      $run5 = mysqli_query($connect,$sql5);
       $row5 =mysqli_fetch_assoc($run5);
       $customer_id = $row5['id'];
       $customer_name = $row5['name'];
       
       
       $sql_fav = "SELECT * FROM add_to_favourite WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
-      $run_fav = mysqli_query($mysqli,$sql_fav);
+      $run_fav = mysqli_query($connect,$sql_fav);
       $row_fav = mysqli_fetch_assoc($run_fav);
         $fav = $row_fav['fav_id'];
        
@@ -356,7 +356,7 @@ include('confs/config.php');
 
    include('confs/config.php');
    $id = $_GET['id'];
-   $result = mysqli_query($mysqli,"SELECT * FROM product WHERE id=$id");
+   $result = mysqli_query($connect,"SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    
    ?>
@@ -628,7 +628,7 @@ $(function() {
           
              $list = "SELECT * FROM comment WHERE product_id = '$product_id' 
              ORDER BY comment_id desc";
-             $run_l = mysqli_query($mysqli,$list);
+             $run_l = mysqli_query($connect,$list);
              while($row_l = mysqli_fetch_assoc($run_l)):
               $date = $row_l['date'];
               $time = strtotime($date);
@@ -838,7 +838,7 @@ background: teal;
 <?php
 
     include('confs/config.php');
-    $smilar = mysqli_query($mysqli,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 0,4");
+    $smilar = mysqli_query($connect,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 0,4");
     
     
 ?>
@@ -881,7 +881,7 @@ background: teal;
                   <?php
 
                   include('confs/config.php');
-                  $smilar2 = mysqli_query($mysqli,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 4,4");
+                  $smilar2 = mysqli_query($connect,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 4,4");
                   while($row_similar2 = mysqli_fetch_assoc($smilar2)):
     
                   ?>

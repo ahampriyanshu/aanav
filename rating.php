@@ -58,7 +58,7 @@
             <?php
                 $userid = 4;
                 $query = "SELECT * FROM product";
-                $result = mysqli_query($mysqli,$query);
+                $result = mysqli_query($connect,$query);
                 while($row = mysqli_fetch_array($result)){
                     $postid = $row['id'];
                     $title = $row['title'];

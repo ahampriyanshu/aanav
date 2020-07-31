@@ -221,7 +221,7 @@
         <?php
       //get user
     $email = $_SESSION['email'];
-    $sql_customer = mysqli_query($mysqli, "SELECT * FROM customer WHERE email = '$email'");
+    $sql_customer = mysqli_query($connect, "SELECT * FROM customer WHERE email = '$email'");
     $row_customer = mysqli_fetch_assoc($sql_customer);
 
 ?>   

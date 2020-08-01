@@ -1,13 +1,13 @@
 <?php
 include('essentials/config.php'); //Database Connection
- 
+
 if (isset($_POST["action"])) {
     $query = "
-  SELECT * FROM product 
+  SELECT * FROM product WHERE '1' = '1'
  ";
     if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
         $query .= "
-   AND product_price BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'
+   AND cost BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'
   ";
     }
     if (isset($_POST["brand"])) {
@@ -16,22 +16,23 @@ if (isset($_POST["action"])) {
    AND brand IN('" . $brand_filter . "')
   ";
     }
-    if (isset($_POST["color"])) {
-        $color_filter = implode("','", $_POST["color"]);
+    if (isset($_POST["sub_cat"])) {
+        $sub_cat_filter = implode("','", $_POST["sub_cat"]);
         $query .= "
-   AND product_color IN('" . $color_filter . "')
+   AND sub_cat IN('" . $sub_cat_filter . "')
   ";
     }
-    if (isset($_POST["gender"])) {
-        $gender_filter = implode("','", $_POST["gender"]);
+    if (isset($_POST["categories"])) {
+        $categories_filter = implode("','", $_POST["categories"]);
         $query .= "
-   AND gender IN('" . $gender_filter . "')
+   AND categories IN('" . $categories_filter . "')
   ";
     }
-    
+    echo $query;
     $statement = $connect->prepare($query);
     $statement->execute();
     $result    = $statement->fetchAll();
+    print_r($result);
     $total_row = $statement->rowCount();
     $output    = '';
     if ($total_row > 0) {

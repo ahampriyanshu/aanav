@@ -1,6 +1,6 @@
 <?php
    session_start();
-   require_once('essentials/conn.php');
+   require_once('essentials/config.php');
    include('boilerplate.php');
 
 ?>
@@ -10,28 +10,36 @@
     <div class="col-md-3">
         <div class="list-group">
             <h3>Price</h3>
-            <input type="hidden" id="min_price_hide" value="0" />
-            <input type="hidden" id="max_price_hide" value="50000" />
-            <p id="price_show">$1 - $50000</p>
+            <input type="hidden" id="min_price_hide" value="1" />
+            <input type="hidden" id="max_price_hide" value="20000" />
+            <p id="price_show">$1 - $20000</p>
             <div id="price_range"></div>
         </div>
 
         <div class="list-group">
-            <h3>categories</h3>
+            <h3>section</h3>
             <?php
+
+
             $query = "
-            SELECT DISTINCT(categories) FROM product ORDER BY categories DESC
+            SELECT DISTINCT(section) FROM product ORDER BY section ASC
             ";
-            $statement = $connect->prepare($query);
+            $statement = $con->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
             foreach($result as $row)
             {
+            $sql = "
+            SELECT cat_name FROM section WHERE cat_id = '$row[0]'
+            ";
+            $exe =$connect->query($sql);
+            $name = $exe ->fetch_assoc();
+            
             ?>
                 <div class="list-group-item checkbox">
                     <label>
-                        <input type="checkbox" class="filter_all categories" value="<?php echo $row['categories']; ?>">
-                        <?php echo $row['categories']; ?>
+                        <input type="checkbox" class="filter_all section" value="<?php echo $row['section']; ?>">
+                        <?php echo $name['cat_name']; ?>
                     </label>
                 </div>
                 <?php
@@ -44,18 +52,23 @@
                  <?php
 
             $query = "
-            SELECT DISTINCT(brand) FROM product ORDER BY brand DESC
+            SELECT DISTINCT(brand) FROM product ORDER BY brand ASC
             ";
-            $statement = $connect->prepare($query);
+            $statement = $con->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
             foreach($result as $row)
             {
+                $sql = "
+            SELECT brand_name FROM brand WHERE brand_id = '$row[0]'
+            ";
+            $exe =$connect->query($sql);
+            $name = $exe ->fetch_assoc();
             ?>
                     <div class="list-group-item checkbox">
                         <label>
                             <input type="checkbox" class="filter_all brand" value="<?php echo $row['brand']; ?>">
-                            <?php echo $row['brand']; ?>
+                            <?php echo $name['brand_name']; ?>
                         </label>
                     </div>
                     <?php
@@ -65,22 +78,27 @@
          </div>
 
         <div class="list-group">
-            <h3>sub_cat</h3>
+            <h3>categories</h3>
             <?php
 
             $query = "
-            SELECT DISTINCT(sub_cat) FROM product ORDER BY sub_cat DESC
+            SELECT DISTINCT(categories) FROM product ORDER BY categories ASC
             ";
-            $statement = $connect->prepare($query);
+            $statement = $con->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
             foreach($result as $row)
             {
+                $sql = "
+            SELECT sub_name FROM categories WHERE sub_id = '$row[0]'
+            ";
+            $exe =$connect->query($sql);
+            $name = $exe ->fetch_assoc();
             ?>
                 <div class="list-group-item checkbox">
                     <label>
-                        <input type="checkbox" class="filter_all sub_cat" value="<?php echo $row['sub_cat']; ?>">
-                        <?php echo $row['sub_cat']; ?>
+                        <input type="checkbox" class="filter_all categories" value="<?php echo $row['categories']; ?>">
+                        <?php echo $name['sub_name']; ?>
                     </label>
                 </div>
                 <?php    
@@ -113,8 +131,8 @@ $(document).ready(function() {
         var minimum_price = $('#min_price_hide').val();
         var maximum_price = $('#max_price_hide').val();
         var brand = get_filter('brand');
-        var sub_cat = get_filter('sub_cat');
         var categories = get_filter('categories');
+        var section = get_filter('section');
         $.ajax({
             url: "fetch.php",
             method: "POST",
@@ -123,8 +141,8 @@ $(document).ready(function() {
                 minimum_price: minimum_price,
                 maximum_price: maximum_price,
                 brand: brand,
-                sub_cat: sub_cat,
-                categories: categories
+                categories: categories,
+                section: section
             },
             success: function(data) {
                 $('.filter_data').html(data);
@@ -147,9 +165,9 @@ $(document).ready(function() {
     $('#price_range').slider({
         range: true,
         min: 1,
-        max: 50000,
-        values: [1, 50000],
-        step: 1000,
+        max: 20000,
+        values: [1, 20000],
+        step: 100,
         stop: function(event, ui) {
             $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
             $('#min_price_hide').val(ui.values[0]);

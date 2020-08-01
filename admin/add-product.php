@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $code = $_POST['code'];
   $cat = $_POST['cat'];
-  $sub_cat = $_POST['sub_cat'];
+  $categories = $_POST['categories'];
   $brand = $_POST['brand'];
   $supplier = $_POST['supplier'];
   $qty = $_POST['qty'];
@@ -54,8 +54,8 @@ if(isset($_POST['submit'])){
     move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
 }
 
-  $sql = "INSERT INTO product (name,code,categories,sub_cat,brand,supplier,description,MRP,cost,qty,file,created)
-             VALUES ('$name','$code','$cat','$sub_cat','$brand','$supplier','$description','$MRP','$cost','$qty','$file','$date')";
+  $sql = "INSERT INTO product (name,code,section,categories,brand,supplier,description,MRP,cost,qty,file,created)
+             VALUES ('$name','$code','$cat','$categories','$brand','$supplier','$description','$MRP','$cost','$qty','$file','$date')";
 
   $run=mysqli_query($connect, $sql);
 
@@ -87,7 +87,7 @@ if(isset($_POST['submit'])){
         <select id="email" class="form-control" name="cat">
                                                 <option>Select Something</option>
                                                <?php
-                                                $get_cat = "SELECT * FROM categories";
+                                                $get_cat = "SELECT * FROM section";
                                                 $run_cat = mysqli_query($connect, $get_cat);
                                                 while ($row_cat= mysqli_fetch_array($run_cat)) {
                                                     $id = $row_cat['cat_id'];
@@ -103,14 +103,14 @@ if(isset($_POST['submit'])){
 
         <div class="form-group mb-4">
 				<label for="password">Sub - Category</label>
-        <select id="email" class="form-control" name="sub_cat">
+        <select id="email" class="form-control" name="categories">
                                                 <option>Select Something</option>
                                                <?php
-                                                $get_sub_cat = "SELECT * FROM sub_catogories";
-                                                $run_sub_cat = mysqli_query($connect, $get_sub_cat);
-                                                while ($row_sub_cat= mysqli_fetch_array($run_sub_cat)) {
-                                                    $sub_id = $row_sub_cat['sub_id'];
-                                                    $sub_name = $row_sub_cat['sub_name'];
+                                                $get_categories = "SELECT * FROM categoriesogories";
+                                                $run_categories = mysqli_query($connect, $get_categories);
+                                                while ($row_categories= mysqli_fetch_array($run_categories)) {
+                                                    $sub_id = $row_categories['sub_id'];
+                                                    $sub_name = $row_categories['sub_name'];
 
                                                     echo "
                                                     <option value='$sub_id'>$sub_name</option>

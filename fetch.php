@@ -1,5 +1,5 @@
 <?php
-require_once('essentials/conn.php'); //Database Connection
+require_once('essentials/config.php');
 
 if (isset($_POST["action"])) {
     $query = "
@@ -16,20 +16,20 @@ if (isset($_POST["action"])) {
    AND brand IN('" . $brand_filter . "')
   ";
     }
-    if (isset($_POST["sub_cat"])) {
-        $sub_cat_filter = implode("','", $_POST["sub_cat"]);
-        $query .= "
-   AND sub_cat IN('" . $sub_cat_filter . "')
-  ";
-    }
     if (isset($_POST["categories"])) {
         $categories_filter = implode("','", $_POST["categories"]);
         $query .= "
    AND categories IN('" . $categories_filter . "')
   ";
     }
+    if (isset($_POST["section"])) {
+        $section_filter = implode("','", $_POST["section"]);
+        $query .= "
+   AND section IN('" . $section_filter . "')
+  ";
+    }
     
-    $statement = $connect->prepare($query);
+    $statement = $con->prepare($query);
     $statement->execute();
     $result    = $statement->fetchAll();
     $total_row = $statement->rowCount();

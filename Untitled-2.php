@@ -303,7 +303,7 @@ background: teal;
 </script>
 <?php
 
-    $smilar = mysqli_query($connect,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 0,4");
+    $smilar = mysqli_query($connect,"SELECT * FROM product WHERE section='$section' ORDER BY id DESC LIMIT 0,4");
     
     
 ?>
@@ -346,7 +346,7 @@ background: teal;
                   <?php
 
                
-                  $smilar2 = mysqli_query($connect,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 4,4");
+                  $smilar2 = mysqli_query($connect,"SELECT * FROM product WHERE section='$section' ORDER BY id DESC LIMIT 4,4");
                   while($row_similar2 = mysqli_fetch_assoc($smilar2)):
     
                   ?>

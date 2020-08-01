@@ -43,7 +43,7 @@
         
        <ul class="cats">
         <li>
-            <b><a href="index.php">All Categories</a></b>
+            <b><a href="index.php">All section</a></b>
           </li>
           <?php getcat(); ?>
         </ul><br><br>

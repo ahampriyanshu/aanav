@@ -41,14 +41,14 @@
 			<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
 			<div class="menu__wrap">
 				<ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="All">
-					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1" href="#">Categories</a></li>
+					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1" href="#">section</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-2" aria-owns="submenu-2" href="#">Brands</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-3" aria-owns="submenu-3" href="#">Price</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-4" aria-owns="submenu-4" href="#">Mylk &amp; Drinks</a></li>
 				</ul>
 				
-				<ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="Categories">
-					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Stalk Categories</a></li>
+				<ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu" aria-label="section">
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Stalk section</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Roots &amp; Seeds</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Cabbages</a></li>
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="#">Salad Greens</a></li>

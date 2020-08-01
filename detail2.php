@@ -10,7 +10,7 @@
    $result = mysqli_query($connect,"SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    $product_id = $row['id'];
-   $categories = $row['categories'];
+   $section = $row['section'];
    $qty = $row['qty'];
    // print_r($_SESSION);
 
@@ -149,8 +149,8 @@ input[type=radio] + label>img {
 include('confs/config.php');
 
    $id = $_GET['id'];
-   $result = mysqli_query($connect,"SELECT * FROM product LEFT JOIN categories 
-                                   ON categories.cat_id = product.categories WHERE product.id=$id");
+   $result = mysqli_query($connect,"SELECT * FROM product LEFT JOIN section 
+                                   ON section.cat_id = product.section WHERE product.id=$id");
    $row2 = mysqli_fetch_assoc($result);
    $cat_id = $row2['cat_id'];
    $cat_name = $row2['cat_name'];
@@ -838,7 +838,7 @@ background: teal;
 <?php
 
     include('confs/config.php');
-    $smilar = mysqli_query($connect,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 0,4");
+    $smilar = mysqli_query($connect,"SELECT * FROM product WHERE section='$section' ORDER BY id DESC LIMIT 0,4");
     
     
 ?>
@@ -881,7 +881,7 @@ background: teal;
                   <?php
 
                   include('confs/config.php');
-                  $smilar2 = mysqli_query($connect,"SELECT * FROM product WHERE categories='$categories' ORDER BY id DESC LIMIT 4,4");
+                  $smilar2 = mysqli_query($connect,"SELECT * FROM product WHERE section='$section' ORDER BY id DESC LIMIT 4,4");
                   while($row_similar2 = mysqli_fetch_assoc($smilar2)):
     
                   ?>

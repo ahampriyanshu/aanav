@@ -6,7 +6,7 @@ include('config.php');
  {
      global $connect;
 
-     $get_cat = "SELECT * FROM categories ";
+     $get_cat = "SELECT * FROM section ";
      $run_cat = mysqli_query($connect, $get_cat);
      while ($row= mysqli_fetch_array($run_cat)) {
          $cat_id = $row['cat_id'];
@@ -130,7 +130,7 @@ include('config.php');
       }
   }
 
-  function productCategories()
+  function productsection()
   {
       if (isset($_GET['cat'])) {
           $cat_id = $_GET['cat'];
@@ -140,7 +140,7 @@ include('config.php');
           $product_id = array();
           $product_quantity = array();
 
-          $result = mysqli_query($connect, "SELECT * FROM product WHERE categories = '$cat_id'order by id DESC");
+          $result = mysqli_query($connect, "SELECT * FROM product WHERE section = '$cat_id'order by id DESC");
 
           if ($result) {
               while ($obj = mysqli_fetch_object($result)) {

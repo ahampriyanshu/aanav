@@ -58,7 +58,7 @@
      <div class="col-md-10">
       <div class="row">
         <?php product(); ?>
-       <?php productCategories(); ?>
+       <?php productsection(); ?>
        <?php productBrand(); ?>
        </div>
      </div>

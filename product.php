@@ -7,8 +7,8 @@
 <?php
 
    $id = $_GET['id'];
-   $result = mysqli_query($connect, "SELECT * FROM product LEFT JOIN categories 
-                                   ON categories.cat_id = product.categories WHERE product.id=$id");
+   $result = mysqli_query($connect, "SELECT * FROM product LEFT JOIN section 
+                                   ON section.cat_id = product.section WHERE product.id=$id");
    $row2 = mysqli_fetch_assoc($result);
    $cat_id = $row2['cat_id'];
    $cat_name = $row2['cat_name'];
@@ -59,7 +59,7 @@ $product = mysqli_fetch_assoc($result);
    $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
    $row = mysqli_fetch_assoc($result);
    $product_id = $row['id'];
-   $categories = $row['categories'];
+   $section = $row['section'];
    $qty = $row['qty'];
 
 ?>
@@ -116,7 +116,7 @@ $product = mysqli_fetch_assoc($result);
 
   <?php
 
-     $sql ="SELECT distinct a.*,p.color,p.product_id FROM variant p
+     $sql ="SELECT DISTINCT a.*,p.color,p.product_id FROM variant p
             LEFT JOIN attribute a
             ON p.color = a.attr_id
             WHERE p.product_id = '$id'";
@@ -186,7 +186,7 @@ $product = mysqli_fetch_assoc($result);
             $row = mysqli_fetch_assoc($sql);
        
 
-                                    $sql ="SELECT distinct a.*,p.size,p.product_id FROM variant p
+                                    $sql ="SELECT DISTINCT a.*,p.size,p.product_id FROM variant p
                                      LEFT JOIN attribute a
                                      ON p.size = a.attr_id
                                      WHERE p.product_id = '$id'";
@@ -223,8 +223,12 @@ $product = mysqli_fetch_assoc($result);
                               <p>  <?php if ($product['qty'] == 0) {
             echo "<span class='badge badge-danger'>Sold Out</span>";
         } else {
-                              echo "<span class='badge badge-success'>In Stock</span>";
-                          }
+            if ($product['qty'] < 10) {
+                echo "<span class='badge badge-info'>Few Left</span>";
+            } else {
+                echo "<span class='badge badge-success'>In Stock</span>";
+            }
+        }
 
                           ?> &emsp;
                            <?php  if ($fav == null) { ?>
@@ -236,7 +240,7 @@ $product = mysqli_fetch_assoc($result);
 
 
 <?php
-              $sql ="SELECT distinct a.*,p.color,p.product_id FROM variant p
+              $sql ="SELECT DISTINCT a.*,p.color,p.product_id FROM variant p
                      LEFT JOIN attribute a
                      ON p.size = a.attr_id
                      WHERE p.product_id = '$id'";

@@ -64,8 +64,8 @@
 
                 $start_from = ($page-1) * $per_page;
                 $query = "SELECT * FROM product
-                                   LEFT JOIN categories
-                                   ON categories.cat_id = product.categories
+                                   LEFT JOIN section
+                                   ON section.cat_id = product.section
                                    LEFT   JOIN brand
                                    ON brand.brand_id = product.brand
                                    LEFT   JOIN supplier

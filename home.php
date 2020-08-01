@@ -1,17 +1,10 @@
 <?php
    session_start();
-   require_once('essentials/config.php');
-   include('essentials/function.php');  
+   require_once('essentials/conn.php');
    include('boilerplate.php');
 
 ?>
 <div class="container">
-
-<br/>
-<br/>
-<h1 class="text-center">AOX - Online Shopping Products Filter using Ajax & PHP</h1>
-<br/>
-<br/>
 
 <div class="row">
     <div class="col-md-3">
@@ -108,11 +101,6 @@
 </div>
 
 </div>
-
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-
-<script src="js/jquery-ui.js"></script>
 
 <script>
 $(document).ready(function() {

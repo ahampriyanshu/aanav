@@ -1,8 +1,7 @@
 <?php
-$host = "localhost";  
-$db_user = "root";  
-$db_pass = "Django@1212";  
-$dbname = "aanav";  
-$connect = new PDO("mysql:host=$host; dbname=$dbname", $db_user, $db_pass); 
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "Django@1212";
+    $dbname = "aanav";
+    $connect = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 ?>
-

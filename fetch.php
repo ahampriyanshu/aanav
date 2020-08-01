@@ -1,9 +1,9 @@
 <?php
-include('essentials/config.php'); //Database Connection
+require_once('essentials/conn.php'); //Database Connection
 
 if (isset($_POST["action"])) {
     $query = "
-  SELECT * FROM product WHERE '1' = '1'
+  SELECT * FROM product WHERE id > 0
  ";
     if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
         $query .= "
@@ -28,11 +28,10 @@ if (isset($_POST["action"])) {
    AND categories IN('" . $categories_filter . "')
   ";
     }
-    echo $query;
+    
     $statement = $connect->prepare($query);
     $statement->execute();
     $result    = $statement->fetchAll();
-    print_r($result);
     $total_row = $statement->rowCount();
     $output    = '';
     if ($total_row > 0) {

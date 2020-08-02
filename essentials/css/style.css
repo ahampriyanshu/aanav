@@ -39,41 +39,7 @@ a {
     opacity: 1;
     visibility: visible; }
 
-.btn {
-  text-transform: uppercase;
-  position: relative;
-  -webkit-transition: 0.2s all ease-in-out !important;
-  -o-transition: 0.2s all ease-in-out !important;
-  transition: 0.2s all ease-in-out !important;
-  top: 0;
-  letter-spacing: .05em; }
-  .btn:hover, .btn:active, .btn:focus {
-    outline: none;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important; }
-  .btn.btn-secondary {
-    background-color: #e6e7e9;
-    border-color: #e6e7e9;
-    color: #000; }
-  .btn.btn-sm {
-    font-size: 14px !important;
-    padding: 10px 20px !important; }
-  .btn.btn-primary {
-    font-size: 17px;
-    font-weight: 300;
-    letter-spacing: .2em; }
-  .btn:hover {
-    -webkit-box-shadow: 0 5px 20px -7px rgba(0, 0, 0, 0.9) !important;
-    box-shadow: 0 5px 20px -7px rgba(0, 0, 0, 0.9) !important;
-    top: -2px; }
 
-.form-control {
-  height: 43px; }
-  .form-control:active, .form-control:focus {
-    border-color: #7971ea; }
-  .form-control:hover, .form-control:active, .form-control:focus {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important; }
 
 .site-section {
   padding: 2.5em 0; }
@@ -131,7 +97,6 @@ a {
   .site-navbar.transparent {
     background: transparent; }
   .site-navbar .site-navbar-top {
-    border-bottom: 1px solid #f3f3f4;
     padding-top: 10px;
     margin-bottom: 0px; }
     @media (min-width: 768px) {
@@ -321,13 +286,16 @@ a {
     width: 100%;
     float: left;
     margin-bottom: 20px;
-}
+    padding-left: 20px;
+    padding-right: 20px; }
     .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close {
       float: right;
       margin-top: 8px; }
       .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close span {
         font-size: 40px;
         display: inline-block;
+        padding-left: 10px;
+        padding-right: 10px;
         line-height: 1;
         cursor: pointer;
         -webkit-transition: .3s all ease;

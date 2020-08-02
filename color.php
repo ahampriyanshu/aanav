@@ -68,7 +68,7 @@
 
      
 
-</body>
+<?php include('footer.php'); ?></body>
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
     <script src="bootstrap/js/jquery.js"></script>

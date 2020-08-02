@@ -1,36 +1,3 @@
-/******************************************************************
-  Template Name: Fashi
-  Description: Fashi eCommerce HTML Template
-  Author: Colorlib
-  Author URI: https://colorlib.com/
-  Version: 1.0
-  Created: Colorlib
-******************************************************************/
-
-/*------------------------------------------------------------------
-[Table of contents]
-
-1.  Template default CSS
-	1.1	Variables
-	1.2	Mixins
-	1.3	Flexbox
-	1.4	Reset
-2.  Helper Css
-3.  Header Section
-4.  Hero Section
-5.  Banner Section
-6.  Deal Of The Week
-7.  Latest Blog
-8.  Logo Carousel
-9.  Contact
-10.  Footer
-
--------------------------------------------------------------------*/
-
-/*----------------------------------------*/
-/* Template default CSS
-/*----------------------------------------*/
-
 html,
 body {
 	height: 100%;
@@ -1370,187 +1337,6 @@ ol {
 	display: block;
 	width: auto;
 }
-
-/*---------------------
-  Footer
------------------------*/
-
-.footer-section {
-	background: #191919;
-	padding-top: 75px;
-}
-
-.footer-left {
-	margin-bottom: 30px;
-}
-
-.footer-left .footer-logo {
-	margin-bottom: 24px;
-}
-
-.footer-left .footer-logo a {
-	display: inline-block;
-}
-
-.footer-left ul li {
-	list-style: none;
-	color: #b2b2b2;
-	font-size: 16px;
-	line-height: 30px;
-}
-
-.footer-left .footer-social {
-	padding-top: 25px;
-}
-
-.footer-left .footer-social a {
-	display: inline-block;
-	height: 40px;
-	width: 40px;
-	background: #434445;
-	color: #ffffff;
-	text-align: center;
-	line-height: 40px;
-	border-radius: 50%;
-	margin-right: 7px;
-	position: relative;
-	z-index: 1;
-}
-
-.footer-left .footer-social a:hover:before {
-	opacity: 1;
-}
-
-.footer-left .footer-social a:before {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background: #e7ab3c;
-	content: "";
-	border-radius: 50%;
-	opacity: 0;
-	-webkit-transition: all 0.3s;
-	-webkit-transition: 0.3s;
-	-o-transition: 0.3s;
-	transition: 0.3s;
-	z-index: -1;
-}
-
-.footer-widget {
-	margin-bottom: 30px;
-}
-
-.footer-widget h5 {
-	color: #ffffff;
-	font-weight: 700;
-	margin-bottom: 26px;
-}
-
-.footer-widget ul li {
-	list-style: none;
-}
-
-.footer-widget ul li a {
-	line-height: 36px;
-	font-size: 16px;
-	color: #b2b2b2;
-}
-
-.newslatter-item h5 {
-	color: #ffffff;
-	font-weight: 700;
-	margin-bottom: 30px;
-}
-
-.newslatter-item p {
-	color: #b2b2b2;
-	line-height: 26px;
-}
-
-.newslatter-item .subscribe-form {
-	position: relative;
-}
-
-.newslatter-item .subscribe-form input {
-	color: #b2b2b2;
-	background: #303030;
-	width: 100%;
-	height: 46px;
-	font-size: 16px;
-	border: none;
-	padding-left: 20px;
-}
-
-.newslatter-item .subscribe-form input::-webkit-input-placeholder {
-	color: #b2b2b2;
-}
-
-.newslatter-item .subscribe-form input::-moz-placeholder {
-	color: #b2b2b2;
-}
-
-.newslatter-item .subscribe-form input:-ms-input-placeholder {
-	color: #b2b2b2;
-}
-
-.newslatter-item .subscribe-form input::-ms-input-placeholder {
-	color: #b2b2b2;
-}
-
-.newslatter-item .subscribe-form input::placeholder {
-	color: #b2b2b2;
-}
-
-.newslatter-item .subscribe-form button {
-	display: inline-block;
-	color: #ffffff;
-	background: #e7ab3c;
-	font-size: 13px;
-	font-weight: 700;
-	text-transform: uppercase;
-	border: 1px solid #e7ab3c;
-	position: absolute;
-	right: 0;
-	top: 0;
-	padding: 13px 20px 12px;
-	cursor: pointer;
-}
-
-.copyright-reserved {
-	border-top: 1px solid #303030;
-	padding: 15px 0;
-	margin-top: 45px;
-}
-
-.copyright-reserved .copyright-text {
-	float: left;
-	font-size: 16px;
-	color: #b2b2b2;
-}
-
-.copyright-reserved .copyright-text a {
-	color: #b2b2b2;
-}
-
-.copyright-reserved .copyright-text i {
-	color: #cc2424;
-}
-
-.copyright-reserved .copyright-text a:hover {
-	color: #e7ab3c;
-}
-
-.copyright-reserved .payment-pic {
-	float: right;
-}
-
-/*-------------------------------- Other Pages Style -------------------------------*/
-
-/*---------------------
-  Breadcrumb
------------------------*/
 
 .breadcrumb-text {
 	border-bottom: 1px solid #ebebeb;
@@ -4186,3 +3972,39 @@ ol {
 		padding-right: 15px;
 	}
 }
+
+/*footer*/
+.col_white_amrc { color:#FFF;}
+footer { width:100%; background-color:#000000; min-height:150px; padding:10px 0px 25px 0px ;}
+.pt2 { padding-top:40px ; margin-bottom:20px ;}
+footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
+.mb10 { padding-bottom:15px ;}
+.footer_ul_amrc { margin:0px ; list-style-type:none ; font-size:14px; padding:0px 0px 10px 0px ; }
+.footer_ul_amrc li {padding:0px 0px 5px 0px;}
+.footer_ul_amrc li a{ color:#CCC;}
+.footer_ul_amrc li a:hover{ color:#fff; text-decoration:none;}
+.fleft { float:left;}
+.padding-right { padding-right:10px; }
+
+.footer_ul2_amrc {margin:0px; list-style-type:none; padding:0px;}
+.footer_ul2_amrc li p { display:table; }
+.footer_ul2_amrc li a:hover { text-decoration:none;}
+.footer_ul2_amrc li i { margin-top:5px;}
+
+.bottom_border { border-bottom:1px solid #323f45; padding-bottom:20px;}
+.foote_bottom_ul_amrc {
+	list-style-type:none;
+	padding:0px;
+	display:table;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+}
+.foote_bottom_ul_amrc li { display:inline;}
+.foote_bottom_ul_amrc li a { color:#999; margin:0 12px;}
+
+.social_footer_ul { display:table; margin:15px auto 0 auto; list-style-type:none;  }
+.social_footer_ul li { padding-left:20px; padding-top:10px; float:left; }
+.social_footer_ul li a { color:#CCC; border:1px solid #CCC; padding:8px;border-radius:50%;}
+.social_footer_ul li i {  width:20px; height:20px; text-align:center;}

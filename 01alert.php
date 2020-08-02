@@ -12,5 +12,5 @@ function JSalert(){
 	swal("Congrats!", ", Your account is created!", "success");
 }
 </script>
-</body>
+<?php include('footer.php'); ?></body>
 </html>

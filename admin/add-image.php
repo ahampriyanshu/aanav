@@ -210,5 +210,5 @@ header('location:login.php');}
       });
     });
   </script>
-</body>
+<?php include('footer.php'); ?></body>
 </html>

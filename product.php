@@ -53,7 +53,7 @@ $product = mysqli_fetch_assoc($result);
    if (!$id) {
        echo "<script>
     document.location='home.php';
-    </script>";
+    </script>"; 
    }
 
    $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
@@ -568,5 +568,5 @@ $(document).on('click', '#getUser', function(e){
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-</body>
+<?php include('footer.php'); ?></body>
 </html>

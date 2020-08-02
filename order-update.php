@@ -62,7 +62,7 @@ if(isset($_SESSION['cart'])) {
             $message .= '<p><strong>Price Per Unit</strong>: '.$obj->price.'</p>';
             $message .= '<p><strong>Units Bought</strong>: '.$obj->units.'</p>';
             $message .= '<p><strong>Total Cost</strong>: '.$obj->total.'</p>';
-            $message .= "</body></html>";
+            $message .= "<?php include('footer.php'); ?></body></html>";
             $headers = "From: support@techbarrack.com";
             $headers .= "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";

@@ -318,6 +318,6 @@ ul.list i,ul.list small{
 <script src='bootbox.min.js'></script>
 <script src='shipping_del_script.js' type='text/javascript'></script>
 
-</body>
+<?php include('footer.php'); ?></body>
 </html>
 

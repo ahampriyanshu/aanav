@@ -1,44 +1,23 @@
-/*  ---------------------------------------------------
-    Template Name: Fashi
-    Description: Fashi eCommerce HTML Template
-    Author: Colorlib
-    Author URI: https://colorlib.com/
-    Version: 1.0
-    Created: Colorlib
----------------------------------------------------------  */
-
 'use strict';
 
 (function ($) {
 
-    /*------------------
-        Preloader
-    --------------------*/
-    $(window).on('load', function () {
+ $(window).on('load', function () {
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
     });
 
-    /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
+ $('.set-bg').each(function () {
         var bg = $(this).data('setbg');
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
-    /*------------------
-		Navigation
-	--------------------*/
-    $(".mobile-menu").slicknav({
+ $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
     });
 
-    /*------------------
-        Hero Slider
-    --------------------*/
-    $(".hero-items").owlCarousel({
+ $(".hero-items").owlCarousel({
         loop: true,
         margin: 0,
         nav: true,
@@ -52,10 +31,7 @@
         autoplay: true,
     });
 
-    /*------------------
-        Product Slider
-    --------------------*/
-   $(".product-slider").owlCarousel({
+$(".product-slider").owlCarousel({
         loop: true,
         margin: 25,
         nav: true,
@@ -81,10 +57,7 @@
         }
     });
 
-    /*------------------
-       logo Carousel
-    --------------------*/
-    $(".logo-carousel").owlCarousel({
+ $(".logo-carousel").owlCarousel({
         loop: false,
         margin: 30,
         nav: false,
@@ -105,10 +78,7 @@
         }
     });
 
-    /*-----------------------
-       Product Single Slider
-    -------------------------*/
-    $(".ps-slider").owlCarousel({
+ $(".ps-slider").owlCarousel({
         loop: false,
         margin: 10,
         nav: true,
@@ -120,9 +90,6 @@
         autoplay: true,
     });
     
-    /*------------------
-        CountDown
-    --------------------*/
     // For demo preview
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -150,10 +117,7 @@
     });
 
         
-    /*----------------------------------------------------
-     Language Flag js 
-    ----------------------------------------------------*/
-    $(document).ready(function(e) {
+ $(document).ready(function(e) {
     //no use
     try {
         var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
@@ -175,9 +139,6 @@
     $(".language_drop").msDropdown({roundedBorder:false});
         $("#tech").data("dd");
     });
-    /*-------------------
-		Range Slider
-	--------------------- */
 	var rangeSlider = $(".price-range"),
 		minamount = $("#minamount"),
 		maxamount = $("#maxamount"),
@@ -196,22 +157,13 @@
 	minamount.val('$' + rangeSlider.slider("values", 0));
     maxamount.val('$' + rangeSlider.slider("values", 1));
 
-    /*-------------------
-		Radio Btn
-	--------------------- */
-    $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").on('click', function () {
+ $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").on('click', function () {
         $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").removeClass('active');
         $(this).addClass('active');
     });
     
-    /*-------------------
-		Nice Select
-    --------------------- */
-    $('.sorting, .p-show').niceSelect();
+ $('.sorting, .p-show').niceSelect();
 
-    /*------------------
-		Single Product
-	--------------------*/
 	$('.product-thumbs-track .pt').on('click', function(){
 		$('.product-thumbs-track .pt').removeClass('active');
 		$(this).addClass('active');
@@ -225,10 +177,7 @@
 
     $('.product-pic-zoom').zoom();
     
-    /*-------------------
-		Quantity change
-	--------------------- */
-    var proQty = $('.pro-qty');
+ var proQty = $('.pro-qty');
 	proQty.prepend('<span class="dec qtybtn">-</span>');
 	proQty.append('<span class="inc qtybtn">+</span>');
 	proQty.on('click', '.qtybtn', function () {

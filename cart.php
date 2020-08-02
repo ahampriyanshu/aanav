@@ -153,5 +153,5 @@ echo'<tr>
   $(document).foundation();
 </script>
     <?php include('footer.php'); ?> 
-</body>
+<?php include('footer.php'); ?></body>
 </html>

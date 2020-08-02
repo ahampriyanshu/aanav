@@ -57,9 +57,9 @@
       <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
             <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="#">Bestseller</a></li>
-            <li><a href="#">Lowest Prices</a></li>
-            <li><a href="#">New Arrivals</a></li>
+            <li><a href="home.php">Categories</a></li>
+            <li><a href="home.php?key=best">Bestseller</a></li>
+            <li><a href="home.php?key=new">New Arrivals</a></li>
             <li><a href="sbout.php">About</a></li>
             <li><a href="contact.php">Contact</a></li>
           </ul>

@@ -124,5 +124,5 @@
 
 </div>
 </div>
-</body></html>
+<?php include('footer.php'); ?></body></html>
 

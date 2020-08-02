@@ -918,7 +918,7 @@ background: teal;
 </div> <!-- ftr2 end -->
 <?php include('002footer.php'); ?>
 
-</body>
+<?php include('footer.php'); ?></body>
 </html>
 
 

@@ -27,5 +27,5 @@ function JSalert(){
          swal("Action Saved!", "You entered following email: " + inputValue, "success"); });
 }
 </script>
-</body>
+<?php include('footer.php'); ?></body>
 </html> 

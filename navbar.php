@@ -1,18 +1,11 @@
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
     <link rel="stylesheet" href="essentials/fonts/icomoon/style.css">
-
     <link rel="stylesheet" href="essentials/css/bootstrap.min.css">
     <link rel="stylesheet" href="essentials/css/magnific-popup.css">
     <link rel="stylesheet" href="essentials/css/jquery-ui.css">
     <link rel="stylesheet" href="essentials/css/owl.carousel.min.css">
     <link rel="stylesheet" href="essentials/css/owl.theme.default.min.css">
-
-
     <link rel="stylesheet" href="essentials/css/aos.css">
-
     <link rel="stylesheet" href="essentials/css/style.css">
     
   
@@ -24,15 +17,16 @@
 
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
               
-              <form action="" class="site-block-top-search">
-                <input type="text" class="form-control border-0" placeholder="Search">
-              </form>
+              <div action="" class="site-block-top-search search-box">
+                <input type="text" autocomplete="off" class="form-control border-0" placeholder="Search...">
+                <div class="result"></div>
+              </div>
             </div>
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-              <div class="site-logo">
-                <a href="index.php" class="js-logo-clone">Aanav</a>
-              </div>
+        
+                <a href="index.php" class="js-logo-clone"><img src="img/logo_nav.png" width="170" height="50"></a>
+            
             </div>
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
@@ -62,40 +56,40 @@
       <nav class="site-navigation text-right text-md-center" role="navigation">
       <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
-            <li class="has-children">
-              <a href="index.html">Home</a>
-              <ul class="dropdown">
-                <li><a href="#">Menu One</a></li>
-                <li><a href="#">Menu Two</a></li>
-                <li><a href="#">Menu Three</a></li>
-                <li class="has-children">
-                  <a href="#">Sub Menu</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Mecart.phpnu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li class="has-children">
-              <a href="about.html">About</a>
-              <ul class="dropdown">
-                <li><a href="#">Menu One</a></li>
-                <li><a href="#">Menu Two</a></li>
-                <li><a href="#">Menu Three</a></li>
-              </ul>
-            </li>
-            <li class="active"><a href="shop.html">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
+            <li class="active"><a href="index.php">Home</a></li>
+            <li><a href="#">Bestseller</a></li>
+            <li><a href="#">Lowest Prices</a></li>
             <li><a href="#">New Arrivals</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="sbout.php">About</a></li>
+            <li><a href="contact.php">Contact</a></li>
           </ul>
         </div>
       </nav>
     </header>
   </div>
-
+  <script type="text/javascript">
+$(document).ready(function(){
+    $('.search-box input[type="text"]').on("keyup input", function(){
+        /* Get input value on change */
+        var inputVal = $(this).val();
+        var resultDropdown = $(this).siblings(".result");
+        if(inputVal.length){
+            $.get("backend-search.php", {term: inputVal}).done(function(data){
+                // Display the returned data in browser
+                resultDropdown.html(data);
+            });
+        } else{
+            resultDropdown.empty();
+        }
+    });
+    
+    // Set search input value on click of result item
+    $(document).on("click", ".result p", function(){
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent(".result").empty();
+    });
+});
+</script>
   <script src="essentials/js/jquery-3.3.1.min.js"></script>
   <script src="essentials/js/jquery-ui.js"></script>
   <script src="essentials/js/popper.min.js"></script>

@@ -60,7 +60,7 @@
             <li><a href="home.php">Categories</a></li>
             <li><a href="home.php?key=best">Bestseller</a></li>
             <li><a href="home.php?key=new">New Arrivals</a></li>
-            <li><a href="sbout.php">About</a></li>
+            <li><a href="about.php">About</a></li>
             <li><a href="contact.php">Contact</a></li>
           </ul>
         </div>

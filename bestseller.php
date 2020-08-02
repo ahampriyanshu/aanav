@@ -37,7 +37,7 @@ background: #000 ;
 <script type="text/javascript">
     // optional
         $('#blogCarousel2').carousel({
-                interval: 100
+                interval: 100x
         });
 </script>
 <?php

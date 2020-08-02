@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="css/navbar.css">
 
 <style type="text/css">
@@ -34,13 +33,14 @@ h1,h2,h3,h4{
 <li><a href="contact.php">Contact</a></li>
 </ul>
 
-<p class="text-center" style="font-size:0.8em;">PriyanshuMay &copy; MIT Licensed</p>
+<p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i>  PriyanshuMay &copy; MIT Licensed</p>
 
 <ul class="social_footer_ul">
-<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-<li><a href="#"><i class="fab fa-twitter"></i></a></li>
 <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+<li><a href="#"><i class="fab fa-facebook"></i></a></li>
+<li><a href="#"><i class="fab fa-whatsapp"></i></i></a></li>
+<li><a href="#"><i class="fab fa-instagram"></i></i></a></li>
+
 </ul>
 
 </div>
@@ -58,5 +58,6 @@ h1,h2,h3,h4{
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script> 
 
 </footer>

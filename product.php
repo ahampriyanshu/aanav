@@ -2,6 +2,7 @@
    session_start();
    require_once('essentials/config.php');
    include('essentials/function.php');
+   include('navbar.php');
 ?>
 
 <?php
@@ -46,7 +47,6 @@ $product = mysqli_fetch_assoc($result);
 </head>
 
 <body>
-<?php  include('navbar.php'); ?>
 <?php
    $id = $_GET['id'];
 
@@ -338,9 +338,8 @@ $(document).on('click', '#getUser', function(e){
             </div>
         </div>
     </section>
-    <!-- Product Shop Section End -->
 
-    <!-- Related Products Section End -->
+
     <div class="related-products spad">
         <div class="container">
             <div class="row">

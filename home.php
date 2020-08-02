@@ -2,6 +2,7 @@
    session_start();
    require_once('essentials/config.php');
    include('boilerplate.php');
+   include('navbar.php');
 
 ?>
 <div class="container">

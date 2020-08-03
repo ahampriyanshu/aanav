@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 	session_start();
         require_once('essentials/config.php');
-        $email = $_SESSION['email'];
+        
 	{ ?>
                 
                 <form  method="post" action="shipping_to_home.php" enctype="multipart/form-data" class="checkout-form">

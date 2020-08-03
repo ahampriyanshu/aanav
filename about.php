@@ -1,9 +1,5 @@
 <?php
-   session_start();
-   require_once('essentials/config.php');
    include('boilerplate.php');
-   include('navbar.php');
-
 ?>
 <div class="site-section border-bottom" data-aos="fade">
       <div class="container">
@@ -84,7 +80,6 @@
               </div>
             </div>
           </div>
-
 
           <div class="col-md-6 col-lg-3">
             <div class="block-38 text-center">

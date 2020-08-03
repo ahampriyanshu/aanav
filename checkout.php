@@ -129,7 +129,7 @@ ul.list i,ul.list small{
                    <div class="row">
 
                 <?php
-                $email = $_SESSION['email'];
+                
                 $query = "SELECT * FROM shipping WHERE shipping_type= 'home'
                          and email = '$email' ORDER BY shipping_id DESC";
                 $result = mysqli_query($connect, $query);

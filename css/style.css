@@ -127,8 +127,8 @@ ol {
 }
 
 .spad {
-	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-top: 25px;
+	padding-bottom: 25px;
 }
 
 .text-white h1,
@@ -3629,10 +3629,10 @@ ol {
 	.product-slider .owl-nav button[type=button] {
 		display: none;
 	}
-	.man-banner {
+	/* .man-banner {
 		padding-right: 0;
 		padding-left: 0;
-	}
+	} */
 	.place-order {
 		padding-top: 30px;
 	}

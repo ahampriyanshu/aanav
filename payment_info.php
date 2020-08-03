@@ -232,7 +232,7 @@ ul.list i,ul.list small{
            <?php echo $row['country'] ?><br>
           <a href="shipping_info.php">Edit</a><br><br>
 
-          <?php $email = $_SESSION['email']; ?>
+          <?php  ?>
           <?php echo "$email"; ?><br>
           <a href="shipping_info.php">Edit</a>
           </div>

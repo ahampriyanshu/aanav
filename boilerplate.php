@@ -1,3 +1,8 @@
+<?php
+   session_start();
+   require_once('essentials/config.php');
+   include('navbar.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,9 +38,6 @@
 </head>
 
 <body>
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -51,4 +53,13 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 
-    
+    <?php
+
+$email = $_SESSION['email'];
+$find_email = "
+SELECT id FROM customer WHERE email = '$email' LIMIT 1
+";
+$found_email =$connect->query($find_email);
+$user_id_array = $found_email ->fetch_assoc();
+$user_id = $user_id_array['id'];
+?>

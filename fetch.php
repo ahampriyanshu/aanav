@@ -44,7 +44,7 @@ if (isset($_POST["action"])) {
                                         <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '"></a>
                                         <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
-                                            <i class="icon_heart_alt"></i>
+                                        <i class="far fa-heart"></i>
                                         </div>
                                     </div>
                                     <div class="pi-text">

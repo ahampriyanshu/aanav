@@ -32,15 +32,15 @@
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
               <div class="site-top-icons">
                 <ul>
-                  <li><a href="#"><span class="icon icon-person"></span></a></li>
+                  <li><a href="#"><i class="far fa-user"></i></a></li>
                   <li>
                   <a href="wishlist.php" class="site-cart">
-                  <span class="icon icon-heart-o"></span>
+                  <i class="fas fa-heart"></i>
                   <span class="count">2</span>
                   </a></li>
                   <li>
                     <a href="cart.php" class="site-cart">
-                      <span class="icon icon-shopping_cart"></span>
+                    <i class="fas fa-shopping-cart"></i>
                       <span class="count">2</span>
                     </a>
                   </li> 

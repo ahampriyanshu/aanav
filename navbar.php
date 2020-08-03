@@ -25,7 +25,7 @@
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
         
-                <a href="index.php" class="js-logo-clone"><img src="img/logo_nav.png" width="170" height="50"></a>
+                <a href="index.php" class="js-logo-clone"><img src="img/logo_nav.png" width="200" height="95"></a>
             
             </div>
 

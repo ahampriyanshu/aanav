@@ -1,26 +1,23 @@
 <link rel="stylesheet" type="text/css" href="css/navbar.css">
 
 <style type="text/css">
+
 html,body{
 	font-family: 'Lato',sans-serif;
 	font-weight: 300;
 	font-size: 16px;
-	line-height: 1.7;
-	
+    line-height: 1.7;
 }
+
 h1,h2,h3,h4{
 	font-family: 'Abel',sans-serif;
 }
 
 .footer a{
-	
     color: #fff;
     text-decoration: none;
     background-color: transparent;
-
 }
-
-
 
 </style>
 
@@ -36,10 +33,10 @@ h1,h2,h3,h4{
 <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i>  PriyanshuMay &copy; MIT Licensed</p>
 
 <ul class="social_footer_ul">
-<li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-<li><a href="#"><i class="fab fa-facebook"></i></a></li>
-<li><a href="#"><i class="fab fa-whatsapp"></i></i></a></li>
-<li><a href="#"><i class="fab fa-instagram"></i></i></a></li>
+<li><a href="#"><i class="fab fa-2x fa-linkedin"></i></a></li>
+<li><a href="#"><i class="fab fa-2x fa-facebook"></i></a></li>
+<li><a href="#"><i class="fab fa-2x fa-whatsapp"></i></i></a></li>
+<li><a href="#"><i class="fab fa-2x fa-instagram"></i></i></a></li>
 
 </ul>
 

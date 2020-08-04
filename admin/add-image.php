@@ -2,12 +2,9 @@
   session_start();
   include('../essentials/config.php');
   include('../essentials/function.php');
-  include('sidebar.php');
 
 
-
-// Report all errors
-error_reporting(0);
+error_reporting(E_ALL);
 
 
 if(!isset($_SESSION['admin'])){

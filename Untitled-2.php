@@ -228,7 +228,7 @@ $(document).ready(function(){
 
        <?php  if ($fav == null) { ?>
          
-         <a href="add-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="material-icons">favorite</i></a>
+         <a href="update-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="material-icons">favorite</i></a>
 
      <?php } else { ?>
          <a href="remove-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="material-icons">favorite_border</i></a>

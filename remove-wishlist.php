@@ -7,7 +7,7 @@ if($customer == null){
 }
 else{
 
-$id = $_GET['id'];
+$id = $_POST['pid'];
 
   $customer = $_SESSION['email']; 
   $sql = "SELECT * FROM customer WHERE email = '$customer'";
@@ -20,6 +20,6 @@ $id = $_GET['id'];
 
   mysqli_query($connect,$sql2);
 
-  echo "<script>window.open('wishlist.php','_self')</script>";
+  echo "<script>window.open('product.php?id=$id','_self')</script>";
 
 }

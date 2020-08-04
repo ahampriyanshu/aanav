@@ -232,9 +232,9 @@ $product = mysqli_fetch_assoc($result);
                           ?> &emsp;
                            <?php  if ($fav == null) { ?>
          
-                            <a href="add-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="far fa-heart" style="color:red"></i></a>
+                            <a href="update-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="far fa-heart" style="color:red"></i></a>
      <?php } else { ?>
-        <a href="remove-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="fas fa-heart" style="color:red"></i></a>    
+        <a href="update-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="fas fa-heart" style="color:red"></i></a>    
      <?php } ?></p>
 
 

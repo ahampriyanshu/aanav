@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>CAPITAL-A ON SHOP</title>
+<title>ADMIN PANEL</title>
 <link href="bootstrap/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 

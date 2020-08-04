@@ -83,7 +83,7 @@ if(isset($_POST['submit'])){
         <input type="text" name="code"  class="form-control" id="email" placeholder=" XYZ-000"  required/>  
               </div>
               <div class="form-group mb-4">
-				<label for="password">Category</label>
+				<label for="password">Section</label>
         <select id="email" class="form-control" name="cat">
                                                 <option>Select Something</option>
                                                <?php
@@ -102,11 +102,11 @@ if(isset($_POST['submit'])){
             </div>
 
         <div class="form-group mb-4">
-				<label for="password">Sub - Category</label>
+				<label for="password">Category</label>
         <select id="email" class="form-control" name="categories">
                                                 <option>Select Something</option>
                                                <?php
-                                                $get_categories = "SELECT * FROM categoriesogories";
+                                                $get_categories = "SELECT * FROM categories";
                                                 $run_categories = mysqli_query($connect, $get_categories);
                                                 while ($row_categories= mysqli_fetch_array($run_categories)) {
                                                     $sub_id = $row_categories['sub_id'];

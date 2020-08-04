@@ -39,27 +39,14 @@
 
 <body>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/jquery.dd.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-
     <?php
-
-$email = $_SESSION['email'];
-$find_email = "
+if($_SESSION['email']){
+    $email = $_SESSION['email'];
+    $find_email = "
 SELECT id FROM customer WHERE email = '$email' LIMIT 1
 ";
-$found_email =$connect->query($find_email);
-$user_id_array = $found_email ->fetch_assoc();
-$user_id = $user_id_array['id'];
+    $found_email =$connect->query($find_email);
+    $user_id_array = $found_email ->fetch_assoc();
+    $user_id = $user_id_array['id'];
+}
 ?>

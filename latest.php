@@ -1,6 +1,9 @@
 <?php
+$uri = $_SERVER['REQUEST_URI'];
+echo $uri; // Outputs: URI
     $result = mysqli_query($connect,"SELECT * FROM product ORDER BY id DESC LIMIT 0,12");
 ?>
+ <?php error_reporting(0); ?>
 
 <section class="man-banner spad">
         <div class="container"> 
@@ -26,12 +29,11 @@
                                     
                                     if ($fav == null) { ?>
          
-         <a href="add-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="far fa-heart"></i></a>
+         <a href="add-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="far fa-heart"  style="color:red"></i></a>
 <?php } else { ?>
-<a href="remove-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="fas fa-heart"></i></a>    
+<a href="remove-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="fas fa-heart"  style="color:red"></i></a>    
 <?php } ?>
-                                    
-                                </div>
+</div>
                             </div>
                             <div class="pi-text">
                                 <div class="catagory-name"><?php echo $row2['code']; ?></div>

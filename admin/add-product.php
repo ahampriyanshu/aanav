@@ -4,7 +4,7 @@
   include('../essentials/function.php');
   include('sidebar.php');
 
-error_reporting(E_ALL);
+error_reporting(0);
 
 if(!isset($_SESSION['admin']))
 {

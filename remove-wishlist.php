@@ -3,7 +3,7 @@ session_start();
 require_once('essentials/config.php');
 $customer = $_SESSION['email'];
 if($customer == null){
-  echo "<script>window.open('checkout.php','_self')</script>";
+  echo "<script>window.open('login.php','_self')</script>";
 }
 else{
 
@@ -20,6 +20,6 @@ $id = $_GET['id'];
 
   mysqli_query($connect,$sql2);
 
-  echo "<script>window.open('product.php?id=$id','_self')</script>";
+  echo "<script>window.open('wishlist.php','_self')</script>";
 
 }

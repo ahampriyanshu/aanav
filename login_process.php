@@ -4,7 +4,7 @@
 
 	if(isset($_POST['btn-login']))
 	{
-		//$user_name = $_POST['user_name'];
+		//$customer_name = $_POST['user_name'];
 		
 		$email = $_POST['email'];
         $password = $_POST['password'];

@@ -148,7 +148,7 @@ a {
           display: block;
           text-align: center;
           background: #66FCF1;
-          color: #fff;
+          color: rgb(0, 0, 0);
           -webkit-transition: .2s all ease-in-out;
           -o-transition: .2s all ease-in-out;
           transition: .2s all ease-in-out; }

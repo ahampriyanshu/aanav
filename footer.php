@@ -2,17 +2,6 @@
 
 <style type="text/css">
 
-html,body{
-	font-family: 'Lato',sans-serif;
-	font-weight: 300;
-	font-size: 16px;
-    line-height: 1.7;
-}
-
-h1,h2,h3,h4{
-	font-family: 'Abel',sans-serif;
-}
-
 .footer a{
     color: #fff;
     text-decoration: none;

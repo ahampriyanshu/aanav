@@ -41,12 +41,15 @@
 
     <?php
 if($_SESSION['email']){
-    $email = $_SESSION['email'];
+    $customer = $_SESSION['email'];
+
     $find_email = "
-SELECT id FROM customer WHERE email = '$email' LIMIT 1
+SELECT * FROM customer WHERE email = '$customer' LIMIT 1
 ";
     $found_email =$connect->query($find_email);
-    $user_id_array = $found_email ->fetch_assoc();
-    $user_id = $user_id_array['id'];
+    $customer_id_array = $found_email ->fetch_assoc();
+    $customer_id = $customer_id_array['id'];
+    $customer_name  = $customer_id_array['name'];
+
 }
 ?>

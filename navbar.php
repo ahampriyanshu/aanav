@@ -30,10 +30,20 @@
             </div>
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-              <div class="site-top-icons">
+              <div class="site-top-icons" >
                 <ul>
-                  <li><a href="#"><i class="far fa-user"></i></a></li>
+                <?php 
+                if ($_SESSION['email'] == null) {
+                echo "
+                <li>
+                LOGIN
+                </li>";
+                } else {
+                  echo'
                   <li>
+                  <a href="dashboard.php"><i class="far fa-user"></i></a></li>
+                  <li>';
+                } ?>
                   <a href="wishlist.php" class="site-cart">
                   <i class="fas fa-heart"></i>
                   <span class="count">2</span>

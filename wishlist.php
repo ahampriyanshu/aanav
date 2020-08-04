@@ -1,20 +1,5 @@
 <?php
-  session_start();
-  require_once('essentials/config.php');
-  include('essentials/function.php');
-  
   include('boilerplate.php');
-  include('navbar.php');
-
-  $customer = $_SESSION['email']; 
-  $c = "SELECT * FROM customer WHERE email = '$customer'";
-  $r = mysqli_query($connect,$c);
-  $row_c =mysqli_fetch_assoc($r);
-   $customer_id = $row_c['id'];
-   $customer_name = $row_c['name'];
-
-
-
 
   $sql = "SELECT * FROM orders WHERE customer = '$customer' ORDER BY created_date DESC";
   $run = mysqli_query($connect,$sql);
@@ -25,33 +10,7 @@
   $count_fav = mysqli_num_rows($run2);
   
 ?>
-<style type="text/css">
-	/*sidebar*/
-.haha p strong i{
-  font-size: 11px;
-}
-.haha p strong{
-  font-size: 11px;
-}
-.haha a{
-  font-size: 11px;
-}
-.dash{
-  list-style: none;
-  font-size: 13px;
-}
-  .badge {
-    display: inline-block;
-    padding: 0.25em 0.4em;
-    font-size: 60%;
-    font-weight: 550;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: 0.25rem;
-}
-</style>
+
 <br><br>
  <div class="container">
    <div class="row">
@@ -69,9 +28,6 @@
           $result = mysqli_query($connect,"SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
           ON product.id = wishlist.product_id
           WHERE wishlist.customer_id = '$customer_id'");
-          // if($result === FALSE){
-          //   die(mysql_error());
-          // }
 
           if($result){
 

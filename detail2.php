@@ -34,7 +34,7 @@
         // echo "<img src='image/$customer_img'>";
 
                   //   // User rating
-                  //   // $query = "SELECT * FROM rating WHERE product_id=".$id." and user_id=".$user_id;
+                  //   // $query = "SELECT * FROM rating WHERE product_id=".$id." and user_id=".$customer_id;
                   //   // $userresult = mysqli_query($connect,$query) or die(mysqli_error());
                   //   // $fetchRating = mysqli_fetch_array($userresult);
                   //   // $rating = $fetchRating['rating'];

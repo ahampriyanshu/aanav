@@ -1,8 +1,5 @@
 <?php
-  session_start();
-  require_once('essentials/config.php');
   include('boilerplate.php');
-  error_reporting(E_ALL);
 ?>
 
 <?php    if (isset($_SESSION['cart'])) {
@@ -153,5 +150,5 @@ echo'<tr>
   $(document).foundation();
 </script>
     <?php include('footer.php'); ?> 
-<?php include('footer.php'); ?></body>
+</body>
 </html>

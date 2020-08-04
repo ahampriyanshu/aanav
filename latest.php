@@ -7,15 +7,15 @@ error_reporting(0);
         <div class="container"> 
         <div class="row">
                 <div class="col-lg-12">
-                    <div class="section-title">
-                        <h3>Latest Products</h3>
-                    </div>
+                  
+                        <h3 style="text-align: center; color: #5d6d7e; font-weight: bold; padding:20px;">Latest Products</h3>
+                    
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product-slider owl-carousel">
-                        
+                    
                     <?php while ($row_latest = mysqli_fetch_assoc($result)):
                     $product_id = $row_latest['id'];
                         ?>
@@ -27,16 +27,14 @@ error_reporting(0);
                             </a>
                                 <div class="icon">
                                 <?php
-                                    $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$user_id' AND product_id = '$product_id'";
+                                    $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
                                     $run_fav = mysqli_query($connect, $sql_fav);
                                     $row_fav = mysqli_fetch_assoc($run_fav);
-                                    $fav = $row_fav['fav_id'];
                                   
-                                     if ($fav == null) { ?>
-         
-                                        <a href="update-wishlist.php?id=<?php echo $product_id ?>" ><i class="far fa-heart" style="color:red"></i></a>
+                                     if ($row_fav['fav_id'] == null) { ?>
+                                        <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=add&id=<?php echo $product_id ?>" ><i class="far fa-heart" style="color:red"></i></a>
                  <?php } else { ?>
-                    <a href="update-wishlist.php?id=<?php echo $product_id ?>" ><i class="fas fa-heart" style="color:red"></i></a>    
+                    <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>" ><i class="fas fa-heart" style="color:red"></i></a>    
                  <?php } ?>
 </div>
                             </div>

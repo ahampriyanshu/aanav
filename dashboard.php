@@ -1,20 +1,5 @@
 <?php
-  session_start();
-  require_once('essentials/config.php');
-  include('essentials/function.php');
-  
   include('boilerplate.php');
-  include('navbar.php');
-
-  $customer = $_SESSION['email']; 
-  $c = "SELECT * FROM customer WHERE email = '$customer'";
-  $r = mysqli_query($connect,$c);
-  $row_c =mysqli_fetch_assoc($r);
-   $customer_id = $row_c['id'];
-   $customer_name = $row_c['name'];
-
-
-
 
   $sql = "SELECT * FROM orders WHERE customer = '$customer' ORDER BY created_date DESC";
   $run = mysqli_query($connect,$sql);
@@ -60,11 +45,6 @@
       <h3>WHILIST</h3>
         <div class="row">
           <?php
-    $customer = $_SESSION['email']; 
-            $c = "SELECT * FROM customer WHERE email = '$customer'";
-            $r = mysqli_query($connect,$c);
-            $row_c =mysqli_fetch_assoc($r);
-             $customer_id = $row_c['id'];
 
           $result = mysqli_query($connect,"SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
           ON product.id = wishlist.product_id

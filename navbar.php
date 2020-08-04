@@ -1,3 +1,19 @@
+<?php
+   session_start();
+   require_once('essentials/config.php');
+if($_SESSION['email']){
+    $customer = $_SESSION['email'];
+
+    $find_data = "
+SELECT * FROM customer WHERE email = '$customer' LIMIT 1
+";
+    $found_data =$connect->query($find_data);
+    $customer_id_array = $found_data ->fetch_assoc();
+    $customer_id = $customer_id_array['id'];
+    $customer_name  = $customer_id_array['name'];
+
+}
+?>    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
     <link rel="stylesheet" href="essentials/fonts/icomoon/style.css">
     <link rel="stylesheet" href="essentials/css/bootstrap.min.css">
@@ -36,22 +52,40 @@
                 if ($_SESSION['email'] == null) {
                 echo "
                 <li>
+                <a href='login.php'>
                 LOGIN
+                </a>
                 </li>";
                 } else {
+                  $fav_sql =mysqli_query($connect,"SELECT * FROM wishlist WHERE customer_id='$customer_id'");
+                  $count_fav = mysqli_num_rows($fav_sql);
                   echo'
                   <li>
-                  <a href="dashboard.php"><i class="far fa-user"></i></a></li>
-                  <li>';
-                } ?>
+                  <a href="dashboard.php"><i class="far fa-user"></i></a>
+                  </li>
+                  <li>
                   <a href="wishlist.php" class="site-cart">
                   <i class="fas fa-heart"></i>
-                  <span class="count">2</span>
-                  </a></li>
+                  <span class="count">'.$count_fav.'</span>
+                  </a>
+                  </li>';
+                } ?>
+                
+                  
+        <?php
+          if(isset($_SESSION['cart'])) {
+
+            $total = 0;
+            foreach($_SESSION['cart'] as $product => $quantity)
+             {
+                $total = $total+$quantity;               
+              }
+            }
+          ?>
                   <li>
                     <a href="cart.php" class="site-cart">
                     <i class="fas fa-shopping-cart"></i>
-                      <span class="count">2</span>
+                      <span class="count"><?php echo $total; ?></span>
                     </a>
                   </li> 
                   <li class="d-inline-block d-md-none ml-md-0"><a href="#" 

@@ -207,11 +207,6 @@ $product = mysqli_fetch_assoc($result);
         $customer = $_SESSION['email'];
 
     
-      $sql5 = "SELECT * FROM customer WHERE email = '$customer'";
-      $run5 = mysqli_query($connect, $sql5);
-      $row5 =mysqli_fetch_assoc($run5);
-      $customer_id = $row5['id'];
-      $customer_name = $row5['name'];
       
       $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
       $run_fav = mysqli_query($connect, $sql_fav);
@@ -230,12 +225,11 @@ $product = mysqli_fetch_assoc($result);
         }
 
                           ?> &emsp;
-                           <?php  if ($fav == null) { ?>
-         
-                            <a href="update-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="far fa-heart" style="color:red"></i></a>
-     <?php } else { ?>
-        <a href="update-wishlist.php?id=<?php echo $row_r['id']; ?>" ><i class="fas fa-heart" style="color:red"></i></a>    
-     <?php } ?></p>
+                           <?php if ($fav == null) { ?>
+       <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=add&id=<?php echo $product_id ?>" ><i class="far fa-heart" style="color:red"></i></a>
+                 <?php } else { ?>
+                    <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>" ><i class="fas fa-heart" style="color:red"></i></a>    
+                 <?php } ?></p>
 
 
 <?php

@@ -131,7 +131,7 @@ ul.list i,ul.list small{
                 <?php
                 
                 $query = "SELECT * FROM shipping WHERE shipping_type= 'home'
-                         and email = '$email' ORDER BY shipping_id DESC";
+                         and email = '$customer' ORDER BY shipping_id DESC";
                 $result = mysqli_query($connect, $query);
                   while ($row = mysqli_fetch_assoc($result)) {
                       $id = $row['shipping_id']; ?>

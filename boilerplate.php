@@ -1,7 +1,5 @@
 <?php
-   session_start();
-   require_once('essentials/config.php');
-   include('navbar.php'); 
+   include('navbar.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,20 +34,4 @@
 
       </style>
 </head>
-
 <body>
-
-    <?php
-if($_SESSION['email']){
-    $customer = $_SESSION['email'];
-
-    $find_email = "
-SELECT * FROM customer WHERE email = '$customer' LIMIT 1
-";
-    $found_email =$connect->query($find_email);
-    $customer_id_array = $found_email ->fetch_assoc();
-    $customer_id = $customer_id_array['id'];
-    $customer_name  = $customer_id_array['name'];
-
-}
-?>

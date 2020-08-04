@@ -6,7 +6,7 @@ if($connect === false){
 }
  
 if(isset($_REQUEST["term"])){
-    $sql = "SELECT * FROM product WHERE name LIKE ?";
+    $sql = "SELECT * FROM product WHERE name,code,description LIKE ?";
     
     if($stmt = mysqli_prepare($connect, $sql)){
         mysqli_stmt_bind_param($stmt, "s", $param_term);

@@ -2323,10 +2323,6 @@ ol {
 	text-transform: uppercase;
 }
 
-.cart-table table tr th.p-name {
-	text-align: left;
-}
-
 .cart-table table tr td {
 	text-align: center;
 	padding-bottom: 34px;

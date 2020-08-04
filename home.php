@@ -1,9 +1,5 @@
 <?php
-   session_start();
-   require_once('essentials/config.php');
    include('boilerplate.php');
-   include('navbar.php');
-
 ?>
 <div class="container">
 <div class="row">
@@ -113,7 +109,7 @@
 
         <div class="row filter_data">
 
-        </div>
+    </div>
 
     </div>
 </div>

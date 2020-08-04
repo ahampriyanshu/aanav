@@ -16,7 +16,7 @@
                                   <thead>
                                       <tr>
                                           <th>Image</th>
-                                          <th class="p-name">Product Name</th>
+                                          <th>Product Name</th>
                                           <th>Price</th>
                                           <th>Quantity</th>
                                           <th>Total</th>
@@ -29,8 +29,6 @@
                
                   $result = "SELECT  name,code, qty, MRP, cost, file FROM product WHERE id = $product_id";
                   $run = mysqli_query($connect, $result);
-
-                  $email=$_SESSION['email'];
 
                   if ($run) {
                       while ($obj = mysqli_fetch_object($run)) {
@@ -146,9 +144,6 @@ echo'<tr>
             </div>
         </div>
     </section>
-<script>
-  $(document).foundation();
-</script>
     <?php include('footer.php'); ?> 
 </body>
 </html>

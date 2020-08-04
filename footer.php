@@ -1,15 +1,5 @@
 <link rel="stylesheet" type="text/css" href="css/navbar.css">
 
-<style type="text/css">
-
-.footer a{
-    color: #fff;
-    text-decoration: none;
-    background-color: transparent;
-}
-
-</style>
-
 <footer class="footer">
 
 <div class="container">

@@ -11,7 +11,9 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
     $customer_id_array = $found_data ->fetch_assoc();
     $customer_id = $customer_id_array['id'];
     $customer_name  = $customer_id_array['name'];
-
+    $customer_phone  = $customer_id_array['phone'];
+    $customer_created = $customer_id_array['datetym'];
+    $customer_login = $customer_id_array['last_login'];
 }
 ?>    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
@@ -53,7 +55,7 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
                 echo "
                 <li>
                 <a href='login.php'>
-                LOGIN
+                <i class='fas fa-user'></i>
                 </a>
                 </li>";
                 } else {
@@ -61,7 +63,7 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
                   $count_fav = mysqli_num_rows($fav_sql);
                   echo'
                   <li>
-                  <a href="dashboard.php"><i class="far fa-user"></i></a>
+                  <a href="dashboard.php"><i class="fas fa-user-check"></i></a>
                   </li>
                   <li>
                   <a href="wishlist.php" class="site-cart">

@@ -1,36 +1,17 @@
- 
 <?php
-   require_once('essentials/config.php');
- 
-if($connect === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
- 
+error_reporting(E_ALL);
+require_once('essentials/config.php');
+
 if(isset($_REQUEST["term"])){
-    $search_sql = "SELECT * FROM product WHERE name LIKE ?";
     
-    if($stmt = mysqli_prepare($connect, $search_sql)){
-        mysqli_stmt_bind_param($stmt, "s", $param_term);
-        
-        $param_term = $_REQUEST["term"] . '%';
-        
-        if(mysqli_stmt_execute($stmt)){
-            $result = mysqli_stmt_get_result($stmt);
+            $result = mysqli_query($connect,"SELECT * FROM product WHERE name LIKE '%".$_REQUEST["term"]."%' LIMIT 8");
             
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    echo "<a href='search-history.php?id=". $row['id']."' ><p><img src='uploads/". $row['file'] . "'width='30' height='40'>&emsp;<strong>" . $row['name'] . "</strong></p></a>";
+                    echo "<a href='search-history.php?id=". $row['id']."' ><p><img src='uploads/". $row['file'] . "'width='30px' height='40px'>&emsp;<strong>" . $row['name'] . "</strong></p></a>";
                 }
             } else{
                 echo "<p>No matches found</p>";
             }
-        } else{
-            echo "ERROR: Could not able to execute $search_sql. " . mysqli_error($connect);
         }
-    }
-     
-    mysqli_stmt_close($stmt);
-}
- 
-mysqli_close($connect);
 ?>

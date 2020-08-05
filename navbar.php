@@ -15,7 +15,44 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
     $customer_created = $customer_id_array['datetym'];
     $customer_login = $customer_id_array['last_login'];
 }
-?>    
+?>
+<style type="text/css">
+
+/* Formatting search box */
+.search-box{
+    width: 300px;
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+}
+.search-box input[type="text"]{
+    height: 32px;
+    padding: 5px 10px;
+    border: 1px solid #CCCCCC;
+    font-size: 14px;
+}
+.result{
+    position: absolute;        
+    z-index: 999;
+    top: 100%;
+    left: 0;
+}
+.search-box input[type="text"], .result{
+    width: 100%;
+    box-sizing: border-box;
+}
+/* Formatting result items */
+.result p{
+    margin: 0;
+    padding: 7px 10px;
+    border: 1px solid #CCCCCC;
+    border-top: none;
+    cursor: pointer;
+}
+.result p:hover{
+    background: #f2f2f2;
+}
+</style>    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
     <link rel="stylesheet" href="essentials/fonts/icomoon/style.css">
     <link rel="stylesheet" href="essentials/css/bootstrap.min.css">
@@ -35,10 +72,10 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
 
             <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
               
-              <div action="" class="site-block-top-search search-box">
-                <input type="text" autocomplete="off" class="form-control border-0" placeholder="Search...">
-                <div class="result"></div>
-              </div>
+            <div class="site-block-top-search search-box">
+        <input type="text" autocomplete="off" class="form-control border-0" placeholder="Search Product..." />
+        <div class="result"></div>
+    </div>
             </div>
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
@@ -113,15 +150,16 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
       </nav>
     </header>
   </div>
-  <script type="text/javascript">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
 $(document).ready(function(){
     $('.search-box input[type="text"]').on("keyup input", function(){
-        /* Get input value on change */
+       
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result");
         if(inputVal.length){
             $.get("backend-search.php", {term: inputVal}).done(function(data){
-                // Display the returned data in browser
+                
                 resultDropdown.html(data);
             });
         } else{
@@ -129,7 +167,6 @@ $(document).ready(function(){
         }
     });
     
-    // Set search input value on click of result item
     $(document).on("click", ".result p", function(){
         $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
         $(this).parent(".result").empty();

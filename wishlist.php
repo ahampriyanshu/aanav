@@ -11,6 +11,7 @@
   
 ?>
  <div class="container-fluid">
+ <div class="container">
    <div class="row">
    <div class="col-md-3">
                     <div class="contact-widget">
@@ -67,9 +68,17 @@
                 </div>
          
      <div class="col-md-9">
-      <h3>WHILIST</h3>
-        <div class="row">
-          <?php
+              <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th ></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
     $customer = $_SESSION['email']; 
             $c = "SELECT * FROM customer WHERE email = '$customer'";
             $r = mysqli_query($connect,$c);
@@ -80,178 +89,35 @@
           ON product.id = wishlist.product_id
           WHERE wishlist.customer_id = '$customer_id'");
 
-          if($result){
-
-            while($obj = mysqli_fetch_object($result)) {
-             $id = $obj->id;
-
-            ?>
-              <div class="cart-table">
-                        <table>
-                            <thead>
+          if ($result) {
+              while ($obj = mysqli_fetch_object($result)) {
+                  $id = $obj->id; ?>
                                 <tr>
-                                    <th></th>
-                                    <th ></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="cart-pic first-row"><img src="uploads/<?php echo $obj->file ?>" width="110" height="140"/></td>
-                                    <td class="cart-title first-row">
-                                        <h5><a href="detail.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></h5>
+                                    <td><img src="uploads/<?php echo $obj->file ?>" width="150" height="150"/></td>
+                                    <td>
+                                        <h5><a href="product.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></h5>
+                                        <p> <?php echo $obj->cost ?></p>
                                     </td>
-                                    <td class="p-price first-row">$60.00</td>
-                                    <td class="qua-col first-row">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="total-price first-row">$60.00</td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                    <td><i class="fas fa-2x fa-cart-plus"></i></td>
+                                    <td><i class="fas fa-2x fa-trash"></i></td>
                                 </tr>
                                 
-                               
+            <?php
+              }
+          } ?>
                             </tbody>
                         </table>
-                    </div>
+               
                     <br>
                             <div class="cart-buttons">
                                 <a href="#" class="primary-btn continue-shop">Continue shopping</a>
                                 <a href="#" class="primary-btn up-cart">Update cart</a>
                             </div>
-
-          
-              <!-- <div class="col-md-6">
-              <table class="table haha">
-              <tr>
-                <td><img src="uploads/<?php echo $obj->file ?>" width="110" height="140"/></td>
-                <td>
-                <p><strong><i><a href="detail.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></i></strong></p>
-                <p><strong>&#x20B9;&nbsp; <?php echo  $obj->price ?></strong></p>
-                <a href="">Remove</a>
-                <?php if($obj->qty < 7 && $obj->qty > 0 ){ ?>
-                <span class='badge badge-warning' style='margin-top: 2px;'>Low In Stock</span>
-                <?php }elseif($obj->qty == 0){ ?>
-                   <span class='badge badge-warning' style='margin-top: 2px;'>SOLD OUT</span>
-                 <?php }else{ ?>
-
-                <?php } ?>
-
-              <?php if($obj->qty < 5){ ?>
-                  <img src="image/bestseller.png" width="85" height="18" style="margin-left: 2px;">
-              <?php }  ?>
-              <hr>
-                <form method="post" action="adding-to-cart.php" enctype="multipart/form-data">
-              
-                <input type="hidden" name="id" value="<?php echo $obj->id?>">
-                <?php if($obj->qty > 0){ ?>
-                <input type="submit" name="submit" value="Add To Cart" style="clear:both; background:
-                 #48c9b0; border: none; color: #fff; font-size: 11px; padding: 10px; cursor: pointer;"
-                  class="btn btn-primary pull-right" />
-                </form>
-                <?php }else{ ?>
-                  
-               <?php 
-                 $result2 = mysqli_query($connect,"SELECT * FROM product WHERE id=$id");
-                 $row2 = mysqli_fetch_assoc($result2);
-
-                 ?>
-                 <?php echo $row2['id']; ?>
-                  <button data-toggle="modal" data-target="#view-modal"
-                   data-id="<?php echo $row2['id']; ?>" id="getUser" style="clear:both; background: 
-                   #48c9b0; border: none; color: #fff; font-size: 11px; padding: 10px;cursor: pointer;"
-                    class="btn btn-primary pull-right">Add To Cart</button> -->
-     <?php } ?>
-
-       <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-             <div class="modal-dialog"> 
-                  <div class="modal-content"> 
-                  
-                       <div class="modal-header"> 
-                        <h4 class="modal-title">
-                              <i class="fa fa-envelope-o"></i> SOLD OUT Alert
-                            </h4> 
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                            
-                       </div> 
-                       <div class="modal-body"> 
-                       
-                            
-                           <!-- content will be load here -->                          
-                           <div id="dynamic-content">
-                           
-                           </div>
-                             
-                        </div> 
-                        
-                        
-                 </div> 
-              </div>
-       </div><!-- /.modal --> 
-       <script>
-$(document).ready(function(){
-  
-  $(document).on('click', '#getUser', function(e){
-    
-    e.preventDefault();
-    
-    var uid = $(this).data('id');   // it will get id of clicked row
-    
-    $('#dynamic-content').html(''); // leave it blank before ajax call
-    $('#modal-loader').show();      // load ajax loader
-    
-    $.ajax({
-      url: 'getemail.php',
-      type: 'POST',
-      data: 'id='+uid,
-      dataType: 'html'
-    })
-    .done(function(data){
-      console.log(data);  
-      $('#dynamic-content').html('');    
-      $('#dynamic-content').html(data); // load response 
-      $('#modal-loader').hide();      // hide ajax loader 
-    })
-    .fail(function(){
-      $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
-      $('#modal-loader').hide();
-    });
-    
-  });
-  
-});
-
-</script>
-<!--      ----------------------------------- SOLD OUT MODAL DIALOG End------------------------ -->
-
-              </td>
-                
-
-                
-                <!-- -----------color size & add to cart start---------- -->
-    
-        
-                <!-- -----------color size & add to cart end---------- -->
-              
-              </tr>
-              </table>
-                      
-              </div><!--  col-md-6 end -->
-             
-            <?php }} ?>
               
        </div>
     
-     </div> <!-- col-md-8 end-->
+     </div>
 
    </div>
  </div>
-
-
   <?php include('footer.php'); ?>

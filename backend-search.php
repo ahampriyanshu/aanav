@@ -1,3 +1,4 @@
+ 
 <?php
    require_once('essentials/config.php');
  
@@ -6,9 +7,9 @@ if($connect === false){
 }
  
 if(isset($_REQUEST["term"])){
-    $sql = "SELECT * FROM product WHERE name,code,description LIKE ?";
+    $search_sql = "SELECT * FROM product WHERE name LIKE ?";
     
-    if($stmt = mysqli_prepare($connect, $sql)){
+    if($stmt = mysqli_prepare($connect, $search_sql)){
         mysqli_stmt_bind_param($stmt, "s", $param_term);
         
         $param_term = $_REQUEST["term"] . '%';
@@ -18,13 +19,13 @@ if(isset($_REQUEST["term"])){
             
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    echo "<p><a href='product.php?id=". $row['id']."' ><img src='uploads/". $row['file'] . "'width='30' height='40'>&emsp;" . $row['name'] . "</a></p>";
+                    echo "<p><a href='product.php?id=". $row['id']."' ><img src='uploads/". $row['file'] . "'width='30' height='40'>&emsp;<strong>" . $row['name'] . "</strong></a></p>";
                 }
             } else{
                 echo "<p>No matches found</p>";
             }
         } else{
-            echo "ERROR: Could not able to execute $sql. " . mysqli_error($connect);
+            echo "ERROR: Could not able to execute $search_sql. " . mysqli_error($connect);
         }
     }
      

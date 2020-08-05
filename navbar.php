@@ -1,6 +1,8 @@
 <?php
    session_start();
    require_once('essentials/config.php');
+   date_default_timezone_set('Asia/Kolkata');
+   error_reporting(E_ALL);
 if($_SESSION['email']){
     $customer = $_SESSION['email'];
 
@@ -14,6 +16,9 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
     $customer_phone  = $customer_id_array['phone'];
     $customer_created = $customer_id_array['datetym'];
     $customer_login = $customer_id_array['last_login'];
+}
+else{
+  $customer_id = '0';
 }
 ?>
 <style type="text/css">

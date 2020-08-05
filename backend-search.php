@@ -19,7 +19,7 @@ if(isset($_REQUEST["term"])){
             
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    echo "<p><a href='product.php?id=". $row['id']."' ><img src='uploads/". $row['file'] . "'width='30' height='40'>&emsp;<strong>" . $row['name'] . "</strong></a></p>";
+                    echo "<a href='search-history.php?id=". $row['id']."' ><p><img src='uploads/". $row['file'] . "'width='30' height='40'>&emsp;<strong>" . $row['name'] . "</strong></p></a>";
                 }
             } else{
                 echo "<p>No matches found</p>";

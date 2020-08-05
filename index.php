@@ -467,7 +467,6 @@
     </div>
 
 <?php include('latest.php'); ?>
-<?php include('bestseller.php'); ?>
+<?php include('trending.php'); ?>
+<?php include('recently-viewed.php'); ?>
 <?php include('footer.php'); ?>
- 
-        

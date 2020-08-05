@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL); 
-    $result = mysqli_query($connect, "SELECT * FROM product ORDER BY id DESC LIMIT 0,12");
+    $result = mysqli_query($connect, "SELECT DISTINCT(product_id) FROM search WHERE customer_id = '$customer_id' ORDER BY product_id DESC LIMIT 0,12");
 ?>
 
 <section class="man-banner spad">
@@ -8,7 +8,7 @@ error_reporting(E_ALL);
         <div class="row">
                 <div class="col-lg-12">
                   
-                        <h3 style="text-align: center; color: #5d6d7e; font-weight: bold; padding:20px;"><i class="fas fa-bolt"></i> Latest Products</h3>
+                        <h3 style="text-align: center; color: #5d6d7e; font-weight: bold; padding:20px;">Recently Viewed</h3>
                     
                 </div>
             </div>
@@ -16,14 +16,18 @@ error_reporting(E_ALL);
                 <div class="col-lg-12">
                     <div class="product-slider owl-carousel">
                     
-                    <?php while ($row_latest = mysqli_fetch_assoc($result)):
-                    $product_id = $row_latest['id'];
+                    <?php while ($row_product = mysqli_fetch_assoc($result)):
+                    $product_id = $row_product['product_id'];
+                    $find_product_data = "SELECT * FROM product WHERE id = '$product_id' ";
+
+                    $found_product_data =$connect->query($find_product_data);
+                    $product_id_array = $found_product_data ->fetch_assoc();
                         ?>
 
                         <div class="product-item">
                             <div class="pi-pic">
-                            <a href="product.php?id=<?php echo $row_latest['id']; ?>">
-                            <img src="uploads/<?php echo $row_latest['file'] ?>" alt="Image" style="width: 250px; height:250px; border-radius: 3%;" class="img-responsive">
+                            <a href="product.php?id=<?php echo $product_id_array ['id']; ?>">
+                            <img src="uploads/<?php echo $product_id_array ['file'] ?>" alt="Image" style="width: 250px; height:250px; border-radius: 3%;" class="img-responsive">
                             </a>
                                 <div class="icon">
                                 <?php
@@ -39,13 +43,13 @@ error_reporting(E_ALL);
 </div>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name"><?php echo $row_latest['code']; ?></div>
+                                <div class="catagory-name"><?php echo $product_id_array ['code']; ?></div>
                                 <a href="#">
-                                    <h5><strong><?php echo $row_latest['name']; ?></strong></h5>
+                                    <h5><strong><?php echo $product_id_array ['name']; ?></strong></h5>
                                 </a>
                                 <div class="product-price">
-                                &#x20B9;&nbsp;<?php echo $row_latest['cost']; ?>
-                                <span>&#x20B9;&nbsp;<?php echo $row_latest['MRP']; ?></span>
+                                &#x20B9;&nbsp;<?php echo $product_id_array ['cost']; ?>
+                                <span>&#x20B9;&nbsp;<?php echo $product_id_array ['MRP']; ?></span>
                                 </div>
                             </div>
                         </div>

@@ -23,7 +23,7 @@ error_reporting(0);
                         <div class="product-item">
                             <div class="pi-pic">
                             <a href="product.php?id=<?php echo $row_latest['id']; ?>">
-                            <img src="uploads/<?php echo $row_latest['file'] ?>" alt="Image" style="width: 250px; height:250px;" class="img-responsive">
+                            <img src="uploads/<?php echo $row_latest['file'] ?>" alt="Image" style="width: 250px; height:250px; border-radius: 3%;" class="img-responsive">
                             </a>
                                 <div class="icon">
                                 <?php
@@ -41,7 +41,7 @@ error_reporting(0);
                             <div class="pi-text">
                                 <div class="catagory-name"><?php echo $row_latest['code']; ?></div>
                                 <a href="#">
-                                    <h5><?php echo $row_latest['name']; ?></h5>
+                                    <h5><strong><?php echo $row_latest['name']; ?></strong></h5>
                                 </a>
                                 <div class="product-price">
                                 &#x20B9;&nbsp;<?php echo $row_latest['cost']; ?>

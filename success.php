@@ -1,5 +1,4 @@
 <?php include('boilerplate.php'); ?>
-<?php include('navbar.php'); ?>
         <div class="container">
   <div class="row">
     <div class="col-md-6 col-sm-6 col-xs-6">
@@ -12,9 +11,6 @@
   </div> <!-- row end -->
 </div><!--  container end -->
 
-
-
-      <br><br><br>
 <?php include('footer.php'); ?>
   
 

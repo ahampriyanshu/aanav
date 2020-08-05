@@ -119,6 +119,9 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
              {
                 $total = $total+$quantity;               
               }
+            } else
+            {
+              $total = 0;
             }
           ?>
                   <li>

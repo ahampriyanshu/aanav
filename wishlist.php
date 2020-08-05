@@ -68,7 +68,7 @@
                 </div>
          
      <div class="col-md-9">
-              <table class="table table-borderless">
+     <table class="table table-borderless">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -89,35 +89,47 @@
           ON product.id = wishlist.product_id
           WHERE wishlist.customer_id = '$customer_id'");
 
-          if ($result) {
-              while ($obj = mysqli_fetch_object($result)) {
-                  $id = $obj->id; ?>
-                                <tr>
-                                    <td><img src="uploads/<?php echo $obj->file ?>" width="150" height="150"/></td>
-                                    <td>
-                                        <h5><a href="product.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></h5>
-                                        <p> <?php echo $obj->cost ?></p>
-                                    </td>
-                                    <td><i class="fas fa-2x fa-cart-plus"></i></td>
-                                    <td><i class="fas fa-2x fa-trash"></i></td>
-                                </tr>
-                                
-            <?php
-              }
-          } ?>
-                            </tbody>
-                        </table>
-               
-                    <br>
-                            <div class="cart-buttons">
-                                <a href="#" class="primary-btn continue-shop">Continue shopping</a>
-                                <a href="#" class="primary-btn up-cart">Update cart</a>
-                            </div>
-              
-       </div>
+if ($result) {
+    while ($obj = mysqli_fetch_object($result)) {
+        $id = $obj->id; ?>
+                      <tr>
+                          <td align="center"><a href="product.php?id=<?php echo  $obj->id ?>">
+                          <img src="uploads/<?php echo $obj->file; ?>" width="150" height="150"/></a>
+                          </td>
+                          <td>
+                          <div class="product-item">
+                          <div class="pi-text">
+                              <h3 style="color:#888;"><?php echo $obj->name; ?></h3>
+                              <div class="product-price">
+                                &#x20B9;&nbsp;<?php  echo $obj->cost; ?>
+                                <span>&#x20B9;&nbsp;<?php echo $obj->MRP; ?></span>
+                                </div>
+                                </div>
+                                </div>
+                          </td>
+                          <td align="center"><a href="update-cart.php?action=remove&id=<?php echo $product_id ?>" >
+                          <i style="color:#888;" class="fas fa-2x fa-cart-plus"></a></i><p>Add To Cart</p></td>
+                          <td align="center"><a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>" >
+                          <i style="color:#888;" class="fas fa-2x fa-trash"></i></a><p>Remove</p></td>
+                      </tr>
+                      
+  <?php
+    }
+} ?>
+                  </tbody>
+              </table>
+     
+          <br>
+                  <div class="cart-buttons">
+                  <a href="index.php" class="primary-btn continue-shop">Continue shopping</a>
+                            <a href="update-wishlist.php?user=<?php echo $customer_id; ?>&action=empty" 
+                            class="primary-btn up-cart">Empty Wishlist</a>
+                  </div>
     
-     </div>
+</div>
 
-   </div>
- </div>
+</div>
+
+</div>
+</div>
   <?php include('footer.php'); ?>

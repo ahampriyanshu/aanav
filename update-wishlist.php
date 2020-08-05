@@ -10,6 +10,8 @@ else{
   $action = $_GET['action'];
   $customer_id = $_GET['user'];
 
+  echo $customer_id.$action;
+
     switch($action) {
  
       case "add":
@@ -26,13 +28,11 @@ else{
         break;
 
         case "empty":
-          $sql = "DELETE * FROM wishlist ";
+          $sql = "DELETE FROM wishlist WHERE `customer_id` = $customer_id ";
     
           mysqli_query($connect,$sql);
            break;
-
-
     }
 
-    header('location: wishlist.php');
+     header('location: wishlist.php');
 }

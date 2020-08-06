@@ -9,7 +9,7 @@
   $email = $_SESSION['email'];
    $id = $_GET['id'];
    $result = mysqli_query($connect, "SELECT * FROM product LEFT JOIN section 
-                                   ON section.cat_id = product.section WHERE product.id=$id");
+    ON section.cat_id = product.section WHERE product.id=$id");
    $row2 = mysqli_fetch_assoc($result);
    $cat_id = $row2['cat_id'];
    $cat_name = $row2['cat_name'];
@@ -333,15 +333,6 @@ $(document).on('click', '#getUser', function(e){
         </div>
     </section>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/jquery.dd.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-<?php include('footer.php'); ?></body>
-</html>
+<?php include('similar.php'); ?>
+<?php include('recently-viewed.php'); ?>
+<?php include('footer.php'); ?>

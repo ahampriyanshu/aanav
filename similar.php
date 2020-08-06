@@ -1,5 +1,6 @@
 <?php
-error_reporting(E_ALL); 
+error_reporting(E_ALL);
+
     $result = mysqli_query($connect, "SELECT * FROM product WHERE section='$section' ORDER BY id DESC LIMIT 0,4");
 ?>
 
@@ -8,7 +9,7 @@ error_reporting(E_ALL);
         <div class="row">
                 <div class="col-lg-12">
                   
-                        <h3 style="text-align: center; color: #5d6d7e; font-weight: bold; padding:20px;">Recently Viewed</h3>
+                        <h3 style="text-align: center; color: #5d6d7e; font-weight: bold; padding:20px;">Similar Products</h3>
                     
                 </div>
             </div>
@@ -17,17 +18,12 @@ error_reporting(E_ALL);
                     <div class="product-slider owl-carousel">
                     
                     <?php while ($row_product = mysqli_fetch_assoc($result)):
-                    $product_id = $row_product['product_id'];
-                    $find_product_data = "SELECT * FROM product WHERE id = '$product_id' ";
-
-                    $found_product_data =$connect->query($find_product_data);
-                    $product_id_array = $found_product_data ->fetch_assoc();
                         ?>
 
                         <div class="product-item">
                             <div class="pi-pic">
-                            <a href="product.php?id=<?php echo $product_id_array ['id']; ?>">
-                            <img src="uploads/<?php echo $product_id_array ['file'] ?>" alt="Image" style="width: 250px; height:250px; border-radius: 3%;" class="img-responsive">
+                            <a href="product.php?id=<?php echo $row_product ['id']; ?>">
+                            <img src="uploads/<?php echo $row_product ['file'] ?>" alt="Image" style="width: 250px; height:250px; border-radius: 3%;" class="img-responsive">
                             </a>
                                 <div class="icon">
                                 <?php
@@ -43,13 +39,13 @@ error_reporting(E_ALL);
 </div>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name"><?php echo $product_id_array ['code']; ?></div>
+                                <div class="catagory-name"><?php echo $row_product ['code']; ?></div>
                                 <a href="#">
-                                    <h5><strong><?php echo $product_id_array ['name']; ?></strong></h5>
+                                    <h5><strong><?php echo $row_product ['name']; ?></strong></h5>
                                 </a>
                                 <div class="product-price">
-                                &#x20B9;&nbsp;<?php echo $product_id_array ['cost']; ?>
-                                <span>&#x20B9;&nbsp;<?php echo $product_id_array ['MRP']; ?></span>
+                                &#x20B9;&nbsp;<?php echo $row_product ['cost']; ?>
+                                <span>&#x20B9;&nbsp;<?php echo $row_product ['MRP']; ?></span>
                                 </div>
                             </div>
                         </div>

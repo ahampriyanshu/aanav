@@ -22,40 +22,43 @@ else{
 }
 ?>
 <style type="text/css">
-
-/* Formatting search box */
-.search-box{
-    width: 300px;
-    position: relative;
-    display: inline-block;
-    font-size: 14px;
-}
-.search-box input[type="text"]{
-    height: 32px;
-    padding: 5px 10px;
-    border: 1px solid #CCCCCC;
-    font-size: 14px;
-}
+     
 .result{
-    position: absolute;        
-    z-index: 999;
-    top: 100%;
-    left: 0;
-}
-.search-box input[type="text"], .result{
-    width: 100%;
-    box-sizing: border-box;
-}
+  width: 100%;
+ position: absolute;
+ margin: 0;
+  opacity:20;
+  z-index: 10;
+  font-size: 12px;
+  text-transform: uppercase;
+  color:#888;
+  text-align: left;
+        }
+
 .result p{
-    margin: 0;
-    padding: 7px 10px;
-    border: 1px solid #CCCCCC;
-    border-top: none;
-    cursor: pointer;
+  background: #fff;
+ color: #000;
+ padding: 4px;
+ margin-bottom: 1px solid white;
+ border-radius: 2px;
+    
 }
-.result p:hover{
-    background: #f2f2f2;
+
+.result p:nth-child(even){
+ background: #fff;
+ color: #888;
 }
+
+.result p a{
+ cursor: pointer;
+ color: #666;
+}
+
+.result p a:hover{
+cursor: pointer;
+color: teal;
+}
+
 </style>    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
     <link rel="stylesheet" href="essentials/fonts/icomoon/style.css">

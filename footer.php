@@ -34,7 +34,7 @@
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/main.js"></script>
     <script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script> 
-
 </footer>
+</body>
+</html>

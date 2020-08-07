@@ -1,5 +1,16 @@
 <?php
    include('boilerplate.php');
+   error_reporting(E_ALL);
+   $per_page = 2;
+
+   if (isset($_GET['page'])) {
+       $page = $_GET['page'];
+   } else {
+       $page = 1;
+   }
+
+   $start_from = ($page-1) * $per_page;
+
 ?>
 <style>
     #price_range {
@@ -125,7 +136,7 @@
     </div>
 
     <div class="col-lg-9">
-
+<?php include('pagination.php'); ?>
         <div class="row filter_data">
 
     </div>
@@ -144,6 +155,8 @@ $(document).ready(function() {
     function filter_data() {
         $('.filter_data');
         var action = 'fetch_data';
+        var start_from = <?php echo $start_from; ?>;
+        var per_page = <?php echo $per_page; ?>;
         var minimum_price = $('#min_price_hide').val();
         var maximum_price = $('#max_price_hide').val();
         var brand = get_filter('brand');
@@ -154,6 +167,8 @@ $(document).ready(function() {
             method: "POST",
             data: {
                 action: action,
+                start_from : start_from,
+                per_page : per_page,
                 minimum_price: minimum_price,
                 maximum_price: maximum_price,
                 brand: brand,

@@ -7,7 +7,7 @@
           <div class="col-md-6">
             <div class="block-16">
               <figure>
-                <img src="img/work.png" height="500" alt="Image placeholder" class=" rounded">
+                <img src="img/section/about.png" height="500" alt="Image placeholder" class=" rounded">
                 <a href="https://vimeo.com/channels/staffpicks/93951774" class="play-button popup-vimeo"><span class="ion-md-play"></span></a>
 
               </figure>
@@ -42,7 +42,7 @@
               <div class="block-38-img">
                 <div class="block-38-header">
                   <img src="img/" alt="Image placeholder" class="mb-4">
-                  <h3 class="block-38-heading h4">Kuldeep Sharma</h3>
+                  <h3 class="block-38-heading h4">Person A</h3>
                   <p class="block-38-subheading">Post A</p>
                 </div>
                 <div class="block-38-body">

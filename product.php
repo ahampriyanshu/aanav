@@ -78,7 +78,7 @@ $product = mysqli_fetch_assoc($result);
 ?>
 
     <!-- Product Shop Section Begin -->
-    <section class="product-shop spad page-details">
+    <section class="product-shop carousel-info page-details">
         <div class="container">
             <div class="row">
                 <div class="col-lg-9">

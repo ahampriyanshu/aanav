@@ -8,7 +8,7 @@
      ORDER BY TotalQuantity ASC LIMIT 0,12");
            ?>
 
-<section class="man-banner spad">
+<section class="carousel-banner carousel-info">
         <div class="container"> 
         <div class="row">
                 <div class="col-lg-12">

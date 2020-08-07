@@ -3,7 +3,7 @@ error_reporting(E_ALL);
     $result = mysqli_query($connect, "SELECT * FROM product ORDER BY id DESC LIMIT 0,12");
 ?>
 
-<section class="man-banner spad">
+<section class="carousel-banner carousel-info">
         <div class="container"> 
         <div class="row">
                 <div class="col-lg-12">

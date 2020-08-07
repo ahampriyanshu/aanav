@@ -7,7 +7,6 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
                             <h1>Top Brands</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore</p>
@@ -20,8 +19,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Best Sells</h1>
+                            <h1>Quality Prodects</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore</p>
                             <a href="#" class="primary-btn">Shop Now</a>
@@ -33,8 +31,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Black friday</h1>
+                            <h1>Best Rates</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore</p>
                             <a href="#" class="primary-btn">Shop Now</a>
@@ -46,8 +43,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-5">
-                            <span>Bag,kids</span>
-                            <h1>Cheapest</h1>
+                            <h1>Quality</h1>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore</p>
                             <a href="#" class="primary-btn">Shop Now</a>
@@ -60,7 +56,7 @@
     <!-- Hero Section End -->
 
     <!-- Banner Section Begin -->
-    <div class="banner-section spad">
+    <div class="banner-section carousel-info">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4">
@@ -103,7 +99,7 @@
 <div id="work" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-    <img class="d-block w-100" src="img/cover/work.png" alt="Second slide" style=" height: 500px;">
+    <img class="d-block w-100" src="img/cover/work.png" alt="Second slide">
       
       <div class="carousel-caption d-none d-md-block">
     <h1 style="font-weight: 600; margin-bottom: 120px; margin-right: 515px; font-size: 38px;">SELL WITH US

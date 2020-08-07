@@ -1,16 +1,14 @@
 <?php
 error_reporting(E_ALL);
-
     $result = mysqli_query($connect, "SELECT * FROM product WHERE section='$section' ORDER BY id DESC LIMIT 0,4");
 ?>
 
-<section class="man-banner spad">
+<section class="carousel-banner carousel-info">
         <div class="container"> 
         <div class="row">
                 <div class="col-lg-12">
                   
                         <h3 style="text-align: center; color: #5d6d7e; font-weight: bold; padding:20px;">Similar Products</h3>
-                    
                 </div>
             </div>
             <div class="row">

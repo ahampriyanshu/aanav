@@ -1,22 +1,36 @@
 <?php
    include('boilerplate.php');
 ?>
+<style>
+    #price_range {
+    height: 6px;
+}
+.ui-slider-handle {
+    height: 13px !important;
+    width: 13px !important;
+    background: #66FCF1 !important;
+    border-radius: 25px;
+}
+.ui-slider-range.ui-corner-all.ui-widget-header {
+    background: #333;
+}
+</style>
 <div class="container">
 <div class="row">
-    <div class="col-md-3">
-        <div class="list-group">
-            <h3>Price</h3>
+    <div class="col-lg-3 col-md-6 col-sm-8 produts-sidebar-filter">
+
+        <div class="filter-widget">
+            <h3 class="fw-title">Price</h3>
             <input type="hidden" id="min_price_hide" value="1" />
-            <input type="hidden" id="max_price_hide" value="20000" />
-            <p id="price_show">$1 - $20000</p>
+            <input type="hidden" id="max_price_hide" value="5000" />
+            <p id="price_show">$1 - $5000</p>
             <div id="price_range"></div>
         </div>
 
-        <div class="list-group">
-            <h3>section</h3>
+        <div class="filter-widget">
+            <h3 class="fw-title">Sections</h3>
+            <div class="fw-brand-check">
             <?php
-
-
             $query = "
             SELECT DISTINCT(section) FROM product ORDER BY section ASC
             ";
@@ -32,9 +46,10 @@
             $name = $exe ->fetch_assoc();
             
             ?>
-                <div class="list-group-item checkbox">
-                    <label>
-                        <input type="checkbox" class="filter_all section" value="<?php echo $row['section']; ?>">
+                <div class="bc-item">
+                <label for="<?php echo $name['cat_name']; ?>">
+                        <input type="checkbox"  id="<?php echo $name['cat_name']; ?>" class="filter_all section" value="<?php echo $row['section']; ?>">
+                        <span class="checkmark"></span>
                         <?php echo $name['cat_name']; ?>
                     </label>
                 </div>
@@ -42,9 +57,11 @@
             }
             ?>
         </div>
+        </div>
 
-        <div class="list-group">
-            <h3>Brand</h3>
+        <div class="filter-widget">
+            <h3 class="fw-title">Brands</h3>
+            <div class="fw-brand-check">
                  <?php
 
             $query = "
@@ -61,9 +78,10 @@
             $exe =$connect->query($sql);
             $name = $exe ->fetch_assoc();
             ?>
-                    <div class="list-group-item checkbox">
-                        <label>
-                            <input type="checkbox" class="filter_all brand" value="<?php echo $row['brand']; ?>">
+                   <div class="bc-item">
+                <label for="<?php echo $name['brand_name']; ?>">
+                            <input type="checkbox"  id="<?php echo $name['brand_name']; ?>" class="filter_all brand" value="<?php echo $row['brand']; ?>">
+                            <span class="checkmark"></span>
                             <?php echo $name['brand_name']; ?>
                         </label>
                     </div>
@@ -72,9 +90,11 @@
 
             ?>
          </div>
+        </div>
 
-        <div class="list-group">
-            <h3>categories</h3>
+        <div class="filter-widget">
+            <h3 class="fw-title">Categories</h3>
+            <div class="fw-brand-check">
             <?php
 
             $query = "
@@ -91,21 +111,20 @@
             $exe =$connect->query($sql);
             $name = $exe ->fetch_assoc();
             ?>
-                <div class="list-group-item checkbox">
-                    <label>
-                        <input type="checkbox" class="filter_all categories" value="<?php echo $row['categories']; ?>">
+                   <div class="bc-item">
+                <label for="<?php echo $name['sub_name']; ?>">
+                        <input type="checkbox"  id="<?php echo $name['sub_name']; ?>"  class="filter_all categories" value="<?php echo $row['categories']; ?>">
+                        <span class="checkmark"></span>
                         <?php echo $name['sub_name']; ?>
                     </label>
                 </div>
-                <?php    
-            }
-
-            ?>
+                <?php } ?>
+        </div>
         </div>
 
     </div>
 
-    <div class="col-md-9">
+    <div class="col-lg-9">
 
         <div class="row filter_data">
 
@@ -162,8 +181,8 @@ $(document).ready(function() {
     $('#price_range').slider({
         range: true,
         min: 1,
-        max: 20000,
-        values: [1, 20000],
+        max: 5000,
+        values: [1, 5000],
         step: 100,
         stop: function(event, ui) {
             $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);

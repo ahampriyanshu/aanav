@@ -3,7 +3,7 @@ error_reporting(E_ALL);
     $result = mysqli_query($connect, "SELECT DISTINCT(product_id) FROM search WHERE customer_id = '$customer_id' ORDER BY product_id DESC LIMIT 0,12");
 ?>
 
-<section class="man-banner spad">
+<section class="carousel-banner carousel-info">
         <div class="container"> 
         <div class="row">
                 <div class="col-lg-12">

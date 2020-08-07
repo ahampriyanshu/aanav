@@ -2,7 +2,7 @@
    include('boilerplate.php');
 ?>
  <!-- Map Section Begin -->
- <div class="map spad">
+ <div class="map carousel-info">
         <div class="container">
             <div class="map-inner">
             <div style="width: 100%">
@@ -19,7 +19,7 @@
     <!-- Map Section Begin -->
 
     <!-- Contact Section Begin -->
-    <section class="contact-section spad">
+    <section class="contact-section carousel-info">
         <div class="container">
             <div class="row">
                 <div class="col-lg-5">

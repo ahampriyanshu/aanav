@@ -317,7 +317,7 @@ $(document).on('click', '#getUser', function(e){
  $('#dynamic-content').html('');
  $('#modal-loader').show(); 
  $.ajax({
-   url: 'getemail.php',
+   url: 'notify.php',
    type: 'POST',
    data: 'id='+uid,
    dataType: 'html'

@@ -1,49 +1,15 @@
 <?php 
-	
 	session_start();
   require_once('essentials/config.php');
-			
-		$id = intval($_REQUEST['id']);
-		$query = "SELECT * FROM product WHERE id=:id";
-		$stmt = $db_con->prepare( $query );
-		$stmt->execute(array(':id'=>$id));
-		$row=$stmt->fetch(PDO::FETCH_ASSOC);
-		extract($row);
-		 
-		?>
-			
-		
-			
-	
-<style type="text/css">
-  .sold{
-    padding: 10px 10px;
-    text-align: center;
-  }
-  .sold img{
-    margin: 10px 170px;
-  }
-  .sold h2{
-    font-size:22px; 
-    padding: 2px 20px;
-  }
-</style>
+  $id = intval($_REQUEST['id']);
+?>
+    
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/login.css">
 
-<div class="container sold">
-  <div class="row">
-  
-
-  
-    <div class="col-md-12 col-sm-12 col-xs-12">
-
-              <img src="image/ACTIVE.png" width="35" height="40">
-              <br>
-              <strong style="color: #FFC107; font-size: 14px;">ACTIVE ON</strong><br>
-              <h2>SOLD OUT, Email will sent when product is in stock.</h2>
-
-      
-
-                       <form method="post" action="sold_out_email.php" enctype="multipart/form-data">
+<!-- <form method="post" action="notify-backend.php" enctype="multipart/form-data">
   <input type="hidden" name="id" value="<?php echo $id ?>">
   <div class="form-group">
     <label for="">Email Address*</label>
@@ -53,24 +19,39 @@
     
   	<button type="submit" name="submit" class="btn btn-dark pull-right" style="background-color: #000;">Send</button>
     <a href="" class="btn btn-outline-dark pull-right" style="margin-right: 5px;">NO THANKS</a>
-</form>
-  <style type="text/css">
-    .btn-outline-dark {
-    color: #000;
-    background-color: transparent;
-    background-image: none;
-    border-color: #000;
-}
-  </style>
-    </div><!--  col-md-6 end -->
-   
-  </div> <!-- row end -->
-</div><!--  container end -->
-<br><div class="modal-footer"> 
+</form> -->
 
-                             
-                        </div> 
+    <div class="container-fluid ">
+  <div class="row">
+        <div  class="col-md-12 col-sm-12 col-xs-12 login-section-wrapper">
+          <div class="brand-wrapper">
+            <img src="img/logo_nav.png" alt="logo" class="logo">
+          </div>
+          <div class="login-wrapper my-auto">
+          <div class="form-group mb-4">
+              <label style="color:#222 !important;" for="phone">Enter your email to turn on notification</label>
+</div>
+            <form method="post" action="notify-backend.php" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?php echo $id ?>">
+              <div class="form-group mb-4">
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required/>
+               </div>
+              <?php  
+		  if(isset($found))
+		  {
+		  	echo '<p  style="color:#7EF9FF;"><center>You have already subscribed for this product</center></p>';
+		  }
+	?>
+              <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Notify">
+            </form>
+          </div>
+        </div>
+    </div>
+    </div>
 
-
-
-
+  <div class="modal-footer"> 
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -6,13 +6,13 @@
       $id = $_POST['id'];
 
      
-      $sql = "INSERT INTO sold_out(email,product_id,created_date)
+      $sql = "INSERT INTO notify(email,product_id,created_date)
                    VALUES('$email','$id',NOW())";
 
       $run=mysqli_query($connect,$sql);
       
      
-      header("location:success4.php");
+      header("location:notify-success.php");
     
     
 ?>

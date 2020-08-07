@@ -1,10 +1,23 @@
 <?php
-   session_start();
-   require_once('essentials/config.php');
-   include('essentials/function.php');
    include('navbar.php'); 
-?>
 
+  $product_id = $_GET['id'];
+
+  $find_product_data = "SELECT * FROM product WHERE id = '$product_id' LIMIT 1";
+
+      $found_product_data =$connect->query($find_product_data);
+      $product_id_array = $found_product_data ->fetch_assoc();
+      $product_section = $product_id_array['section'];
+      $product_brand = $product_id_array['brand'];
+      $product_categories = $product_id_array['categories'];
+
+    $sql = "INSERT INTO search ( product_id, customer_id, section, brand, categories, datetym)
+  			VALUES('$product_id', '$customer_id', '$product_section', '$product_brand ',
+              '$product_categories',NOW())";
+
+    mysqli_query($connect, $sql);
+    
+?>
 <?php
   $email = $_SESSION['email'];
    $id = $_GET['id'];

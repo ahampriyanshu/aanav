@@ -8,7 +8,8 @@ if(isset($_REQUEST["term"])){
             
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                    echo "<a href='search-history.php?id=". $row['id']."' ><p><img src='uploads/". $row['file'] . "'width='30px' height='40px'>&emsp;" . $row['name'] . "</p></a>";
+                    echo "<a href='product.php?id=". $row['id']."' ><p><img src='uploads/". $row['file'] 
+                    . "'width='30px' height='40px'>&emsp;" . $row['name'] . "</p></a>";
                 }
             } else{
                 echo "<p>No matches found</p>";

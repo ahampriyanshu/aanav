@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="essentials/css/login.css">
+  <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
 
@@ -43,7 +43,7 @@ if(isset($submit))
       <div class="row">
         <div class="col-sm-6 login-section-wrapper">
           <div class="brand-wrapper">
-            <img src="essentials/images/logo.png" alt="logo" class="logo">
+            <img src="img/logo_nav.png" alt="logo" class="logo">
           </div>
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Welcome Back</h1>
@@ -68,7 +68,7 @@ if(isset($submit))
           </div>
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="essentials/images/login.jpg" alt="login image" class="login-img">
+          <img src="img/login.png" alt="login image" class="login-img">
         </div>
       </div>
     </div>
@@ -76,5 +76,5 @@ if(isset($submit))
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<?php include('footer.php'); ?></body>
+</body>
 </html>

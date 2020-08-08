@@ -16,13 +16,6 @@
   <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-<script language="javascript">
-    function check()
-    {
-  
-    };
-    
-    </script>
 
 <?php
 extract($_POST);
@@ -67,7 +60,7 @@ if(isset($submit))
           </div>
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Hello New User</h1>
-            <form name="signupform" method="post" onSubmit="return check();">
+            <form name="signupform" method="post" >
               <div class="form-group">
               <label for="password">Name</label>
                 <input type="text" name="name" id="email" class="form-control" placeholder="Enter your name" required/>

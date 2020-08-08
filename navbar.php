@@ -2,7 +2,6 @@
    session_start();
    require_once('essentials/config.php');
    date_default_timezone_set('Asia/Kolkata');
-   error_reporting(0);
 if($_SESSION['email']){
     $customer = $_SESSION['email'];
 

@@ -3,32 +3,34 @@
 	$query = "select * from product";
 	$result = mysqli_query($connect, $query);
 
-	//count the total records
+
 
 	$total_posts = mysqli_num_rows($result);
 
-	//Using ceil function to divide the total records on per page
-
 	$total_pages = ceil($total_posts / $per_page);
-
-	echo"
 	
-	<center><ul class='pagination'>
-	<li class='page-item'><a  class='page-link' href ='home.php?page=1'>&laquo;</a></li>
+	$page_url = $_SERVER['PHP_SELF'];
+	
 
-	";
+	echo "<ul class='pagination'>";
 
-	echo "<li class='page-item active'>";
-	for ($i= 1; $i<=$total_pages; $i++){
-		echo "<a href='home.php?page=$i' class='page-link'>$i</a></li>";
+    if ($page != 1) {
+        echo"
+	<li class='page-item'><a  class='page-link' href ='$page_url?page=1'>First</a></li>";
 	}
-
-	//Going to last page
 	
-
-	echo "<li class='page-item'><a href='home.php?page=$total_pages'  class='page-link'>&raquo;</a></li></ul></center>
+	?>
+	<?php for($i = 1; $i <= $total_pages; $i++ ): ?>
+		<li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
+			<a class="page-link" href="<?php echo $page_url ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+		</li>
+		<?php endfor; 
 		
+        if ($page != $total_pages) {
+            echo"<li class='page-item'><a href='$page_url?page=$total_pages' class='page-link'>Last</a></li>";
+        }
 
-	";
-?>
+	echo "</ul>";
 
+
+	?>

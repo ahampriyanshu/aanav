@@ -2,13 +2,9 @@
 require_once('essentials/config.php');
 error_reporting(E_ALL);
 
-$start_from = $_POST['start_from'];
-$per_page = $_POST['per_page'];
-echo $start_from.$per_page;
-
 if (isset($_POST["action"])) {
     $query = "
-  SELECT * FROM product WHERE id > 0 
+  SELECT * FROM product WHERE id > 0
  ";
     if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
         $query .= "
@@ -33,6 +29,15 @@ if (isset($_POST["action"])) {
    AND section IN('" . $section_filter . "')
   ";
     }
+
+    if (isset($_POST["start_from"])) {
+        $start_from = $_POST['start_from'];
+$per_page = $_POST['per_page'];
+        $query .= "
+ORDER BY 1 DESC LIMIT $start_from, $per_page
+  ";
+    }
+
     echo $query;
     $statement = $con->prepare($query);
     $statement->execute();

@@ -136,9 +136,15 @@
     </div>
 
     <div class="col-lg-9">
-<?php include('pagination.php'); ?>
+ <div class="product-show-option">
+                        <div class="row">
+                            <div class="col-lg-7 col-md-7  text-center">
+                            <?php include('pagination.php'); ?>
+                            </div>
+                        </div>
+                    </div>
         <div class="row filter_data">
-
+       
     </div>
 
     </div>

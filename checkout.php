@@ -80,16 +80,16 @@ p {
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#ship_home").change(function(){
-			var getCountryID = $(this).val();
+			var shippingValidation = $(this).val();
 			
-			if(getCountryID !='')
+			if(shippingValidation !='')
 			{
 				$("#loader").show();
 				$(".address-container").html("");
 				
 				$.ajax({
 					type:'post',
-					data:{country_id:getCountryID},
+					data:{shipping_validation:shippingValidation},
 					url: 'shipping_ajax_request.php',
 					success:function(returnData){
 						$("#loader").hide();	
@@ -104,16 +104,16 @@ p {
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#ship_store").change(function(){
-			var getCountryID = $(this).val();
-			
-			if(getCountryID !='')
+			var shippingValidation = $(this).val();
+			console.log(shippingValidation);
+			if(shippingValidation !='')
 			{
 				$("#loader").show();
 				$(".address-container").html("");
 				
 				$.ajax({
 					type:'post',
-					data:{country_id:getCountryID},
+					data:{shipping_validation:shippingValidation},
 					url: 'store_ajax_request.php',
 					success:function(returnData){
 						$("#loader").hide();	

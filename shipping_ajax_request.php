@@ -1,6 +1,7 @@
 <?php 
 require_once('essentials/config.php');
 error_reporting(E_ALL);  
+if(isset($_POST['shipping_validation']) && $_POST['shipping_validation'] !='')
 	{ ?>
                 <form  method="post" action="shipping_to_home.php" enctype="multipart/form-data" class="checkout-form">
                 <div class="row">

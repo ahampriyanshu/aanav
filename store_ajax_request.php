@@ -2,7 +2,7 @@
 	  session_start();
           require_once('essentials/config.php');
 	
-	if(isset($_POST['country_id']) && $_POST['country_id'] !='')
+	if(isset($_POST['shipping_validation']) && $_POST['shipping_validation'] !='')
 	{ ?>
 		 <h3>Contact Information</h3>
 	    				<div class="panel-body">

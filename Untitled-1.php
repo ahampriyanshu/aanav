@@ -81,16 +81,16 @@ ul.list i,ul.list small{
 <script type="text/javascript">
   $(document).ready(function(){
     $("#customRadio2").change(function(){
-      var getCountryID = $(this).val();
+      var shippingValidation = $(this).val();
       
-      if(getCountryID !='')
+      if(shippingValidation !='')
       {
         $("#loader").show();
         $(".pay-container").html("");
         
         $.ajax({
           type:'post',
-          data:{country_id:getCountryID},
+          data:{shipping_validation:shippingValidation},
           url: 'ajax_request_cash.php',
           success:function(returnData){
             $("#loader").hide();  

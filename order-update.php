@@ -1,9 +1,11 @@
 <?php
-//if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 session_start();
+require_once('essentials/config.php');
+date_default_timezone_set('Asia/Kolkata');
+
   $user = $_SESSION['email'];  
   $shipping = $_SESSION['shipping'];
-  require_once('essentials/config.php');
+
 
 if(isset($_SESSION['cart'])) {
 
@@ -11,7 +13,7 @@ if(isset($_SESSION['cart'])) {
   $itemqty = 0;
 
   $query = $connect->query("INSERT INTO orders(customer,shipping_id,status,total_amt,total_qty,payment_type,created_date,modified_date) 
-                           VALUES('$user','$shipping',2,0,0,'Cash',NOW(),NOW())");
+                           VALUES('$user','$shipping',2,0,0,'COD',NOW(),NOW())");
 
   $order_id = mysqli_insert_id($connect);
 
@@ -48,43 +50,12 @@ if(isset($_SESSION['cart'])) {
         if($connect->query("UPDATE orders SET total_amt = ".$total.",total_qty =".$itemqty." WHERE order_id = ".$order_id)){
 
         }
-
-        //send mail script
-        /*$query = $connect->query("SELECT * from orders order by date desc");
-        if($query){
-          while ($obj = $query->fetch_object()){
-            $subject = "Your Order ID ".$obj->id;
-            $message = "<html><body>";
-            $message .= '<p><h4>Order ID ->'.$obj->id.'</h4></p>';
-            $message .= '<p><strong>Date of Purchase</strong>: '.$obj->date.'</p>';
-            $message .= '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
-            $message .= '<p><strong>Product Name</strong>: '.$obj->name.'</p>';
-            $message .= '<p><strong>Price Per Unit</strong>: '.$obj->price.'</p>';
-            $message .= '<p><strong>Units Bought</strong>: '.$obj->units.'</p>';
-            $message .= '<p><strong>Total Cost</strong>: '.$obj->total.'</p>';
-            $message .= "<?php include('footer.php'); ?></body></html>";
-            $headers = "From: support@techbarrack.com";
-            $headers .= "MIME-Version: 1.0\r\n";
-            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-            $sent = mail($user, $subject, $message, $headers) ;
-            if($sent){
-              $message = "";
-            }
-            else {
-              echo 'Failure';
-            }
-          }
-        }*/
-
-
-
       }
     }
   }
 }
 unset($_SESSION['shipping']);
 unset($_SESSION['cart']);
-header("location:success.php");
+header("location:order-placed.php");
 
 ?>

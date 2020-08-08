@@ -1,40 +1,25 @@
-
 <?php 
-	
-	session_start();
-        
+  session_start();
+  include('essentials/config.php');
+
         $shipping = $_SESSION['shipping'];
         $result = mysqli_query($connect,"SELECT * FROM shipping where shipping_id='$shipping'");
         $row = mysqli_fetch_assoc($result);
 
 
-	if(isset($_POST['country_id']) && $_POST['country_id'] !='')
+	if(isset($_POST['shipping_validation']) && $_POST['shipping_validation'] !='')
 	{ ?>
                 
-		 <h3>Pay with Cash</h3>
 	    				<div class="panel-body">
-                        
-                        
-                    
-                  <div class="notice notice-warning">
+                <div class="notice notice-warning">
         <strong><p>Dear <?php echo $row['full_name'] ?>,</p></strong> 
-        <p>it is need to pay <a href="">within 2 day</a> to near CAPITALA on Store after making order.
-      If cash is not received by store specified day, <a href="">the order will auto cancel.</a></p>
+        <p>It is required of you to pay be</a></p>
     </div>
-      
-                      
-
-
-                        <br>
-
-                       
-                        
-
                         <a href="order-update.php" class="btn btn-info pull-right" style="margin-left: 4px">Place In Order</a>
                         <a href="shipping_info.php" class="btn btn-outline-info pull-right">Back</a>
                         
-                        </div> <!-- panel-body -->
-                        <br><br>
+                        </div> 
+                
                         
 		
 <?php	}

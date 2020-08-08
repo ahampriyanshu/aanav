@@ -91,7 +91,7 @@ ul.list i,ul.list small{
         $.ajax({
           type:'post',
           data:{shipping_validation:shippingValidation},
-          url: 'ajax_request_cash.php',
+          url: 'COD.php',
           success:function(returnData){
             $("#loader").hide();  
             $(".pay-container").html(returnData);

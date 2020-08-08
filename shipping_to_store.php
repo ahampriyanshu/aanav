@@ -11,6 +11,6 @@
 
        mysqli_query($connect,$sql);
 
-       header("location: payment_info.php");
+       header("location: payment.php");
 
        ?>

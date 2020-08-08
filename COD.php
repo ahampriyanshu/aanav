@@ -16,7 +16,7 @@
         <p>It is required of you to pay be</a></p>
     </div>
                         <a href="order-update.php" class="btn btn-info pull-right" style="margin-left: 4px">Place In Order</a>
-                        <a href="shipping_info.php" class="btn btn-outline-info pull-right">Back</a>
+                        <a href="checkout.php" class="btn btn-outline-info pull-right">Back</a>
                         
                         </div> 
                 

@@ -22,6 +22,6 @@
                 $result = mysqli_query($connect,$query);
                   while($row = mysqli_fetch_assoc($result)){
                     $id = $row['shipping_id'];
-    echo "<script>window.location='payment_info.php?id=$id'</script>";
+    echo "<script>window.location='payment.php?id=$id'</script>";
 }
        ?>

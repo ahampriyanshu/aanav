@@ -1,7 +1,6 @@
-
 <?php
  include('boilerplate.php'); 
-  
+  error_reporting(E_ALL);
   $id = $_REQUEST['id'];
   $sql = "SELECT * FROM shipping where shipping_id=$id";
   $run =mysqli_query($connect,$sql);
@@ -11,39 +10,89 @@
 ?>
 
 <style type="text/css">
-
-  .ship{
-            width: 245px;
-            height: 255px;
-           /*background-color: #ebf5fb;*/
-           border-radius: 4px;
-           border : 1px solid #aed6f1; 
-         }
-ul.list{
-  list-style: none;
-  margin: 20px;
-  padding: 0;
-  padding-top: 2px;
-
-}
-ul.list li{
-  overflow: hidden;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-ul.list b{
-  display: block;
-  font-size: 12px;
-  margin-bottom: 5px;
-  color: #34495e;
-}
-ul.list i,ul.list small{
-  display: block;
   
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
 }
 
- 
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #40e0d0;
+}
+.option-input:checked::before {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  content: '✔';
+  display: inline-block;
+  font-size: 26.66667px;
+  text-align: center;
+  line-height: 40px;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+.form-check {
+  padding: 2rem;
+}
+
+.form-check {
+  display: block;
+  line-height: 20px;
+}
+
 </style>
 
 <div class="container">
@@ -51,20 +100,17 @@ ul.list i,ul.list small{
     <div class="col-md-8">
       <h2>Payment Method</h2> 
     
+      <div class="form-check">
+      <label>
+    <input type="radio" class="option-input radio" id="customRadio2" name="customRadio2"/>
+    Radio option
+  </label>
 
-
-<hr>
-<div class="custom-control custom-radio">
-  <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-  <label class="custom-control-label" for="customRadio2">Cash in Hand</label>
-
-  
 </div>
 
 <div class="pay-container">
 </div>
 
-<hr>
 <script type="text/javascript">
   $(document).ready(function(){
     $("#customRadio2").change(function(){
@@ -78,7 +124,7 @@ ul.list i,ul.list small{
         $.ajax({
           type:'post',
           data:{shipping_validation:shippingValidation},
-          url: 'ajax_request_cash.php',
+          url: 'COD.php',
           success:function(returnData){
             $("#loader").hide();  
             $(".pay-container").html(returnData);
@@ -93,11 +139,7 @@ ul.list i,ul.list small{
 </script>
 
 
-<style type="text/css">
-  .pay-lo{
-    height: 18px;
-  }
-</style>
+
  
     </div>
 
@@ -282,13 +324,6 @@ color: #000;
 
 </style>
 
-
-
-<br><br><br>
-<?php include('footer.php'); ?>
-
-<script src='jquery-3.3.1.js' type='text/javascript'></script>
-<script src='bootbox.min.js'></script>
 <script src='shipping_del_script.js' type='text/javascript'></script>
 
 <?php include('footer.php'); ?></body>

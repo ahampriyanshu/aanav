@@ -66,11 +66,11 @@ ul.list i,ul.list small{
 	  <div class="row">
 	  <div class="col-xs-4">
       <label>
-      <input type="radio" name="ship" value="home" id="rdoship_0" required/>
+      <input type="radio" name="ship" value="home" id="ship_home" required/>
       FREE TO HOME</label><br>
 
 	  <label>
-	    <input type="radio" name="ship" value="store" id="rdoship_1" required/>
+	    <input type="radio" name="ship" value="store" id="ship_store" required/>
 	    Free In STORE Pick Up</label>
 	    <span class="fa fa-shipping-fast"></span>
 	    </div>
@@ -79,13 +79,13 @@ ul.list i,ul.list small{
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#rdoship_0").change(function(){
+		$("#ship_home").change(function(){
 			var getCountryID = $(this).val();
 			
 			if(getCountryID !='')
 			{
 				$("#loader").show();
-				$(".cities-container").html("");
+				$(".address-container").html("");
 				
 				$.ajax({
 					type:'post',
@@ -93,7 +93,7 @@ ul.list i,ul.list small{
 					url: 'shipping_ajax_request.php',
 					success:function(returnData){
 						$("#loader").hide();	
-						$(".cities-container").html(returnData);
+						$(".address-container").html(returnData);
 					}
 				});	
 			}
@@ -103,13 +103,13 @@ ul.list i,ul.list small{
 </script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#rdoship_1").change(function(){
+		$("#ship_store").change(function(){
 			var getCountryID = $(this).val();
 			
 			if(getCountryID !='')
 			{
 				$("#loader").show();
-				$(".cities-container").html("");
+				$(".address-container").html("");
 				
 				$.ajax({
 					type:'post',
@@ -117,7 +117,7 @@ ul.list i,ul.list small{
 					url: 'store_ajax_request.php',
 					success:function(returnData){
 						$("#loader").hide();	
-						$(".cities-container").html(returnData);
+						$(".address-container").html(returnData);
 					}
 				});	
 			}
@@ -133,7 +133,7 @@ ul.list i,ul.list small{
                           <hr>
                          
                               <div class="col-md-12">
-                         <div class="cities-container">
+                         <div class="address-container">
                           
                         </div>
                         </div>

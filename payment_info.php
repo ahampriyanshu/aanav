@@ -1,25 +1,14 @@
 
 <?php
-  session_start();
-  require_once('essentials/config.php');
+ include('boilerplate.php'); 
   
-  
-
   $id = $_REQUEST['id'];
-  
   $sql = "SELECT * FROM shipping where shipping_id=$id";
   $run =mysqli_query($connect,$sql);
-  while($row = mysqli_fetch_assoc($run)){
-  $_SESSION['shipping'] = $row['shipping_id'];
-
+  while ($row = mysqli_fetch_assoc($run)) {
+      $_SESSION['shipping'] = $row['shipping_id'];
+  }
 ?>
-
-<?php } ?>
-<?php include('boilerplate.php'); ?>
-    <?php include('navbar.php'); ?> 
-   
-    <br><br>
-
 
 <style type="text/css">
 
@@ -76,8 +65,6 @@ ul.list i,ul.list small{
 </div>
 
 <hr>
-<script src="jquery.min.js" integrity "sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
 <script type="text/javascript">
   $(document).ready(function(){
     $("#customRadio2").change(function(){

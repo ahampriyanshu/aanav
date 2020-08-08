@@ -136,20 +136,16 @@
     </div>
 
     <div class="col-lg-9">
- <div class="product-show-option">
-                        <div class="row">
-                            <div class="col-lg-7 col-md-7  text-center">
+
+        <div class="row filter_data"></div>
+        <div class="row">
+        <div class="col-lg-12 col-md-10 col-xs-8 ">
                             <?php include('pagination.php'); ?>
-                            </div>
-                        </div>
-                    </div>
-        <div class="row filter_data">
-       
+                            </div>                         
     </div>
 
-    </div>
 </div>
-
+</div>
 </div>
 
 

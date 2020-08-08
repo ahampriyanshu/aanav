@@ -1,5 +1,34 @@
 <?php
 	require_once('essentials/config.php');
+	?>
+<style>
+	.center{
+		text-align:center;
+	}
+	.pagination {
+  display: inline-block;
+  	
+}
+
+.pagination a {
+  color: black;
+  font-family: bold;
+  float: left;
+  
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: #66fcf1;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+	</style>
+
+	<?php
 	$query = "select * from product";
 	$result = mysqli_query($connect, $query);
 
@@ -12,25 +41,20 @@
 	$page_url = $_SERVER['PHP_SELF'];
 	
 
-	echo "<ul class='pagination'>";
+	echo "<div class='center'><div class='pagination justify-content-center'>";
 
-    if ($page != 1) {
+    
         echo"
-	<li class='page-item'><a  class='page-link' href ='$page_url?page=1'>First</a></li>";
-	}
+	<a  href ='$page_url?page=1'>First</a>";
 	
-	?>
-	<?php for($i = 1; $i <= $total_pages; $i++ ): ?>
-		<li class="page-item <?php if($page == $i) {echo 'active'; } ?>">
-			<a class="page-link" href="<?php echo $page_url ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
-		</li>
+	for($i = 1; $i <= $total_pages; $i++ ): ?>
+
+			<a class="<?php if($page == $i) {echo 'active'; } ?>" href="<?php echo $page_url ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+	
 		<?php endfor; 
 		
-        if ($page != $total_pages) {
-            echo"<li class='page-item'><a href='$page_url?page=$total_pages' class='page-link'>Last</a></li>";
-        }
-
-	echo "</ul>";
-
+            echo"<a href='$page_url?page=$total_pages' >Last</a>";
+       
+	echo "</div></div>";
 
 	?>

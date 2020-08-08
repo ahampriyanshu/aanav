@@ -1,81 +1,91 @@
 <?php
-  session_start();
-  require_once('essentials/config.php');
   include('boilerplate.php');
-  ?>
+?>
 
 <style type="text/css">
 
-	
-b{
-	color: #5d6d7e;
-	
+#radios label {
+	cursor: pointer;
+	position: relative;
 }
 
-h3{
+#radios label + label {
+	margin-left: 50px;
+}
+
+input[type="radio"] {
+	opacity: 0;
+	position: absolute;
+}
+
+input[type="radio"] + span {
+	color: #888;
+	transition: all 0.4s;
+	-webkit-transition: all 0.4s;
+}
+
+input[type="radio"]:checked + span {
+  font-size:1.5em;
+  color: #888;
+}
+
+
+p {
+  font-family: Roboto, -apple-system, sans-serif;
+	font-weight: 700;
+  color: #888;
+  display: flex;
+  text-align: center;
+  align-items: center;
+	margin-bottom: 100px;
+}
+
+#radios {
+  align-items: center;
 	text-align: center;
-	color: #2e405e;
+	margin: 0 auto;
 }
-.ship{
-            width: 245px;
-            height: 273px;
-           /*background-color: #ebf5fb;*/
-           border-radius: 4px;
-           border : 1px solid #aed6f1; 
-         }
-ul.list{
-	list-style: none;
-	margin: 20px;
-	padding: 0;
+
+.radio_container{
+	display: flex;
+	align-items: center;
+	text-align: center;
 }
-ul.list li{
-	overflow: hidden;
-	border-bottom: 1px solid #ddd;
-	padding-bottom: 10px;
-	margin-bottom: 20px;
-}
-ul.list b{
-	display: block;
-	font-size: 12px;
-	margin-bottom: 5px;
-	color: #34495e;
-}
-ul.list i,ul.list small{
-	display: block;
-	
-}
- 
 
 </style>
 <br>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8">
-			<h1>DELIVERY METHOD</h1>
 
 	  <div class="row">
-	  <div class="col-xs-4">
-      <label>
-      <input type="radio" name="ship" value="home" id="rdoship_0" required/>
-      Home Delivery</label><br>
+	  <div class="col-xs-4 ">
 
-	  <label>
-	    <input type="radio" name="ship" value="store" id="rdoship_1" required/>
-	   Store Pick Up</label>
-	    <span class="fa fa-shipping-fast"></span>
+    <div class="radio_container">
+    <p>Choose Delievery Method</p>
+	<div id="radios">
+		<label for="ship_home" >
+			<input type="radio" name="ship" id="ship_home" value="home" required/>
+			<span><i class="fas fa-2x fa-truck"></i></span>
+		</label>								
+		<label for="ship_store" >
+			<input type="radio" name="ship" id="ship_store" value="store" required/>
+			<span><i class="fas fa-2x fa-store"></i></span>
+		</label>
+  </div>
+</div>
+
 	    </div>
 	    
-		<script src="jquery.min.js" integrity "sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#rdoship_0").change(function(){
+		$("#ship_home").change(function(){
 			var getCountryID = $(this).val();
 			
 			if(getCountryID !='')
 			{
 				$("#loader").show();
-				$(".cities-container").html("");
+				$(".address-container").html("");
 				
 				$.ajax({
 					type:'post',
@@ -83,7 +93,7 @@ ul.list i,ul.list small{
 					url: 'shipping_ajax_request.php',
 					success:function(returnData){
 						$("#loader").hide();	
-						$(".cities-container").html(returnData);
+						$(".address-container").html(returnData);
 					}
 				});	
 			}
@@ -93,13 +103,13 @@ ul.list i,ul.list small{
 </script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#rdoship_1").change(function(){
+		$("#ship_store").change(function(){
 			var getCountryID = $(this).val();
 			
 			if(getCountryID !='')
 			{
 				$("#loader").show();
-				$(".cities-container").html("");
+				$(".address-container").html("");
 				
 				$.ajax({
 					type:'post',
@@ -107,7 +117,7 @@ ul.list i,ul.list small{
 					url: 'store_ajax_request.php',
 					success:function(returnData){
 						$("#loader").hide();	
-						$(".cities-container").html(returnData);
+						$(".address-container").html(returnData);
 					}
 				});	
 			}
@@ -119,8 +129,7 @@ ul.list i,ul.list small{
                           <hr>
                          
                               <div class="col-md-12">
-                         <div class="cities-container">
-                          
+                         <div class="address-container">
                         </div>
                         </div>
                         

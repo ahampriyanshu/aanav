@@ -96,20 +96,32 @@
     });
 </script>
 
-<div id="work" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
+<div class="carousel-inner">
     <div class="carousel-item active">
-    <img class="d-block w-100" src="img/cover/work.png" alt="Second slide">
-      
-      <div class="carousel-caption d-none d-md-block">
-    <h1 style="font-weight: 600; margin-bottom: 120px; margin-right: 515px; font-size: 38px;">SELL WITH US
-      <p style="font-size: 14px;">Grow Your Business Online</p>
-      <a href="home.php"  style="clear:both; background: #fff; border: none; color: #000; font-size: 1em; padding: 10px; cursor: pointer; font-size: 17px;" >KNOW MORE <span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a>
+    <img class="float-lg-right" src="img/work.png" alt="work" >
+    <div  class="d-none d-md-block">
+    <div style="top: 30%;" class="carousel-caption">
+    <div class="float-lg-left">
+    <h1 style=" font-size: 30px; font-weight: 700; color: #888;">
+   Grow Your Business<br>Online
+<p style="font-size: 14px; color: #888;">Experience Exponential Increase</p>
+ <a href="work.php"  style="clear:both; background: #888; border: none; color: #fff; padding: 
+ 10px; cursor: pointer; font-size: 17px;" >Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a>
     </h1>
+    </div>
+    </div>
+    </div>
+
+    <div class="d-block d-md-none">
+    <div style="bottom: 15%;" class="carousel-caption">
+    <div class="float-lg-left">
+ <a href="work.php"  style="bottom: 15%; clear:both; background: #888; border: none; color: #fff; padding: 
+ 10px; cursor: pointer; font-size: 17px;" >Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a>
+    </div>
+    </div>
   </div>
     </div>
   </div>
-</div>
 
 <?php include('latest.php'); ?>
 <?php include('trending.php'); ?>

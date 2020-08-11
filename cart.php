@@ -62,7 +62,9 @@ echo'<tr>
               
                                                       </td>
 
-                                                      <td class="p-price">&#x20B9;&nbsp;'.$obj->cost .'</td>
+                                                      <td class="total-price first-row">&#x20B9;&nbsp;'.$obj->cost.'
+                                                      <strong style="text-decoration: line-through; color:grey; font-size:.8em;">
+                                                       &#x20B9;&nbsp;'.$obj->MRP.'</strong></td>
                                                       
                                                       <td class="qua-col">
                                                       <div class="quantity">
@@ -81,7 +83,8 @@ echo'<tr>
 
                                                       echo'<td class="total-price first-row">&#x20B9;&nbsp;'.$selling_price.'
                                                       <strong style="text-decoration: line-through; color:grey; font-size:.8em;"> &#x20B9;&nbsp;'.$selling_MRP.'</strong></td>
-                                                      <td class="close-td first-row"><a href="update-cart.php?action=del&id='.$product_id.'"<i class="ti-close"></i></a></td>';
+
+                                                      <td class="close-td first-row"><a style="color:grey" href="update-cart.php?action=del&id='.$product_id.'"<i class="far fa-trash-alt"></i></a></td>';
                      }
                   }
               }
@@ -101,7 +104,13 @@ echo'<tr>
                                 <a href="home.php" class="primary-btn continue-shop">Continue shopping</a>
                                 <a href="delete-cart.php" class="primary-btn up-cart">Empty cart</a>
                             </div>
-             
+                            <div class="discount-coupon">
+                                <h6>Discount Coupon</h6>
+                                <form action="#" class="coupon-form">
+                                    <input type="text" placeholder="Enter your codes">
+                                    <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                </form>
+                            </div>
                         </div>
 
                         <?php
@@ -118,8 +127,8 @@ echo'<tr>
                   while ($obj = mysqli_fetch_object($run)) {
 
                       $price = $obj->cost * $quantity; 
+                      $MRP = $obj->MRP * $quantity; 
                       $saving = ($obj->MRP - $obj->cost) * $quantity;
-                      $savings = $savings + $saving;
                       $total = $total + $price; 
                       $itemqty = $itemqty+$quantity;
                   }
@@ -130,7 +139,8 @@ echo'<tr>
                             <div class="proceed-checkout">
                                 <ul>
                                 <li class="subtotal">Quantity <span>'.$itemqty.'</span></li>
-                                    <li class="subtotal">Savings <span>&#x20B9;&nbsp;'.$savings.'</span></li>
+                                <li class="subtotal">Cost<span>&#x20B9;&nbsp;'.$MRP.'</span></li>
+                                    <li class="subtotal">Savings <span>&#x20B9;&nbsp;'.$saving.'</span></li>
                                     <li class="cart-total">Total <span>&#x20B9;&nbsp;'.$total.'</span></li>
                                 </ul>
                                 <a href="checkout.php" class="proceed-btn">CHECK OUT</a>

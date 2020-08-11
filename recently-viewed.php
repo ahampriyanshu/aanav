@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL); 
+ 
     $result = mysqli_query($connect, "SELECT DISTINCT(product_id) FROM search WHERE customer_id = '$customer_id' ORDER BY product_id DESC LIMIT 0,12");
 ?>
 

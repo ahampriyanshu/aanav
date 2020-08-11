@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+
 require_once('essentials/config.php');
 
 if(isset($_REQUEST["term"])){

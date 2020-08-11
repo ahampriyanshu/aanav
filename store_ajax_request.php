@@ -6,7 +6,7 @@
 	{ ?>
 		 <h3>Contact Information</h3>
 	    				<div class="panel-body">
-                        <form method="post" action="shipping_to_store.php" enctype="multipart/form-data">
+                        <form method="post" action="shipping_store.php" enctype="multipart/form-data">
 
                             <label for="lastName">Full Name</label>
                         <input type="text" name="name" class="form-control" id="lastName" placeholder="" value="" required>
@@ -34,7 +34,10 @@
               <div class="col-md-6 mb-3">
                 <label for="state">Store</label>
                 <select name="store_id" class="custom-select d-block w-100" id="state" required>
-                  <option value="">Choose...</option>
+                  <option value="">Manish, Ghaziabad, UP</option>
+                  <option value="">Suresh, Dwarka, Delhi</option>
+                  <option value="">Mahesh, haridwar, UP</option>
+                  <option value="">Mukesh, Leh, Ladakh</option>
                     
                                                <?php
 
@@ -66,8 +69,7 @@
                         
 
                         </form>
-                        </div> <!-- panel-body -->
-		
+                        </div> 
 <?php	}
 
 ?>

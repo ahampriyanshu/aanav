@@ -27,10 +27,9 @@ if(isset($submit))
   $pass = $_POST['pass'];
   $name  = $_POST['name'];
   $phone = $_POST['phone'];
-  $now = date('d/m/Y h:i:s', time());
 
   $sql = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-  ('$name','$email','$pass','$phone','$now')";
+  ('$name', '$email', '$pass', '$phone', 'now()' ";
 
   $check = "SELECT * FROM customer WHERE `email` = '$email'";
   $result = mysqli_query($connect,$check);
@@ -41,7 +40,7 @@ if(isset($submit))
   }
   else {
   $create = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-  ('$name','$email','$pass','$phone','$now')";
+   '$name', '$email', '$pass', '$phone', 'now()' ";
   mysqli_query($connect,$create);
   echo "<script>
   alert('New User Created');

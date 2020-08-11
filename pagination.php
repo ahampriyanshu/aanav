@@ -1,13 +1,14 @@
 <?php
 	require_once('essentials/config.php');
-	?>
+?>
+
 <style>
 	.center{
 		text-align:center;
 	}
 	.pagination {
   display: inline-block;
-  	
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .pagination a {
@@ -25,8 +26,11 @@
   color: white;
 }
 
-.pagination a:hover:not(.active) {background-color: #ddd;}
-	</style>
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+	}
+
+</style>
 
 	<?php
 	$query = "select * from product";

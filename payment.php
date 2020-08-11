@@ -1,12 +1,5 @@
 <?php
  include('boilerplate.php'); 
-  error_reporting(E_ALL);
-  $id = $_REQUEST['id'];
-  $sql = "SELECT * FROM shipping where shipping_id=$id";
-  $run =mysqli_query($connect,$sql);
-  while ($row = mysqli_fetch_assoc($run)) {
-      $_SESSION['shipping'] = $row['shipping_id'];
-  }
 ?>
 
 <style type="text/css">
@@ -102,7 +95,7 @@
     
       <div class="form-check">
       <label>
-    <input type="radio" class="option-input radio" id="customRadio2" name="customRadio2"/>
+    <input type="radio" class="option-input radio" id="COD_radio" name="COD_radio"/>
     Radio option
   </label>
 
@@ -113,7 +106,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#customRadio2").change(function(){
+    $("#COD_radio").change(function(){
       var shippingValidation = $(this).val();
       
       if(shippingValidation !='')
@@ -184,7 +177,7 @@
   color: #34495e;
 }
 
-      </style>
+ </style>
     <div class="col-md-4">
       <div class="order-sum">
         <div class="container">

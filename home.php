@@ -1,7 +1,7 @@
 <?php
    include('boilerplate.php');
-   error_reporting(E_ALL);
-   $per_page = 2;
+   
+   $per_page = 12;
 
    if (isset($_GET['page'])) {
        $page = $_GET['page'];

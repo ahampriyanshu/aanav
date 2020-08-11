@@ -303,11 +303,6 @@ p {
 	</div>
 </div>
 
-<br><br><br>
-<?php include('footer.php'); ?>
-
-<script src='jquery-3.3.1.js' type='text/javascript'></script>
-<script src='bootbox.min.js'></script>
 <script src='shipping_del_script.js' type='text/javascript'></script>
 
 <?php include('footer.php'); ?></body>

@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL); 
+ 
     $result = mysqli_query($connect, "SELECT * FROM product ORDER BY id DESC LIMIT 0,12");
 ?>
 

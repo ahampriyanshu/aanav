@@ -16,10 +16,10 @@
 		$street = $_POST['street'];
 		$state = $_POST['state'];
 		$city = $_POST['city'];
-		$zip = $_POST['zip'];
+		$pincode = $_POST['pincode'];
 		$phone = $_POST['phone'];
 
-		 $sql = "UPDATE shipping SET full_name='$name',street_address='$street',state='$state',city='$city',zipcode='$zip',phone='$phone',modified_date=now() 
+		 $sql = "UPDATE shipping SET full_name='$name',street_address='$street',state='$state',city='$city',pincode='$pincode',phone='$phone',modified_date=now() 
           WHERE shipping_id = $id ";
 
 
@@ -61,8 +61,8 @@
                         <label>City : </label>
                         <input type="text" name="city"  class="form-control" value="<?php echo $row['city'] ?>"/>
 
-                        <label>Zip Code : </label>
-                        <input type="text" name="zip"  class="form-control" value="<?php echo $row['zipcode'] ?>"/>
+                        <label>Pincode Code : </label>
+                        <input type="text" name="pincode"  class="form-control" value="<?php echo $row['pincode'] ?>"/>
 
                         <label>Phone Number : </label>
                         <input type="text" name="phone"  class="form-control" 

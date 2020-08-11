@@ -1,6 +1,6 @@
 <?php
 require_once('essentials/config.php');
-error_reporting(E_ALL);
+
 
 if (isset($_POST["action"])) {
     $query = "

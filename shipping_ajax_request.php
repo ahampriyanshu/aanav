@@ -1,9 +1,9 @@
 <?php 
 require_once('essentials/config.php');
-error_reporting(E_ALL);  
+  
 if(isset($_POST['shipping_validation']) && $_POST['shipping_validation'] !='')
 	{ ?>
-                <form  method="post" action="shipping_to_home.php" enctype="multipart/form-data" class="checkout-form">
+                <form  method="post" action="shipping_home.php" enctype="multipart/form-data" class="checkout-form">
                 <div class="row">
                     <div class="col-lg-12">
                         <h4>Enter Shipping Address</h4>
@@ -22,8 +22,8 @@ if(isset($_POST['shipping_validation']) && $_POST['shipping_validation'] !='')
                                 <input name="city" type="text" id="town" required>
                             </div>
                             <div class="col-lg-6">
-                                <label for="zip">ZIP Code</label>
-                                <input name="zip" pattern="[0-9]{6}" type="text" id="zip" required>
+                                <label for="pincode">PINCODE</label>
+                                <input name="pincode" pattern="[0-9]{6}" type="text" id="pincode" required>
                             </div>
                             
                             <div class="col-lg-6">

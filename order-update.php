@@ -3,7 +3,7 @@ session_start();
 require_once('essentials/config.php');
 date_default_timezone_set('Asia/Kolkata');
 
-  $user = $_SESSION['email'];  
+  $customer = $_SESSION['email'];  
   $shipping = $_SESSION['shipping'];
 
 
@@ -13,9 +13,10 @@ if(isset($_SESSION['cart'])) {
   $itemqty = 0;
 
   $query = $connect->query("INSERT INTO orders(customer,shipping_id,status,total_amt,total_qty,payment_type,created_date,modified_date) 
-                           VALUES('$user','$shipping',2,0,0,'COD',NOW(),NOW())");
+                           VALUES('$customer','$shipping',1,0,0,'COD',NOW(),NOW())");
 
   $order_id = mysqli_insert_id($connect);
+  echo $order_id;
 
   foreach($_SESSION['cart'] as $product_id => $quantity) {
 
@@ -25,19 +26,12 @@ if(isset($_SESSION['cart'])) {
 
       if($obj = $result->fetch_object()) {
 
-
-        
-        $cost = $obj->price * $quantity; //work out the line cost
-        $total = $total + $cost; //add to the total cost
+        $cost = $obj->cost * $quantity;
+        $total = $total + $cost;
         $itemqty = $itemqty+$quantity; 
 
-        // $user = $_SESSION["username"];
-
-        
-
-        $query2 = $connect->query("INSERT INTO order_items (order_id,product_id, name, price, units, total, customer) 
-                                 VALUES('$order_id','$obj->id', '$obj->name', $obj->price, $quantity, $cost, '$user')");
-
+        $query2 = $connect->query("INSERT INTO order_items (order_id,product_id, product_name, price, units, total, customer) 
+                                 VALUES('$order_id','$obj->id', '$obj->name', $obj->cost, $quantity, $cost, '$customer')");
 
 
         if($query2){

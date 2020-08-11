@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="img/section/men.png" alt="">
+                        <img src="img/section/men.png"  height='300' alt="">
                         <div class="inner-text">
                             <h4>Men’s</h4>
                         </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="img/section/women.png" alt="">
+                        <img src="img/section/women.png"  height='300' alt="">
                         <div class="inner-text">
                             <h4>Women’s</h4>
                         </div>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="single-banner">
-                        <img src="img/section/kid.png" alt="">
+                        <img src="img/section/kid.png" height='300' alt="">
                         <div class="inner-text">
                             <h4>Kid’s</h4>
                         </div>

@@ -12,7 +12,7 @@ if(isset($_SESSION['cart'])) {
   $total = 0;
   $itemqty = 0;
 
-  $query = $connect->query("INSERT INTO orders(customer,shipping_id,status,total_amt,total_qty,payment_type,created_date,modified_date) 
+  $query = $connect->query("INSERT INTO orders(customer,full_name, store_id, phone, shipping_type, street_address, state, city, pincode,status,total_amt,total_qty,payment_type,created_date,modified_date) 
                            VALUES('$customer','$shipping',1,0,0,'COD',NOW(),NOW())");
 
   $order_id = mysqli_insert_id($connect);

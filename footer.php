@@ -1,8 +1,7 @@
-<link rel="stylesheet" type="text/css" href="css/navbar.css">
-
 <footer class="footer">
 
     <div class="container">
+
         <ul class="foote_bottom_ul_amrc">
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>

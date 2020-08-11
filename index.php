@@ -53,9 +53,7 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
 
-    <!-- Banner Section Begin -->
     <div class="banner-section carousel-info">
         <div class="container-fluid">
             <div class="row">
@@ -86,7 +84,6 @@
             </div>
         </div>
     </div>
-    <!-- Banner Section End -->
 
     <script type="text/javascript">
     $(function(){
@@ -102,11 +99,10 @@
     <div  class="d-none d-md-block">
     <div style="top: 30%;" class="carousel-caption">
     <div class="float-lg-left">
-    <h1 style=" font-size: 30px; font-weight: 700; color: #888;">
+    <h1 style=" font-size: 35px; font-weight: 700; color: #2C44A1;">
    Grow Your Business<br>Online
-<p style="font-size: 14px; color: #888;">Experience Exponential Increase</p>
- <a href="work.php"  style="clear:both; background: #888; border: none; color: #fff; padding: 
- 10px; cursor: pointer; font-size: 17px;" >Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a>
+<p style="font-size: 14px; color: #2C44A1;">Experience Exponential Increase</p>
+<p><a href="work.php" class="btn btn-sm btn-success">Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a></p>   
     </h1>
     </div>
     </div>
@@ -115,9 +111,8 @@
     <div class="d-block d-md-none">
     <div style="bottom: 15%;" class="carousel-caption">
     <div class="float-lg-left">
- <a href="work.php"  style="bottom: 15%; clear:both; background: #888; border: none; color: #fff; padding: 
- 10px; cursor: pointer; font-size: 17px;" >Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a>
-    </div>
+    <p><a href="work.php" class="btn btn-sm btn-success">Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a></p>
+</div>
     </div>
   </div>
     </div>

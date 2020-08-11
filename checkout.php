@@ -173,7 +173,6 @@ p {
                     <br>
                     <a href="payment.php?id=<?php echo $row['shipping_id'] ?>" class="btn btn-warning"
                         style="margin: 0px 0px">Deliver to this address</a><br>
-
                     <tr>
                         <td> <a href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" class="btn btn-default"
                                 style="margin-top: 4px; margin-left: 35px">Edit</a></td>

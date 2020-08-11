@@ -1,4 +1,8 @@
 <?php
+
+?>
+
+<?php
   require_once('essentials/config.php');
   include('essentials/function.php');
 ?>
@@ -33,7 +37,7 @@ if(isset($submit))
     date_default_timezone_set('Asia/Kolkata');
     $_SESSION['email'] = $email;
     $update = mysqli_query($connect, "UPDATE `customer` SET `last_login` = NOW() WHERE `email` = '$email' ");
-    header('location:index.php');
+    header('location: index.php');
   }
 }
 ?>
@@ -46,7 +50,7 @@ if(isset($submit))
           </div>
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Welcome Back</h1>
-            <form name="signupform" method="post" onSubmit="return check();">
+            <form name="signupform" method="post" >
               <div class="form-group">
               <label for="password">Email</label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter registered Email" required/>
@@ -68,7 +72,7 @@ if(isset($submit))
         </div>
         
         <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="img/work.png" alt="login image" class="login-img">
+          <img src="img/about.png" alt="login image" class="login-img">
         </div>
 
       </div>

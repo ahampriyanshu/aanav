@@ -91,18 +91,12 @@ echo'<tr>
               echo'   </tr>
               </tbody>
           </table>
-      </div>';
-            } else {
-              echo "<div class='alert alert-info'><span class='fa fa-exclamation'> You have no items in your shopping cart.</span></div>";
-          }  
-              ?>
-
-              
-                    <div class="row">
+      </div>
+      <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <a href="home.php" class="primary-btn continue-shop">Continue shopping</a>
-                                <a href="delete-cart.php" class="primary-btn up-cart">Empty cart</a>
+                                <a href="home.php" class="btn btn-sm btn-outline-success">Continue shopping</a>
+                                <a href="delete-cart.php" class="btn btn-sm btn-outline-danger">Empty cart</a>
                             </div>
                             <div class="discount-coupon">
                                 <h6>Discount Coupon</h6>
@@ -112,6 +106,21 @@ echo'<tr>
                                 </form>
                             </div>
                         </div>
+';
+            } else {
+              echo '
+              <div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <span class="icon-exclamation-circle display-2 text-danger"></span>
+      <h2 class="display-3 text-black">Empty Cart</h2>
+      <p class="lead mb-5">Your cart is Empty</p>
+      <p><a href="index.php" class="btn btn-sm btn-success">Veiw Your Wishlist</a></p>
+      <p><a href="invoice.php" class="btn btn-sm btn-info">Home</a></p>
+    </div>
+  </div>
+</div>';     }  
+              ?>
 
                         <?php
       if (isset($_SESSION['cart'])) {

@@ -214,162 +214,163 @@ $cat_name = $row2['cat_name'];
 
                   while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="sc-item">
- <input type="radio" name="size" value=\'' . $row["value"] . '\' id="' . $row["value"] . '">
+ <input type="radio" name="size" value=\'' . $row["value"] . '\' id="' . $row["value"] . '" required>
  <label for="' . $row["value"] . '">' . $row['value'] . '</label>
 </div>';
                   }  ?>
-                  </div>
-                  <?php
-                  $s = "SELECT * FROM product WHERE id = '$id'";
-                  $r = mysqli_query($connect, $s);
-                  $row_r = mysqli_fetch_assoc($r);
-                  $product_id = $row_r['id'];
-                  $customer = $_SESSION['email'];
+                </div>
+                <?php
+                $s = "SELECT * FROM product WHERE id = '$id'";
+                $r = mysqli_query($connect, $s);
+                $row_r = mysqli_fetch_assoc($r);
+                $product_id = $row_r['id'];
+                $customer = $_SESSION['email'];
 
+                $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
+                $run_fav = mysqli_query($connect, $sql_fav);
+                $row_fav = mysqli_fetch_assoc($run_fav);
+                $fav = $row_fav['fav_id'];
+                ?>
 
-
-                  $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
-                  $run_fav = mysqli_query($connect, $sql_fav);
-                  $row_fav = mysqli_fetch_assoc($run_fav);
-                  $fav = $row_fav['fav_id'];
-                  ?>
-
-                  <p> <?php if ($product['qty'] == 0) {
-                        echo "<span class='badge badge-danger'>Sold Out</span>";
+                <p> <?php if ($product['qty'] == 0) {
+                      echo "<span class='badge badge-danger'>Sold Out</span>";
+                    } else {
+                      if ($product['qty'] < 10) {
+                        echo "<span class='badge badge-info'>Few Left</span>";
                       } else {
-                        if ($product['qty'] < 10) {
-                          echo "<span class='badge badge-info'>Few Left</span>";
-                        } else {
-                          echo "<span class='badge badge-success'>In Stock</span>";
-                        }
+                        echo "<span class='badge badge-success'>In Stock</span>";
                       }
-
-                      ?> <br><br>
-                    <?php if ($fav == null) { ?>
-                      <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=add&id=<?php echo $product_id ?>"><i class="far fa-2x fa-heart" style="color:red"></i></a>
-                    <?php } else { ?>
-                      <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>"><i class="fas fa-2x fa-heart" style="color:red"></i></a>
-                    <?php } ?>
-
-                    &emsp;
-                    <a rel="noopener noreferrer" href="https://web.whatsapp.com/send?text=urlencodedtext" target="_blank">
-                      <i style="color:green;" class="fab fa-2x fa-whatsapp"></i>
-                    </a>
-                    &emsp;
-
-                    <?php
-                    $title = urlencode("REal");
-                    $url = urlencode("https://www.daddydesign.com/how-to-create-a-custom-facebook-share-button-with-a-custom-counter/");
-                    $summary = urlencode("Learn how to create a custom Facebook 'Share' button, complete with a custom counter, for your website!");
-                    $image = urlencode("https://www.daddydesign.com/ClientsTemp/Tutorials/custom-iframe-share-button/images/thumbnail.jpg");
+                    }
                     ?>
-                    <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title; ?>&amp;p[summary]=<?php echo $summary; ?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $image; ?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">
+                  <br><br>
 
-                      <i style="color:blue;" class="fab fa-2x fa-facebook"></i>
-                    </a>
-                    <div id="fbcount">
-                      <?php echo $fbcount; ?>
-                    </div>
-                  </p>
+                  <?php if ($fav == null) { ?>
+                    <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=add&id=<?php echo $product_id ?>"><i class="far fa-2x fa-heart" style="color:red"></i></a>
+                  <?php } else { ?>
+                    <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>"><i class="fas fa-2x fa-heart" style="color:red"></i></a>
+                  <?php } ?>
 
+                  &emsp;
+
+                  <a rel="noopener noreferrer" href="https://web.whatsapp.com/send?text=urlencodedtext" target="_blank">
+                    <i style="color: green;" class="fab fa-2x fa-whatsapp"></i>
+                  </a>
+
+                  &emsp;
 
                   <?php
-                  $sql = "SELECT DISTINCT a.*,p.color,p.product_id FROM variant p
+                  $title = urlencode("REal");
+                  $url = urlencode("https://www.daddydesign.com/how-to-create-a-custom-facebook-share-button-with-a-custom-counter/");
+                  $summary = urlencode("Learn how to create a custom Facebook 'Share' button, complete with a custom counter, for your website!");
+                  $image = urlencode("https://www.daddydesign.com/ClientsTemp/Tutorials/custom-iframe-share-button/images/thumbnail.jpg");
+                  ?>
+                  <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title; ?>&amp;p[summary]=<?php echo $summary; ?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $image; ?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">
+
+                    <i style="color: blue;" class="fab fa-2x fa-facebook"></i>
+                  </a>
+                  <div id="fbcount">
+                    <?php echo $fbcount; ?>
+                  </div>
+                </p>
+
+
+                <?php
+                $sql = "SELECT DISTINCT a.*,p.color,p.product_id FROM variant p
                      LEFT JOIN attribute a
                      ON p.size = a.attr_id
                      WHERE p.product_id = '$id'";
 
-                  $result = mysqli_query($connect, $sql);
+                $result = mysqli_query($connect, $sql);
 
-                  while ($row = mysqli_fetch_assoc($result)) ?>
+                while ($row = mysqli_fetch_assoc($result)) ?>
 
 
-                  <?php if ($qty > 0) { ?>
+                <?php if ($qty > 0) { ?>
 
-                    <input type="submit" name="submit" value="Add To Cart" style="clear:both;  border: none;" class="primary-btn pd-cart">
-                    </form>
+                  <input type="submit" name="submit" value="Add To Cart" style="clear:both;  border: none;" class="primary-btn pd-cart">
+                  </form>
 
-                  <?php } else { ?>
-                    </form>
+                <?php } else { ?>
+                  </form>
 
-                    <?php
+                  <?php
 
-                    $id = $_GET['id'];
-                    $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
-                    $row = mysqli_fetch_assoc($result);
+                  $id = $_GET['id'];
+                  $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
+                  $row = mysqli_fetch_assoc($result);
 
-                    ?>
-                    <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $row['id']; ?>" id="getUser" style="clear:both; background: #48c9b0; 
+                  ?>
+                  <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $row['id']; ?>" id="getUser" style="clear:both; background: #48c9b0; 
   border: none; color: #fff; font-size: 14px; padding: 10px;cursor: pointer;">Notify me</button>
-                  <?php } ?>
+                <?php } ?>
 
-                  <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
+                <div id="view-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
 
-                        <div class="modal-header">
-                          <h4 class="modal-title">
+                      <div class="modal-header">
+                        <h4 class="modal-title">
 
-                          </h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
-                        </div>
-                        <div class="modal-body">
-
-                          <div id="modal-loader" style="display: none; text-align: center;">
-                            <img src="ajax-loader.gif">
-                          </div>
-
-                          <div id="dynamic-content">
-
-                          </div>
-
-                        </div>
-
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
                       </div>
+                      <div class="modal-body">
+
+                        <div id="modal-loader" style="display: none; text-align: center;">
+                          <img src="ajax-loader.gif">
+                        </div>
+
+                        <div id="dynamic-content">
+
+                        </div>
+
+                      </div>
+
+
                     </div>
                   </div>
+                </div>
 
 
-                  <script>
-                    $(document).ready(function() {
+                <script>
+                  $(document).ready(function() {
 
-                      $(document).on('click', '#getUser', function(e) {
+                    $(document).on('click', '#getUser', function(e) {
 
-                        e.preventDefault();
+                      e.preventDefault();
 
-                        var uid = $(this).data('id');
+                      var uid = $(this).data('id');
 
-                        $('#dynamic-content').html('');
-                        $('#modal-loader').show();
-                        $.ajax({
-                            url: 'notify.php',
-                            type: 'POST',
-                            data: 'id=' + uid,
-                            dataType: 'html'
-                          })
-                          .done(function(data) {
-                            console.log(data);
-                            $('#dynamic-content').html('');
-                            $('#dynamic-content').html(data);
-                            $('#modal-loader').hide();
-                          })
-                          .fail(function() {
-                            $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
-                            $('#modal-loader').hide();
-                          });
-
-                      });
+                      $('#dynamic-content').html('');
+                      $('#modal-loader').show();
+                      $.ajax({
+                          url: 'notify.php',
+                          type: 'POST',
+                          data: 'id=' + uid,
+                          dataType: 'html'
+                        })
+                        .done(function(data) {
+                          console.log(data);
+                          $('#dynamic-content').html('');
+                          $('#dynamic-content').html(data);
+                          $('#modal-loader').hide();
+                        })
+                        .fail(function() {
+                          $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+                          $('#modal-loader').hide();
+                        });
 
                     });
-                  </script>
-                </div>
+
+                  });
+                </script>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
 
   <?php include('similar.php'); ?>

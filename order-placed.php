@@ -1,35 +1,20 @@
 <?php include('boilerplate.php'); ?>
-        <div class="container">
-  <div class="row">
-    <div class="col-md-6 col-sm-6 col-xs-6">
-      <br><br>
-      <div class="alert alert-success"><span class="fa fa-check"></span> Order was successfully! <a href="dashboard.php" class="alert-link">
-        Click Here to check your order detail.
-      </a> Products will deliver after receiving the cash.</div>
-    </div><!--  col-md-6 end -->
-    <div class="col-md-6 col-sm-6 col-xs-6"></div><!--  col-md-6 end -->
-  </div> <!-- row end -->
-</div><!--  container end -->
+        
+
+<div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <span class="icon-check_circle display-3 text-success"></span>
+            <h2 class="display-3 text-black">Thank you!</h2>
+            <p class="lead mb-5">You order was successfuly placed.</p>
+            <p><a href="index.php" class="btn btn-sm btn-primary">Back to shop</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 <?php include('footer.php'); ?>
-  
-
-
-
-
-
-
-
-
-
-
-<script src='jquery-3.3.1.js' type='text/javascript'></script>
-<script src='bootbox.min.js'></script>
-<script src='shipping_del_script.js' type='text/javascript'></script>
-
-<?php include('footer.php'); ?></body>
-</html>
-  
    
 
 

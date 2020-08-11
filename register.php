@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login Template</title>
+  <title>Register</title>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -29,7 +29,7 @@ if(isset($submit))
   $phone = $_POST['phone'];
 
   $sql = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-  ('$name', '$email', '$pass', '$phone', 'now()' ";
+  ('$name', '$email', '$pass', '$phone', now() ";
 
   $check = "SELECT * FROM customer WHERE `email` = '$email'";
   $result = mysqli_query($connect,$check);
@@ -40,7 +40,7 @@ if(isset($submit))
   }
   else {
   $create = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-   '$name', '$email', '$pass', '$phone', 'now()' ";
+   '$name', '$email', '$pass', '$phone', now() ";
   mysqli_query($connect,$create);
   echo "<script>
   alert('New User Created');

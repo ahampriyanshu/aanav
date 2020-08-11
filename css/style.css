@@ -1869,10 +1869,6 @@ ol {
   margin-left: 13px;
 }
 
-.product-details .pd-color {
-  margin-bottom: 25px;
-}
-
 .product-details .pd-color h6 {
   color: #252525;
   font-weight: 700;
@@ -1912,7 +1908,7 @@ ol {
 }
 
 .product-details .pd-size-choose {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .product-details .pd-size-choose .sc-item {

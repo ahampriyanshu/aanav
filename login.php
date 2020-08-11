@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login Template</title>
+  <title>Login</title>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -31,9 +31,8 @@ if(isset($submit))
   {
     session_start();
     date_default_timezone_set('Asia/Kolkata');
-    $now = date('d/m/Y h:i:s', time());
     $_SESSION['email'] = $email;
-    $update = mysqli_query($connect, "UPDATE `customer` SET `last_login` = '$now' WHERE `email` = '$email' ");
+    $update = mysqli_query($connect, "UPDATE `customer` SET `last_login` = NOW() WHERE `email` = '$email' ");
     header('location:index.php');
   }
 }
@@ -67,9 +66,11 @@ if(isset($submit))
             <p class="login-wrapper-footer-text">New User&emsp;<a href="register.php" class="text-reset">Join Us</a></p>
           </div>
         </div>
+        
         <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="img/login.png" alt="login image" class="login-img">
+          <img src="img/work.png" alt="login image" class="login-img">
         </div>
+
       </div>
     </div>
   </main>

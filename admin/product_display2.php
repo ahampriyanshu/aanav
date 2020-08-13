@@ -218,6 +218,4 @@
         <script src='bootbox.min.js'></script>
         <script src='product-script.js' type='text/javascript'></script>
   
-<?php include('footer2.php'); ?>
-
 

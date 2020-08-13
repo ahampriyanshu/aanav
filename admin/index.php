@@ -1,12 +1,10 @@
 <?php
   session_start();
   include('../essentials/config.php');
-  include('../essentials/function.php');
   include('sidebar.php');
   
 if(!isset($_SESSION['admin'])){
-echo "not admin";
-header('location:login.php');}
+header('location: logout.php');}
 ?>
 <!DOCTYPE html>
 <html lang="en">

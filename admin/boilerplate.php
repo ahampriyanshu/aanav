@@ -17,7 +17,7 @@
     <link href="css/font-awesome.css" rel="stylesheet" />
     <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/button.css">
-    <title>Capital-A</title>
+    <title>Admin Panel</title>
     
     <script src="js/jquery.js" type="text/javascript" /></script>
     <script src="js/jquery.min.js" type="text/javascript" /></script>

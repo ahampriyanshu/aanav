@@ -1,8 +1,6 @@
 <?php
   require_once('essentials/config.php');
-  include('essentials/function.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +86,7 @@ if(isset($submit))
           </div>
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="img/login.png" alt="login image" class="login-img">
+          <img src="img/work.png" alt="login image" class="login-img">
         </div>
       </div>
     </div>

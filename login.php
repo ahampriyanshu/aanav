@@ -72,7 +72,7 @@ if(isset($submit))
         </div>
         
         <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="img/about.png" alt="login image" class="login-img">
+          <img src="img/work.png" alt="login image" class="login-img">
         </div>
 
       </div>

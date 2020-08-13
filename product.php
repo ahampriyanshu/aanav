@@ -111,7 +111,7 @@ $cat_name = $row2['cat_name'];
                   <h3><?php echo $product['name'] ?></h3>
                 </div>
                 <div class="pd-desc">
-                  <p><?php echo $product['name'] ?></p>
+                  <p><?php echo $product['description'] ?></p>
                   <h4>&#x20B9;&nbsp; <?php echo $product['cost'] ?><span>
                       &#x20B9;&nbsp; <?php echo $product['MRP'] ?></span></h4>
                 </div>

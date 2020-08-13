@@ -133,11 +133,11 @@ sup {
   top: -.5em; }
 
 a {
-  color: #007bff;
+  color: #cecece;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #0056b3;
+    color:#5c5edc;
     text-decoration: underline; }
 
 a:not([href]):not([tabindex]) {
@@ -8144,7 +8144,7 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #3445b4; }
+  color: #000; }
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -8194,14 +8194,15 @@ h1, h2, h3, h4, h5,
 #sidebar {
   min-width: 270px;
   max-width: 270px;
-  background: #3445b4;
+  background: #2a2b30;
   color: #fff;
+  font-weight: 700;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
   position: relative; }
   #sidebar .h6 {
-    color: #fff; }
+    color: #5c5edc; }
   #sidebar.active {
     margin-left: -270px; }
   #sidebar h1 {
@@ -8209,10 +8210,10 @@ h1, h2, h3, h4, h5,
     font-weight: 700;
     font-size: 30px; }
     #sidebar h1 .logo {
-      color: #fff; }
+      color: #5c5edc; }
       #sidebar h1 .logo span {
         font-size: 14px;
-        color: #44bef1;
+        color: #cecece
         display: block; }
   #sidebar ul.components {
     padding: 0; }
@@ -8225,15 +8226,15 @@ h1, h2, h3, h4, h5,
     #sidebar ul li a {
       padding: 10px 0;
       display: block;
-      color: rgba(255, 255, 255, 0.6);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+      color: #cecece
+    }
       #sidebar ul li a span {
         color: #44bef1; }
       #sidebar ul li a:hover {
-        color: #fff; }
+        color: #5c5edc; }
     #sidebar ul li.active > a {
       background: transparent;
-      color: #fff; }
+      color: #5c5edc; }
   @media (max-width: 991.98px) {
     #sidebar {
       margin-left: -270px; }
@@ -8275,7 +8276,7 @@ h1, h2, h3, h4, h5,
           -webkit-transform: rotate(45deg);
           -ms-transform: rotate(45deg);
           transform: rotate(45deg);
-          background: #3445b4;
+          background: #2a2b30;
           border-radius: 10px; }
         #sidebar .custom-menu .btn.btn-primary:hover, #sidebar .custom-menu .btn.btn-primary:focus {
           background: transparent !important;
@@ -8306,11 +8307,11 @@ a[data-toggle="collapse"] {
   transition: all 0.3s; }
 
 .btn.btn-primary {
-  background: #3445b4;
-  border-color: #3445b4; }
+  background: #2a2b30;
+  border-color: #000; }
   .btn.btn-primary:hover, .btn.btn-primary:focus {
-    background: #3445b4 !important;
-    border-color: #3445b4 !important; }
+    background: #000 !important;
+    border-color: #000 !important; }
 
 .footer p {
   color: rgba(255, 255, 255, 0.5); }

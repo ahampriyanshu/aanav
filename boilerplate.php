@@ -10,7 +10,7 @@
     <meta name="keywords" content="Aanav, php, mysql, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
     <title>Aanav</title>
 
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">

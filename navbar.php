@@ -1,6 +1,6 @@
 <?php
    session_start();
-   error_reporting(0);
+   error_reporting(E_ALL);
    require_once('essentials/config.php');
    date_default_timezone_set('Asia/Kolkata');
 if($_SESSION['email']){
@@ -122,7 +122,7 @@ color: teal;
           if(isset($_SESSION['cart'])) {
 
             $total = 0;
-            foreach($_SESSION['cart'] as $product => $quantity)
+            foreach($_SESSION['cart'] as $variant => $quantity)
              {
                 $total = $total+$quantity;               
               }

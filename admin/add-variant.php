@@ -7,7 +7,7 @@
 
 
 // Report all errors
-error_reporting(0);
+error_reporting(E_ALL);
 
 
 if(!isset($_SESSION['admin'])){

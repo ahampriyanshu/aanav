@@ -26,4 +26,4 @@ header('location: logout.php');
 
     </head>
     <body>
-    <script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script>
+   

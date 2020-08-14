@@ -25,7 +25,11 @@
                                   </thead>
                                   <tbody>';
             
-              foreach ($_SESSION['cart'] as $product_id => $quantity) {
+              foreach ($_SESSION['cart'] as $variant_id => $quantity) {
+
+$find_pro_id = mysqli_query($connect,"SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
+$pro_data = mysqli_fetch_assoc($find_pro_id);
+$product_id = $pro_data['product_id'];
                
                   $result = "SELECT  name,code, qty, MRP, cost, file FROM product WHERE id = $product_id";
                   $run = mysqli_query($connect, $result);
@@ -38,8 +42,6 @@
                           $total = $total + $price; //add to the total price
                           $itemqty = $itemqty+$quantity;
 
-                          $color = $_SESSION['color'];
-                          $size = $_SESSION['size'];
 
                           $result_c = mysqli_query($connect, "SELECT * FROM attribute where attr_id='$color'");
                           $row_c = mysqli_fetch_assoc($result_c);
@@ -70,9 +72,9 @@ echo'<tr>
                                                       <div class="quantity">
                                                           <div class="pro-qty">
                                                              
-                                                      <a class="dec qtybtn" href="update-cart.php?action=remove&id='.$product_id.'">-</a>
+                                                      <a class="dec qtybtn" href="update-cart.php?action=remove&id='.$variant_id.'">-</a>
                                                              <input type="text" value="'.$quantity.'">
-                                                             <a class="inc qtybtn" href="update-cart.php?action=add&id='.$product_id.'">+</a>
+                                                             <a class="inc qtybtn" href="update-cart.php?action=add&id='.$variant_id.'">+</a>
                                                         </div>
                                                       </div>
                                                   </td>';
@@ -84,7 +86,7 @@ echo'<tr>
                                                       echo'<td class="total-price first-row">&#x20B9;&nbsp;'.$selling_price.'
                                                       <strong style="text-decoration: line-through; color:grey; font-size:.8em;"> &#x20B9;&nbsp;'.$selling_MRP.'</strong></td>
 
-                                                      <td class="close-td first-row"><a style="color:grey" href="update-cart.php?action=del&id='.$product_id.'"<i class="far fa-trash-alt"></i></a></td>';
+                                                      <td class="close-td first-row"><a style="color:grey" href="update-cart.php?action=del&id='.$variant_id.'"<i class="far fa-trash-alt"></i></a></td>';
                      }
                   }
               }
@@ -128,7 +130,12 @@ echo'<tr>
           $itemqty = 0;
            
           
-          foreach ($_SESSION['cart'] as $product_id => $quantity) {
+          foreach ($_SESSION['cart'] as $variant_id => $quantity) {
+
+            $find_pro_id = mysqli_query($connect,"SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
+$pro_data = mysqli_fetch_assoc($find_pro_id);
+$product_id = $pro_data['product_id'];
+
               $result = "SELECT  name, qty, MRP, cost,file FROM product WHERE id = $product_id";
               $run = mysqli_query($connect, $result);
                

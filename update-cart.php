@@ -2,36 +2,34 @@
  session_start();
  require_once('essentials/config.php');
  
- $product_id = $_GET['id'];
+ $variant_id = $_GET['id'];
  $action = $_GET['action'];
- $color = $_SESSION['color'];
- $size = $_SESSION['size']; 
  $product_attribute = $_SESSION['variant'];
 
- if($action === 'empty')
-   unset($_SESSION['cart']);
+if($action === 'empty')
+unset($_SESSION['cart']);
 
- $result = $connect->query("SELECT qty FROM product WHERE id = ".$product_id);
+$result = $connect->query("SELECT qty FROM variant WHERE pro_attr_id = ".$variant_id);
 
- if($result){
+if($result){
  
-   if($obj = $result->fetch_object()) {
+  if($obj = $result->fetch_object()) {
  
-     switch($action) {
+    switch($action) {
  
        case "add":
-       if($_SESSION['cart'][$product_id]+1 <= $obj->qty)
-         $_SESSION['cart'][$product_id]++;
+       if($_SESSION['cart'][$variant_id]+1 <= $obj->qty)
+         $_SESSION['cart'][$variant_id]++;
        break;
  
        case "remove":
-       $_SESSION['cart'][$product_id]--;
-       if($_SESSION['cart'][$product_id] == 0)
-         unset($_SESSION['cart'][$product_id]);
+       $_SESSION['cart'][$variant_id]--;
+       if($_SESSION['cart'][$variant_id] == 0)
+         unset($_SESSION['cart'][$variant_id]);
          break;
 
          case "del":
-          unset($_SESSION['cart'][$product_id]);
+          unset($_SESSION['cart'][$variant_id]);
             break;
 
  

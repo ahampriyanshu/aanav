@@ -11,9 +11,6 @@ if (isset($_SESSION['admin'])) {
 
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="ecommerce in php7 , bootstrap4 and mysql">
-  <meta name="keywords" content="amazon clone,flpicart clone, php7, mysql, ecoomerce website">
-  <meta name="author" content="PriyanshuMay,priyanshumay">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Admin login</title>

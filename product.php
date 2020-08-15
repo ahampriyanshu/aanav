@@ -268,9 +268,6 @@ $cat_name = $row2['cat_name'];
 
                     <i style="color: blue;" class="fab fa-2x fa-facebook"></i>
                   </a>
-                  <div id="fbcount">
-                    <?php echo $fbcount; ?>
-                  </div>
                 </p>
 
 

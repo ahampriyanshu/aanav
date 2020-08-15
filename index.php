@@ -93,6 +93,10 @@
     });
 </script>
 
+<?php include('latest.php'); ?>
+<?php include('trending.php'); ?>
+<?php include('recently-viewed.php'); ?>
+
 <div class="carousel-inner">
     <div class="carousel-item active">
     <img class="float-lg-right" src="img/work.png" alt="work" >
@@ -117,8 +121,5 @@
   </div>
     </div>
   </div>
-
-<?php include('latest.php'); ?>
-<?php include('trending.php'); ?>
-<?php include('recently-viewed.php'); ?>
+  
 <?php include('footer.php'); ?>

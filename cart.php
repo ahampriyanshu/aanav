@@ -3,7 +3,6 @@
 ?>
 
 <?php    if (isset($_SESSION['cart'])) {
-            $variant = $_SESSION['variant'];
               $total = 0;
               $itemqty = 0;
 
@@ -99,15 +98,8 @@ echo'<tr>
       <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <a href="home.php" class="btn btn-sm btn-outline-success">Continue shopping</a>
-                                <a href="delete-cart.php" class="btn btn-sm btn-outline-danger">Empty cart</a>
-                            </div>
-                            <div class="discount-coupon">
-                                <h6>Discount Coupon</h6>
-                                <form action="#" class="coupon-form">
-                                    <input type="text" placeholder="Enter your codes">
-                                    <button type="submit" class="site-btn coupon-btn">Apply</button>
-                                </form>
+                                <a href="home.php" class="btn btn-sm btn-success">Continue shopping</a>
+                                <a href="delete-cart.php" class="btn btn-sm btn-danger">Empty cart</a>
                             </div>
                         </div>
 ';

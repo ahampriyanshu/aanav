@@ -17,9 +17,17 @@
      $result3 = mysqli_query($connect,"SELECT * FROM variant where color='$color_attr' AND size='$size_attr' AND product_id = '$id'");
      $row3 = mysqli_fetch_assoc($result3);
 
+     if ($row3){
      $variant_id = $row3['pro_attr_id'];
-
-     $_SESSION['variant'] = $variant_id;
-
-     echo "<script>window.location='update-cart.php?action=add&id=$variant_id'</script>";
+     echo "<script>
+     window.location='update-cart.php?action=add&id=$variant_id';
+     </script>";
+     }
+     else
+     {
+      echo "<script>
+      alert('Selected Variant is currently out of stock! Please try different color or size');
+      window.location='product.php?id=$id';
+      </script>";
+     }
 ?>

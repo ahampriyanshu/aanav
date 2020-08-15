@@ -117,19 +117,9 @@ if ($result) {
     }
 } ?>
                   </tbody>
-              </table>
-     
-          <br>
-                  <div class="cart-buttons">
-                  <a href="index.php" class="primary-btn continue-shop">Continue shopping</a>
-                            <a href="update-wishlist.php?user=<?php echo $customer_id; ?>&action=empty" 
-                            class="primary-btn up-cart">Empty Wishlist</a>
-                  </div>
-    
+              </table>    
 </div>
-
 </div>
-
 </div>
 </div>
   <?php include('footer.php'); ?>

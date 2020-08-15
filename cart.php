@@ -42,6 +42,8 @@ $product_id = $pro_data['product_id'];
                           $total = $total + $price; //add to the total price
                           $itemqty = $itemqty+$quantity;
 
+                          $color = $pro_data['color'];
+                          $size = $pro_data['size'];
 
                           $result_c = mysqli_query($connect, "SELECT * FROM attribute where attr_id='$color'");
                           $row_c = mysqli_fetch_assoc($result_c);
@@ -54,7 +56,7 @@ $product_id = $pro_data['product_id'];
                           $value_s = $row_s['value'];
 
 echo'<tr>
-                                                      <td class="cart-pic first-row"><img width="150" height="150" src="uploads/'.$obj->file.'" alt=""></td>
+                                                      <td class="cart-pic first-row"><a href="product.php?id='.$product_id.'" ><img width="150" height="150" src="uploads/'.$obj->file.'" alt="product image"></a></td>
                                                       <td class="cart-title first-row">
                                                           <h5>'.$obj->name.'</h5>
                                                            

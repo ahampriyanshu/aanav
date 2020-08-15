@@ -1,152 +1,328 @@
-foreach ($_SESSION['cart'] as $variant_id => $quantity) {
+<style type="text/css">
+  #radios label {
+    cursor: pointer;
+    position: relative;
+  }
 
-$find_pro_id = mysqli_query($connect,"SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
-$pro_data = mysqli_fetch_assoc($find_pro_id);
-$product_id = $pro_data['product_id'];
+  #radios label+label {
+    margin-left: 50px;
+  }
 
-  $result = "SELECT  name,code, qty, MRP, cost, file FROM product WHERE id = $product_id";
-  $run = mysqli_query($connect, $result);
+  input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+  }
 
-  if ($run) {
-      while ($obj = mysqli_fetch_object($run)) {
-        $code = $obj->code;
-          $price = $obj->cost * $quantity; //work out the line price
+  input[type="radio"]+span {
+    color: #888;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+  }
 
-          $total = $total + $price; //add to the total price
-          $itemqty = $itemqty+$quantity;
-
-          $color = $pro_data['product_id'];
-          $size =$pro_data['product_id'];
-
-          $result_c = mysqli_query($connect, "SELECT * FROM attribute where attr_id='$color'");
-          $row_c = mysqli_fetch_assoc($result_c);
-          $attr = $row_c['attr_id'];
-          $value_c = $row_c['value'];
-
-          $result_s = mysqli_query($connect, "SELECT * FROM attribute where attr_id='$size'");
-          $row_s = mysqli_fetch_assoc($result_s);
-          $attr = $row_s['attr_id'];
-          $value_s = $row_s['value'];
-
-echo'<tr>
-                                      <td class="cart-pic first-row"><img width="150" height="150" src="uploads/'.$obj->file.'" alt=""></td>
-                                      <td class="cart-title first-row">
-                                          <h5>'.$obj->name.'</h5>
-                                           
-                             <h6 style="color:'.$value_c.';" > '.$value_c.'</h6>
-              <h6 ><strong> '.$value_s.'<strong> </h6>
-              <h6 ><fat> '.$code.'<fat> </h6>
-
-                                      </td>
-
-                                      <td class="total-price first-row">&#x20B9;&nbsp;'.$obj->cost.'
-                                      <strong style="text-decoration: line-through; color:grey; font-size:.8em;">
-                                       &#x20B9;&nbsp;'.$obj->MRP.'</strong></td>
-                                      
-                                      <td class="qua-col">
-                                      <div class="quantity">
-                                          <div class="pro-qty">
-                                             
-                                      <a class="dec qtybtn" href="update-cart.php?action=remove&id='.$variant_id.'">-</a>
-                                             <input type="text" value="'.$quantity.'">
-                                             <a class="inc qtybtn" href="update-cart.php?action=add&id='.$variant_id.'">+</a>
-                                        </div>
-                                      </div>
-                                  </td>';
-
-                                  $selling_price = $obj->cost * $quantity;
-                                  $savings = ($obj->MRP - $obj->cost) * $quantity;
-                                  $selling_MRP = $obj->MRP * $quantity;
+  input[type="radio"]:checked+span {
+    font-size: 1.5em;
+    color: #888;
+  }
 
 
+  p {
+    font-size: 16px;
+    display: block;
+    color: #888;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 100px;
+  }
 
-                                  <?php
- session_start();
- require_once('essentials/config.php');
- error_reporting(E_ALL);
- 
- $product_id = $_GET['id'];
- $action = $_GET['action'];
- $product_attribute = $_SESSION['variant'];
+  #radios {
+    align-items: center;
+    text-align: center;
+    margin: 0 auto;
+  }
 
- 
- echo "product = ".$product_id;
- printf("\n");
- echo "attribute = ".$product_attribute;
- printf("\n");
+  .radio_container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+</style>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
 
- if($action === 'empty')
-   unset($_SESSION['cart']);
+      <div class="row">
+        <div class="col-xs-4 ">
 
- $result = $connect->query("SELECT qty FROM variant WHERE pro_attr_id = ".$product_attribute);
+          <div class="radio_container">
+            <p>Choose Delievery Method</p>
+            <div id="radios">
+              <label for="ship_home">
+                <input type="radio" name="ship" id="ship_home" value="home" required />
+                <span><i class="fas fa-2x fa-truck"></i></span>
+              </label>
+              <label for="ship_store">
+                <input type="radio" name="ship" id="ship_store" value="store" required />
+                <span><i class="fas fa-2x fa-store"></i></span>
+              </label>
+            </div>
+          </div>
 
- if($result){
- 
-   if($obj = $result->fetch_object()) {
- 
-     switch($action) {
- 
-       case "add":
-       if($_SESSION['cart'][$product_attribute]+1 <= $obj->qty)
-         $_SESSION['cart'][$product_attribute]++;
-       break;
- 
-       case "remove":
-       $_SESSION['cart'][$product_attribute]--;
-       if($_SESSION['cart'][$product_attribute] == 0)
-         unset($_SESSION['cart'][$product_attribute]);
-         break;
+        </div>
 
-         case "del":
-          unset($_SESSION['cart'][$product_attribute]);
-            break; 
-     }
-   }
- }
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("#ship_home").change(function() {
+              var shippingValidation = $(this).val();
 
-print_r($_SESSION['cart']);
+              if (shippingValidation != '') {
+                $("#loader").show();
+                $(".address-container").html("");
 
-header("location: cart.php");
- 
-?>
+                $.ajax({
+                  type: 'post',
+                  data: {
+                    shipping_validation: shippingValidation
+                  },
+                  url: 'shipping_ajax_request.php',
+                  success: function(returnData) {
+                    $("#loader").hide();
+                    $(".address-container").html(returnData);
+                  }
+                });
+              }
+
+            })
+          });
 
 
+          $(document).ready(function() {
+            $("#ship_store").change(function() {
+              var shippingValidation = $(this).val();
+              console.log(shippingValidation);
+              if (shippingValidation != '') {
+                $("#loader").show();
+                $(".address-container").html("");
 
-<?php
-   session_start();
-   require_once('essentials/config.php');
+                $.ajax({
+                  type: 'post',
+                  data: {
+                    shipping_validation: shippingValidation
+                  },
+                  url: 'store_ajax_request.php',
+                  success: function(returnData) {
+                    $("#loader").hide();
+                    $(".address-container").html(returnData);
+                  }
+                });
+              }
 
-     $id = $_POST['id'];
-     $color = $_POST['radio_color'];
-     $size = $_POST['size'];
+            })
+          });
+        </script>
+      </div><!--  row end -->
+      <hr>
 
-    echo $id.$color.$size;
-    printf("\n");
+      <div class="col-md-12">
+        <div class="address-container">
+        </div>
+      </div>
 
-     $result = mysqli_query($connect,"SELECT * FROM attribute where value='$color'");
-     $row = mysqli_fetch_assoc($result);
-     $attr = $row['attr_id'];
 
-     $result2 = mysqli_query($connect,"SELECT * FROM attribute where value='$size'");
-     $row2 = mysqli_fetch_assoc($result2);
-     $attr2 = $row2['attr_id'];
 
-     echo $attr.$attr2;
-     printf("\n"); 
+      <div class="row">
 
-     $_SESSION['color'] = $attr;
-     $_SESSION['size'] = $attr2;
+        <?php
 
-     $result3 = mysqli_query($connect,"SELECT * FROM variant where color='$attr' AND size='$attr2' AND product_id = '$id'");
-     $row3 = mysqli_fetch_assoc($result3);
+        $query = "SELECT * FROM shipping WHERE shipping_type= 'home'
+                         and email = '$customer' ORDER BY shipping_id DESC";
+        $result = mysqli_query($connect, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+          $id = $row['shipping_id']; ?>
 
-     $variant = $row3['pro_attr_id'];
 
-     $_SESSION['variant'] = $variant;
-    
-     echo "variant = ".$variant;
-     printf("\n");
+          <div class="col-md-4" style="margin-bottom: 8px">
+            <div class="ship">
+              <table class="table">
+                <input type="hidden" value="<?php echo $row['shipping_id'] ?>">
+                <tr>
+                  <td>Name</td>
+                  <td><small><?php echo $row['full_name'] ?></small></td>
+                </tr>
+                <tr>
+                  <td>Address</td>
+                  <td><small><?php echo $row['street_address'] ?></small></td>
+                </tr>
+                <tr>
+                  <td>Phone</td>
+                  <td><small><?php echo $row['phone'] ?></small></td>
+                </tr>
+                <tr>
+                  <td>City</td>
+                  <td><small><?php echo $row['city'] ?>,<?php echo $row['state'] ?></small></td>
+                </tr>
+              </table>
 
-     echo "<script>window.location='update-cart.php?action=add&id=$variant'</script>";
+            </div>
 
-?>
+            <br>
+            <a href="payment.php?id=<?php echo $row['shipping_id'] ?>" class="btn btn-warning" style="margin: 0px 0px">Deliver to this address</a><br>
+            <tr>
+              <td> <a href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" class="btn btn-default" style="margin-top: 4px; margin-left: 35px">Edit</a></td>
+              <td><a href="shipping_del.php?id=<?php echo $row['shipping_id'] ?>" class='delete btn btn-default' id='del_<?= $id ?>' style="margin-top: 4px; margin-right: 25px">Delete</a></td>
+            </tr>
+          </div>
+        <?php
+        } ?>
+      </div>
+    </div>
+    <style type="text/css">
+      .table td,
+      .table th {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #fff;
+      }
+
+      .securepayment {
+        font-family: "adihausregular", Helvetica, Verdana, sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #000;
+        font-weight: normal;
+        padding-top: 0px;
+        margin-top: 4px;
+      }
+
+      .order-sum {
+        background-color: #f2f3f4;
+        width: auto;
+        height: auto;
+
+
+      }
+
+      .inner-order {
+        background-color: #fff;
+        margin-bottom: 20px;
+
+      }
+
+      .shipping_inner {
+        font-size: 14px;
+        text-align: left;
+        padding-top: 0;
+        background-color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .shipping_inner_style {
+        padding-left: 8px;
+        margin-left: 10px;
+      }
+
+      .shipping_inner b {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #34495e;
+      }
+    </style>
+    <div class="col-lg-6">
+      <div class="checkout-content">
+        <input type="text" placeholder="Enter Your Coupon Code">
+      </div>
+      <div class="place-order">
+        <h4>Your Order</h4>
+        <div class="order-total">
+          <ul class="order-table">
+            <li>Product <span>Total</span></li>
+            <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
+            <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
+            <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
+            <li class="fw-normal">Subtotal <span>$240.00</span></li>
+            <li class="total-price">Total <span>$240.00</span></li>
+          </ul>
+          <div class="payment-check">
+            <div class="pc-item">
+              <label for="pc-check">
+                Cheque Payment
+                <input type="checkbox" id="pc-check">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="pc-item">
+              <label for="pc-paypal">
+                Paypal
+                <input type="checkbox" id="pc-paypal">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          </div>
+          <div class="order-btn">
+            <button type="submit" class="site-btn place-btn">Place Order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="col-md-6">
+        <div class="place-order">
+                        <h4>Your Order</h4>
+                        <div class="order-total">
+                            <ul class="order-table">
+                               
+                                <?php
+                                if (isset($_SESSION['cart'])) {
+                                  $total = 0;
+                                  $itemqty = 0;
+
+                                  foreach ($_SESSION['cart'] as $variant_id => $quantity) {
+
+                                    $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
+                                    $pro_data = mysqli_fetch_assoc($find_pro_id);
+                                    $product_id = $pro_data['product_id'];
+
+                                    $result = "SELECT  name, cost, qty, file FROM product WHERE id = '$product_id'";
+                                    $run = mysqli_query($connect, $result);
+
+
+                                    if ($run) {
+                                      echo ' <li>Product <span>Total</span></li>';
+                                      while ($obj = mysqli_fetch_object($run)) {
+                                        $price = $obj->cost * $quantity;
+                                        $total = $total + $price;
+                                        $itemqty = $itemqty + $quantity;
+
+
+                                        echo '
+                                <li class="fw-normal">' . $obj->name . ' x ' . $quantity . ' 
+                                <span>&#x20B9;&nbsp;' . $obj->cost . '</span></li>';
+
+
+
+
+                                        // echo '<li>';
+                                        // echo '<img src="uploads/' . $obj->file . '" width="100" height="140" align="right" align="right" alt="">';
+                                        // echo '<b>' . $obj->name . '</b>';
+                                        // echo '<h6 class="my-0">&#x20B9;&nbsp;' . $obj->cost . '</h6>';
+                                        // echo '<small>quantity: ' . $quantity . '</small>';
+                                        // echo '<a href="cart.php" style="font-size: 12px;">Edit</a>';
+                                        // echo '</li>';
+                                      }
+                                    }
+                                  }
+
+                                  echo '<li class="fw-normal">Subtotal <span>$240.00</span></li>
+                                <li class="total-price">Total <span>&#x20B9;&nbsp;' . $total . '</span></li>
+                            </ul>
+                        </div>
+                    </div>';
+                                }
+                                ?>
+                            </div> -->
+  </div>
+</div>
+
+<?php include('footer.php'); ?>

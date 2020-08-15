@@ -55,6 +55,7 @@ if(isset($_POST['shipping_validation']) && $_POST['shipping_validation'] !='')
 <option value="Meghalaya">Meghalaya</option>
 <option value="Mizoram">Mizoram</option>
 <option value="Nagaland">Nagaland</option>
+<option value="Ladakh">Ladakh</option>
 <option value="Odisha">Odisha</option>
 <option value="Punjab">Punjab</option>
 <option value="Rajasthan">Rajasthan</option>
@@ -73,8 +74,7 @@ if(isset($_POST['shipping_validation']) && $_POST['shipping_validation'] !='')
                             </div>
                         </div>
                     </div>
-                    <input type="submit" name="submit" value="Save Address" class="btn btn-primary pull-right" style="margin-left: 4px">
-                        <a href="home.php" class="btn btn-outline-primary pull-right">Back</a>
+                    <input type="submit" name="submit" value="Proceed To Pay" class="btn btn-success">
                      </form>
                 </div>
 

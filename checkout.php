@@ -32,22 +32,17 @@ include('boilerplate.php');
         font-family: Roboto, -apple-system, sans-serif;
         font-weight: 700;
         color: #888;
-        display: block;
-        text-align: center;
-        align-items: center;
-        margin-bottom: 100px;
+        margin-bottom: 25px;    
+       
     }
 
-    #radios {
-        align-items: center;
-        text-align: center;
-        margin: 0 auto;
+    #radios{
+        margin-bottom: 25px;    
     }
 
     .radio_container {
-        display: flex;
-        align-items: center;
         text-align: center;
+        align-items: center;
     }
 </style>
 <section class="checkout-section spad">
@@ -55,15 +50,15 @@ include('boilerplate.php');
         <div class="row">
             <div class="col-lg-6">
                 <div class="radio_container">
-                    <p class="radio_del">Choose Delievery Method</p>
+                    <h4 class="radio_del">Choose Delievery Method</h4>
                     <div id="radios">
                         <label for="ship_home">
                             <input type="radio" name="ship" id="ship_home" value="home" required />
-                            <span><i class="fas fa-2x fa-truck"></i>sdfsd;</span>
+                            <span>Home Delivery<br><i class="fas fa-2x fa-truck"></i></span>
                         </label>
                         <label for="ship_store">
                             <input type="radio" name="ship" id="ship_store" value="store" required />
-                            <span><i class="fas fa-2x fa-store"></i> fkodskfosdf</span>
+                            <span>Store Pickup<br><i class="fas fa-2x fa-store"></i></span>
                         </label>
                     </div>
                 </div>
@@ -111,7 +106,7 @@ include('boilerplate.php');
                                     url: 'store_ajax_request.php',
                                     success: function(returnData) {
                                         $("#del_charge").hide();
-                                        $(".saved_address").hide();                                        
+                                        $(".saved_address").hide();
                                         $(".address-container").html(returnData);
                                     }
                                 });
@@ -125,10 +120,8 @@ include('boilerplate.php');
                 </div>
 
                 <div class="saved_address row">
-
+                    
                     <?php
-
-
                     $query = "SELECT * FROM shipping WHERE shipping_type= 'home'
          and email = '$customer' ORDER BY shipping_id DESC";
                     $result = mysqli_query($connect, $query);
@@ -136,8 +129,12 @@ include('boilerplate.php');
                         $id = $row['shipping_id']; ?>
                         <div class="container" style="margin-bottom: 30px;">
                             <p>
-                                <a href="shipping_del.php?id=<?php echo $row['shipping_id'] ?>" class='pull-right' id='del_<?= $id ?>'>Delete</a>
-                                <a href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" class="pull-right">Edit</a>
+                                <a style="color: #888; margin-left: 10px;" href="shipping_del.php?id=<?php echo $row['shipping_id'] ?>" 
+                                class='pull-right' id='del_<?= $id ?>'>
+                                <i class="far fa-trash-alt"></i></a>
+                                <a style="color: #888;  margin-left: 10px;" href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" 
+                                class="pull-right">
+                                <i class="far fa-edit"></i></a>
                             </p>
 
                             <input type="hidden" value="<?php echo $row['shipping_id'] ?>">
@@ -148,7 +145,7 @@ include('boilerplate.php');
 
                             <p><?php echo $row['street_address'] ?>,<?php echo $row['city'] ?>,<?php echo $row['state'] ?>
 
-                                <a href="payment.php?id=<?php echo $row['shipping_id'] ?>" class="btn btn-sm btn-success pull-right">Proceed</a>
+                                <a href="payment.php?id=<?php echo $row['shipping_id'] ?>" class="btn btn-sm btn-success pull-right">Proceed<i style=" margin-left: 10px;" class="fas fa-arrow-right"></i></a>
 
                             </p>
                         </div>
@@ -191,9 +188,9 @@ include('boilerplate.php');
                                     }
                                 }
 
-                                echo '<li class="fw-normal">Subtotal (' . $itemqty . ') <span>&#x20B9;&nbsp; ' . $total . '</span></li>
-                  <li class="total-price">Total <span>&#x20B9;&nbsp;' . $total . '</span></li>
-                  <li id = "del_charge" class="fw-normal"><span>+ &#x20B9;&nbsp;100 Delivery Charge </span></li>
+                                echo '<li class="fw-normal">Total Quantity<span>&#x20B9;&nbsp; ' . $itemqty . '</span></li>
+                  <li class="total-price">Total <span class="text-success"> &#x20B9;&nbsp;' . $total . '</span></li>
+                  <p id = "del_charge" class="pull-right"><span>+ &#x20B9;&nbsp;100 Delivery Charge </span></p>
               </ul>';
                             }
                             ?>

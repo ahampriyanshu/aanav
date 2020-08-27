@@ -69,6 +69,8 @@ color: teal;
     <link rel="stylesheet" href="essentials/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="essentials/css/aos.css">
     <link rel="stylesheet" href="essentials/css/style.css">
+    <link rel="stylesheet" href="css/search.css">
+  
     
   
   <div class="site-wrap">
@@ -86,9 +88,7 @@ color: teal;
             </div>
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-        
                 <a href="index.php" class="js-logo-clone"><img src="img/logo_nav.png" width="200" height="95"></a>
-            
             </div>
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
@@ -191,3 +191,4 @@ $(document).ready(function(){
   <script src="essentials/js/jquery.magnific-popup.min.js"></script>
   <script src="essentials/js/aos.js"></script>
   <script src="essentials/js/main.js"></script>
+  <script src="js/search.js"></script>

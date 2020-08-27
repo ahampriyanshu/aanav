@@ -14,10 +14,10 @@ $sendEmail  = new sendEmail;
 
 if (isset($_POST['submit'])) {
 
-  $validation->validate('fullName', 'full name', 'required');
+  $validation->validate('fullName', 'Full Name', 'required');
   $validation->validate('email', 'Email', 'uniqueEmail|customer|required');
   $validation->validate('password', 'Password', 'required|min_len|6');
-  $validation->validate('phone', 'Phone', 'required|min_len|10');
+  $validation->validate('phone', 'Phone', 'uniqueEmail|customer|required');
 
 
   if ($validation->run()) {
@@ -37,9 +37,7 @@ if (isset($_POST['submit'])) {
      )) {
 
       if ($sendEmail->send($fullName, $email, $url)) {
-
-        $_SESSION['accountCreated'] = "Your account has been created successfully please verify your email";
-        header("location: login.php");
+      header("location: confirm_email.php");
       }
     }
   }

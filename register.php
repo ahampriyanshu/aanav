@@ -1,8 +1,54 @@
 <?php
-  require_once('essentials/config.php');
+require_once('essentials/config.php');
+?>
+<?php
+include "inc.php";
+if (isset($_SESSION['userId'])) :
+
+  header("location: profile.php");
+
+endif;
+$validation = new validation;
+$queries    = new queries;
+$sendEmail  = new sendEmail;
+
+if (isset($_POST['submit'])) {
+
+  $validation->validate('fullName', 'full name', 'required');
+  $validation->validate('email', 'Email', 'uniqueEmail|customer|required');
+  $validation->validate('password', 'Password', 'required|min_len|6');
+  $validation->validate('phone', 'Phone', 'required|min_len|10');
+
+
+  if ($validation->run()) {
+
+    $fullName = $validation->input('fullName');
+    $email    = $validation->input('email');
+    $password = $validation->input('password');
+    $phone = $validation->input('phone');
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $code     = rand();
+    $code     = password_hash($code, PASSWORD_DEFAULT);
+    date_default_timezone_set('Asia/Kolkata');
+    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/confirm.php?confirmation=" . $code;
+    $status   = 0;
+    if ($queries->query("INSERT INTO customer (name, email, password, phone, code, status, datetym) VALUES
+     ('$fullName', '$email', '$password', '$phone', '$code', '$status', now()) "
+     )) {
+
+      if ($sendEmail->send($fullName, $email, $url)) {
+
+        $_SESSION['accountCreated'] = "Your account has been created successfully please verify your email";
+        header("location: login.php");
+      }
+    }
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,13 +59,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
 </head>
-<body>
 
+<body>
+  <!-- 
 <?php
 extract($_POST);
 
-if(isset($submit))
-{
+if (isset($submit)) {
   date_default_timezone_set('Asia/Kolkata');
   $email = $_POST['email'];
   $pass = $_POST['pass'];
@@ -27,26 +73,25 @@ if(isset($submit))
   $phone = $_POST['phone'];
 
   $sql = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-  ('$name', '$email', '$pass', '$phone', now() ";
+  ('$name', '$email', '$pass', '$phone', now() )";
 
   $check = "SELECT * FROM customer WHERE `email` = '$email'";
-  $result = mysqli_query($connect,$check);
+  $result = mysqli_query($connect, $check);
   $num = mysqli_num_rows($result);
 
   if ($num > 0) {
-    $found="N";
-  }
-  else {
-  $create = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
+    $found = "N";
+  } else {
+    $create = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
    '$name', '$email', '$pass', '$phone', now() ";
-  mysqli_query($connect,$create);
-  echo "<script>
+    mysqli_query($connect, $create);
+    echo "<script>
   alert('New User Created');
   document.location='login.php';
-  </script>";  
+  </script>";
   }
 }
-?>
+?> -->
 
   <main>
     <div class="container-fluid">
@@ -57,29 +102,36 @@ if(isset($submit))
           </div>
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Hello New User</h1>
-            <form name="signupform" method="post" >
+            <form name="signupform" method="post">
               <div class="form-group">
-              <label for="password">Name</label>
-                <input type="text" name="name" id="email" class="form-control" placeholder="Enter your name" required/>
-               </div>
-              <div class="form-group mb-4">
-                <label for="password">Password</label>
-                <input type="password" name="pass" id="password" class="form-control" placeholder="Create new passsword" name="pass" required/>
+                <label for="password">Name</label>
+                <input type="text" name="fullName" id="email" class="form-control" placeholder="Enter your name" required />
+                <div class="error">
+                  <?php if (!empty($validation->errors['fullName'])) : echo $validation->errors['fullName'];
+                  endif; ?>
+                </div>
               </div>
-              <div class="form-group mb-4">
-              <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required/>
-               </div>
-              <div class="form-group mb-4">
+
+              <div class="form-group mb-6">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required />
+                <div class="error">
+                  <?php if (!empty($validation->errors['email'])) : echo $validation->errors['email'];
+                  endif; ?>
+                </div>
+              </div>
+              <div class="form-group mb-6">
                 <label for="password">Phone</label>
                 <input type="number" name="phone" id="email" class="form-control" placeholder="+91">
               </div>
-              <?php  
-		  if(isset($found))
-		  {
-		  	echo '<p  style="color:#7EF9FF;"><center>Email Already Taken</center></p>';
-		  }
-	?>
+              <div class="form-group mb-6">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Create new passsword" name="pass" required />
+                <div class="error">
+                  <?php if (!empty($validation->errors['password'])) : echo $validation->errors['password'];
+                  endif; ?>
+                </div>
+              </div>
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Join Us">
             </form>
             <p class="login-wrapper-footer-text">Already a customer&emsp;<a href="login.php" class="text-reset">Welcome Back</a></p>
@@ -95,4 +147,5 @@ if(isset($submit))
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

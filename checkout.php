@@ -1,6 +1,11 @@
 <?php
+if(isset($_SESSION['email'])){
+    header('location:login.php');
+}
 include('boilerplate.php');
+    ?>
 ?>
+
 <style type="text/css">
     #radios label {
         cursor: pointer;
@@ -54,7 +59,7 @@ include('boilerplate.php');
                     <div id="radios">
                         <label for="ship_home">
                             <input type="radio" name="ship" id="ship_home" value="home" required />
-                            <span>Home Delivery<br><i class="fas fa-2x fa-truck"></i></span>
+                            <span>New address<br><i class="fas fa-2x fa-truck"></i></span>
                         </label>
                         <label for="ship_store">
                             <input type="radio" name="ship" id="ship_store" value="store" required />

@@ -122,6 +122,8 @@ echo'<tr>
       if (isset($_SESSION['cart'])) {
           $total = 0;
           $itemqty = 0;
+          $saving = 0;
+          $MRP = 0;
            
           
           foreach ($_SESSION['cart'] as $variant_id => $quantity) {
@@ -137,10 +139,10 @@ $product_id = $pro_data['product_id'];
                   while ($obj = mysqli_fetch_object($run)) {
 
                       $price = $obj->cost * $quantity; 
-                      $MRP = $obj->MRP * $quantity; 
-                      $saving = ($obj->MRP - $obj->cost) * $quantity;
-                      $total = $total + $price; 
-                      $itemqty = $itemqty+$quantity;
+                      $MRP += $obj->MRP * $quantity; 
+                      $total += $price; 
+                      $itemqty += $quantity;
+                      $saving = $MRP - $total;
                   }
               }
           }

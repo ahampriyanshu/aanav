@@ -1,10 +1,9 @@
 <?php
-if(isset($_SESSION['email'])){
+if (!isset($_SESSION['email'])) {
     header('location:login.php');
 }
-include('boilerplate.php');
-    ?>
 ?>
+<?php include('boilerplate.php'); ?>
 
 <style type="text/css">
     #radios label {
@@ -37,12 +36,12 @@ include('boilerplate.php');
         font-family: Roboto, -apple-system, sans-serif;
         font-weight: 700;
         color: #888;
-        margin-bottom: 25px;    
-       
+        margin-bottom: 25px;
+
     }
 
-    #radios{
-        margin-bottom: 25px;    
+    #radios {
+        margin-bottom: 25px;
     }
 
     .radio_container {
@@ -125,7 +124,7 @@ include('boilerplate.php');
                 </div>
 
                 <div class="saved_address row">
-                    
+
                     <?php
                     $query = "SELECT * FROM shipping WHERE shipping_type= 'home'
          and email = '$customer' ORDER BY shipping_id DESC";
@@ -134,12 +133,10 @@ include('boilerplate.php');
                         $id = $row['shipping_id']; ?>
                         <div class="container" style="margin-bottom: 30px;">
                             <p>
-                                <a style="color: #888; margin-left: 10px;" href="shipping_del.php?id=<?php echo $row['shipping_id'] ?>" 
-                                class='pull-right' id='del_<?= $id ?>'>
-                                <i class="far fa-trash-alt"></i></a>
-                                <a style="color: #888;  margin-left: 10px;" href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" 
-                                class="pull-right">
-                                <i class="far fa-edit"></i></a>
+                                <a style="color: #888; margin-left: 10px;" href="shipping_del.php?id=<?php echo $row['shipping_id'] ?>" class='pull-right' id='del_<?= $id ?>'>
+                                    <i class="far fa-trash-alt"></i></a>
+                                <a style="color: #888;  margin-left: 10px;" href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" class="pull-right">
+                                    <i class="far fa-edit"></i></a>
                             </p>
 
                             <input type="hidden" value="<?php echo $row['shipping_id'] ?>">

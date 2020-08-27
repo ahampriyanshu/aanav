@@ -13,10 +13,10 @@ class validation extends db {
     }
     public function validate($field, $label, $rules){
 
-    //    Split rule string on pipe sign
+    
     $allRules = explode("|", $rules);
     $inputField = $this->input($field);
-    // Check required rule in the array
+    
     if(in_array("required", $allRules)){
         
         if(empty($inputField)){
@@ -24,9 +24,8 @@ class validation extends db {
         }
 
     }
-    // Close required rule
 
-    // Check uniqueEmail rule in the array
+
     if(in_array('uniqueEmail', $allRules)){
 
         $uniqueIndex = array_search("uniqueEmail", $allRules);
@@ -40,9 +39,8 @@ class validation extends db {
         }
 
     }
-    // Close uniqueEmail rule
 
-    // Check min_len rule in the array
+
     if(in_array("min_len", $allRules)){
         $minLenIndex = array_search("min_len", $allRules);
         $valueIndex = $minLenIndex + 1;
@@ -52,7 +50,6 @@ class validation extends db {
         }
 
     }
-
     }
 
     public function run(){

@@ -1,7 +1,6 @@
 <?php
   include('boilerplate.php');
 ?>
-
 <?php    if (isset($_SESSION['cart'])) {
               $total = 0;
               $itemqty = 0;

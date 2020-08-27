@@ -30,13 +30,16 @@ if (isset($_POST['submit'])) {
     $code     = rand();
     $code     = password_hash($code, PASSWORD_DEFAULT);
     date_default_timezone_set('Asia/Kolkata');
-    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/confirm.php?confirmation=" . $code;
+    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/verifyEmail.php?confirmation=" . $code;
     $status   = 0;
+    $subject  = 'Please confirm your Email';
+    $body = '<p> Hi ' . $userName . '<br> Please confirm your email click on the below link</p> <p><a href="'. $url .'">Confirm email</a></p><p> OR copy an paste this link '. $url .'</p>';
+
     if ($queries->query("INSERT INTO customer (name, email, password, phone, code, status, datetym) VALUES
      ('$fullName', '$email', '$password', '$phone', '$code', '$status', now()) "
      )) {
 
-      if ($sendEmail->send($fullName, $email, $url)) {
+      if ($sendEmail->send($fullName, $email, $subject, $body)) {
       header("location: confirm_email.php");
       }
     }
@@ -130,7 +133,7 @@ if (isset($submit)) {
                   endif; ?>
                 </div>
               </div>
-              <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Join Us">
+              <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Register">
             </form>
             <p class="login-wrapper-footer-text">Already a customer&emsp;<a href="login.php" class="text-reset">Welcome Back</a></p>
           </div>

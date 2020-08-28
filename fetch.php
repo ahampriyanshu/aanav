@@ -32,7 +32,7 @@ if (isset($_POST["action"])) {
 
     if (isset($_POST["start_from"])) {
         $start_from = $_POST['start_from'];
-$per_page = $_POST['per_page'];
+        $per_page = $_POST['per_page'];
         $query .= "
 ORDER BY 1 DESC LIMIT $start_from, $per_page
   ";
@@ -51,15 +51,14 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
                                     <div class="pi-pic">
                                     <a href="product.php?id=' .  $row['id'] . '">
                                         <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '"></a>
-                                        <div class="sale pp-sale">Sale</div>
                                         <div class="icon">
                                         <i class="far fa-heart"></i>
                                         </div>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">' .  $row['name'] . '</div>
+                                        <div class="catagory-name">' .  $row['code'] . '</div>
                                         <a href="#">
-                                            <h5>' .  $row['code'] . '</h5>
+                                        <h5>' .  $row['name'] . '</h5>
                                         </a>
                                         <div class="product-price">
                                         &#x20B9;' .  $row['cost'] . '&nbsp;
@@ -70,9 +69,15 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
                             </div>';
         }
     } else {
-        $output = '<h3>No Data Found</h3>';
+        $output = '<div  class="container">
+        <div style="margin-top:40px;" class="row">
+          <div class="col-md-12 text-center">
+            <span class="icon-check_circle display-2 text-success"></span>
+            <h2 class="display-5 text-black">No matching items found</h2>
+            <p class="text-success mb-5">Change your filters and try again</p>
+          </div>
+        </div>
+      </div>';
     }
     echo $output;
 }
- 
-?>

@@ -94,19 +94,19 @@
 <div class="container uni ">
     <div class="row">
        <div class="col-sm-4 col-md-4">
-        <a href="home.php">
+        <a href="shop.php">
               <img src="img/section/men.png" alt="men" class="img-responsive">
                  </a>
      <h3>SHOP FOR MEN</h3>
        </div> 
        <div class="col-sm-4 col-md-4">
-        <a href="home.php">
+        <a href="shop.php">
          <img src="img/section/kid.png" alt="kid" class="img-responsive">
        </a>
          <h3>SHOP FOR KID</h3>
            </div> 
        <div class="col-sm-4 col-md-4">
-        <a href="home.php">
+        <a href="shop.php">
          <img src="img/section/women.png" alt="women" class="img-responsive">
        </a>
          <h3 align="center">SHOP FOR WOMEN</h3>
@@ -132,7 +132,7 @@
       <div class="carousel-caption d-none d-md-block">
     <h1 style="font-weight: 600; margin-bottom: 120px; margin-right: 515px; font-size: 38px;">SELL WITH US
       <p style="font-size: 14px;">Grow Your Business Online</p>
-      <a href="home.php"  style="clear:both; background: #fff; border: none; color: #000; font-size: 1em; padding: 10px; cursor: pointer; font-size: 17px;" >KNOW MORE <span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a>
+      <a href="shop.php"  style="clear:both; background: #fff; border: none; color: #000; font-size: 1em; padding: 10px; cursor: pointer; font-size: 17px;" >KNOW MORE <span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a>
     </h1>
   </div>
     </div>

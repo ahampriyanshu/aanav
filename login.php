@@ -25,8 +25,15 @@ if (isset($_POST['submit'])) {
         $dbPassword = $row->password;
         $status     = $row->status;
         if ($status == 0) {
-          $_SESSION['notVerified'] = "Please verify your email and try again";
-        } else {
+          $_SESSION['notActive'] = "Please Verify your email first";
+        } else 
+        if ($status == 2) {
+          $_SESSION['notActive'] = "This account has been deactivated by the user";
+        } else
+        if ($status == 3) {
+          $_SESSION['notActive'] = "This account has been deactivated by the admin";
+        }else
+        if ($status == 1) {
           if (password_verify($password, $dbPassword)) {
             $update = mysqli_query($connect, "UPDATE `customer` SET `last_login` = NOW() WHERE `email` = '$email' ");
             $_SESSION['email'] = $email;
@@ -56,25 +63,7 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
 </head>
-
 <body>
-  <!-- 
-  <?php
-  extract($_POST);
-
-  if (isset($submit)) {
-    $rs = mysqli_query($connect, "SELECT  * FROM customer WHERE email ='$email' and password='$pass'");
-    if (mysqli_num_rows($rs) < 1) {
-      $found = "N";
-    } else {
-      session_start();
-      date_default_timezone_set('Asia/Kolkata');
-      $_SESSION['email'] = $email;
-      $update = mysqli_query($connect, "UPDATE `customer` SET `last_login` = NOW() WHERE `email` = '$email' ");
-      header('location: index.php');
-    }
-  }
-  ?> -->
   <main>
     <div class="container-fluid">
       <div class="row">
@@ -99,12 +88,12 @@ if (isset($_POST['submit'])) {
           <?php unset($_SESSION['emailVerified']); ?>
 
 
-          <?php if (isset($_SESSION['notVerified'])) : ?>
+          <?php if (isset($_SESSION['notActive'])) : ?>
             <div class="alert alert-danger">
-              <?php echo $_SESSION['notVerified']; ?>
+              <?php echo $_SESSION['notActive']; ?>
             </div>
           <?php endif; ?>
-          <?php unset($_SESSION['notVerified']); ?>
+          <?php unset($_SESSION['notActive']); ?>
 
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Welcome Back</h1>
@@ -128,7 +117,7 @@ if (isset($_POST['submit'])) {
 
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Login">
             </form>
-            <p class="login-wrapper-footer-text">New User&emsp;<a href="register.php" class="text-reset">Join Us</a></p>
+            <p style="color:grey;" class="login-wrapper-footer-text">New User ?&emsp;<a href="register.php" style="color:green; font-weight:bolder; text-decoration:none;" >Sign Up</a></p>
           </div>
         </div>
 

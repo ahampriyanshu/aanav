@@ -66,7 +66,7 @@ $cat_name = $row2['cat_name'];
 
   if (!$id) {
     echo "<script>
-    document.location='home.php';
+    document.location='shop.php';
     </script>";
   }
 

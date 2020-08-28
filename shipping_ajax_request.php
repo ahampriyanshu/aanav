@@ -1,8 +1,9 @@
 <?php
+session_start();
 require_once('essentials/config.php');
 
 if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '') { ?>
-    <form method="post" action="shipping_home.php" enctype="multipart/form-data" class="checkout-form">
+    <form method="post" action="shipping_shop.php" enctype="multipart/form-data" class="checkout-form">
         <div class="row">
             <div class="col-lg-12">
                 <h4>Enter Shipping Address</h4>
@@ -10,7 +11,7 @@ if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '')
 
                     <div class="col-lg-12">
                         <label for="fir">Full Name<span>*</span></label>
-                        <input name="name" value="<?php echo $customer_name; ?>" type="text" id="fir" required>
+                        <input name="name" value="<?php echo $_SESSION['name']; ?>" type="text" id="fir" required>
                     </div>
 
                     <div class="col-lg-12">
@@ -73,7 +74,7 @@ if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '')
 
                     <div class="col-lg-6">
                         <label for="phone">Phone<span>*</span></label>
-                        <input type="text" pattern="[0-9]{10}" name="phone" class="form-control" placeholder="+91" type="text" id="phone" required>
+                        <input type="text" pattern="[0-9]{10}" value="<?php echo $_SESSION['phone']; ?>" name="phone" class="form-control" placeholder="+91" type="text" id="phone" required>
                     </div>
                     
                 </div>

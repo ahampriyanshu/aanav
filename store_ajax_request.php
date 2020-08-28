@@ -8,7 +8,7 @@ if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '')
     <form method="post" action="shipping_store.php" enctype="multipart/form-data">
 
       <label for="lastName">Full Name</label>
-      <input type="text" name="name" class="form-control" id="lastName" placeholder="" value="<?php echo $customer_name ?>" required>
+      <input type="text" name="name" class="form-control" id="lastName" placeholder="" value="<?php echo $_SESSION['name'] ?>" required>
       <div class="invalid-feedback">
         Valid last name is required.
       </div>
@@ -22,7 +22,7 @@ if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '')
       <div class="row">
         <div class="col-md-6 mb-3">
           <label for="country">Phone</label>
-          <input type="text" name="phone" class="form-control" id="lastName" placeholder="" value="<?php echo $customer_phone ?>" required>
+          <input type="text" name="phone" class="form-control" id="lastName" placeholder="" value="<?php echo $_SESSION['phone'] ?>" required>
           <div class="invalid-feedback">
             Valid last name is required.
           </div>

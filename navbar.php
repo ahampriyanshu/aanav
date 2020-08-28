@@ -11,7 +11,8 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
 ";
   $found_data = $connect->query($find_data);
   $customer_id_array = $found_data->fetch_assoc();
-  $_SESSION['email'] = $customer_id_array['id'];
+  $_SESSION['id'] = $customer_id_array['id'];
+  $customer_id = $customer_id_array['id'];
   $_SESSION['name']  = $customer_id_array['name'];
   $_SESSION['phone']  = $customer_id_array['phone'];
   $customer_created = $customer_id_array['datetym'];
@@ -82,7 +83,8 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
           </div>
 
           <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
-            <a href="index.php" class="js-logo-clone"><img src="img/logo_nav.png" width="200" height="95"></a>
+            <a href="index.php" class="js-logo-clone">
+            <img src="img/logo_nav.png" alt="logo" width="200" height="95"></a>
           </div>
 
           <div class="col-6 col-md-4 order-3 order-md-3 text-right">
@@ -97,7 +99,7 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
                 </a>
                 </li>";
                 } else {
-                  $fav_sql = mysqli_query($connect, "SELECT * FROM wishlist WHERE customer_id='$customer_id'");
+                  $fav_sql = mysqli_query($connect, "SELECT * FROM wishlist WHERE customer_id=".$_SESSION['id']);
                   $count_fav = mysqli_num_rows($fav_sql);
                   echo '
                   <li>

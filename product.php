@@ -2,19 +2,14 @@
 include('navbar.php');
 
 $product_id = $_GET['id'];
-
 $find_product_data = "SELECT * FROM product WHERE id = '$product_id' LIMIT 1";
-
 $found_product_data = $connect->query($find_product_data);
 $product_id_array = $found_product_data->fetch_assoc();
 $product_section = $product_id_array['section'];
 $product_brand = $product_id_array['brand'];
 $product_categories = $product_id_array['categories'];
-
 $sql = "INSERT INTO search ( product_id, customer_id, section, brand, categories, datetym)
-  			VALUES('$product_id', '$customer_id', '$product_section', '$product_brand ',
-              '$product_categories',NOW())";
-
+  			VALUES('$product_id', '$customer_id', '$product_section', '$product_brand ','$product_categories',NOW())";
 mysqli_query($connect, $sql);
 
 ?>
@@ -291,12 +286,11 @@ $cat_name = $row2['cat_name'];
                   </form>
 
                   <?php
-
                   $id = $_GET['id'];
                   $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
                   $row = mysqli_fetch_assoc($result);
-
                   ?>
+                  
                   <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $row['id']; ?>" id="getUser" style="clear:both; background: #48c9b0; 
   border: none; color: #fff; font-size: 14px; padding: 10px;cursor: pointer;">Notify me</button>
                 <?php } ?>
@@ -313,18 +307,9 @@ $cat_name = $row2['cat_name'];
 
                       </div>
                       <div class="modal-body">
-
-                        <div id="modal-loader" style="display: none; text-align: center;">
-                          <img src="ajax-loader.gif">
-                        </div>
-
                         <div id="dynamic-content">
-
                         </div>
-
                       </div>
-
-
                     </div>
                   </div>
                 </div>

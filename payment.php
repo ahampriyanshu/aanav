@@ -1,14 +1,15 @@
 <?php
+if (!isset($_GET['id']))
+{
+header('location: login.php');
+}
 include('boilerplate.php');
-
 $id = $_GET['id'];
 $sql = "SELECT * FROM shipping where shipping_id=$id";
 $run = mysqli_query($connect, $sql);
 while ($row = mysqli_fetch_assoc($run)) {
-
-  $_SESSION['shipping'] = $row['shipping_id'];
+$_SESSION['shipping'] = $row['shipping_id'];
 }
-
 ?>
 
 <style type="text/css">
@@ -109,15 +110,9 @@ while ($row = mysqli_fetch_assoc($run)) {
             <h2>Payment Method</h2>
 
 <div class="form-check">
-
   <label>
     <input type="radio" class="option-input radio" id="COD_radio" name="COD_radio" />
     Cash On Delivery
-  </label>
-
-  <label>
-    <input type="radio" class="option-input radio" id="Prepaid_radio" name="Prepaid_radio" />
-    Pay With Razorpay
   </label>
 </div>
 
@@ -127,30 +122,6 @@ while ($row = mysqli_fetch_assoc($run)) {
 <script type="text/javascript">
   $(document).ready(function() {
     $("#COD_radio").change(function() {
-      var shippingValidation = $(this).val();
-
-      if (shippingValidation != '') {
-        $("#loader").show();
-        $(".pay-container").html("");
-
-        $.ajax({
-          type: 'post',
-          data: {
-            shipping_validation: shippingValidation
-          },
-          url: 'COD.php',
-          success: function(returnData) {
-            $("#loader").hide();
-            $(".pay-container").html(returnData);
-          }
-        });
-      }
-
-    })
-  });
-
-  $(document).ready(function() {
-    $("#Prepaid_radio").change(function() {
       var shippingValidation = $(this).val();
 
       if (shippingValidation != '') {

@@ -255,7 +255,7 @@ while ($row = mysqli_fetch_assoc($run)) {
                         echo '<b>' . $obj->name . '</b>';
                         echo '<h6 class="my-0">&#x20B9;&nbsp;' . $obj->cost . '</h6>';
                         echo '<small>quantity: ' . $quantity . '</small>';
-                        // echo 'amount: &#x20B9;&nbsp;'.$cost.'<br>';
+                       
                         echo '</li>';
                       }
                       echo '</ul>';

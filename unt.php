@@ -283,11 +283,8 @@
                                     $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
                                     $pro_data = mysqli_fetch_assoc($find_pro_id);
                                     $product_id = $pro_data['product_id'];
-
                                     $result = "SELECT  name, cost, qty, file FROM product WHERE id = '$product_id'";
                                     $run = mysqli_query($connect, $result);
-
-
                                     if ($run) {
                                       echo ' <li>Product <span>Total</span></li>';
                                       while ($obj = mysqli_fetch_object($run)) {

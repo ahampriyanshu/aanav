@@ -3,10 +3,8 @@ require_once('essentials/config.php');
 ?>
 <?php
 include "inc.php";
-if (isset($_SESSION['userId'])) :
-
+if (isset($_SESSION['customer'])) :
   header("location: profile.php");
-
 endif;
 $validation = new validation;
 $queries    = new queries;
@@ -25,7 +23,7 @@ if (isset($_POST['submit'])) {
     $fullName = $validation->input('fullName');
     $email    = $validation->input('email');
     $password = $validation->input('password');
-    $phone = $validation->input('phone');
+    $phone    = $validation->input('phone');
     $password = password_hash($password, PASSWORD_DEFAULT);
     $code     = rand();
     $code     = password_hash($code, PASSWORD_DEFAULT);
@@ -33,14 +31,13 @@ if (isset($_POST['submit'])) {
     $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/verifyEmail.php?confirmation=" . $code;
     $status   = 0;
     $subject  = 'Please confirm your Email';
-    $body = '<p> Hi ' . $userName . '<br> Please confirm your email click on the below link</p> <p><a href="'. $url .'">Confirm email</a></p><p> OR copy an paste this link '. $url .'</p>';
+    $body = '<p> Hi ' . $fullName . '<br> Please confirm your email click on the below link</p> <p><a href="' . $url . '">Confirm email</a></p><p> OR copy an paste this link ' . $url . '</p>';
 
     if ($queries->query("INSERT INTO customer (name, email, password, phone, code, status, datetym) VALUES
-     ('$fullName', '$email', '$password', '$phone', '$code', '$status', now()) "
-     )) {
+     ('$fullName', '$email', '$password', '$phone', '$code', '$status', now()) ")) {
 
       if ($sendEmail->send($fullName, $email, $subject, $body)) {
-      header("location: confirm_email.php");
+        header("location: confirm_email.php");
       }
     }
   }
@@ -59,41 +56,10 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
+
 </head>
 
 <body>
-  <!-- 
-<?php
-extract($_POST);
-
-if (isset($submit)) {
-  date_default_timezone_set('Asia/Kolkata');
-  $email = $_POST['email'];
-  $pass = $_POST['pass'];
-  $name  = $_POST['name'];
-  $phone = $_POST['phone'];
-
-  $sql = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-  ('$name', '$email', '$pass', '$phone', now() )";
-
-  $check = "SELECT * FROM customer WHERE `email` = '$email'";
-  $result = mysqli_query($connect, $check);
-  $num = mysqli_num_rows($result);
-
-  if ($num > 0) {
-    $found = "N";
-  } else {
-    $create = "INSERT INTO customer (name,email,password,phone,datetym) VALUES
-   '$name', '$email', '$pass', '$phone', now() ";
-    mysqli_query($connect, $create);
-    echo "<script>
-  alert('New User Created');
-  document.location='login.php';
-  </script>";
-  }
-}
-?> -->
-
   <main>
     <div class="container-fluid">
       <div class="row">
@@ -106,8 +72,8 @@ if (isset($submit)) {
             <form name="signupform" method="post">
               <div class="form-group">
                 <label for="password">Name</label>
-                <input type="text" name="fullName" id="email" class="form-control" placeholder="Enter your name" required />
-                <div class="error">
+                <input type="text" name="fullName" class="form-control" placeholder="Enter your name" required />
+                <div class="error text-center text-danger">
                   <?php if (!empty($validation->errors['fullName'])) : echo $validation->errors['fullName'];
                   endif; ?>
                 </div>
@@ -115,20 +81,28 @@ if (isset($submit)) {
 
               <div class="form-group mb-6">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required />
-                <div class="error">
+                <input type="email" name="email" class="form-control" placeholder="Enter your email" required />
+                <div class="error text-center text-danger">
                   <?php if (!empty($validation->errors['email'])) : echo $validation->errors['email'];
                   endif; ?>
                 </div>
               </div>
               <div class="form-group mb-6">
                 <label for="password">Phone</label>
-                <input type="number" name="phone" id="email" class="form-control" placeholder="+91">
+                <input type="number" name="phone" class="form-control" placeholder="+91">
+                <div class="error text-center text-danger">
+                  <?php if (!empty($validation->errors['phone'])) : echo $validation->errors['phone'];
+                  endif; ?>
+                </div>
+                <div class="error text-center text-danger">
+                  <?php if (!empty($validation->errors['password'])) : echo $validation->errors['password'];
+                  endif; ?>
+                </div>
               </div>
               <div class="form-group mb-6">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class="form-control" placeholder="Create new passsword" name="pass" required />
-                <div class="error">
+                <div class="error text-center text-danger">
                   <?php if (!empty($validation->errors['password'])) : echo $validation->errors['password'];
                   endif; ?>
                 </div>

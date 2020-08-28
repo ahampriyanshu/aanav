@@ -34,7 +34,7 @@ class validation extends db {
         $result = $this->connect->prepare(" SELECT * FROM " . $tableName . " WHERE " . $field . " = ? ");
         if($result->execute([$inputField])){
             if($result->rowCount() > 0 ){
-                return $this->errors[$field] = $label . " is already exist";
+                return $this->errors[$field] = "Given ". $label . " already exist";
             }
         }
 

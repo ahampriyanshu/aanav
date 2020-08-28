@@ -2,14 +2,14 @@
 error_reporting(E_ALL);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
+
  class sendEmail {
 
-    public function send($userName, $email, $subject, $body){
+public function send($userName, $email, $subject, $body){
 
-       // Load Composer's autoloader
-require 'phpmailer/vendor/autoload.php';
+require 'PHPMailer/vendor/autoload.php';
 
-// Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer(true);
 
 try {
@@ -27,14 +27,14 @@ try {
     $mail->addReplyTo('priyanshootiwari@gmail.com', 'aanav');
     $mail->setFrom('priyanshootiwari@gmail.com', 'aanav');
     $mail->addAddress($email, $userName);     // Add a recipient
-
+    $mail->AddEmbeddedImage('img/logo_nav.png', 'logoimg');
 
     $mail->Subject = $subject;
-    $mail->Body    = $body;
-    $mail->AltBody = $body;
-      $mail->isHTML(true);                                  // Set email format to HTML
-
+    $mail->Body    = "<center><p><img width=\"200\" height=\"95\" src=\"cid:logoimg\" /></p>".$body."</center>";
+    $mail->AltBody = "<center><p><img width=\"200\" height=\"95\" src=\"cid:logoimg\" /></p>".$body."</center>";
+    $mail->isHTML(true);
     $mail->send();
+
     return true;
 } catch (Exception $e) {
     return false;

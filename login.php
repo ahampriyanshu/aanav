@@ -28,6 +28,7 @@ if (isset($_POST['submit'])) {
           $_SESSION['notVerified'] = "Please verify your email and try again";
         } else {
           if (password_verify($password, $dbPassword)) {
+            $update = mysqli_query($connect, "UPDATE `customer` SET `last_login` = NOW() WHERE `email` = '$email' ");
             $_SESSION['email'] = $email;
             header("location: index.php");
           } else {

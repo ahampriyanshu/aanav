@@ -13,9 +13,9 @@ $sendEmail  = new sendEmail;
 if (isset($_POST['submit'])) {
 
   $validation->validate('fullName', 'Full Name', 'required');
-  $validation->validate('email', 'Email', 'uniqueEmail|customer|required');
+  $validation->validate('email', 'Email', 'uniqueEmail|dfdcustomer|required');
   $validation->validate('password', 'Password', 'required|min_len|6');
-  $validation->validate('phone', 'Phone', 'uniqueEmail|customer|required');
+  $validation->validate('phone', 'Phone', 'uniqueEmail|dfdcustomer|required');
 
 
   if ($validation->run()) {
@@ -31,13 +31,27 @@ if (isset($_POST['submit'])) {
     $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/verifyEmail.php?confirmation=" . $code;
     $status   = 0;
     $subject  = 'Please confirm your Email';
-    $body = '<p> Hi ' . $fullName . '<br> Please confirm your email click on the below link</p> <p><a href="' . $url . '">Confirm email</a></p><p> OR copy an paste this link ' . $url . '</p>';
+    $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > You are almost done.Click below to verify your email address</p> 
+    <p><a style="background-color: #66FCF1;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;"
+    href="' . $url . '">Verify Email</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a  href="' . $url . '">Contact Us</a></p>';
 
     if ($queries->query("INSERT INTO customer (name, email, password, phone, code, status, datetym) VALUES
      ('$fullName', '$email', '$password', '$phone', '$code', '$status', now()) ")) {
 
       if ($sendEmail->send($fullName, $email, $subject, $body)) {
-        header("location: confirm_email.php");
+        $_SESSION['accountCreated'] = "Your account has been created successfully. Please verify your email";
+        header("location: login.php");
       }
     }
   }

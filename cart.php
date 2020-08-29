@@ -102,12 +102,11 @@ echo'<tr>
               echo '
               <div class="container">
               <div style="margin-top:40px;" class="row">
-    <div class="col-md-12 text-center">
-      <span class="icon-exclamation-circle display-2 text-danger"></span>
-      <h2 class="display-5 text-danger">Your cart is empty</h2>
-      <p class="text-success mb-5">You can check our bestseller section</p>
-      <p><a href="wishlist.php" class="btn btn-sm btn-success">Veiw Your Wishlist</a></p>
-      <p><a href="index.php" class="btn btn-sm btn-info">Home</a></p>
+              <div class="col-md-12 text-center">
+              <span class="icon-exclamation-circle display-3 text-danger"></span>
+              <h2 class="display-4 text-black">Your Cart is empty !</h2>
+              <p class="display-5 mb-5">You can check our bestseller section</p>
+              <p><a href="index.php" class="btn btn-sm btn-info">Continue shopping</a></p>
     </div>
   </div>
 </div>';     }  

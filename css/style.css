@@ -3379,11 +3379,13 @@ footer p {
   list-style-type: none;
 }
 .social_footer_ul li {
+  
   padding-left: 20px;
   padding-top: 10px;
   float: left;
 }
 .social_footer_ul li i {
+  color:#DF3E1F !important;
   width: 20px;
   height: 20px;
   text-align: center;

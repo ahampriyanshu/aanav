@@ -1,7 +1,7 @@
 <?php
    include('boilerplate.php');
    
-   $per_page = 12;
+   $per_page = 8;
 
    if (isset($_GET['page'])) {
        $page = $_GET['page'];
@@ -13,7 +13,7 @@
 
 ?>
 <style>
-    #price_range {
+#price_range {
     height: 6px;
 }
 .ui-slider-handle {
@@ -24,6 +24,12 @@
 }
 .ui-slider-range.ui-corner-all.ui-widget-header {
     background: #333;
+}
+
+.sublist{
+    color: grey;
+    font-weight: bolder;
+    text-transform: uppercase;
 }
 </style>
 <div class="container">
@@ -61,7 +67,7 @@
                 <label for="<?php echo $name['cat_name']; ?>">
                         <input type="checkbox"  id="<?php echo $name['cat_name']; ?>" class="filter_all section" value="<?php echo $row['section']; ?>">
                         <span class="checkmark"></span>
-                        <?php echo $name['cat_name']; ?>
+                        <p class="sublist"><?php echo $name['cat_name']; ?></p>
                     </label>
                 </div>
                 <?php
@@ -93,7 +99,7 @@
                 <label for="<?php echo $name['brand_name']; ?>">
                             <input type="checkbox"  id="<?php echo $name['brand_name']; ?>" class="filter_all brand" value="<?php echo $row['brand']; ?>">
                             <span class="checkmark"></span>
-                            <?php echo $name['brand_name']; ?>
+                            <p class="sublist"><?php echo $name['brand_name']; ?></p>
                         </label>
                     </div>
                     <?php
@@ -126,7 +132,7 @@
                 <label for="<?php echo $name['sub_name']; ?>">
                         <input type="checkbox"  id="<?php echo $name['sub_name']; ?>"  class="filter_all categories" value="<?php echo $row['categories']; ?>">
                         <span class="checkmark"></span>
-                        <?php echo $name['sub_name']; ?>
+                        <p class="sublist"><?php echo $name['sub_name']; ?></p>
                     </label>
                 </div>
                 <?php } ?>
@@ -210,7 +216,5 @@ $(document).ready(function() {
     });
 
 });
-</script>
-
-                
+</script>            
 <?php include('footer.php'); ?>

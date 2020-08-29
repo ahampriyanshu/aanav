@@ -1,5 +1,4 @@
 <?php
-
 require_once('essentials/config.php');
 echo"<br>";
 if(isset($_REQUEST["term"])){

@@ -128,24 +128,24 @@ location.href="cart.php"
 
                      <?php
                         $query = "SELECT * FROM shipping WHERE shipping_type= 'home'
-         and email = '$customer' ORDER BY shipping_id DESC";
+                        and email = '$customer' ORDER BY shipping_id DESC";
                         $result = mysqli_query($connect, $query);
                         while ($row = mysqli_fetch_assoc($result)) {
-                            $id = $row['shipping_id']; ?>
-                         <div class="container" style="margin-bottom: 30px;">
-                             <p>
-                                 <a style="color: #888; margin-left: 10px;" href="shipping_del.php?id=<?php echo $row['shipping_id'] ?>" class='pull-right' id='del_<?= $id ?>'>
-                                     <i class="far fa-trash-alt"></i></a>
-                                 <a style="color: #888;  margin-left: 10px;" href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" class="pull-right">
-                                     <i class="far fa-edit"></i></a>
-                             </p>
-                             <input type="hidden" value="<?php echo $row['shipping_id'] ?>">
-                             <p><?php echo $row['full_name'] ?></p>
-                             <p><?php echo $row['phone'] ?></p>
-                             <p><?php echo $row['street_address'] ?>,<?php echo $row['city'] ?>,<?php echo $row['state'] ?>
-                                 <a href="payment.php?id=<?php echo $row['shipping_id'] ?>" class="btn btn-sm btn-success pull-right">Proceed<i style=" margin-left: 10px;" class="fas fa-arrow-right"></i></a>
-                             </p>
-                         </div>
+                        $id = $row['shipping_id']; ?>
+                        <div class="container" style="margin-bottom: 30px;">
+                        <p>
+                        <a style="color: #888; margin-left: 10px;" href="shipping_del.php?id=<?php echo $row['shipping_id'] ?>" class='pull-right' id='del_<?= $id ?>'>
+                        <i class="far fa-trash-alt"></i></a>
+                        <a style="color: #888;  margin-left: 10px;" href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" class="pull-right">
+                        <i class="far fa-edit"></i></a>
+                        </p>
+                        <input type="hidden" value="<?php echo $row['shipping_id'] ?>">
+                        <p><?php echo $row['full_name'] ?></p>
+                        <p><?php echo $row['phone'] ?></p>
+                        <p><?php echo $row['street_address'] ?>,<?php echo $row['city'] ?>,<?php echo $row['state'] ?>
+                        <a href="payment.php?id=<?php echo $row['shipping_id'] ?>" class="btn btn-sm btn-success pull-right">Proceed<i style=" margin-left: 10px;" class="fas fa-arrow-right"></i></a>
+                        </p>
+                        </div>
                      <?php } ?>
                  </div>
              </div>

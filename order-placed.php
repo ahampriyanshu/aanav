@@ -1,16 +1,27 @@
-<?php include('boilerplate.php'); ?>
+<?php
+if (!isset($_GET['id']))
+{
+header('location: error.php');
+}
+include('boilerplate.php');
+$id = $_GET['id'];
+$sql = "SELECT * FROM shipping where shipping_id=$id";
+$run = mysqli_query($connect, $sql);
+while ($row = mysqli_fetch_assoc($run)) {
+$_SESSION['shipping'] = $row['shipping_id'];
+}
+?>
 <link rel="stylesheet" type="text/css" href="css/success.css">
 
 <div class="container">
-  <div class="row">
+  <div style="margin-top:40px;" class="row">
     <div class="col-md-12 text-center">
       <span class="icon-check_circle display-2 text-success"></span>
-      <h2 class="display-3 text-black">Thank you!</h2>
-      <p class="lead mb-5">Your order was successfuly placed.</p>
+      <h2 class="display-5 text-black">Thank you!</h2>
+      <p class="text-success mb-5">Your order was successfuly placed</p>
       <p><a href="order_detail.php" class="btn btn-sm btn-success">Order Detail</a></p>
-      <p><a href="index.php" class="btn btn-sm btn-info">home</a></p>
+      <p  style="vertical-align: middle;" ><a style="vertical-align: middle;" href="index.php" class="btn btn-sm btn-info"><i style=" margin-right: 10px;" class="fas fa-2x fa-file-download"></i>Invoice</a></p>
     </div>
   </div>
 </div>
-
 <?php include('footer.php'); ?>

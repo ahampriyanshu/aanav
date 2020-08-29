@@ -1,7 +1,7 @@
 <?php
 if (!isset($_GET['id']))
 {
-header('location: login.php');
+header('location: error.php');
 }
 include('boilerplate.php');
 $id = $_GET['id'];

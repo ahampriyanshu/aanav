@@ -108,7 +108,7 @@ a {
     margin-right: 10px; }
   .site-navbar .site-search-icon a:hover {
     text-decoration: none; }
-  .site-navbar .site-logo a {
+  .site-navbar .site-logo a {classclass
     text-transform: uppercase;
     color: #25262a;
     letter-spacing: .2em;
@@ -169,6 +169,9 @@ a {
     margin-bottom: 0; }
     .site-navbar .site-navigation .site-menu .active > a {
       color: #66FCF1; }
+      .site-navbar .site-navigation .site-menu .log_button {
+        display:none;
+      }
     .site-navbar .site-navigation .site-menu a {
       text-decoration: none !important;
       font-size: 15px;

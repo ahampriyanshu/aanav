@@ -112,8 +112,6 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
                   </a>
                   </li>';
                 } ?>
-
-
                 <?php
                 if (isset($_SESSION['cart'])) {
 
@@ -148,6 +146,18 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
           <li><a href="shop.php?key=new">New Arrivals</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="contact.php">Contact</a></li>
+          <?php
+                if ($_SESSION['email'] == null) {
+                  echo ' 
+                  <li  style="margin-top: 50px;" class="log_button" ><a href="login.php" style="color:red; font-weight:bolder; " class="btn btn-sm pull-center">
+                  signin / signup
+        </a></li>';
+                } else {
+                  echo ' 
+                  <li  style="margin-top: 50px;" class="log_button" ><a href="logout.php" style="color:red; font-weight:bolder; " class="btn btn-sm pull-center">
+                  Logout
+        </a></li>';
+                } ?>
         </ul>
       </div>
     </nav>

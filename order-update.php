@@ -61,7 +61,7 @@ $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/myorders.php?id=" . $o
 $subject  = 'New Order successfully placed';
 $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $full_name . '</p><p 
  style="color:grey; font-size: 16px;" > Your order worth <span style="color:green;" > &#x20B9;&nbsp; ' . $total . '</span> was placed successfully at 
- <span style="color:green;"> ' . $time_now . '</span>.<br> Merchent may contact you in 2-3 working days</p> 
+ <span style="color:green;"> ' . $time_now . '</span>.<br> Merchant may contact you in 2 to 3 working days.Happy Shopping</p> 
     <p><a style="background-color: #66FCF1;
     border: none;
     color: white;

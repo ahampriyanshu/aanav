@@ -19,17 +19,20 @@ if($result){
  
        case "add":
        if($_SESSION['cart'][$variant_id]+1 <= $obj->qty)
-         $_SESSION['cart'][$variant_id]++;
+       {  $_SESSION['cart'][$variant_id]++;}
+       else
+         {$_SESSION['alertMsg'] = "Maximum available quantity reached !";}
        break;
  
        case "remove":
        $_SESSION['cart'][$variant_id]--;
        if($_SESSION['cart'][$variant_id] == 0)
-         unset($_SESSION['cart'][$variant_id]);
+        { unset($_SESSION['cart'][$variant_id]);}
          break;
 
          case "del":
           unset($_SESSION['cart'][$variant_id]);
+          {$_SESSION['alertMsg'] = "Item removed from your cart !";}
             break;
 
  

@@ -35,19 +35,15 @@ $product_id = $pro_data['product_id'];
                   if ($run) {
                       while ($obj = mysqli_fetch_object($run)) {
                         $code = $obj->code;
-                          $price = $obj->cost * $quantity; //work out the line price
-
-                          $total = $total + $price; //add to the total price
+                          $price = $obj->cost * $quantity;
+                          $total = $total + $price; 
                           $itemqty = $itemqty+$quantity;
-
                           $color = $pro_data['color'];
                           $size = $pro_data['size'];
-
                           $result_c = mysqli_query($connect, "SELECT * FROM attribute where attr_id='$color'");
                           $row_c = mysqli_fetch_assoc($result_c);
                           $attr = $row_c['attr_id'];
                           $value_c = $row_c['value'];
-
                           $result_s = mysqli_query($connect, "SELECT * FROM attribute where attr_id='$size'");
                           $row_s = mysqli_fetch_assoc($result_s);
                           $attr = $row_s['attr_id'];
@@ -105,13 +101,13 @@ echo'<tr>
             } else {
               echo '
               <div class="container">
-  <div class="row">
+              <div style="margin-top:40px;" class="row">
     <div class="col-md-12 text-center">
       <span class="icon-exclamation-circle display-2 text-danger"></span>
-      <h2 class="display-3 text-black">Empty Cart</h2>
-      <p class="lead mb-5">Your cart is Empty</p>
-      <p><a href="index.php" class="btn btn-sm btn-success">Veiw Your Wishlist</a></p>
-      <p><a href="invoice.php" class="btn btn-sm btn-info">Home</a></p>
+      <h2 class="display-5 text-danger">Your cart is empty</h2>
+      <p class="text-success mb-5">You can check our bestseller section</p>
+      <p><a href="wishlist.php" class="btn btn-sm btn-success">Veiw Your Wishlist</a></p>
+      <p><a href="index.php" class="btn btn-sm btn-info">Home</a></p>
     </div>
   </div>
 </div>';     }  

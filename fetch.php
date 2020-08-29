@@ -72,8 +72,8 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
         $output = '<div  class="container">
         <div style="margin-top:40px;" class="row">
           <div class="col-md-12 text-center">
-            <span class="icon-check_circle display-2 text-success"></span>
-            <h2 class="display-5 text-black">No matching items found</h2>
+            <span class="icon-exclamation-circle display-2 text-danger"></span>
+            <h2 class="display-5 text-danger">No matching items found</h2>
             <p class="text-success mb-5">Change your filters and try again</p>
           </div>
         </div>

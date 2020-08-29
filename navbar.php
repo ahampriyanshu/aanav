@@ -22,6 +22,13 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
 }
 ?>
 <style type="text/css">
+
+input {
+
+  border: none;
+  border: none transparent;
+  outline: none;
+}
   .result {
     width: 100%;
     position: absolute;
@@ -31,14 +38,15 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
     font-size: 12px;
     text-transform: uppercase;
     color: #888;
+    background: #fff;
     text-align: left;
-  }
+  } 
 
   .result p {
     background: #fff;
-    color: #000;
+    color: #888;
     padding: 4px;
-    margin-bottom: 1px solid white;
+    font-weight:bolder;
     border-radius: 2px;
 
   }
@@ -48,15 +56,11 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
     color: #888;
   }
 
-  .result p a {
-    cursor: pointer;
-    color: #666;
-  }
-
   .result p a:hover {
     cursor: pointer;
-    color: teal;
+    color: black !important;
   }
+
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
 <link rel="stylesheet" href="essentials/fonts/icomoon/style.css">
@@ -74,10 +78,10 @@ SELECT * FROM customer WHERE email = '$customer' LIMIT 1
       <div class="container">
         <div class="row align-items-center">
 
-          <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
-
-            <div class="site-block-top-search search-box">
-              <input type="text" autocomplete="off" class="form-control border-0" placeholder="Search Product..." />
+          <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-center">
+            
+          <div class="site-block-top-search search-box">
+              <input type="text" class="border-0" placeholder="Search" />
               <div class="result"></div>
             </div>
           </div>

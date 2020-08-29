@@ -1,7 +1,7 @@
 <?php
 
 require_once('essentials/config.php');
-
+echo"<br>";
 if(isset($_REQUEST["term"])){
     
             $result = mysqli_query($connect,"SELECT * FROM product WHERE name LIKE '%".$_REQUEST["term"]."%' LIMIT 8");
@@ -12,7 +12,7 @@ if(isset($_REQUEST["term"])){
                     . "'width='30px' height='40px'>&emsp;" . $row['name'] . "</p></a>";
                 }
             } else{
-                echo "<p>No matches found</p>";
+                echo "<a><p style='color:red; font-weight:bold;' >No matches found</p></a>";
             }
         }
 ?>

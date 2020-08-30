@@ -86,12 +86,12 @@ $cat_name = $row2['cat_name'];
           <div class="row">
             <div class="col-lg-6">
               <div class="product-pic-zoom">
-                <img class="product-big-img" src="uploads/<?php echo $row2['file'] ?>" alt="main">
+                <img height="400" class="product-big-img" src="uploads/<?php echo $row2['file'] ?>" alt="main">
               </div>
               <div class="product-thumbs">
                 <div class="product-thumbs-track ps-slider owl-carousel">
                   <div class="pt active" data-imgbigurl="uploads/<?php echo $row2['file'] ?>">
-                  <img src="uploads/<?php echo $row2['file'] ?>" alt=""></div>
+                  <img height="100" src="uploads/<?php echo $row2['file'] ?>" alt=""></div>
                   <?php
                   $sql2 = "SELECT * FROM gallery
                               WHERE product_id = $id";
@@ -100,7 +100,7 @@ $cat_name = $row2['cat_name'];
                     { 
                   ?>
                     <div class="pt active" data-imgbigurl="uploads/gallery/<?php echo $row2['image'] ?>">
-                      <img src="uploads/gallery/<?php echo $row2['image'] ?>" alt="gallery"></div>
+                      <img height="100" src="uploads/gallery/<?php echo $row2['image'] ?>" alt="gallery"></div>
 
                   <?php } endwhile; ?>
                 </div>
@@ -234,12 +234,16 @@ $cat_name = $row2['cat_name'];
                 $fav = $row_fav['fav_id'];
                 ?>
 
-                <p> <?php if ($product['qty'] == 0) {
-                      echo "<span class='badge badge-danger'>Sold Out</span>";
+                <p> <?php if ($product['qty'] < 0) {
+                      echo "<script>window.open('error.php','_self')</script>";
                     } else {
-                      if ($product['qty'] < 10) {
+                      if ( $product['qty'] == 0 ) {
+                        echo "<span class='badge badge-info'>Sold Out</span>";
+                      } else 
+                      if ( $product['qty'] < 0 && $product['qty'] < 10) {
                         echo "<span class='badge badge-info'>Few Left</span>";
-                      } else {
+                      }
+                      else {
                         echo "<span class='badge badge-success'>In Stock</span>";
                       }
                     }

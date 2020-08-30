@@ -117,10 +117,11 @@ if (isset($_POST['submit'])) {
 
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Login">
             </form>
-            <p style="color:grey;" class="login-wrapper-footer-text">New User ?&emsp;<a href="register.php" style="color:green; font-weight:bolder; text-decoration:none;" >Sign Up</a></p>
+            <p class="text-center"><a href="register.php" style="color:green; font-weight:bolder; text-decoration:none;" >Sign Up</a>&emsp;
+            <a href="forgotPassword.php" style="color:red; font-weight:bolder; text-decoration:none;" >Forgot Password</a>
+          </p>
           </div>
         </div>
-
         <div class="col-sm-6 px-0 d-none d-sm-block">
           <img src="img/work.png" alt="login image" class="login-img">
         </div>

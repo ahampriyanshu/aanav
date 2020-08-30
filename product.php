@@ -61,7 +61,7 @@ $cat_name = $row2['cat_name'];
 
   if (!$id) {
     echo "<script>
-    document.location='shop.php';
+    document.location='error.php';
     </script>";
   }
 
@@ -70,11 +70,16 @@ $cat_name = $row2['cat_name'];
   $product_id = $row['id'];
   $section = $row['section'];
   $qty = $row['qty'];
-
   ?>
-
-  <!-- Product Shop Section Begin -->
   <section class="product-shop carousel-info page-details">
+  <?php if (isset($_SESSION['alertMsg'])) : ?>
+        <div class="col-md-6 mx-auto text-center">
+            <div class="alert alert-danger">
+                <?php echo $_SESSION['alertMsg']; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php unset($_SESSION['alertMsg']); ?>
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
@@ -85,17 +90,19 @@ $cat_name = $row2['cat_name'];
               </div>
               <div class="product-thumbs">
                 <div class="product-thumbs-track ps-slider owl-carousel">
-                  <div class="pt active" data-imgbigurl="uploads/<?php echo $row2['file'] ?>"><img src="uploads/<?php echo $row2['file'] ?>" alt=""></div>
+                  <div class="pt active" data-imgbigurl="uploads/<?php echo $row2['file'] ?>">
+                  <img src="uploads/<?php echo $row2['file'] ?>" alt=""></div>
                   <?php
                   $sql2 = "SELECT * FROM gallery
                               WHERE product_id = $id";
                   $run = mysqli_query($connect, $sql2);
                   while ($row2 = mysqli_fetch_assoc($run)) :
+                    { 
                   ?>
                     <div class="pt active" data-imgbigurl="uploads/gallery/<?php echo $row2['image'] ?>">
                       <img src="uploads/gallery/<?php echo $row2['image'] ?>" alt="gallery"></div>
 
-                  <?php endwhile; ?>
+                  <?php } endwhile; ?>
                 </div>
               </div>
             </div>

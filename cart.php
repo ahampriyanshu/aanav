@@ -20,7 +20,7 @@ include('boilerplate.php');
     <?php endif; ?>
     <?php unset($_SESSION['alertMsg']); ?>
 
-<?php echo '
+    <?php echo '
                           <div class="cart-table">
                               <table>
                                   <thead>
@@ -62,20 +62,15 @@ include('boilerplate.php');
                 $value_s = $row_s['value'];
 
                 echo '<tr>
-                                                      <td class="cart-pic first-row"><a href="product.php?id=' . $product_id . '" ><img width="150" height="150" src="uploads/' . $obj->file . '" alt="product image"></a></td>
-                                                      <td class="cart-title first-row">
-                                                          <h5>' . $obj->name . '</h5>
-                                                           
-                                             <h6 style="color:' . $value_c . ';" > ' . $value_c . '</h6>
-                              <h6 ><strong> ' . $value_s . '<strong> </h6>
-                              <h6 ><fat> ' . $code . '<fat> </h6>
-              
+                             <td class="cart-pic first-row"><a href="product.php?id=' . $product_id . '" ><img width="150" height="150" src="uploads/' . $obj->file . '" alt="product image"></a></td>
+                            <td class="cart-title first-row">
+                            <span class="badge badge-pill badge-light">' . $obj->name . '</span>
+             <span style="color:white; background-color:' . $value_c . ';"
+              class="badge "><b>' . $value_s . '</b></span>              
                                                       </td>
-
                                                       <td class="total-price first-row">&#x20B9;&nbsp;' . $obj->cost . '
                                                       <strong style="text-decoration: line-through; color:grey; font-size:.8em;">
                                                        &#x20B9;&nbsp;' . $obj->MRP . '</strong></td>
-                                                      
                                                       <td class="qua-col">
                                                       <div class="quantity">
                                                           <div class="pro-qty">
@@ -109,38 +104,38 @@ include('boilerplate.php');
           <a href="delete-cart.php" class="primary-btn up-cart">Empty cart</a>
       
       </div>';
-?>
+    ?>
 
 <?php
-if (isset($_SESSION['cart'])) {
-    $total = 0;
-    $itemqty = 0;
-    $saving = 0;
-    $MRP = 0;
+    if (isset($_SESSION['cart'])) {
+        $total = 0;
+        $itemqty = 0;
+        $saving = 0;
+        $MRP = 0;
 
 
-    foreach ($_SESSION['cart'] as $variant_id => $quantity) {
+        foreach ($_SESSION['cart'] as $variant_id => $quantity) {
 
-        $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
-        $pro_data = mysqli_fetch_assoc($find_pro_id);
-        $product_id = $pro_data['product_id'];
+            $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
+            $pro_data = mysqli_fetch_assoc($find_pro_id);
+            $product_id = $pro_data['product_id'];
 
-        $result = "SELECT  name, qty, MRP, cost,file FROM product WHERE id = $product_id";
-        $run = mysqli_query($connect, $result);
+            $result = "SELECT  name, qty, MRP, cost,file FROM product WHERE id = $product_id";
+            $run = mysqli_query($connect, $result);
 
-        if ($run) {
-            while ($obj = mysqli_fetch_object($run)) {
+            if ($run) {
+                while ($obj = mysqli_fetch_object($run)) {
 
-                $price = $obj->cost * $quantity;
-                $MRP += $obj->MRP * $quantity;
-                $total += $price;
-                $itemqty += $quantity;
-                $saving = $MRP - $total;
+                    $price = $obj->cost * $quantity;
+                    $MRP += $obj->MRP * $quantity;
+                    $total += $price;
+                    $itemqty += $quantity;
+                    $saving = $MRP - $total;
+                }
             }
         }
-    }
 
-    echo '<div class="col-lg-4 offset-lg-4">
+        echo '<div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                 <ul>
                                 <li class="subtotal">Quantity <span>' . $itemqty . '</span></li>
@@ -151,8 +146,8 @@ if (isset($_SESSION['cart'])) {
                                 <a href="checkout.php" class="proceed-btn">CHECK OUT</a>
                             </div>
                         </div>';
-}
-}else {
+    }
+} else {
     unset($_SESSION['alertMsg']);
     echo '
               <div class="container">

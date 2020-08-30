@@ -32,7 +32,7 @@ $count_fav = mysqli_num_rows($run2);
                             <span>Manage Orders</span>
                             <p>Dashboard</p>
                         </div><br>
-                        <a href="order.php">
+                        <a href="myorders.php">
                             <p>My Orders(<?php echo $count ?>)</p>
                         </a>
                         <a href='cart.php'>

@@ -25,8 +25,8 @@
      }
      else
      {
+      $_SESSION['alertMsg'] = "Selected Variant is currently out of stock! Please try different color or size!";
       echo "<script>
-      alert('Selected Variant is currently out of stock! Please try different color or size');
       window.location='product.php?id=$id';
       </script>";
      }

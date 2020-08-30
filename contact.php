@@ -52,7 +52,7 @@
                             </div>
                             <div class="ci-text">
                                 <span>Email:</span>
-                                <p>tiwarimay2002@gmail.com</p>
+                                <p>ahampriyanshu@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     <div class="contact-form">
                         <div class="leave-comment">
                             <h4>Leave A Comment</h4>
-                            <p>Our staff will call back later and answer your questions.</p>
+                            <p>I will try to call back later and answer your questions</p>
                             <form action="#" class="comment-form">
                                 <div class="row">
                                     <div class="col-lg-6">

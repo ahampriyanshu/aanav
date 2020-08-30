@@ -15,15 +15,16 @@ else{
  
       case "add":
         $sql = "INSERT INTO wishlist( product_id,customer_id,fav_date)
-  			VALUES('$product_id','$customer_id',NOW())";
+        VALUES('$product_id','$customer_id',NOW())";
+        {$_SESSION['alertMsg'] = "New product added to your wishlist !";}
 
         mysqli_query($connect, $sql);
       break;
 
       case "remove":
         $sql = "DELETE FROM wishlist	WHERE `customer_id` = $customer_id and `product_id`=$product_id ";
-    
         mysqli_query($connect,$sql);
+        {$_SESSION['alertMsg'] = "One product removed from your wishlist !";}
         break;
 
         case "empty":
@@ -35,6 +36,5 @@ else{
           default:
           header('location: error.php');
     }
-
      header('location: wishlist.php');
 }

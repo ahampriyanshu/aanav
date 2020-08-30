@@ -7,13 +7,11 @@
  $product_attribute = $_SESSION['variant'];
 
 if($action === 'empty')
-unset($_SESSION['cart']);
+{unset($_SESSION['cart']);}
 
 $result = $connect->query("SELECT qty FROM variant WHERE pro_attr_id = ".$variant_id);
 
-if($result){
- 
-  if($obj = $result->fetch_object()) {
+if($result && $obj = $result->fetch_object()) {
  
     switch($action) {
  
@@ -35,10 +33,12 @@ if($result){
           {$_SESSION['alertMsg'] = "Item removed from your cart !";}
             break;
 
+            default:
+            header('location: error.php');
+
  
      }
    }
- }
 
 header("location: cart.php");
  

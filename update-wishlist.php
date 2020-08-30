@@ -5,10 +5,9 @@ if($_SESSION['email'] == null){
   echo "<script>window.open('login.php','_self')</script>";
 }
 else{
-  $customer = $_SESSION['email'];
+  $customer_id = $_SESSION['id'];
   $product_id = $_GET['id'];
   $action = $_GET['action'];
-  $customer_id = $_GET['user'];
 
   echo $customer_id.$action;
 
@@ -32,6 +31,9 @@ else{
     
           mysqli_query($connect,$sql);
            break;
+
+          default:
+          header('location: error.php');
     }
 
      header('location: wishlist.php');

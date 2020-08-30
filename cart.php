@@ -103,13 +103,12 @@ include('boilerplate.php');
           </table>
       </div>
       <div class="row">
-                        <div class="col-lg-4">
-                            <div class="cart-buttons">
-                                <a href="shop.php" class="btn btn-sm btn-success">Continue shopping</a>
-                                <a href="delete-cart.php" class="btn btn-sm btn-danger">Empty cart</a>
-                            </div>
-                        </div>
-';
+      <div class="cart-buttons">
+      
+          <a href="shop.php" class="primary-btn continue-shop">Continue shopping</a>
+          <a href="delete-cart.php" class="primary-btn up-cart">Empty cart</a>
+      
+      </div>';
 ?>
 
 <?php

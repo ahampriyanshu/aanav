@@ -37,7 +37,7 @@ include('boilerplate.php');
 
     foreach ($_SESSION['cart'] as $variant_id => $quantity) {
 
-        $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
+        $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE variant_id='$variant_id'");
         $pro_data = mysqli_fetch_assoc($find_pro_id);
         $product_id = $pro_data['product_id'];
 
@@ -64,7 +64,7 @@ include('boilerplate.php');
                 echo '<tr>
                              <td class="cart-pic first-row"><a href="product.php?id=' . $product_id . '" ><img width="150" height="150" src="uploads/' . $obj->file . '" alt="product image"></a></td>
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-light">' . $obj->name . '</span>
+                            <p><span style="font-size:1.1em;" class="badge badge-pill badge-light">' . $obj->name . '</span></p>
              <span style="color:white; background-color:' . $value_c . ';"
               class="badge "><b>' . $value_s . '</b></span>              
                                                       </td>
@@ -75,7 +75,7 @@ include('boilerplate.php');
                                                       <div class="quantity">
                                                           <div class="pro-qty">
                                                              
-                                                      <a class="dec qtybtn" href="update-cart.php?action=remove&id=' . $variant_id . '">-</a>
+                                                      <a  class="dec qtybtn" href="update-cart.php?action=remove&id=' . $variant_id . '">-</a>
                                                              <input type="text" value="' . $quantity . '">
                                                              <a class="inc qtybtn" href="update-cart.php?action=add&id=' . $variant_id . '">+</a>
                                                         </div>
@@ -116,7 +116,7 @@ include('boilerplate.php');
 
         foreach ($_SESSION['cart'] as $variant_id => $quantity) {
 
-            $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
+            $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE variant_id='$variant_id'");
             $pro_data = mysqli_fetch_assoc($find_pro_id);
             $product_id = $pro_data['product_id'];
 
@@ -151,7 +151,7 @@ include('boilerplate.php');
     unset($_SESSION['alertMsg']);
     echo '
               <div class="container">
-              <div style="margin-top:40px;" class="row">
+              <div class="row my-5">
     <div class="col-md-12 text-center">
       <span class="icon-exclamation-circle display-1 text-danger"></span>
       <h2 class="display-3 text-black">Your cart is empty !</h2>

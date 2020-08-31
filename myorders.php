@@ -77,47 +77,106 @@ $count_fav = mysqli_num_rows($run2);
             </div>
 
             <div class="col-md-9">
-                <table class="table table-borderless">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $customer = $_SESSION['email'];
-                        $c = "SELECT * FROM customer WHERE email = '$customer'";
-                        $r = mysqli_query($connect, $c);
-                        $row_c = mysqli_fetch_assoc($r);
-                        $customer_id = $row_c['id'];
+            <?php if ($count != 0) {
 
-                        $result = mysqli_query($connect, "SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
-          ON product.id = wishlist.product_id
-          WHERE wishlist.customer_id = '$customer_id'");
+            echo '<section class="shopping-cart carousel-info">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="cart-table">
+                              <table>
+                                  <thead>
+                                      <tr>
+                                          <th>Order No</th>
+                                          <th>Status</th>
+                                          <th>Payment</th>
+                                          <th>Qty</th>
+                                          <th>Total</th>
+                                          <th>Time</th>
+                                          <th>Details</th>
+                                          <th>Invoice</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>';
 
-                        if ($result) {
-                            while ($obj = mysqli_fetch_object($result)) {
-                                $id = $obj->id; ?>
-                                <tr>
-                                    <td><img src="uploads/<?php echo $obj->file ?>" width="150" height="150" /></td>
-                                    <td>
-                                        <h5><a href="product.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></h5>
-                                        <p> <?php echo $obj->cost ?></p>
-                                    </td>
-                                    <td><a href="update-cart.php?action=remove&id=<?php echo $product_id ?>">
-                                            <i class="fas fa-2x fa-cart-plus"></i></a></td>
-                                    <td><a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>">
-                                            <i class="fas fa-2x fa-trash"></i></a></td>
-                                </tr>
+                                 while($row = mysqli_fetch_assoc($run)): 
+                                    $status = $row['status'];
+?>
 
-                        <?php
-                            }
-                        } ?>
-                    </tbody>
-                </table>
+                <tr>
+                            <td class="qua-col">
+                            <p><span style="font-size:1.1em;"
+                             class="badge badge-pill badge-light"><?php echo $row['order_id'] ?></span></p>             
+                            </td>
+                                                      <td class="qua-col">
+                                                      <?php if($status == 2) { ?>
+    				<span class="badge badge-pill badge-warning">UnPaid</span>
+    			 
+			          <?php } else if($status == 3){ ?>
+			            <span class="badge badge-pill badge-info">Paid</span>
+
+			              <?php } else if($status == 4){ ?>
+			            <span class="badge badge-pill badge-light">Shipping</span>
+			         
+			          <?php }else{  ?>
+			           <span class="badge badge-pill badge-dark"> Delivered</span>
+                      <?php  }?>
+
+                                                      </td>
+                                                      <td class="qua-col">
+                                                      <?php echo $row['payment_type'] ?>
+                                                      <?php if($row['store_id'] == 0) { ?>
+    				<span class="badge badge-pill badge-warning">Store Pickup</span>
+    			 
+                      <?php } else { 
+                          echo'<span class="badge badge-pill badge-warning">Home Delivery</span>';
+                          }?>
+                                                  </td>
+
+                                                  <td class="qua-col">
+                                                      <?php echo $row['total_qty'] ?>
+                                                  </td>
+
+                                                  <td class="qua-col">
+                                                      <?php echo $row['total_amt'] ?>
+                                                  </td>
+
+                                                  <td class="qua-col">
+                                                      <?php echo $row['created_date'] ?>
+                                                  </td>
+
+                                                  <td class="qua-col">
+                                                     
+                                                  Order Details
+                        
+                                                  </td>
+
+                                                    </tr>
+   	<?php endwhile ; ?>
+              
+    </tbody>
+          </table>
+      </div>
+      </div>
+      </div>
+      </div>
+      </section> 
+      <?php
+    } else {
+        echo '
+                  <div class="container">
+                  <div class="row my-5">
+        <div class="col-md-12 text-center">
+          <span class="icon-exclamation-circle display-1 text-danger"></span>
+          <h2 class="display-3 text-black">Your cart is empty !</h2>
+          <p class="display-5 mb-5">You can check our bestseller section</p>
+          <p><a href="index.php" class="btn btn-sm btn-info">Continue Shopping</a></p>
+        </div>
+      </div>
+    </div>';
+    }
+    ?>
+
             </div>
         </div>
     </div>

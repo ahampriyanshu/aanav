@@ -207,7 +207,7 @@ $_SESSION['shipping'] = $row['shipping_id'];
 
                   foreach ($_SESSION['cart'] as $variant_id => $quantity) {
 
-                    $find_pro_id = mysqli_query($connect,"SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
+                    $find_pro_id = mysqli_query($connect,"SELECT * FROM variant WHERE variant_id='$variant_id'");
                     $pro_data = mysqli_fetch_assoc($find_pro_id);
                     $product_id = $pro_data['product_id'];
 

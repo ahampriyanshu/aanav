@@ -29,7 +29,7 @@ if (isset($_SESSION['cart'])) {
 
   foreach ($_SESSION['cart'] as $variant_id => $quantity) {
 
-    $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
+    $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE variant_id='$variant_id'");
     $pro_data = mysqli_fetch_assoc($find_pro_id);
     $product_id = $pro_data['product_id'];
 
@@ -47,7 +47,7 @@ if (isset($_SESSION['cart'])) {
         if ($query2) {
           $newqty = $obj->qty - $quantity;
           if ($connect->query("UPDATE product SET qty = " . $newqty . " WHERE id = " . $product_id)) {
-            $connect->query("UPDATE variant SET qty = " . $newqty . " WHERE pro_attr_id = " . $variant_id);
+            $connect->query("UPDATE variant SET qty = " . $newqty . " WHERE variant_id = " . $variant_id);
           }
         }
         if ($connect->query("UPDATE orders SET total_amt = " . $total . ",total_qty =" . $itemqty . " WHERE order_id = " . $order_id)) {

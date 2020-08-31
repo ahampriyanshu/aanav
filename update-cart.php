@@ -9,7 +9,7 @@
 if($action === 'empty')
 {unset($_SESSION['cart']);}
 
-$result = $connect->query("SELECT qty FROM variant WHERE pro_attr_id = ".$variant_id);
+$result = $connect->query("SELECT qty FROM variant WHERE variant_id = ".$variant_id);
 
 if($result && $obj = $result->fetch_object()) {
  

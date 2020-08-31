@@ -2301,30 +2301,24 @@ ol {
   display: none;
 }
 
-/*---------------------
-  Shopping Cart
------------------------*/
-
 .shopping-cart {
-  padding-top: 80px;
-  padding-bottom: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .cart-table {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .cart-table table {
   width: 100%;
   min-width: 480px;
-  border: 1px solid #ebebeb;
 }
 
 .cart-table table tr th {
   font-size: 16px;
   color: #252525;
   font-weight: 700;
-  border-bottom: 1px solid #ebebeb;
   text-align: center;
   padding: 18px 0 19px;
   text-transform: uppercase;
@@ -2332,15 +2326,15 @@ ol {
 
 .cart-table table tr td {
   text-align: center;
-  padding-bottom: 34px;
+  padding-bottom: 15px;
 }
 
 .cart-table table tr td.first-row {
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 .cart-table table tr td.cart-pic {
-  width: 21%;
+  width: 16%;
 }
 
 .cart-table table tr td.cart-title h5 {

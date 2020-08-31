@@ -18,7 +18,7 @@
      $row3 = mysqli_fetch_assoc($result3);
 
      if ($row3){
-     $variant_id = $row3['pro_attr_id'];
+     $variant_id = $row3['variant_id'];
      echo "<script>
      window.location='update-cart.php?action=add&id=$variant_id';
      </script>";

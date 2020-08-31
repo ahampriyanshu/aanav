@@ -15,7 +15,7 @@ if (!$_GET['id']) {
 $order_id = $_GET['id'];
 
 ?>
-<section class="shopping-cart carousel-info">
+<section class="borderless-table carousel-info">
               <div class="container">
                   <div class="row">
                 

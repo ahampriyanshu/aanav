@@ -7,7 +7,7 @@ $count = mysqli_num_rows($run);
 ?>
                 <?php if ($count != 0) {
 
-                    echo '<section class="shopping-cart carousel-info">
+                    echo '<section class="borderless-table carousel-info">
               <div class="container">
                   <div class="row">
                       <div class="col-lg-12">
@@ -57,12 +57,11 @@ $count = mysqli_num_rows($run);
 
                             </td>
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-info"><?php echo $row['payment_type'] ?></span>
                                 <?php if ($row['store_id'] == 0) { ?>
                                     <span class="badge badge-pill badge-secondary">Store Pickup</span>
 
                                 <?php } else {
-                                    echo '<span class="badge badge-pill badge-secondary">Home Delivery</span>';
+                                    echo '<span class="badge badge-pill badge-info">Home Delivery</span>';
                                 } ?>
                             </td>
 

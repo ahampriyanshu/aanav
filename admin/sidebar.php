@@ -30,7 +30,7 @@
 					<a href="add-product.php"><i class="fa fa-suitcase mr-3"></i>Add New Poduct</a>
 				</li>
 				<li>
-					<a href="#"><i class="fa fa-cogs mr-3"></i>Sections</a>
+					<a href="manageSection.php"><i class="fa fa-cogs mr-3"></i>Sections</a>
 				</li>
 				<li>
 					<a href="#"><i class="fa fa-paper-plane mr-3"></i>Variants</a>
@@ -60,3 +60,4 @@
 	<script src="js/popper.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src='js/bootbox.min.js'></script>

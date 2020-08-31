@@ -5,7 +5,7 @@ include('boilerplate.php');
     $total = 0;
     $itemqty = 0;
 
-    echo '<section class="shopping-cart carousel-info">
+    echo '<section class="borderless-table carousel-info">
               <div class="container">
                   <div class="row">
                       <div class="col-lg-12">';

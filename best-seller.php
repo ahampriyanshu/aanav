@@ -199,7 +199,7 @@
 <?php
 require_once('essentials/config.php');
 $sel = "SELECT product_id, SUM(units) AS TotalQuantity
-FROM order_items
+FROM order_detail
 GROUP BY product_id
 ORDER BY TotalQuantity DESC LIMIT 10";
 $run = mysqli_query($connect,$sel);

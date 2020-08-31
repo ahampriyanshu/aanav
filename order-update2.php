@@ -37,7 +37,7 @@ if(isset($_SESSION['cart'])) {
 
         
 
-        $query2 = $connect->query("INSERT INTO order_items (order_id,product_id, name, price, units, total, customer) 
+        $query2 = $connect->query("INSERT INTO order_detail (order_id,product_id, name, price, units, total, customer) 
                                  VALUES('$order_id','$obj->id', '$obj->name', $obj->price, $quantity, $cost, '$user')");
 
 

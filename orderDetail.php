@@ -1,11 +1,14 @@
 <?php
 include('boilerplate.php');
-$sql = "SELECT * FROM orders WHERE email = '$customer' ORDER BY created_date DESC";
+
+$order_id = $_GET['id'];
+
+$sql = "SELECT * FROM order_detail WHERE customer_id = '$customer_if' ORDER BY created_date DESC";
 $run = mysqli_query($connect, $sql);
 $count = mysqli_num_rows($run);
 
 ?>
-                <?php if ($count != 0) {
+                <?php 
 
                     echo '<section class="shopping-cart carousel-info">
               <div class="container">
@@ -33,7 +36,7 @@ $count = mysqli_num_rows($run);
 
                         <tr>
                             <td class="cart-title first-row">
-                            <span  style="font-size:1.1em;" class="badge badge-pill badge-light"><?php echo $id ?></span>
+                            <p style="font-size:larger; " ><span class="badge badge-pill badge-light"><?php echo $id ?></span></p>
                             </td>
                             <td class="cart-title first-row">
                                 <?php if ($row['status'] == 1) { ?>
@@ -106,20 +109,5 @@ $count = mysqli_num_rows($run);
         </div>
     </div>
 </div>
-</section>
-<?php
-                } else {
-                    echo '
-                  <div class="container">
-                  <div class="row my-5">
-        <div class="col-md-12 text-center">
-          <span class="icon-exclamation-circle display-1 text-danger"></span>
-          <h2 class="display-3 text-black">Your cart is empty !</h2>
-          <p class="display-5 mb-5">You can check our bestseller section</p>
-          <p><a href="index.php" class="btn btn-sm btn-info">Continue Shopping</a></p>
-        </div>
-      </div>
-    </div>';
-                }
-?>
+</section>    
 <?php include('footer.php'); ?>

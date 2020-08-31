@@ -9,11 +9,11 @@ $row = $data->row;
 $rowperpage = $data->rowperpage;
 
 // selecting posts
-$query = 'SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+$query = 'SELECT product.*,order_detail.product_id, SUM(order_detail.units) AS TotalQuantity
             FROM product 
-            LEFT JOIN order_items 
-            ON product.id = order_items.product_id
-            GROUP BY order_items.product_id
+            LEFT JOIN order_detail 
+            ON product.id = order_detail.product_id
+            GROUP BY order_detail.product_id
             ORDER BY TotalQuantity DESC limit '.$row.','.$rowperpage;
 $result = mysqli_query($connect,$query);
 

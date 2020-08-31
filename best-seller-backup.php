@@ -107,11 +107,11 @@
           $product_id = array();
           $product_quantity = array();
 
-          $result = mysqli_query($connect,"SELECT product.*,order_items.product_id, SUM(order_items.units) AS TotalQuantity
+          $result = mysqli_query($connect,"SELECT product.*,order_detail.product_id, SUM(order_detail.units) AS TotalQuantity
             FROM product 
-            LEFT JOIN order_items 
-            ON product.id = order_items.product_id
-            GROUP BY order_items.product_id
+            LEFT JOIN order_detail 
+            ON product.id = order_detail.product_id
+            GROUP BY order_detail.product_id
             ORDER BY TotalQuantity DESC");
           // if($result === FALSE){
           //   die(mysql_error());
@@ -173,7 +173,7 @@
 <?php
 require_once('essentials/config.php');
 $sel = "SELECT product_id, SUM(units) AS TotalQuantity
-FROM order_items
+FROM order_detail
 GROUP BY product_id
 ORDER BY TotalQuantity DESC LIMIT 10";
 $run = mysqli_query($connect,$sel);

@@ -2,7 +2,7 @@
 <?php
 if (!$_SESSION['cart']) {
     echo '<script>
-location.href="cart.php"
+location.href="error.php"
 </script>';
 }
 ?>

@@ -74,7 +74,7 @@ $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $full_name . '</p><
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;"
-    href="' . $url . '">View Order Details</a></p><p  style="color:grey; font-size: 10px;" > Ordered by mistake ? <a style="color:red; font-family:bolder; font-size: 10px;text-decoration: none;"  href="' . $url . '"> Cancel Order </a></p>';
+    href="' . $url . '">View Order Details</a></p><p  style="color:grey; font-size: 10px;" > Ordered by mistake ? <a style="color:red; font-family:bolder; font-size: 10px;text-decoration: none;"  href="' . $url . '"> Contact Admin </a></p>';
 
 
 $sendEmail->send($full_name, $customer, $subject, $body);

@@ -1,107 +1,134 @@
 <?php
 include('boilerplate.php');
 
+if (!$customer_id) {
+echo '<script>
+location.href="login.php"
+</script>';
+}
+if (!$_GET['id']) {
+    echo '<script>
+    location.href="error.php"
+    </script>';
+}
+
 $order_id = $_GET['id'];
 
-$sql = "SELECT * FROM order_detail WHERE customer_id = '$customer_if' ORDER BY created_date DESC";
-$run = mysqli_query($connect, $sql);
-$count = mysqli_num_rows($run);
-
 ?>
-                <?php 
-
-                    echo '<section class="shopping-cart carousel-info">
+<section class="shopping-cart carousel-info">
               <div class="container">
                   <div class="row">
-                      <div class="col-lg-12">
+                
+        <?php
+        $orders = mysqli_query($connect, "SELECT * FROM orders WHERE customer_id = '$customer_id' and order_id = '$order_id'");
+        $order_prop = mysqli_fetch_assoc($orders);
+        ?>
+                        <div class="col-lg-9 mx-auto my-3" >
+
+                        <p>
+                        <span class="badge badge-pill badge-info pull-right mx-3"><?php echo $order_prop['payment_type'] ?></span>
+                                <?php if ($order_prop['store_id'] == 0) { ?>
+                                    <span class="badge badge-pill badge-secondary  pull-right">Store Pickup</span>
+
+                                <?php } else {
+                                    echo '<span class="badge badge-pill badge-secondary  pull-right">Home Delivery</span>';
+                                } ?>
+                        <span class="badge badge-pill badge-secondary  pull-right"><?php echo $order_prop['total_amt'] ?></span>
+                        <span class="badge badge-pill badge-secondary  pull-right"><?php echo $order_prop['total_qty'] ?></span>
+                        <span class="badge badge-pill badge-secondary  pull-right"><?php echo $order_prop['created_date'] ?></span>
+                        <span class="badge badge-pill badge-secondary  pull-right"><?php echo $order_prop['modified_date'] ?></span>
+                        </p>
+                    
+                            <p><span class="badge badge-pill badge-light">
+                            <?php echo $order_prop['full_name'] ?></span></p>
+                            <p><span class="badge badge-pill badge-light">
+                            <?php echo $order_prop['email'] ?></span></p>
+                            <p><span class="badge badge-pill badge-light">
+                            <?php echo $order_prop['phone'] ?></span></p>
+                            <p>
+                            <span class="badge badge-pill badge-light">
+                            <?php echo $order_prop['street_address'] ?>,<?php echo $order_prop['city'] ?>,
+                            <?php echo $order_prop['state'] ?>,<?php echo $order_prop['pincode'] ?></span>
+                            </p>
+ 
+                        </div>
+
+                      <div class="col-lg-9 mx-auto">
                           <div class="cart-table">
                               <table>
                                   <thead>
                                       <tr>
-                                          <th>Order No</th>
-                                          <th>Status</th>
-                                          <th>Payment</th>
+                                      <th>Product</th>
+                                          <th>Name</th>
+                                          <th>Specs</th>
+                                          <th>Cost</th>
                                           <th>Qty</th>
                                           <th>Total</th>
-                                          <th>Time</th>
-                                          <th>Details</th>
-                                          <th>Invoice</th>
                                       </tr>
                                   </thead>
-                                  <tbody>';
+                                  <tbody>
+           <?php
+           $sql = "SELECT * FROM order_detail WHERE customer_id = '$customer_id' and order_id = '$order_id' 
+           ORDER BY order_item_id DESC";
+           $run = mysqli_query($connect, $sql);
+           $count = mysqli_num_rows($run);
+           if (!$count) {
+               echo '<script>
+               location.href="error.php"
+               </script>';
+           }
+                   while ($row = mysqli_fetch_assoc($run)) : { 
+                        $id = $row['order_item_id'];
+                        $pid = $row['product_id'];
+                        $vid = $row['variant_id'];
+                        
 
-                    while ($row = mysqli_fetch_assoc($run)) :
-                        $id = $row['order_id'];
+                        $img_sql = mysqli_query($connect, "SELECT file FROM product where id='$pid'");
+                        $pro_prop = mysqli_fetch_assoc($img_sql);
+
+                        $result_2 = mysqli_query($connect, "SELECT color,size FROM variant where variant_id='$vid'");
+                        $attr_prop = mysqli_fetch_assoc($result_2);
+                        $color_id = $attr_prop['color'];
+                        $size_id = $attr_prop['size'];
+
+                        $result_3 = mysqli_query($connect, "SELECT value FROM attribute where attr_id='$color_id'");
+                        $variant_prop = mysqli_fetch_assoc($result_3);
+                        $color = $variant_prop['value'];
+                        
+                        $result_4 = mysqli_query($connect, "SELECT value FROM attribute where attr_id='$size_id'");
+                        $variant_prop = mysqli_fetch_assoc($result_4);
+                        $size = $variant_prop['value'];
+
                 ?>
-
-                        <tr>
+ <tr>
+                        <td class="cart-pic first-row"><a href="product.php?id=<?php echo $pid ?>" > 
+                        <img width="150" height="150" src="uploads/<?php echo $pro_prop['file'] ?>" alt="product image"></a></td>
+                           
                             <td class="cart-title first-row">
-                            <p style="font-size:larger; " ><span class="badge badge-pill badge-light"><?php echo $id ?></span></p>
+                            <span style="font-size: 1.1em;" class="badge badge-pill badge-light"><?php echo $row['product_name'] ?></span>
                             </td>
                             <td class="cart-title first-row">
-                                <?php if ($row['status'] == 1) { ?>
-                                    <span class="badge badge-pill badge-warning">Placed</span>
-
-                                <?php } else if ($row['status'] == 2) { ?>
-                                    <span class="badge badge-pill badge-success">Approved</span>
-
-                                <?php } else if ($row['status'] == 3) { ?>
-                                    <span class="badge badge-pill badge-info">Deliverd</span>
-
-                                <?php } else if ($row['status'] == 4) { ?>
-                                    <span class="badge badge-pill badge-success">Refunded</span>
-
-                                <?php } else if ($row['status'] == 0) { ?>
-                                    <span class="badge badge-pill badge-danger">Cancelled</span>
-
-                                <?php } else {  ?>
-                                    <span class="badge badge-pill badge-danger">Error</span>
-                                <?php  } ?>
-
-                            </td>
-                            <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-info"><?php echo $row['payment_type'] ?></span>
-                                <?php if ($row['store_id'] == 0) { ?>
-                                    <span class="badge badge-pill badge-secondary">Store Pickup</span>
-
-                                <?php } else {
-                                    echo '<span class="badge badge-pill badge-secondary">Home Delivery</span>';
-                                } ?>
-                            </td>
-
-                            <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-light">
-                                <?php echo $row['total_qty'] ?></span>
+                            <a style="color:white; background-color:<?php echo $color ?>;"
+                                                class="badge "><b><?php echo $size ?></b></a>
                                 
                             </td>
 
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-success">&#x20B9;&nbsp;<?php echo $row['total_amt'] ?></span>
+                            <span class="badge badge-pill badge-info">&#x20B9;&nbsp;<?php echo $row['price'] ?></span>
                             </td>
 
                             <td class="cart-title first-row">
                             <span class="badge badge-pill badge-light">
-                            <?php echo $row['created_date'] ?></span>
-                                
-                               
+                            <?php echo $row['units'] ?></span>
                             </td>
 
                             <td class="cart-title first-row">
-
-                                <a style="color:#F67E29;" href="orderDetail.php?id=<?php echo $id ?>" >
-                                    <i class="fas fa-info-circle"></i></a>
-
+                            <span class="badge badge-pill badge-success">&#x20B9;&nbsp;<?php echo $row['total'] ?></span>
                             </td>
 
-                            <td class="cart-title first-row">
-
-                                <a style="color:grey;" href="invoice.php">
-                                    <i class="fas fa-file-alt"></i></a>
-
-                            </td>
 
                         </tr>
-                    <?php endwhile; ?>
+                    <?php } endwhile; ?>
 
                     </tbody>
                     </table>

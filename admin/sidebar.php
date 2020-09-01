@@ -27,7 +27,7 @@
 					<a href="#"><i class="fa fa-sticky-note mr-3"></i>Sales Report</a>
 				</li>
 				<li>
-					<a href="add-product.php"><i class="fa fa-suitcase mr-3"></i>Poduct</a>
+					<a href="addProduct.php"><i class="fa fa-suitcase mr-3"></i>Poduct</a>
 				</li>
 				<li>
 					<a href="manageColorSize.php"><i class="fa fa-cogs mr-3"></i>Color & Size</a>

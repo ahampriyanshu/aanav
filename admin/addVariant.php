@@ -1,12 +1,9 @@
 <?php
   session_start();
   include('../essentials/config.php');
-  include('../essentials/function.php');
+  
   include('sidebar.php');
 
-
-
-// Report all errors
 error_reporting(E_ALL);
 
 

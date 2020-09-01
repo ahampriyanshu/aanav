@@ -6,7 +6,7 @@ include('sidebar.php');
 error_reporting(E_ALL);
 
 if (!isset($_SESSION['admin'])) {
-    header('location:login.php');
+    header('location:logout.php');
 }
 ?>
 <!DOCTYPE html>
@@ -15,8 +15,7 @@ if (!isset($_SESSION['admin'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Add Product</title>
+    <title>Manage Supplier</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
@@ -30,12 +29,9 @@ if (!isset($_SESSION['admin'])) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 mx-auto mt-5">
-                    <a href="cat-list.php" class="btn btn-sm btn-success pull-center">
-                        <i class="fa fa-plus-square mr-2"></i> <b> Add New Category</b></a>
-
+                    <a href="addSupplier.php" class="btn btn-sm btn-success pull-center">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Add New Supplier</b></a>
                 </div>
-
-
                 <div class="col-lg-9 mx-auto mt-5">
                     <div class="table-responsive">
                         <table class='table table-borderless text-center'>
@@ -43,36 +39,51 @@ if (!isset($_SESSION['admin'])) {
                                 <tr>
                                     <th>ID</th>
                                     <th>NAME</th>
+                                    <th>EMAIL</th>
+                                    <th>PHONE</th>
+                                    <th>ADDRESS</th>
+                                    <th>CREATED</th>
+                                    <th>MODIFIED</th>
                                     <th>UPDATE</th>
                                     <th>DEL</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-
-                                $query = "SELECT * FROM section order by cat_id ASC";
+                                $query = "SELECT * FROM supplier order by supplier_id ASC";
                                 $result = mysqli_query($connect, $query);
                                 while ($row = mysqli_fetch_assoc($result)) {
-
                                 ?>
 
                                     <tr>
                                         <td>
-                                            <span class="badge badge-pill badge-light"><?php echo $row['cat_id'] ?></span>
-                                        </td>
-
-
-                                        <td>
-                                            <span class="badge badge-pill badge-info"><?php echo $row['cat_name'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['supplier_id'] ?></span>
                                         </td>
                                         <td>
-
-                                            <a style="color: #888; " href="cat-edit.php?id=<?php echo $row['cat_id'] ?>">
+                                            <span class="badge  badge-info"><?php echo $row['supplier_name'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['email'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['phone'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['address'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['created_date'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['modified_date'] ?></span>
+                                        </td>
+                                        <td>
+                                            <a style="color: #888; 
+                                            " href="editSupplier.php?id=<?php echo $row['supplier_id'] ?>">
                                                 <i class="far fa-edit"></i></a>
-
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['cat_id'] ?>'>
+                                            <a style="color: red; " class='delete' id='del_<?= $row['supplier_id'] ?>'>
                                                 <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
@@ -120,7 +131,7 @@ if (!isset($_SESSION['admin'])) {
                     if (result) {
 
                         $.ajax({
-                            url: 'delSection.php',
+                            url: 'delSupplier.php',
                             type: 'POST',
                             data: {
                                 id: deleteid

@@ -26,27 +26,27 @@ $order_id = $_GET['id'];
                         <div class="col-lg-9 mx-auto my-3" >
 
                         <p>
-                        <span class="badge badge-pill badge-info pull-right mx-3"><?php echo $order_prop['payment_type'] ?></span>
+                        <span class="badge  badge-info pull-right mx-3"><?php echo $order_prop['payment_type'] ?></span>
                                 <?php if ($order_prop['store_id'] == 0) { ?>
-                                    <span class="badge badge-pill badge-secondary  pull-right">Store Pickup</span>
+                                    <span class="badge  badge-secondary  pull-right">Store Pickup</span>
 
                                 <?php } else {
-                                    echo '<span class="badge badge-pill badge-secondary  pull-right">Home Delivery</span>';
+                                    echo '<span class="badge  badge-secondary  pull-right">Home Delivery</span>';
                                 } ?>
-                        <span class="badge badge-pill badge-secondary  pull-right"><?php echo $order_prop['total_amt'] ?></span>
-                        <span class="badge badge-pill badge-secondary  pull-right"><?php echo $order_prop['total_qty'] ?></span>
-                        <span class="badge badge-pill badge-secondary  pull-right"><?php echo $order_prop['created_date'] ?></span>
-                        <span class="badge badge-pill badge-secondary  pull-right"><?php echo $order_prop['modified_date'] ?></span>
+                        <span class="badge  badge-secondary  pull-right"><?php echo $order_prop['total_amt'] ?></span>
+                        <span class="badge  badge-secondary  pull-right"><?php echo $order_prop['total_qty'] ?></span>
+                        <span class="badge  badge-secondary  pull-right"><?php echo $order_prop['created_date'] ?></span>
+                        <span class="badge  badge-secondary  pull-right"><?php echo $order_prop['modified_date'] ?></span>
                         </p>
                     
-                            <p><span class="badge badge-pill badge-light">
+                            <p><span class="badge  badge-light">
                             <?php echo $order_prop['full_name'] ?></span></p>
-                            <p><span class="badge badge-pill badge-light">
+                            <p><span class="badge  badge-light">
                             <?php echo $order_prop['email'] ?></span></p>
-                            <p><span class="badge badge-pill badge-light">
+                            <p><span class="badge  badge-light">
                             <?php echo $order_prop['phone'] ?></span></p>
                             <p>
-                            <span class="badge badge-pill badge-light">
+                            <span class="badge  badge-light">
                             <?php echo $order_prop['street_address'] ?>,<?php echo $order_prop['city'] ?>,
                             <?php echo $order_prop['state'] ?>,<?php echo $order_prop['pincode'] ?></span>
                             </p>
@@ -105,7 +105,7 @@ $order_id = $_GET['id'];
                         <img width="150" height="150" src="uploads/<?php echo $pro_prop['file'] ?>" alt="product image"></a></td>
                            
                             <td class="cart-title first-row">
-                            <span style="font-size: 1.1em;" class="badge badge-pill badge-light"><?php echo $row['product_name'] ?></span>
+                            <span style="font-size: 1.1em;" class="badge  badge-light"><?php echo $row['product_name'] ?></span>
                             </td>
                             <td class="cart-title first-row">
                             <a style="color:white; background-color:<?php echo $color ?>;"
@@ -114,16 +114,16 @@ $order_id = $_GET['id'];
                             </td>
 
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-info">&#x20B9;&nbsp;<?php echo $row['price'] ?></span>
+                            <span class="badge  badge-info">&#x20B9;&nbsp;<?php echo $row['price'] ?></span>
                             </td>
 
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-light">
+                            <span class="badge  badge-light">
                             <?php echo $row['units'] ?></span>
                             </td>
 
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-success">&#x20B9;&nbsp;<?php echo $row['total'] ?></span>
+                            <span class="badge  badge-success">&#x20B9;&nbsp;<?php echo $row['total'] ?></span>
                             </td>
 
 

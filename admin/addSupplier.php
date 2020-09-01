@@ -16,7 +16,7 @@ if (!isset($_SESSION['admin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Add Brand</title>
+    <title>Add Supplier</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
@@ -35,12 +35,16 @@ if (!isset($_SESSION['admin'])) {
                     <?php
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
 
-    $sql = "INSERT INTO brand (brand_name, created_date, modified_date) VALUES ('$name', NOW(), NOW())";
+    $sql = "INSERT INTO supplier (supplier_name, email, phone, address, created_date, modified_date) 
+    VALUES ('$name','$email','$phone','$address', NOW(), NOW())";
     $run = mysqli_query($connect, $sql);
 
     if ($run) {
-        header('location:manageBrand.php');
+        header('location:manageSupplier.php');
     } else {
         echo '  <div class="alert alert-danger text-center">
     <strong><i class="fa fa-exclamation-triangle"> </i> Error !</strong>
@@ -48,12 +52,25 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-                        <h1 class="login-title mb-4">Add New Brand</h1>
+                        <h1 class="login-title mb-4">Add New Supplier</h1>
                         <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="email">Brand Title</label>
+                                <label for="email">Supplier Title</label>
                                 <input type="text" name="name" class="form-control" id="email" required />
                             </div>
+                            <div class="form-group">
+                                <label for="email">Supplier Email</label>
+                                <input type="text" name="email" class="form-control" id="email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Supplier Phone</label>
+                                <input type="number" name="phone" class="form-control" id="email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Supplier Address</label>
+                                <input type="text" name="address" class="form-control" id="email" required />
+                            </div>
+
                             <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Add">
                         </form>
                     </div>
@@ -62,5 +79,4 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </body>
-
 </html>

@@ -134,7 +134,7 @@ $count_fav = mysqli_num_rows($run2);
               <div class="container">
               <div style="margin-top:40px;" class="row">
     <div class="col-md-12 text-center">
-      <span class="icon-exclamation-circle display-1 text-danger"></span>
+      <span class="icon-exclamation-triangle display-1 text-danger"></span>
       <h2 class="display-4 text-black">Your wishlist is empty !</h2>
       <p class="display-5 mb-5">You can check our trending section</p>
     </div>

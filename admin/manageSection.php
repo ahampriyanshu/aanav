@@ -56,16 +56,16 @@ if (!isset($_SESSION['admin'])) {
 
                                     <tr>
                                         <td>
-                                            <span class="badge badge-pill badge-light"><?php echo $row['cat_id'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['cat_id'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge badge-pill badge-info"><?php echo $row['cat_name'] ?></span>
+                                            <span class="badge  badge-info"><?php echo $row['cat_name'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge badge-pill badge-light"><?php echo $row['created_date'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['created_date'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge badge-pill badge-light"><?php echo $row['modified_date'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['modified_date'] ?></span>
                                         </td>
                                         <td>
                                             <a style="color: #888; 

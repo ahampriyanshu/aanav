@@ -33,50 +33,50 @@ $count = mysqli_num_rows($run);
 
                         <tr>
                             <td class="cart-title first-row">
-                            <span  style="font-size:1.1em;" class="badge badge-pill badge-light"><?php echo $id ?></span>
+                            <span  style="font-size:1.1em;" class="badge  badge-light"><?php echo $id ?></span>
                             </td>
                             <td class="cart-title first-row">
                                 <?php if ($row['status'] == 1) { ?>
-                                    <span class="badge badge-pill badge-warning">Placed</span>
+                                    <span class="badge  badge-warning">Placed</span>
 
                                 <?php } else if ($row['status'] == 2) { ?>
-                                    <span class="badge badge-pill badge-success">Approved</span>
+                                    <span class="badge  badge-success">Approved</span>
 
                                 <?php } else if ($row['status'] == 3) { ?>
-                                    <span class="badge badge-pill badge-info">Deliverd</span>
+                                    <span class="badge  badge-info">Deliverd</span>
 
                                 <?php } else if ($row['status'] == 4) { ?>
-                                    <span class="badge badge-pill badge-success">Refunded</span>
+                                    <span class="badge  badge-success">Refunded</span>
 
                                 <?php } else if ($row['status'] == 0) { ?>
-                                    <span class="badge badge-pill badge-danger">Cancelled</span>
+                                    <span class="badge  badge-danger">Cancelled</span>
 
                                 <?php } else {  ?>
-                                    <span class="badge badge-pill badge-danger">Error</span>
+                                    <span class="badge  badge-danger">Error</span>
                                 <?php  } ?>
 
                             </td>
                             <td class="cart-title first-row">
                                 <?php if ($row['store_id'] == 0) { ?>
-                                    <span class="badge badge-pill badge-secondary">Store Pickup</span>
+                                    <span class="badge  badge-secondary">Store Pickup</span>
 
                                 <?php } else {
-                                    echo '<span class="badge badge-pill badge-info">Home Delivery</span>';
+                                    echo '<span class="badge  badge-info">Home Delivery</span>';
                                 } ?>
                             </td>
 
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-light">
+                            <span class="badge  badge-light">
                                 <?php echo $row['total_qty'] ?></span>
                                 
                             </td>
 
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-success">&#x20B9;&nbsp;<?php echo $row['total_amt'] ?></span>
+                            <span class="badge  badge-success">&#x20B9;&nbsp;<?php echo $row['total_amt'] ?></span>
                             </td>
 
                             <td class="cart-title first-row">
-                            <span class="badge badge-pill badge-light">
+                            <span class="badge  badge-light">
                             <?php echo $row['created_date'] ?></span>
                                 
                                

@@ -64,7 +64,7 @@ include('boilerplate.php');
                 echo '<tr>
                              <td class="cart-pic first-row"><a href="product.php?id=' . $product_id . '" ><img width="150" height="150" src="uploads/' . $obj->file . '" alt="product image"></a></td>
                             <td class="cart-title first-row">
-                            <p><span style="font-size:1.1em;" class="badge badge-pill badge-light">' . $obj->name . '</span></p>
+                            <p><span style="font-size:1.1em;" class="badge  badge-light">' . $obj->name . '</span></p>
              <span style="color:white; background-color:' . $value_c . ';"
               class="badge "><b>' . $value_s . '</b></span>              
                                                       </td>
@@ -153,7 +153,7 @@ include('boilerplate.php');
               <div class="container">
               <div class="row my-5">
     <div class="col-md-12 text-center">
-      <span class="icon-exclamation-circle display-1 text-danger"></span>
+      <span class="icon-exclamation-triangle display-1 text-danger"></span>
       <h2 class="display-3 text-black">Your cart is empty !</h2>
       <p class="display-5 mb-5">You can check our bestseller section</p>
       <p><a href="index.php" class="btn btn-sm btn-info">Continue Shopping</a></p>

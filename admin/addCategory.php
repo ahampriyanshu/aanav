@@ -35,7 +35,7 @@ if (!isset($_SESSION['admin'])) {
                     <?php
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
-    echo $name;
+
     $sql = "INSERT INTO categories (sub_name, created_date, modified_date) VALUES ('$name', NOW(), NOW())";
     $run = mysqli_query($connect, $sql);
 

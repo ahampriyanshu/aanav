@@ -72,7 +72,7 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
         $output = '<div  class="container">
         <div style="margin-top:40px;" class="row">
           <div class="col-md-12 text-center">
-          <span class="icon-exclamation-circle display-3 text-danger"></span>
+          <span class="icon-exclamation-triangle display-3 text-danger"></span>
           <h2 class="display-4 text-black">No matching items found !</h2>
           <p class="display-5 mb-5">Alter your filters and try again</p>
         </div>

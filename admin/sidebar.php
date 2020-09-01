@@ -24,10 +24,13 @@
 					<a href="#"><i class="fa fa-briefcase mr-3"></i>Orders</a>
 				</li>
 				<li>
-					<a href="#"><i class="fa fa-sticky-note mr-3"></i>Billing</a>
+					<a href="#"><i class="fa fa-sticky-note mr-3"></i>Sales Report</a>
 				</li>
 				<li>
-					<a href="add-product.php"><i class="fa fa-suitcase mr-3"></i>Add New Poduct</a>
+					<a href="add-product.php"><i class="fa fa-suitcase mr-3"></i>Poduct</a>
+				</li>
+				<li>
+					<a href="manageColorSize.php"><i class="fa fa-cogs mr-3"></i>Color & Size</a>
 				</li>
 				<li>
 					<a href="manageSection.php"><i class="fa fa-cogs mr-3"></i>Sections</a>
@@ -39,10 +42,14 @@
 				<a href="manageBrand.php"><i class="fa fa-paper-plane mr-3"></i>Brands</a>
 				</li>
 				<li>
+				<a href="manageSupplier.php"><i class="fa fa-paper-plane mr-3"></i>Supplier</a>
+				</li>
+				<li>
+				<a href="manageStore.php"><i class="fa fa-paper-plane mr-3"></i>Store</a>
+				</li>
+				<li>
 					<a href="#"><i class="fa fa-paper-plane mr-3"></i>Carousel</a>
 				</li>
-
-
 			</ul>
 			<br>
 

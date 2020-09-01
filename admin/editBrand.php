@@ -8,15 +8,18 @@ error_reporting(E_ALL);
 if (!isset($_SESSION['admin'])) {
     header('location:logout.php');
 }
+$id = $_GET['id'];
+$result = mysqli_query($connect, "SELECT * FROM brand WHERE brand_id=$id ");
+$row = mysqli_fetch_assoc($result);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Add Section</title>
+    <title>Edit Brand</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
@@ -32,29 +35,14 @@ if (!isset($_SESSION['admin'])) {
             <div class="row">
                 <div class="col-sm-6 login-section-wrapper pl-5 ">
                     <div class="login-wrapper">
-                    <?php
-if (isset($_POST['submit'])) {
-    $name = $_POST['name'];
-    echo $name;
-    $sql = "INSERT INTO section (cat_name, created_date, modified_date) VALUES ('$name', NOW(), NOW())";
-    $run = mysqli_query($connect, $sql);
-
-    if ($run) {
-        header('location:manageSection.php');
-    } else {
-        echo '  <div class="alert alert-danger text-center">
-    <strong><i class="fa fa-exclamation-triangle"> </i> Error !</strong>
-    </div>';
-    }
-}
-?>
-                        <h1 class="login-title mb-4">Add New Section</h1>
-                        <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
+                    <h1 class="login-title mb-4">Edit Brand</h1>
+                        <form class="form-horizontal" method="post" action="updateBrand.php" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="email">Section Title</label>
-                                <input type="text" name="name" class="form-control" id="email" required />
+                                <input type="hidden" name="id" value="<?php echo $row['brand_id'] ?>">
+                                <label for="email">Brand Title</label>
+                                <input type="text" name="name" class="form-control" id="email" value="<?php echo $row['brand_name'] ?>" required />
                             </div>
-                            <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Add">
+                            <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Update">
                         </form>
                     </div>
                 </div>
@@ -62,5 +50,4 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </body>
-
 </html>

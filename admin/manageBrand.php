@@ -29,8 +29,8 @@ if (!isset($_SESSION['admin'])) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 mx-auto mt-5">
-                    <a href="addSection.php" class="btn btn-sm btn-success pull-center">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Add New Section</b></a>
+                    <a href="addBrand.php" class="btn btn-sm btn-success pull-center">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Add New Brand</b></a>
                 </div>
                 <div class="col-lg-9 mx-auto mt-5">
                     <div class="table-responsive">
@@ -47,19 +47,17 @@ if (!isset($_SESSION['admin'])) {
                             </thead>
                             <tbody>
                                 <?php
-
-                                $query = "SELECT * FROM section order by cat_id ASC";
+                                $query = "SELECT * FROM brand order by brand_id ASC";
                                 $result = mysqli_query($connect, $query);
                                 while ($row = mysqli_fetch_assoc($result)) {
-
                                 ?>
 
                                     <tr>
                                         <td>
-                                            <span class="badge badge-pill badge-light"><?php echo $row['cat_id'] ?></span>
+                                            <span class="badge badge-pill badge-light"><?php echo $row['brand_id'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge badge-pill badge-info"><?php echo $row['cat_name'] ?></span>
+                                            <span class="badge badge-pill badge-info"><?php echo $row['brand_name'] ?></span>
                                         </td>
                                         <td>
                                             <span class="badge badge-pill badge-light"><?php echo $row['created_date'] ?></span>
@@ -69,12 +67,11 @@ if (!isset($_SESSION['admin'])) {
                                         </td>
                                         <td>
                                             <a style="color: #888; 
-                                            " href="editSection.php?id=<?php echo $row['cat_id'] ?>">
+                                            " href="editBrand.php?id=<?php echo $row['brand_id'] ?>">
                                                 <i class="far fa-edit"></i></a>
-
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['cat_id'] ?>'>
+                                            <a style="color: red; " class='delete' id='del_<?= $row['brand_id'] ?>'>
                                                 <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
@@ -122,7 +119,7 @@ if (!isset($_SESSION['admin'])) {
                     if (result) {
 
                         $.ajax({
-                            url: 'delSection.php',
+                            url: 'delBrand.php',
                             type: 'POST',
                             data: {
                                 id: deleteid

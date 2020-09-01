@@ -33,10 +33,10 @@
 					<a href="manageSection.php"><i class="fa fa-cogs mr-3"></i>Sections</a>
 				</li>
 				<li>
-					<a href="#"><i class="fa fa-paper-plane mr-3"></i>Variants</a>
+				<a href="manageCategory.php"><i class="fa fa-paper-plane mr-3"></i>Categories</a>
 				</li>
 				<li>
-					<a href="#"><i class="fa fa-paper-plane mr-3"></i>Categories</a>
+				<a href="manageBrand.php"><i class="fa fa-paper-plane mr-3"></i>Brands</a>
 				</li>
 				<li>
 					<a href="#"><i class="fa fa-paper-plane mr-3"></i>Carousel</a>

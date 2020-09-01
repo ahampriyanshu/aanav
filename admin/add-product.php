@@ -32,7 +32,7 @@ header('location:login.php');
 <?php
 
 if(isset($_POST['submit'])){
-  
+
   $name = $_POST['name'];
   $code = $_POST['code'];
   $cat = $_POST['cat'];
@@ -66,7 +66,6 @@ if(isset($_POST['submit'])){
 ?>
 
 <div id="content" class="pl-5 p-md-5 pt-2">
-     
       <div class="row">
         <div class="col-sm-6 login-section-wrapper pl-5 ">
           <div class="login-wrapper">

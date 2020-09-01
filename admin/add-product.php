@@ -1,7 +1,6 @@
 <?php
   session_start();
   include('../essentials/config.php');
-  include('../essentials/function.php');
   include('sidebar.php');
 
 error_reporting(E_ALL);
@@ -33,8 +32,7 @@ header('location:login.php');
 <?php
 
 if(isset($_POST['submit'])){
-
-  date_default_timezone_set('Asia/Kolkata');
+  
   $name = $_POST['name'];
   $code = $_POST['code'];
   $cat = $_POST['cat'];

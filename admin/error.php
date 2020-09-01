@@ -30,8 +30,8 @@ if (!isset($_SESSION['admin'])) {
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 mx-auto mt-5">
-                    <a href="addSection.php" class="btn btn-sm btn-success pull-center">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Add New Section</b></a>
+                    <a href="cat-list.php" class="btn btn-sm btn-success pull-center">
+                        <i class="fa fa-plus-square mr-2"></i> <b> Add New Category</b></a>
 
                 </div>
 
@@ -67,8 +67,7 @@ if (!isset($_SESSION['admin'])) {
                                         </td>
                                         <td>
 
-                                            <a style="color: #888; 
-                                            "href="editSection.php?id=<?php echo $row['cat_id']?>" >
+                                            <a style="color: #888; " href="cat-edit.php?id=<?php echo $row['cat_id'] ?>">
                                                 <i class="far fa-edit"></i></a>
 
                                         </td>

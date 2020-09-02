@@ -25,7 +25,7 @@ function watch() {
         server: {
             baseDir: './',
         },
-        startPath: './index.html',
+        startPath: './index.php',
         ghostMode: false,
         notify: false
     });

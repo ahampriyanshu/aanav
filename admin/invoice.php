@@ -1,107 +1,160 @@
 <?php 
-if(isset($_POST["submit"]))
-{
-$company = $_POST["company"];
-$address = $_POST["address"];
-$email = $_POST["email"];
-$telephone = $_POST["telephone"];
-$number = $_POST["number"];
-$item = $_POST["item"];
-$price = $_POST["price"];
-$vat = $_POST["vat"];
-$bank = $_POST["bank"];
-$iban = $_POST["iban"];
-$paypal = $_POST["paypal"];
-$com = $_POST["com"];
-$pay = 'Payment information';
-$price = str_replace(",",".",$price);
-$vat = str_replace(",",".",$vat);
-$p = explode(" ",$price);
-$v = explode(" ",$vat);
-$re = $p[0] + $v[0];
-function r($r)
-{
-$r = str_replace("$","",$r);
-$r = str_replace(" ","",$r);
-$r = $r." $";
-return $r;
-}
-$price = r($price);
-$vat = r($vat);
-require('u/fpdf.php');
+session_start();
+error_reporting(E_ALL);
+require_once("essentials/config.php");
+if (!$_SESSION['id']) {
+  echo '<script>
+  location.href="login.php"
+  </script>';
+  }
+  if (!$_GET['id']) {
+      echo '<script>
+      location.href="error.php"
+      </script>';
+  }
+  
+$order_id = $_GET['id'];
+$customer_id = $_SESSION['id'];
+
+require('fpdf/fpdf.php');
 
 class PDF extends FPDF
 {
 function Header()
 {
-if(!empty($_FILES["file"]))
+$this->Image('logo.png',80,0,45);
+$this->SetFont('Courier','B',12);
+$this->Ln(20);
+}
+// function add_from($str)
+// {
+//   $this->SetFont('Courier','B',12);
+//   $this->setXY(10,50);
+//   $this->Cell(70,7,'From',1,2,'L');
+//   $this->MultiCell(70,8,$str,'LRB',1);
+// }
+function populate_table($customer_id,$order_id,$connect){
+  
+  $x=$this->GetX();
+  $y=$this->GetY();
+  $this->setXY($x,$y);
+  $this->Cell(20,7,'S.No.',1,2,'L');
+  $this->setXY($x+20,$y);
+  $this->Cell(50,7,'Product name',1,2,'L');
+  $this->setXY($x+70,$y);
+  $this->Cell(30,7,'Variant',1,2,'L');
+  $this->setXY($x+100,$y);
+  $this->Cell(20,7,'Qty',1,2,'L');
+  $this->setXY($x+120,$y);
+  $this->Cell(30,7,'Unit Price',1,2,'L');
+  $this->setXY($x+150,$y);
+  $this->Cell(30,7,'Total Price',1,2,'L');
+  $i=1;
+  $total=0;
+  $sql = "SELECT * FROM order_detail WHERE order_id = '$order_id' and customer_id = '$customer_id' ";
+  $result = mysqli_query($connect, $sql);
+  while($d = mysqli_fetch_assoc($result)) 
   {
-$uploaddir = "logo/";
-$nm = $_FILES["file"]["name"];
-$random = rand(1,99);
-move_uploaded_file($_FILES["file"]["tmp_name"], $uploaddir.$random.$nm);
-$this->Image($uploaddir.$random.$nm,10,10,20);
-unlink($uploaddir.$random.$nm);
-}
-$this->SetFont('Arial','B',12);
-$this->Ln(1);
-}
-function Footer()
-{
-$this->SetY(-15);
-$this->SetFont('Arial','I',8);
-$this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-}
-function ChapterTitle($num, $label)
-{
-$this->SetFont('Arial','',12);
-$this->SetFillColor(200,220,255);
-$this->Cell(0,6,"$num $label",0,1,'L',true);
-$this->Ln(0);
-}
-function ChapterTitle2($num, $label)
-{
-$this->SetFont('Arial','',12);
-$this->SetFillColor(249,249,249);
-$this->Cell(0,6,"$num $label",0,1,'L',true);
-$this->Ln(0);
-}
+    $vid = $d["variant_id"];
+    $result_2 = mysqli_query($connect, "SELECT color,size FROM variant where variant_id='$vid'");
+                        $attr_prop = mysqli_fetch_assoc($result_2);
+                        $color_id = $attr_prop['color'];
+                        $size_id = $attr_prop['size'];
+
+                        $result_3 = mysqli_query($connect, "SELECT value FROM attribute where attr_id='$color_id'");
+                        $variant_prop = mysqli_fetch_assoc($result_3);
+                        $color = $variant_prop['value'];
+                        
+                        $result_4 = mysqli_query($connect, "SELECT value FROM attribute where attr_id='$size_id'");
+                        $variant_prop = mysqli_fetch_assoc($result_4);
+                        $size = $variant_prop['value'];
+
+
+                        $price = $d["price"]*$d["units"];
+                        $this->Ln(0);
+                        $x=$this->GetX();
+                        $y=$this->GetY();
+                        $this->setXY($x,$y);
+                        $this->Cell(20,7,$i,1,2,'L');
+                        $this->setXY($x+20,$y);
+                        $this->Cell(50,7,$d["product_name"],1,2,'L');
+                        $this->setXY($x+70,$y);
+                        $this->Cell(30,7,$color.", " .$size,1,2,'L');
+                        $this->setXY($x+100,$y);
+                        $this->Cell(20,7,$d["units"],1,2,'L');
+                        $this->setXY($x+120,$y);
+                        $this->Cell(30,7,$d["price"],1,2,'L');
+                        $this->setXY($x+150,$y);
+                        $this->Cell(30,7,$price,1,2,'L');
+                        $total += $price;
+                        $i++;
+  }
+  $this->Ln(0);
+  $x=$this->GetX();
+  $y=$this->GetY();
+  $this->setXY($x+120,$y);
+  $this->Cell(30,7,'Grand Total',1,2,'C');
+  $this->setXY($x+150,$y);
+  $this->Cell(30,7,round($total,2),1,2,'L');
+ }
+ function Footer()
+ {
+ 
+  $this->SetFont('Arial','I',8);
+  $this->SetY(-21);
+  $date = date('Y/d/M h:i:s:A', time());
+  $this->Cell(0,10,'This invoice is electronically genrated at '.$date.' No signature needed',0,0,'C');
+  $this->SetY(-14);
+  $this->Cell(0,10,'MIT Licensed @ahampriyanshu',0,0,'C');
+ $this->SetY(-7);
+ $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+ }
 }
 
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->SetFont('Times','',12);
-$pdf->SetTextColor(32);
-$pdf->Cell(0,5,$company,0,1,'R');
-$pdf->Cell(0,5,$address,0,1,'R');
-$pdf->Cell(0,5,$email,0,1,'R');
-$pdf->Cell(0,5,'Tel: '.$telephone,0,1,'R');
-$pdf->Cell(0,30,'',0,1,'R');
-$pdf->SetFillColor(200,220,255);
-$pdf->ChapterTitle('Invoice Number ',$number);
-$pdf->ChapterTitle('Invoice Date ',date('d-m-Y'));
-$pdf->Cell(0,20,'',0,1,'R');
-$pdf->SetFillColor(224,235,255);
-$pdf->SetDrawColor(192,192,192);
-$pdf->Cell(170,7,'Item',1,0,'L');
-$pdf->Cell(20,7,'Price',1,1,'C');
-$pdf->Cell(170,7,$item,1,0,'L',0);
-$pdf->Cell(20,7,$price,1,1,'C',0);
-$pdf->Cell(0,0,'',0,1,'R');
-$pdf->Cell(170,7,'VAT',1,0,'R',0);
-$pdf->Cell(20,7,$vat,1,1,'C',0);
-$pdf->Cell(170,7,'Total',1,0,'R',0);
-$pdf->Cell(20,7,$re." $",1,0,'C',0);
-$pdf->Cell(0,20,'',0,1,'R');
-$pdf->Cell(0,5,$pay,0,1,'L');
-$pdf->Cell(0,5,$bank,0,1,'L');
-$pdf->Cell(0,5,$iban,0,1,'L');
-$pdf->Cell(0,20,'',0,1,'R');
-$pdf->Cell(0,5,'PayPal:',0,1,'L');
-$pdf->Cell(0,5,$paypal,0,1,'L');
-$pdf->Cell(190,40,$com,0,0,'C');
-$filename="invoice.pdf";
-$pdf->Output($filename,'F');
+$pdf->SetFont('Courier','B',12);
+$pdf->Cell(0,8,'Aanav Pvt Ltd',0,1,'C');
+$pdf->Cell(0,8,'ahampriyanshu@gmail.com',0,1,'C');
+$pdf->Cell(0,20,'',0,1,'C');
+
+$sql = "SELECT * FROM orders WHERE order_id = '$order_id' and customer_id = '$customer_id' ";
+$result = mysqli_query($connect, $sql);
+while($row = mysqli_fetch_assoc($result)) 
+{
+  $pdf->Cell(0,8,$row['full_name'],0,1,'L');
+  $pdf->Cell(0,8,$row['email'],0,1,'L');
+  $pdf->Cell(0,8,$row['phone'],0,1,'L');
+  if ($row['store_id'] != 0 )
+  {
+  $pdf->Cell(0,8,$row['email'],0,1,'L');
+  $pdf->Cell(0,8,$row['email'],0,1,'L');
+  $pdf->Cell(0,8,$row['email'],0,1,'L');
+  }
+  else
+  {
+  $pdf->Cell(0,8,$row['street_address']." , ",0,1,'L');
+  $pdf->Cell(0,8,$row['city']." , ".$row['state'],0,1,'L');
+  $pdf->Cell(0,8,$row['pincode'],0,1,'L');
+  }
+
+$pdf->Cell(0,10,'',0,1,'C');
+$pdf->populate_table($customer_id,$order_id,$connect);
+$pdf->Cell(0,10,'',0,1,'C');
+$pdf->Cell(0,8,'Payment Type : '.$row['payment_type'],0,1,'C');
+
+if ($row['status'] != 4 )
+  {
+    $pdf->Cell(0,8,'Payment Status : Not Received',0,1,'C');
+  }
+  else
+  {
+    $pdf->Cell(0,8,'Payment Status : Received',0,1,'C');
+  }
+
+$pdf->Cell(0,8,'Order Placed On :'.$row['created_date'],0,1,'C');
+$pdf->SetFont('Courier','B',12);
 }
+$pdf->Output();
 ?>

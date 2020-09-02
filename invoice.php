@@ -23,18 +23,9 @@ class PDF extends FPDF
 function Header()
 {
 $this->Image('logo.png',80,0,45);
-$this->SetFont('Courier','B',12);
 $this->Ln(20);
 }
-// function add_from($str)
-// {
-//   $this->SetFont('Courier','B',12);
-//   $this->setXY(10,50);
-//   $this->Cell(70,7,'From',1,2,'L');
-//   $this->MultiCell(70,8,$str,'LRB',1);
-// }
 function populate_table($customer_id,$order_id,$connect){
-  
   $x=$this->GetX();
   $y=$this->GetY();
   $this->setXY($x,$y);
@@ -100,10 +91,10 @@ function populate_table($customer_id,$order_id,$connect){
  function Footer()
  {
  
-  $this->SetFont('Arial','I',8);
+  $this->SetFont('Arial','',8);
   $this->SetY(-21);
   $date = date('Y/d/M h:i:s:A', time());
-  $this->Cell(0,10,'This invoice is electronically genrated at '.$date.' No signature needed',0,0,'C');
+  $this->Cell(0,10,'This invoice is electronically genrated on '.$date.' No signature needed',0,0,'C');
   $this->SetY(-14);
   $this->Cell(0,10,'MIT Licensed @ahampriyanshu',0,0,'C');
  $this->SetY(-7);
@@ -118,43 +109,42 @@ $pdf->SetFont('Courier','B',12);
 $pdf->Cell(0,8,'Aanav Pvt Ltd',0,1,'C');
 $pdf->Cell(0,8,'ahampriyanshu@gmail.com',0,1,'C');
 $pdf->Cell(0,20,'',0,1,'C');
-
+$pdf->SetFont('Arial','',12);
 $sql = "SELECT * FROM orders WHERE order_id = '$order_id' and customer_id = '$customer_id' ";
 $result = mysqli_query($connect, $sql);
 while($row = mysqli_fetch_assoc($result)) 
 {
-  $pdf->Cell(0,8,$row['full_name'],0,1,'L');
-  $pdf->Cell(0,8,$row['email'],0,1,'L');
-  $pdf->Cell(0,8,$row['phone'],0,1,'L');
+  $pdf->Cell(0,8,'Name : '.$row['full_name'],0,1,'L');
+  $pdf->Cell(0,8,'Email : '.$row['email'],0,1,'L');
+  $pdf->Cell(0,8,'Phone : '.$row['phone'],0,1,'L');
   if ($row['store_id'] != 0 )
   {
-  $pdf->Cell(0,8,$row['email'],0,1,'L');
-  $pdf->Cell(0,8,$row['email'],0,1,'L');
-  $pdf->Cell(0,8,$row['email'],0,1,'L');
+  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
+  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
+  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
   }
   else
   {
-  $pdf->Cell(0,8,$row['street_address']." , ",0,1,'L');
-  $pdf->Cell(0,8,$row['city']." , ".$row['state'],0,1,'L');
-  $pdf->Cell(0,8,$row['pincode'],0,1,'L');
+  $pdf->Cell(0,8,'Address : '.$row['street_address']." , ",0,1,'L');
+  $pdf->Cell(0,8,'            '.$row['city']." , ".$row['state'],0,1,'L');
+  $pdf->Cell(0,8,'            '.$row['pincode'],0,1,'L');
   }
 
 $pdf->Cell(0,10,'',0,1,'C');
 $pdf->populate_table($customer_id,$order_id,$connect);
 $pdf->Cell(0,10,'',0,1,'C');
-$pdf->Cell(0,8,'Payment Type : '.$row['payment_type'],0,1,'C');
+$pdf->Cell(0,8,'Payment Type : '.$row['payment_type'],0,1,'L');
 
 if ($row['status'] != 4 )
   {
-    $pdf->Cell(0,8,'Payment Status : Not Received',0,1,'C');
+    $pdf->Cell(0,8,'Payment Status : Not Received',0,1,'L');
   }
   else
   {
-    $pdf->Cell(0,8,'Payment Status : Received',0,1,'C');
+    $pdf->Cell(0,8,'Payment Status : Received',0,1,'L');
   }
 
-$pdf->Cell(0,8,'Order Placed On :'.$row['created_date'],0,1,'C');
-$pdf->SetFont('Courier','B',12);
+$pdf->Cell(0,8,'Order Placed On :'.$row['created_date'],0,1,'L');
 }
 $pdf->Output();
 ?>

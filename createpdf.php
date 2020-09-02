@@ -1,7 +1,7 @@
 <?php
 require_once("essentials/config.php");
-$sql = "SELECT * FROM orders WHERE order_id=$id and customer_id=$customer_id;
-$resultset = mysqli_query($connect, $sql);
+$sql = "SELECT order_id, total_amt, total_qty, payment_type FROM orders ";
+$resultset = mysqli_query($connect, $sql) or die("database error:". mysqli_error($connect));
 require('fpdf/fpdf.php');
 $pdf = new FPDF();
 $pdf->AddPage();

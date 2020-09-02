@@ -120,7 +120,7 @@ if (!isset($_SESSION['admin'])) {
 			<div class="button_outer">
 				<div class="btn_upload">
 					<input type="file" id="upload_file" name="image_upload-1" required />
-					Upload Image
+					Select Images
 				</div>
 				<div class="processing_bar"></div>
 				<div class="success_box"></div>
@@ -132,8 +132,8 @@ if (!isset($_SESSION['admin'])) {
 		</div>
 	</div>
                 </file> 
-              <input type="submit" name="submit" value="Upload More" class="btn btn-block login-btn">
-            <a href="addVariant.php?id=<?php echo $row['id'] ?>" class="btn btn-block login-btn">Proceed</a>
+              <input type="submit" name="submit" value="Add More" class="btn btn-block login-btn">
+            <a href="addVariant.php?id=<?php echo $row['id'] ?>" class="btn btn-block login-btn">Step IV</a>
           </form>
         </div>
       </div>

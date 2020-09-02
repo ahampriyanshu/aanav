@@ -72,7 +72,6 @@ if (!isset($_SESSION['admin'])) {
                         </table>
                     </div>
                 </div>
-
                 <div class="col-lg-4 mx-auto mt-5">
                 <h2 class="text-center mb-4">
                 <span class="badge  badge-light">Size  Chart</span>                  

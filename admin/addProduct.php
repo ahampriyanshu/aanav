@@ -85,7 +85,6 @@ if (!isset($_SESSION['admin'])) {
               <div class="form-group mb-4">
                 <label for="password">Section</label>
                 <select id="email" class="form-control" name="cat">
-                  <option>Select Something</option>
                   <?php
                   $get_cat = "SELECT * FROM section";
                   $run_cat = mysqli_query($connect, $get_cat);
@@ -93,9 +92,7 @@ if (!isset($_SESSION['admin'])) {
                     $id = $row_cat['cat_id'];
                     $name = $row_cat['cat_name'];
 
-                    echo "
-                                                    <option value='$id'>$name</option>
-                                                  ";
+                    echo "<option value='$id'>$name</option>";
                   }
                   ?>
                 </select>
@@ -104,17 +101,13 @@ if (!isset($_SESSION['admin'])) {
               <div class="form-group mb-4">
                 <label for="password">Category</label>
                 <select id="email" class="form-control" name="categories">
-                  <option>Select Something</option>
                   <?php
                   $get_categories = "SELECT * FROM categories";
                   $run_categories = mysqli_query($connect, $get_categories);
                   while ($row_categories = mysqli_fetch_array($run_categories)) {
                     $sub_id = $row_categories['sub_id'];
                     $sub_name = $row_categories['sub_name'];
-
-                    echo "
-                                                    <option value='$sub_id'>$sub_name</option>
-                                                  ";
+                    echo "<option value='$sub_id'>$sub_name</option>";
                   }
                   ?>
                 </select>
@@ -132,9 +125,7 @@ if (!isset($_SESSION['admin'])) {
                     $brand_id = $row_brand['brand_id'];
                     $brand_title = $row_brand['brand_name'];
 
-                    echo "
-                                                    <option value='$brand_id'>$brand_title</option>
-                                                  ";
+                    echo "<option value='$brand_id'>$brand_title</option>";
                   }
                   ?>
                 </select>
@@ -152,9 +143,7 @@ if (!isset($_SESSION['admin'])) {
                     $supplier_id = $row_brand['supplier_id'];
                     $supplier_title = $row_brand['supplier_name'];
 
-                    echo "
-                                                    <option value='$supplier_id'>$supplier_title</option>
-                                                  ";
+                    echo "<option value='$supplier_id'>$supplier_title</option>";
                   }
                   ?>
                 </select>

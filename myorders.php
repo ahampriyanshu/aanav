@@ -68,7 +68,6 @@ $count = mysqli_num_rows($run);
                             <td class="cart-title first-row">
                             <span class="badge  badge-light">
                                 <?php echo $row['total_qty'] ?></span>
-                                
                             </td>
 
                             <td class="cart-title first-row">
@@ -77,9 +76,7 @@ $count = mysqli_num_rows($run);
 
                             <td class="cart-title first-row">
                             <span class="badge  badge-light">
-                            <?php echo $row['created_date'] ?></span>
-                                
-                               
+                            <?php echo $row['created_date'] ?></span>                               
                             </td>
 
                             <td class="cart-title first-row">
@@ -91,7 +88,7 @@ $count = mysqli_num_rows($run);
 
                             <td class="cart-title first-row">
 
-                                <a style="color:grey;" href="invoice.php">
+                                <a style="color:grey;" href="invoice.php?id=<?php echo $id ?>">
                                     <i class="fas fa-file-alt"></i></a>
 
                             </td>

@@ -22,7 +22,7 @@ class PDF extends FPDF
 {
 function Header()
 {
-$this->Image('logo.png',80,0,45);
+$this->Image('img/logo.png',80,0,45);
 $this->Ln(20);
 }
 function populate_table($customer_id,$order_id,$connect){

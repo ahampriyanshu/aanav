@@ -1,12 +1,10 @@
 <?php
 session_start();
 include('../essentials/config.php');
-include('sidebar.php');
-
 error_reporting(E_ALL);
 
 if (!isset($_SESSION['admin'])) {
-  header('location:login.php');
+  header('location:logout.php');
 }
 ?>
 <!DOCTYPE html>
@@ -14,65 +12,119 @@ if (!isset($_SESSION['admin'])) {
 
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="ecommerce in php7 , bootstrap4 and mysql">
-  <meta name="keywords" content="amazon clone,flpikart clone, php7, mysql, ecommerce website">
-  <meta name="author" content="PriyanshuMay,priyanshumay">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Add Product</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <title>Admin Panel</title>
+  <link rel="icon" href="../img/favicon.ico" sizes="16x16" type="image/png">
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/admin.css">
 
 </head>
-
 <body>
+
+<div class="container-fluid">
+      <div class="row">
+	<nav id="sidebar">
+		<div class="custom-menu">
+			<button type="button" id="sidebarCollapse" class="btn btn-primary">
+				<i class="fa fa-bars"></i>
+				<span class="sr-only">Toggle Menu</span>
+			</button>
+		</div>
+		<div class="p-4">
+			<h1><a href="index.php" class="logo">Hello, Admin</a></h1>
+			<ul class="list-unstyled components">
+				<li>
+					<a href="#"><i class="fa fa-user mr-3"></i>Customers</a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-briefcase mr-3"></i>Orders</a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-sticky-note mr-3"></i>Sales Report</a>
+				</li>
+				<li>
+					<a href="manageProduct.php"><i class="fa fa-suitcase mr-3"></i>Product</a>
+				</li>
+				<li>
+					<a href="manageColorSize.php"><i class="fa fa-cogs mr-3"></i>Color & Size</a>
+				</li>
+				<li>
+					<a href="manageSection.php"><i class="fa fa-cogs mr-3"></i>Sections</a>
+				</li>
+				<li>
+				<a href="manageCategory.php"><i class="fa fa-paper-plane mr-3"></i>Categories</a>
+				</li>
+				<li>
+				<a href="manageBrand.php"><i class="fa fa-paper-plane mr-3"></i>Brands</a>
+				</li>
+				<li>
+				<a href="manageSupplier.php"><i class="fa fa-paper-plane mr-3"></i>Supplier</a>
+				</li>
+				<li>
+				<a href="manageStore.php"><i class="fa fa-paper-plane mr-3"></i>Store</a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-paper-plane mr-3"></i>Index Carousel</a>
+        </li>
+        <li>
+					<a href="#"><i class="fa fa-paper-plane mr-3"></i>Regenerate Key</a>
+				</li>
+			</ul>
+
+			<div class="footer">
+			<p class="text-center" style="font-size:1.2em;"><a href="logout.php"><i class="fas fa-toggle-off"></i>&nbsp;Logout</a></p>
+			<p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i>ahmampriyanshu &copy; MIT Licensed</p>
+			</div>
+		</div>
+  </nav>
 
   <?php
 
-  if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 
-    $name = $_POST['name'];
-    $code = $_POST['code'];
-    $cat = $_POST['cat'];
-    $categories = $_POST['categories'];
-    $brand = $_POST['brand'];
-    $supplier = $_POST['supplier'];
-    $MRP = $_POST['MRP'];
-    $cost = $_POST['cost'];
-    $description = $_POST['description'];
-    $temp = explode(".", $_FILES["file"]["name"]);
-    $file = round(microtime(true)) . '.' . end($temp);
-    $dirpath = realpath(dirname(getcwd()));
+  $name = $_POST['name'];
+  $code = $_POST['code'];
+  $cat = $_POST['cat'];
+  $categories = $_POST['categories'];
+  $brand = $_POST['brand'];
+  $supplier = $_POST['supplier'];
+  $MRP = $_POST['MRP'];
+  $cost = $_POST['cost'];
+  $description = $_POST['description'];
+  $temp = explode(".", $_FILES["file"]["name"]);
+  $file = round(microtime(true)) . '.' . end($temp);
+  $dirpath = realpath(dirname(getcwd()));
 
-    if ($file) {
-      move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
-    }
-
-    $sql = "INSERT INTO product (name,code,status,section,categories,brand,supplier,description,MRP,cost,qty,file,created_date)
-             VALUES ('$name','$code',1,'$cat','$categories','$brand','$supplier','$description','$MRP','$cost',0,'$file',NOW())";
-
-    $run = mysqli_query($connect, $sql);
-
-    if ($run) {
-      echo "<script>window.open('addImage.php','_self')</script>";
-    } else {
-      echo "error";
-    }
+  if ($file) {
+    move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
   }
-  ?>
 
-  <div id="content" class="pl-5 p-md-5 pt-2">
-    <div class="container">
+  $sql = "INSERT INTO product (name,code,section,categories,brand,supplier,description,MRP,cost,qty,file,created)
+           VALUES ('$name','$code','$cat','$categories','$brand','$supplier','$description','$MRP','$cost',0,'$file',NOW())";
+
+  $run = mysqli_query($connect, $sql);
+
+  if ($run) {
+    echo "<script>window.open('addImage.php','_self')</script>";
+  } else {
+    echo "error";
+  }
+}
+?>
+
+  <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-6 login-section-wrapper pl-5 ">
-          <div class="login-wrapper">
-
+        <div class="col-lg-6 login-section-wrapper pl-5 p-md-5 pt-2">
+          <div class="login-wrapper ml-5">
             <h2 class="text-center mb-4">
-              <span class="badge  badge-light">Step 1</span>
+              <span class="badge badge-light">Step 1</span>
             </h2>
-
             <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="email">Title</label>
@@ -116,7 +168,6 @@ if (!isset($_SESSION['admin'])) {
               <div class="form-group mb-4">
                 <label for="email">Brand</label>
                 <select class="form-control" name="brand">
-                  <option>Select a brand</option>
                   <?php
 
                   $get_brand = "SELECT * FROM brand";
@@ -134,7 +185,6 @@ if (!isset($_SESSION['admin'])) {
               <div class="form-group mb-4">
                 <label for="email">Supplier</label>
                 <select class="form-control" name="supplier">
-                  <option>Select a supplier</option>
                   <?php
 
                   $get_brand = "SELECT * FROM supplier";
@@ -150,8 +200,7 @@ if (!isset($_SESSION['admin'])) {
               </div>
           </div>
         </div>
-
-        <div class="col-sm-6 login-section-wrapper pl-1">
+        <div class="col-lg-6 login-section-wrapper p-md-5 pt-2">
           <div class="login-wrapper">
             <h2 class="text-center mb-4">
               <span class="badge  badge-light">Step 2</span>
@@ -190,11 +239,20 @@ if (!isset($_SESSION['admin'])) {
             </form>
           </div>
         </div>
-      </div>
+        </div>
     </div>
   </div>
+                
 </body>
-<script>
+<script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/bootbox.min.js"></script>
+  <script src="js/jquery-3.3.1.js" ></script>
+  
+  <script>
   var btnUpload = $("#upload_file"),
 		btnOuter = $(".button_outer");
 	btnUpload.on("change", function(e){
@@ -220,4 +278,5 @@ if (!isset($_SESSION['admin'])) {
 		btnOuter.removeClass("file_uploaded");
   });
 </script>
+
 </html>

@@ -2,8 +2,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/style.css">
 
-
-<div class="wrapper d-flex align-items-stretch">
+	<div >
 	<nav id="sidebar">
 		<div class="custom-menu">
 			<button type="button" id="sidebarCollapse" class="btn btn-primary">
@@ -51,16 +50,14 @@
 					<a href="#"><i class="fa fa-paper-plane mr-3"></i>Carousel</a>
 				</li>
 			</ul>
-			<br>
-
 
 			<div class="footer">
 			<p class="text-center" style="font-size:1.2em;"><a href="logout.php"><i class="fas fa-toggle-off"></i>&nbsp;Logout</a></p>
 			<p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i> PriyanshuMay &copy; MIT Licensed</p>
 			</div>
-
 		</div>
 	</nav>
+	</div>
 	<script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.js"></script>

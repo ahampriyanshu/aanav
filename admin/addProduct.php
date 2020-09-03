@@ -7,7 +7,7 @@ require('header.php');
 
         $name = $_POST['name'];
         $code = $_POST['code'];
-        $cat = $_POST['cat'];
+        $section = $_POST['cat'];
         $categories = $_POST['categories'];
         $brand = $_POST['brand'];
         $supplier = $_POST['supplier'];
@@ -22,8 +22,8 @@ require('header.php');
           move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
         }
 
-        $sql = "INSERT INTO product (name,code,section,categories,brand,supplier,description,MRP,cost,qty,file,created)
-           VALUES ('$name','$code','$cat','$categories','$brand','$supplier','$description','$MRP','$cost',0,'$file',NOW())";
+        $sql = "INSERT INTO product (name,code,status,section,categories,brand,supplier,description,MRP,cost,qty,file,created_date,modified_date)
+           VALUES ('$name','$code',1,'$section','$categories','$brand','$supplier','$description','$MRP','$cost',0,'$file',NOW(), NOW())";
 
         $run = mysqli_query($connect, $sql);
 
@@ -140,7 +140,7 @@ require('header.php');
                     <div class="button_outer">
                       <div class="btn_upload">
                         <input type="file" id="upload_file" name="file" required />
-                        Upload Image
+                        <b>   Upload Image </b>
                       </div>
                       <div class="processing_bar"></div>
                       <div class="success_box"></div>

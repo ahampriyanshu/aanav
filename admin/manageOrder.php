@@ -4,14 +4,17 @@ require('header.php');
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 mx-auto mt-5 text-center">
-                    <a href="addProduct.php" class="m-2 btn btn-sm btn-success">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Add New Product</b></a>
+                    <a href="addProduct.php" class="m-2 btn btn-sm btn-danger">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Cancelled Orders</b></a>
 
-                        <a href="soldOut.php" class="m-2 btn btn-sm btn-danger">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Sold Out Product</b></a>
+                        <a href="soldOut.php" class="m-2 btn btn-sm btn-success">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Completed Orders</b></a>
 
-                        <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-warning">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Deactivated Product</b></a>
+                        <a href="soldOut.php" class="m-2 btn btn-sm btn-warning">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Unapproved Orders</b></a>
+
+                        <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-info">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Refunded Orders</b></a>
                 </div>
                 <div class="col-lg-12 mx-auto mt-5">
                     <div class="table-responsive">
@@ -19,9 +22,11 @@ require('header.php');
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>PRODUCT</th>
+                                    <th>STATUS</th>
                                     <th>NAME</th>
-                                    <th>CODE</th>
+                                    <th>EMAIL</th>
+                                    <th>TYPE</th>
+                                    <th>PAYMENT</th>
                                     <th>UNITS</th>
                                     <th>PRICE</th>
                                     <th>CREATED</th>
@@ -43,39 +48,68 @@ if (isset($_GET['page'])) {
 
 $start_from = ($page-1) * $per_page;
 
-                                $query = "SELECT * FROM product WHERE status=1 ORDER BY id ASC LIMIT $start_from, $per_page";
+                                $query = "SELECT * FROM orders ORDER BY order_id ASC LIMIT $start_from, $per_page";
                                 $result = mysqli_query($connect, $query);
                                 while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
 
                                     <tr>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['id'] ?></span>
+                                            <span class="badge badge-light"><?php echo $row['order_id'] ?></span>
                                         </td>
                                         <td>
-                                            <img width="150" height="150" src="../uploads/<?php echo $row['file'] ?>" alt="product image">
+                                        <?php if ($row['status'] == 1) { ?>
+                                    <span class="badge  badge-warning">Placed</span>
+
+                                <?php } else if ($row['status'] == 2) { ?>
+                                    <span class="badge  badge-success">Approved</span>
+
+                                <?php } else if ($row['status'] == 3) { ?>
+                                    <span class="badge  badge-info">Deliverd</span>
+
+                                <?php } else if ($row['status'] == 4) { ?>
+                                    <span class="badge  badge-success">Refunded</span>
+
+                                <?php } else if ($row['status'] == 0) { ?>
+                                    <span class="badge  badge-danger">Cancelled</span>
+
+                                <?php } else {  ?>
+                                    <span class="badge  badge-danger">Error</span>
+                                <?php  } ?>
+
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['name'] ?></span>
+                                            <span class="badge badge-light"><?php echo $row['full_name'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['code'] ?></span>
+                                            <span class="badge badge-light"><?php echo $row['email'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['qty'] ?></span>
+                                        <?php if ($row['store_id'] == 0) { ?>
+                                    <span class="badge badge-light">Store Pickup</span>
+
+                                <?php } else {
+                                    echo '<span class="badge badge-light">Home Delivery</span>';
+                                } ?>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light">&#x20B9;&nbsp;<?php echo $row['cost'] ?></span>
+                                            <span class="badge badge-light"><?php echo $row['payment_type'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['created_date'] ?></span>
+                                            <span class="badge badge-light"><?php echo $row['total_qty'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['modified_date'] ?></span>
+                                            <span class="badge badge-light">&#x20B9;&nbsp;<?php echo $row['total_amt'] ?></span>
                                         </td>
                                         <td>
-                                            <a style="color: #888;"
-                                             href="editProduct.php?id=<?php echo $row['id'] ?>">as
+                                            <span class="badge badge-light"><?php echo $row['created_date'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-light"><?php echo $row['modified_date'] ?></span>
+                                        </td>
+                                        <td>
+                                            <a style="color: #888; 
+                                            " href="editProduct.php?id=<?php echo $row['id'] ?>">
                                                 <i class="far fa-edit"></i></a>
                                         </td>
                                         <td>

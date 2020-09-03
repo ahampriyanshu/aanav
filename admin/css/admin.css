@@ -128,7 +128,7 @@ body {
   background: red;
   transition: 0.2s;
 }
-.uploaded_file_view img {
+. img {
   max-width: 100%;
 }
 .uploaded_file_view.show {

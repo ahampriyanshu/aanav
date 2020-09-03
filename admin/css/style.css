@@ -8189,6 +8189,7 @@ h1, h2, h3, h4, h5,
   min-width: 270px;
   max-width: 270px;
   max-height: 100vh;
+  min-height: 100vh;
   overflow-y: none;
   background: #2a2b30;
   color: #fff;
@@ -8216,13 +8217,13 @@ h1, h2, h3, h4, h5,
   #sidebar ul.components {
     padding: 0; }
   #sidebar ul li {
-    font-size: 15px; }
+    font-size: 16px; }
     #sidebar ul li > ul {
       margin-left: 10px; }
       #sidebar ul li > ul li {
-        font-size: 13px; }
+        font-size: 14px; }
     #sidebar ul li a {
-      padding: 6px 0;
+      padding: 7px 0;
       display: block;
       color: #cecece
     }

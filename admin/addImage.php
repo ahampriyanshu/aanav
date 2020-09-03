@@ -1,37 +1,9 @@
 <?php
-session_start();
-include('../essentials/config.php');
-include('sidebar.php');
-
-error_reporting(E_ALL);
-
-if (!isset($_SESSION['admin'])) {
-  header('location:logout.php');
-}
+require('header.php');
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Add Section</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/admin.css">
-
-</head>
-
-<body>
-
-  <div id="content" class="pl-5 p-md-5 mt-5">
     <div class="container">
       <div class="row">
-        <div class="col-sm-6 login-section-wrapper pl-5 ">
+        <div class="col-sm-6 login-section-wrapper pt-5 ">
           <div class="login-wrapper align-content-center">
             <h2 class="text-center mb-4 ">
               <span class="badge badge-light">Add Images</span>
@@ -120,7 +92,7 @@ if (!isset($_SESSION['admin'])) {
 			<div class="button_outer">
 				<div class="btn_upload">
 					<input type="file" id="upload_file" name="image_upload-1" required />
-					Select Images
+          <b> Select Images <b> 
 				</div>
 				<div class="processing_bar"></div>
 				<div class="success_box"></div>
@@ -132,8 +104,8 @@ if (!isset($_SESSION['admin'])) {
 		</div>
 	</div>
                 </file> 
-              <input type="submit" name="submit" value="Add More" class="btn btn-block login-btn">
-            <a href="addVariant.php?id=<?php echo $row['id'] ?>" class="btn btn-block login-btn">Step IV</a>
+              <input type="submit" name="submit" value="Add" class="btn btn-block login-btn">
+            <a href="addVariant.php?id=<?php echo $row['id'] ?>" class="btn btn-block login-btn">Continue</a>
           </form>
         </div>
       </div>
@@ -141,6 +113,13 @@ if (!isset($_SESSION['admin'])) {
   </div>
   </div>
 </body>
+<script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/bootbox.min.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
 <script>
   var btnUpload = $("#upload_file"),
 		btnOuter = $(".button_outer");

@@ -6,6 +6,6 @@ if (!isset($_SESSION['admin'])) {
     header('location:logout.php');
 }
 
-$connect->query("UPDATE product SET status =0 WHERE id = " . $id);
+$connect->query("UPDATE product SET status =1 WHERE id = " . $id);
 
 echo 1;

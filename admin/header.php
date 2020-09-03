@@ -27,7 +27,6 @@ if (!isset($_SESSION['admin'])) {
   <link rel="stylesheet" href="css/admin.css">
 
 </head>
-
 <body>
 
   <div class="container-fluid">
@@ -43,13 +42,13 @@ if (!isset($_SESSION['admin'])) {
           <h1><a href="index.php" class="logo">Hello, Admin</a></h1>
           <ul class="list-unstyled components">
             <li>
-              <a href="#"><i class="fa fa-user mr-3"></i>Customers</a>
+              <a href="manageCustomer.php"><i class="fa fa-user mr-3"></i>Customers</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-briefcase mr-3"></i>Orders</a>
+              <a href="manageOrder.php"><i class="fa fa-briefcase mr-3"></i>Orders</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-sticky-note mr-3"></i>Sales Report</a>
+              <a href="salesReport.php"><i class="fa fa-sticky-note mr-3"></i>Sales Report</a>
             </li>
             <li>
               <a href="manageProduct.php"><i class="fa fa-suitcase mr-3"></i>Product</a>

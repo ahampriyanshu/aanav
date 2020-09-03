@@ -1,38 +1,13 @@
 <?php
-session_start();
-include('../essentials/config.php');
-include('sidebar.php');
-
-error_reporting(E_ALL);
-
-if (!isset($_SESSION['admin'])) {
-    header('location:logout.php');
-}
+require('header.php');
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manage Supplier</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/admin.css">
-    <link rel="stylesheet" href="css/table.css">
-</head>
-
-<body>
-    <div id="content" class=" pl-5 p-md-5 pt-2 ">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 mx-auto mt-5">
+                <div class="col-lg-12 mx-auto mt-5">
                     <a href="addSupplier.php" class="btn btn-sm btn-success pull-center">
                         <i class="fa fa-plus-square mr-2"></i> <b>Add New Supplier</b></a>
                 </div>
-                <div class="col-lg-9 mx-auto mt-5">
+                <div class="col-lg-12 mx-auto mt-5">
                     <div class="table-responsive">
                         <table class='table table-borderless text-center'>
                             <thead>

@@ -25,9 +25,7 @@ $row = mysqli_fetch_assoc($result);
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/admin.css">
-
 </head>
-
 <body>
 
     <div id="content" class="pl-5 p-md-5 mt-5">

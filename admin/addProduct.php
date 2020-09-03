@@ -50,8 +50,8 @@ if (!isset($_SESSION['admin'])) {
       move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
     }
 
-    $sql = "INSERT INTO product (name,code,section,categories,brand,supplier,description,MRP,cost,qty,file,created)
-             VALUES ('$name','$code','$cat','$categories','$brand','$supplier','$description','$MRP','$cost',0,'$file',NOW())";
+    $sql = "INSERT INTO product (name,code,status,section,categories,brand,supplier,description,MRP,cost,qty,file,created_date)
+             VALUES ('$name','$code',1,'$cat','$categories','$brand','$supplier','$description','$MRP','$cost',0,'$file',NOW())";
 
     $run = mysqli_query($connect, $sql);
 

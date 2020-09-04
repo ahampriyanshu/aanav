@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 
     $sql = "UPDATE product SET name='$name',code=$code,status=1,section='$section',categories='$categories'
     ,brand='$brand',supplier='$supplier',description='$description',MRP='$MRP',
-    cost='$cost',qty='$qty',file='$file',modified_date=now() 
+    cost='$cost',file='$file',modified_date=now() 
 WHERE id = $id ";
     $run = mysqli_query($connect, $sql);
 
@@ -61,8 +61,8 @@ WHERE id = $id ";
                             $get_cat = "SELECT * FROM section";
                             $run_cat = mysqli_query($connect, $get_cat);
                             while ($row_cat = mysqli_fetch_array($run_cat)) {
-                                $id = $row_cat['cat_id'];
-                                $name = $row_cat['cat_name'];
+                                $id = $row_cat['section_id'];
+                                $name = $row_cat['section_name'];
 
                                 echo "<option value='$id'>$name</option>";
                             }
@@ -77,9 +77,9 @@ WHERE id = $id ";
                             $get_categories = "SELECT * FROM categories";
                             $run_categories = mysqli_query($connect, $get_categories);
                             while ($row_categories = mysqli_fetch_array($run_categories)) {
-                                $sub_id = $row_categories['sub_id'];
-                                $sub_name = $row_categories['sub_name'];
-                                echo "<option value='$sub_id'>$sub_name</option>";
+                                $category_id = $row_categories['category_id'];
+                                $category_name = $row_categories['category_name'];
+                                echo "<option value='$category_id'>$category_name</option>";
                             }
                             ?>
                         </select>

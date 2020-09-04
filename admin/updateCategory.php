@@ -9,7 +9,7 @@ if (!isset($_SESSION['admin'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     
-    $sql = "UPDATE categories SET sub_name='$name',modified_date=now() WHERE sub_id=$id";
+    $sql = "UPDATE categories SET category_name='$name',modified_date=now() WHERE category_id=$id";
     mysqli_query($connect, $sql);  
 
     header("location:manageCategory.php");

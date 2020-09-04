@@ -4,7 +4,7 @@ require_once('essentials/config.php');
 
 if (isset($_POST["action"])) {
     $query = "
-  SELECT * FROM product WHERE id > 0
+  SELECT * FROM product WHERE status = 1
  ";
     if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
         $query .= "

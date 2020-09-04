@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin'])) {
     header('location:logout.php');
 }
 
-$query = "DELETE FROM section WHERE cat_id=" . $id;
+$query = "DELETE FROM section WHERE section_id=" . $id;
 mysqli_query($connect, $query);
 
 echo 1;

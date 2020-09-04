@@ -41,7 +41,7 @@ $row = mysqli_fetch_assoc($result);
       <?php
       if (isset($_POST['insert'])) {
       ?>
-        <form class="form-horizontal" method="post" action="insert-product.php" enctype="multipart/form-data">
+        <form class="form-horizontal" method="post" action="insertProduct.php" enctype="multipart/form-data">
           <input type="hidden" name="total" value="<?php echo $_POST["variants"]; ?>" />
           <?php
           for ($i = 1; $i <= $_POST["variants"]; $i++) {

@@ -47,17 +47,17 @@ if (!isset($_SESSION['admin'])) {
                             </thead>
                             <tbody>
                                 <?php
-                                $query = "SELECT * FROM categories order by sub_id ASC";
+                                $query = "SELECT * FROM categories order by category_id ASC";
                                 $result = mysqli_query($connect, $query);
                                 while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
 
                                     <tr>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['sub_id'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['category_id'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-info"><?php echo $row['sub_name'] ?></span>
+                                            <span class="badge  badge-info"><?php echo $row['category_name'] ?></span>
                                         </td>
                                         <td>
                                             <span class="badge  badge-light"><?php echo $row['created_date'] ?></span>
@@ -67,11 +67,11 @@ if (!isset($_SESSION['admin'])) {
                                         </td>
                                         <td>
                                             <a style="color: #888; 
-                                            " href="editSection.php?id=<?php echo $row['sub_id'] ?>">
+                                            " href="editSection.php?id=<?php echo $row['category_id'] ?>">
                                                 <i class="far fa-edit"></i></a>
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['sub_id'] ?>'>
+                                            <a style="color: red; " class='delete' id='del_<?= $row['category_id'] ?>'>
                                                 <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

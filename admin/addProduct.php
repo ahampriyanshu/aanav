@@ -58,8 +58,8 @@ require('header.php');
                     $get_cat = "SELECT * FROM section";
                     $run_cat = mysqli_query($connect, $get_cat);
                     while ($row_cat = mysqli_fetch_array($run_cat)) {
-                      $id = $row_cat['cat_id'];
-                      $name = $row_cat['cat_name'];
+                      $id = $row_cat['section_id'];
+                      $name = $row_cat['section_name'];
 
                       echo "<option value='$id'>$name</option>";
                     }
@@ -74,9 +74,9 @@ require('header.php');
                     $get_categories = "SELECT * FROM categories";
                     $run_categories = mysqli_query($connect, $get_categories);
                     while ($row_categories = mysqli_fetch_array($run_categories)) {
-                      $sub_id = $row_categories['sub_id'];
-                      $sub_name = $row_categories['sub_name'];
-                      echo "<option value='$sub_id'>$sub_name</option>";
+                      $category_id = $row_categories['category_id'];
+                      $category_name = $row_categories['category_name'];
+                      echo "<option value='$category_id'>$category_name</option>";
                     }
                     ?>
                   </select>

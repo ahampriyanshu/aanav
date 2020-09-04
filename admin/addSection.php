@@ -9,7 +9,7 @@ require('header.php');
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
 
-    $sql = "INSERT INTO section (cat_name, created_date, modified_date) VALUES ('$name', NOW(), NOW())";
+    $sql = "INSERT INTO section (section_name, created_date, modified_date) VALUES ('$name', NOW(), NOW())";
     $run = mysqli_query($connect, $sql);
 
     if ($run) {

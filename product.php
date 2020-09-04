@@ -17,10 +17,10 @@ mysqli_query($connect, $sql);
 $email = $_SESSION['email'];
 $id = $_GET['id'];
 $result = mysqli_query($connect, "SELECT * FROM product LEFT JOIN section 
-    ON section.cat_id = product.section WHERE product.id=$id");
+    ON section.section_id = product.section WHERE product.id=$id");
 $row2 = mysqli_fetch_assoc($result);
-$cat_id = $row2['cat_id'];
-$cat_name = $row2['cat_name'];
+$section_id = $row2['section_id'];
+$section_name = $row2['section_name'];
 ?>
 
 <!DOCTYPE html>

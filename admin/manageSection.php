@@ -23,7 +23,7 @@ require('header.php');
                             <tbody>
                                 <?php
 
-                                $query = "SELECT * FROM section order by cat_id ASC";
+                                $query = "SELECT * FROM section order by section_id ASC";
                                 $result = mysqli_query($connect, $query);
                                 while ($row = mysqli_fetch_assoc($result)) {
 
@@ -31,10 +31,10 @@ require('header.php');
 
                                     <tr>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['cat_id'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['section_id'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-info"><?php echo $row['cat_name'] ?></span>
+                                            <span class="badge  badge-info"><?php echo $row['section_name'] ?></span>
                                         </td>
                                         <td>
                                             <span class="badge  badge-light"><?php echo $row['created_date'] ?></span>
@@ -44,12 +44,12 @@ require('header.php');
                                         </td>
                                         <td>
                                             <a style="color: #888; 
-                                            " href="editSection.php?id=<?php echo $row['cat_id'] ?>">
+                                            " href="editSection.php?id=<?php echo $row['section_id'] ?>">
                                                 <i class="far fa-edit"></i></a>
 
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['cat_id'] ?>'>
+                                            <a style="color: red; " class='delete' id='del_<?= $row['section_id'] ?>'>
                                                 <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>

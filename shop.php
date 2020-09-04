@@ -57,17 +57,17 @@
             foreach($result as $row)
             {
             $sql = "
-            SELECT cat_name FROM section WHERE cat_id = '$row[0]'
+            SELECT section_name FROM section WHERE section_id = '$row[0]'
             ";
             $exe =$connect->query($sql);
             $name = $exe ->fetch_assoc();
             
             ?>
                 <div class="bc-item">
-                <label for="<?php echo $name['cat_name']; ?>">
-                        <input type="checkbox"  id="<?php echo $name['cat_name']; ?>" class="filter_all section" value="<?php echo $row['section']; ?>">
+                <label for="<?php echo $name['section_name']; ?>">
+                        <input type="checkbox"  id="<?php echo $name['section_name']; ?>" class="filter_all section" value="<?php echo $row['section']; ?>">
                         <span class="checkmark"></span>
-                        <p class="sublist"><?php echo $name['cat_name']; ?></p>
+                        <p class="sublist"><?php echo $name['section_name']; ?></p>
                     </label>
                 </div>
                 <?php
@@ -123,16 +123,16 @@
             foreach($result as $row)
             {
                 $sql = "
-            SELECT sub_name FROM categories WHERE sub_id = '$row[0]'
+            SELECT category_name FROM categories WHERE category_id = '$row[0]'
             ";
             $exe =$connect->query($sql);
             $name = $exe ->fetch_assoc();
             ?>
                    <div class="bc-item">
-                <label for="<?php echo $name['sub_name']; ?>">
-                        <input type="checkbox"  id="<?php echo $name['sub_name']; ?>"  class="filter_all categories" value="<?php echo $row['categories']; ?>">
+                <label for="<?php echo $name['category_name']; ?>">
+                        <input type="checkbox"  id="<?php echo $name['category_name']; ?>"  class="filter_all categories" value="<?php echo $row['categories']; ?>">
                         <span class="checkmark"></span>
-                        <p class="sublist"><?php echo $name['sub_name']; ?></p>
+                        <p class="sublist"><?php echo $name['category_name']; ?></p>
                     </label>
                 </div>
                 <?php } ?>

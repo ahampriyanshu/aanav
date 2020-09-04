@@ -9,7 +9,7 @@ if (!isset($_SESSION['admin'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     
-    $sql = "UPDATE section SET cat_name='$name',modified_date=now() WHERE cat_id=$id";
+    $sql = "UPDATE section SET section_name='$name',modified_date=now() WHERE section_id=$id";
     mysqli_query($connect, $sql);  
 
     header("location:manageSection.php");

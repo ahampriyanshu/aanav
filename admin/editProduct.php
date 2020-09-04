@@ -6,6 +6,7 @@ $row = mysqli_fetch_assoc($result);
 
 if (isset($_POST['submit'])) {
 
+    $id = $_POST['id'];
     $name = $_POST['name'];
     $code = $_POST['code'];
     $section = $_POST['cat'];
@@ -19,26 +20,41 @@ if (isset($_POST['submit'])) {
     $file = round(microtime(true)) . '.' . end($temp);
     $dirpath = realpath(dirname(getcwd()));
 
-    if ($file) {
+    // echo $name.$code.$section.$categories.$brand.$supplier.$MRP.$cost.$description.$file.$id;
+
+    if($_FILES["file"]["name"]){
         move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
     }
+    else{
+        $file = $row['file'];
+    }
 
-    $sql = "UPDATE product SET name='$name',code=$code,status=1,section='$section',categories='$categories'
-    ,brand='$brand',supplier='$supplier',description='$description',MRP='$MRP',
-    cost='$cost',file='$file',modified_date=now() 
-WHERE id = $id ";
+    $sql = "UPDATE product SET name='$name',code='$code',section='$section',categories='$categories'
+    ,brand='$brand',supplier='$supplier',description='$description',MRP='$MRP',cost='$cost',file='$file',modified_date=now() WHERE id = $id ";
+
     $run = mysqli_query($connect, $sql);
 
     if ($run) {
-        echo "<script>window.open('addImage.php','_self')</script>";
+        echo "<script>window.open('manageProduct.php','_self')</script>";
+       
     } else {
-        echo "error";
+        echo "Error description: " . mysqli_error($connect) ;
     }
 }
 ?>
 
 <div class="container-fluid">
     <div class="row">
+    <div class="col-lg-9 mx-auto mt-5 text-center">
+                    <a href="addProduct.php" class="m-2 btn btn-sm btn-success">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Update Quantity</b></a>
+
+                        <a href="soldOut.php" class="m-2 btn btn-sm btn-danger">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Update Sub-Images</b></a>
+
+                        <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-warning">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Deactivated Product</b></a>
+                </div>
         <div class="col-lg-6 login-section-wrapper pl-5 p-md-5 pt-2">
             <div class="login-wrapper ml-5">
                 <h2 class="text-center mb-4">
@@ -146,7 +162,7 @@ WHERE id = $id ";
                         <br>   
                             <div class="button_outer">
                                 <div class="btn_upload">
-                                    <input type="file" id="upload_file" name="file" required />
+                                    <input type="file" id="upload_file" name="file" />
                                 <b> Change Image </b>
                                 </div>
                                 <div class="processing_bar"></div>
@@ -159,7 +175,7 @@ WHERE id = $id ";
                         </div>
                     </div>
                 </file>
-                <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Add Product">
+                <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Update">
                 </form>
             </div>
         </div>
@@ -175,30 +191,30 @@ WHERE id = $id ";
 <script src="js/bootbox.min.js"></script>
 <script src="js/jquery-3.3.1.js"></script>
 <script>
-    var btnUpload = $("#upload_file"),
-        btnOuter = $(".button_outer");
-    btnUpload.on("change", function(e) {
-        var ext = btnUpload.val().split('.').pop().toLowerCase();
-        if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-            $(".error_msg").text("Not an Image...");
-        } else {
-            $(".error_msg").text("");
-            btnOuter.addClass("file_uploading");
-            setTimeout(function() {
-                btnOuter.addClass("file_uploaded");
-            }, 3000);
-            var uploadedFile = URL.createObjectURL(e.target.files[0]);
-            setTimeout(function() {
-                $("#uploaded_view").append('<img src="' + uploadedFile + '" />').addClass("show");
-            }, 3500);
-        }
-    });
-    $(".file_remove").on("click", function(e) {
-        $("#uploaded_view").removeClass("show");
-        $("#uploaded_view").find("img").remove();
-        btnOuter.removeClass("file_uploading");
-        btnOuter.removeClass("file_uploaded");
-    });
+var btnUpload = $("#upload_file"),
+		btnOuter = $(".button_outer");
+	btnUpload.on("change", function(e){
+		var ext = btnUpload.val().split('.').pop().toLowerCase();
+		if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+			$(".error_msg").text("Not an Image...");
+		} else {
+			$(".error_msg").text("");
+			btnOuter.addClass("file_uploading");
+			setTimeout(function(){
+				btnOuter.addClass("file_uploaded");
+			},3000);
+			var uploadedFile = URL.createObjectURL(e.target.files[0]);
+			setTimeout(function(){
+				$("#uploaded_view").append('<img src="'+uploadedFile+'" />').addClass("show");
+			},3500);
+		}
+	});
+	$(".file_remove").on("click", function(e){
+		$("#uploaded_view").removeClass("show");
+		$("#uploaded_view").find("img").remove();
+		btnOuter.removeClass("file_uploading");
+		btnOuter.removeClass("file_uploaded");
+	});
 </script>
 
 </html>

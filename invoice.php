@@ -1,6 +1,6 @@
 <?php 
 session_start();
-error_reporting(E_ALL);
+
 require_once("essentials/config.php");
 if (!$_SESSION['id']) {
   echo '<script>

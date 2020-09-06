@@ -20,8 +20,6 @@ if (isset($_POST['submit'])) {
     $file = round(microtime(true)) . '.' . end($temp);
     $dirpath = realpath(dirname(getcwd()));
 
-    // echo $name.$code.$section.$categories.$brand.$supplier.$MRP.$cost.$description.$file.$id;
-
     if($_FILES["file"]["name"]){
         move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
     }

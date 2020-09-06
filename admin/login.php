@@ -41,9 +41,7 @@ if (isset($_SESSION['admin'])) {
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6 login-section-wrapper">
-          <div class="brand-wrapper">
-            <img src="../img/logo_nav.png" alt="logo" class="logo">
-          </div>
+     
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Hello Admin</h1>
             <form method="post" name="login_form" action="">
@@ -64,9 +62,7 @@ if (isset($_SESSION['admin'])) {
             </form>
           </div>
         </div>
-        <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="../img/work.png" alt="login image" class="login-img">
-        </div>
+       
       </div>
     </div>
   </main>

@@ -3,7 +3,7 @@ session_start();
 include('../essentials/config.php');
 include('sidebar.php');
 
-error_reporting(E_ALL);
+
 
 if (!isset($_SESSION['admin'])) {
     header('location:logout.php');

@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
         } else
         if ($status == 3) {
           $_SESSION['notActive'] = "This account has been deactivated by the admin";
-        }else
+        } else
         if ($status == 1) {
           if (password_verify($password, $dbPassword)) {
             $update = mysqli_query($connect, "UPDATE `customer` SET `last_login` = NOW() WHERE `email` = '$email' ");
@@ -63,6 +63,7 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
 </head>
+
 <body>
   <main>
     <div class="container-fluid">
@@ -114,18 +115,15 @@ if (isset($_POST['submit'])) {
                   endif; ?>
                 </div>
               </div>
-
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Login">
             </form>
-            <p class="text-center"><a href="register.php" style="color:green; font-weight:bolder; text-decoration:none;" >Sign Up</a>&emsp;
-            <a href="forgotPassword.php" style="color:red; font-weight:bolder; text-decoration:none;" >Forgot Password</a>
-          </p>
+            <a href="forgotPassword.php" class="forgot-password-link">Forgot password?</a>
+            <p class="login-wrapper-footer-text">Don't have an account? <a href="register.php" class="text-reset">Register here</a></p>
           </div>
         </div>
         <div class="col-sm-6 px-0 d-none d-sm-block">
           <img src="img/work.png" alt="login image" class="login-img">
         </div>
-
       </div>
     </div>
   </main>

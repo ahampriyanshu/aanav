@@ -157,5 +157,4 @@ $start_from = ($page-1) * $per_page;
 
     });
 </script>
-
 </html>

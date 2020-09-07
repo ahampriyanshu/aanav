@@ -27,7 +27,7 @@ if (isset($_SESSION['admin'])) {
   extract($_POST);
 
   if (isset($submit)) {
-    $rs = mysqli_query($connect, "select * from admin where admin_id ='$username' and password='$password'");
+    $rs = mysqli_query($connect, "SELECT * FROM admin WHERE admin ='$username' and password='$password'");
     if (mysqli_num_rows($rs) < 1) {
       $found = "N";
     } else {
@@ -69,7 +69,5 @@ if (isset($_SESSION['admin'])) {
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>

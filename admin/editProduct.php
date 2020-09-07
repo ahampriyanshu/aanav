@@ -47,11 +47,11 @@ if (isset($_POST['submit'])) {
                     <a href="addProduct.php" class="m-2 btn btn-sm btn-success">
                         <i class="fa fa-plus-square mr-2"></i> <b>Update Quantity</b></a>
 
-                        <a href="soldOut.php" class="m-2 btn btn-sm btn-danger">
+                        <a href="editSubImage.php?id=<?php echo $row['id'] ?>" class="m-2 btn btn-sm btn-danger">
                         <i class="fa fa-plus-square mr-2"></i> <b>Update Sub-Images</b></a>
 
                         <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-warning">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Deactivated Product</b></a>
+                        <i class="fa fa-plus-square mr-2"></i> <b>Update Variants</b></a>
                 </div>
         <div class="col-lg-6 login-section-wrapper pl-5 p-md-5 pt-2">
             <div class="login-wrapper ml-5">

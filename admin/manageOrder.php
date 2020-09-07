@@ -3,18 +3,24 @@ require('header.php');
 ?>
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 mx-auto mt-5 text-center">
+                <div class="col-lg-12 mx-auto mt-5 text-center">
+
+                        <a href="soldOut.php" class="m-2 btn btn-sm btn-warning">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Unapproved Orders</b></a>
+
                     <a href="addProduct.php" class="m-2 btn btn-sm btn-danger">
                         <i class="fa fa-plus-square mr-2"></i> <b>Cancelled Orders</b></a>
 
                         <a href="soldOut.php" class="m-2 btn btn-sm btn-success">
                         <i class="fa fa-plus-square mr-2"></i> <b>Completed Orders</b></a>
 
-                        <a href="soldOut.php" class="m-2 btn btn-sm btn-warning">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Unapproved Orders</b></a>
+
+                        <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-info">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Refund Request</b></a>
 
                         <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-info">
                         <i class="fa fa-plus-square mr-2"></i> <b>Refunded Orders</b></a>
+
                 </div>
                 <div class="col-lg-12 mx-auto mt-5">
                     <div class="table-responsive">

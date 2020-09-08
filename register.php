@@ -13,9 +13,9 @@ $sendEmail  = new sendEmail;
 if (isset($_POST['submit'])) {
 
   $validation->validate('fullName', 'Full Name', 'required');
-  $validation->validate('email', 'Email', 'uniqueEmail|dfdcustomer|required');
+  $validation->validate('email', 'Email', 'uniqueEmail|customer|required');
   $validation->validate('password', 'Password', 'required|min_len|6');
-  $validation->validate('phone', 'Phone', 'uniqueEmail|dfdcustomer|required');
+  $validation->validate('phone', 'Phone', 'uniqueEmail|customer|required');
 
 
   if ($validation->run()) {

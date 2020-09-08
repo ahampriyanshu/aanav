@@ -26,7 +26,7 @@ $id = $_GET['id'];
                     foreach ($_FILES as $file => $fileArray) {
 
                         if (!empty($fileArray['name']) && $fileArray['error'] == 0) {
-                            $getFileExtension = pathinfo($fileArray['name'], PATHINFO_EXTENSION);;
+                            $getFileExtension = pathinfo($fileArray['name'], PATHINFO_EXTENSION);
 
                             if (($getFileExtension == 'jpg') || ($getFileExtension == 'jpeg') || ($getFileExtension == 'png') || ($getFileExtension == 'gif') || ($getFileExtension == 'PNG')) {
                                 if ($fileArray["size"] <= 5000000) {

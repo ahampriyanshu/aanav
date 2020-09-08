@@ -83,7 +83,6 @@ require('header.php');
 <script src="js/bootbox.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-
         $('.delete').click(function() {
             var el = this;
             var id = this.id;

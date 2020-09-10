@@ -39,8 +39,7 @@ if (isset($_POST['submit'])) {
      ('$fullName', '$email', '$phone', '$msg', 'work', now()) ")) {
 
       if ($sendEmail->send($fullName, $email, $subject, $body)) {
-        $_SESSION['accountCreated'] = "Your account has been created successfully. Please verify your email";
-        header("location: login.php");
+      header("location: index.php");
       }
     }
   }
@@ -107,7 +106,7 @@ if (isset($_POST['submit'])) {
               </div>
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Apply">
             </form>
-            <p class="login-wrapper-footer-text"><a href="login.php" class="text-reset">Back</a></p>
+            <p class="login-wrapper-footer-text"><a href="index.php" class="text-reset">Back to home</a></p>
           </div>
         </div>
       </div>

@@ -185,9 +185,14 @@ location.href="error.php"
                                             $itemqty = $itemqty + $quantity;
                                             echo '<li class="fw-normal">
                                                 <img src="uploads/' . $obj->file . '" width="25" height="30" alt="cover image">
-                                                <b>' . $obj->name . '</b>  <a style="color:white; background-color:' . $color . ';"
-                                                class="badge "><b>' . $size . '</b></a>   (' . $quantity . ')
-                                                <span>&#x20B9;&nbsp;' . $obj->cost . '</span></li>';
+                                                <b>' . $obj->name . '</b>&nbsp;';  
+                                                 if ($row['value'] == 'white') {
+                                
+                            echo'<a class="badge" style="color:black; background-color:' .$color .';">' . $size .'</a>';  
+                             } else { 
+                            echo'<a class="badge" style="color:white; background-color:' .$color .';">' . $size .'</a>';
+                             } 
+                            echo' (' . $quantity . ')<span>&#x20B9;&nbsp;' . $obj->cost . '</span></li>';
                                         }
                                     }
                                 }

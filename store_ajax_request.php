@@ -30,29 +30,24 @@ if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '')
         </div>
         <div class="col-md-6 mb-3">
           <label for="state">Store</label>
-          <select name="store_id" class="custom-select d-block w-100" id="state" required>
-            <option value="">Manish, Ghaziabad, UP</option>
-            <option value="">Suresh, Dwarka, Delhi</option>
-            <option value="">Mahesh, haridwar, UP</option>
-            <option value="">Mukesh, Leh, Ladakh</option>
 
-            <?php
+          <select name="store_id" class="custom-select d-block w-100" id="state" required>
+          <?php
             $sql = "SELECT * FROM store";
             $run = mysqli_query($connect, $sql);
             while ($row = mysqli_fetch_array($run)) {
               $store_id = $row['store_id'];
               $store_name = $row['store_name'];
-              echo "<option value='$store_id'>$store_name</option>";
+              echo "<option value='$store_id'>".$row['store_name']." , ".$row['address']." 
+              ,".$row['email'].",".$row['phone']."</option>";
             }
             ?>
           </select>
-          <div class="invalid-feedback">
-            Please provide a valid state.
-          </div>
+   
         </div>
       </div>
       <br>
-      <input type="submit" name="submit" value="Save Contact" class="btn btn-sucsess pull-right">
+      <input type="submit" name="submit" value="Proceed to Pay" class="btn btn-sm btn-sucsess pull-right">
       <a href="" class="btn btn-outline-primary">Back</a>
     </form>
   </div>

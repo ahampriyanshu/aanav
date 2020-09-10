@@ -64,10 +64,16 @@ include('boilerplate.php');
                 echo '<tr>
                              <td class="cart-pic first-row"><a href="product.php?id=' . $product_id . '" ><img width="150" height="150" src="uploads/' . $obj->file . '" alt="product image"></a></td>
                             <td class="cart-title first-row">
-                            <p><span style="font-size:1.1em;" class="badge  badge-light">' . $obj->name . '</span></p>
-             <span style="color:white; background-color:' . $value_c . ';"
-              class="badge "><b>' . $value_s . '</b></span>              
-                                                      </td>
+                            <p><span style="font-size:1.1em;" class="badge  badge-light">' . $obj->name . '</span></p>';
+
+                             if ($row['value'] == 'white') {
+                                
+                            echo'<span class="badge" style="color:black; background-color:' .$value_c .';">' . $value_s .'</span>';  
+                             } else { 
+                            echo'<span class="badge" style="color:white; background-color:' .$value_c .';">' . $value_s .'</span>';
+                             }
+                                      
+                                                      echo'</td>
                                                       <td class="total-price first-row">&#x20B9;&nbsp;' . $obj->cost . '
                                                       <strong style="text-decoration: line-through; color:grey; font-size:.8em;">
                                                        &#x20B9;&nbsp;' . $obj->MRP . '</strong></td>

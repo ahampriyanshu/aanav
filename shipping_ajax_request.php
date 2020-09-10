@@ -3,7 +3,7 @@ session_start();
 require_once('essentials/config.php');
 
 if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '') { ?>
-    <form method="post" action="shipping_shop.php" enctype="multipart/form-data" class="checkout-form">
+    <form method="post" action="shipping_home.php" enctype="multipart/form-data" class="checkout-form">
         <div class="row">
             <div class="col-lg-12">
                 <h4>Enter Shipping Address</h4>

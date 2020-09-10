@@ -66,7 +66,7 @@ include('boilerplate.php');
                             <td class="cart-title first-row">
                             <p><span style="font-size:1.1em;" class="badge  badge-light">' . $obj->name . '</span></p>';
 
-                             if ($row['value'] == 'white') {
+                             if ($value_c == 'white') {
                                 
                             echo'<span class="badge" style="color:black; background-color:' .$value_c .';">' . $value_s .'</span>';  
                              } else { 

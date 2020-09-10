@@ -36,7 +36,10 @@ $count = mysqli_num_rows($run);
                             <span  style="font-size:1.1em;" class="badge  badge-light"><?php echo $id ?></span>
                             </td>
                             <td class="cart-title first-row">
-                                <?php if ($row['status'] == 1) { ?>
+                                <?php if ($row['status'] == 0) { ?>
+                                    <span class="badge  badge-danger">Cancelled</span>
+
+                                <?php } else if ($row['status'] == 1) { ?>
                                     <span class="badge  badge-warning">Placed</span>
 
                                 <?php } else if ($row['status'] == 2) { ?>
@@ -46,10 +49,10 @@ $count = mysqli_num_rows($run);
                                     <span class="badge  badge-info">Deliverd</span>
 
                                 <?php } else if ($row['status'] == 4) { ?>
-                                    <span class="badge  badge-success">Refunded</span>
+                                    <span class="badge  badge-success">Requested Refund</span>
 
-                                <?php } else if ($row['status'] == 0) { ?>
-                                    <span class="badge  badge-danger">Cancelled</span>
+                                <?php } else if ($row['status'] == 5) { ?>
+                                    <span class="badge  badge-danger">Refunded</span>
 
                                 <?php } else {  ?>
                                     <span class="badge  badge-danger">Error</span>
@@ -58,10 +61,10 @@ $count = mysqli_num_rows($run);
                             </td>
                             <td class="cart-title first-row">
                                 <?php if ($row['store_id'] == 0) { ?>
-                                    <span class="badge  badge-secondary">Store Pickup</span>
+                                    <span class="badge  badge-secondary">Home Delivery</span>
 
                                 <?php } else {
-                                    echo '<span class="badge  badge-info">Home Delivery</span>';
+                                    echo '<span class="badge  badge-info">Store Pickup</span>';
                                 } ?>
                             </td>
 
@@ -110,7 +113,7 @@ $count = mysqli_num_rows($run);
                   <div class="row my-5">
         <div class="col-md-12 text-center">
           <span class="icon-exclamation-circle display-1 text-danger"></span>
-          <h2 class="display-3 text-black">Your cart is empty !</h2>
+          <h2 class="display-3 text-black">No order placed!</h2>
           <p class="display-5 mb-5">You can check our bestseller section</p>
           <p><a href="index.php" class="btn btn-sm btn-info">Continue Shopping</a></p>
         </div>

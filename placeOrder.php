@@ -9,6 +9,7 @@ $shipping = $_SESSION['shipping'];
 $sql = "SELECT * FROM shipping WHERE shipping_id = $shipping";
 $run = mysqli_query($connect, $sql);
 $row = mysqli_fetch_assoc($run);
+$store_id = $row['store_id'];
 $full_name =      $row['full_name'];
 $email_address =      $row['email'];
 $street_address =      $row['street_address'];
@@ -22,7 +23,7 @@ if (isset($_SESSION['cart'])) {
   $total = 0;
   $itemqty = 0;
   $query = $connect->query("INSERT INTO orders(customer_id,email,full_name, store_id, phone, street_address, state, city, pincode,status,total_amt,total_qty,payment_type,created_date,modified_date) 
-                           VALUES('$customer_id','$email_address','$full_name',0,'$phone','$street_address','$state','$city','$pincode',1,0,0,'COD',NOW(),NOW())");
+                           VALUES('$customer_id','$email_address','$full_name','$store_id','$phone','$street_address','$state','$city','$pincode',1,0,0,'COD',NOW(),NOW())");
 
   $order_id = mysqli_insert_id($connect);
   echo $order_id;
@@ -57,7 +58,7 @@ if (isset($_SESSION['cart'])) {
   }
 }
 
-$url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/myorders.php?id=" . $order_id;
+$url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/myOrder.php?id=" . $order_id;
 $subject  = 'New Order successfully placed';
 $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $full_name . '</p><p 
  style="color:grey; font-size: 16px;" > Your order worth <span style="color:green;" > &#x20B9;&nbsp; ' . $total . '</span> was placed successfully at 
@@ -102,4 +103,4 @@ $sendEmail->send($admin_name, $admin_email, $subject, $body);
 
 unset($_SESSION['shipping']);
 unset($_SESSION['cart']);
-header("location:order-placed.php?id=".$order_id);
+header("location:orderConfirmation.php?id=".$order_id);

@@ -19,8 +19,9 @@ $_SESSION['shipping'] = $row['shipping_id'];
       <span class="icon-check_circle display-2 text-success"></span>
       <h2 class="display-5 text-black">Thank you!</h2>
       <p class="text-success mb-5">Your order was successfuly placed</p>
-      <p><a href="order_detail.php" class="btn btn-sm btn-success">Order Detail</a></p>
-      <p  style="vertical-align: middle;" ><a style="vertical-align: middle;" href="index.php" class="btn btn-sm btn-info"><i style=" margin-right: 10px;" class="fas fa-2x fa-file-download"></i>Invoice</a></p>
+      <p><a href="orderDetail.php?id=<?php echo $id ?>" class="btn btn-sm btn-success">Order Detail</a></p>
+      <p  style="vertical-align: middle;" >
+      <a style="vertical-align: middle;" href="invoice.php?id=<?php echo $id ?>" class="btn btn-sm btn-info"><i style=" margin-right: 10px;" class="fas fa-2x fa-file-download"></i>Invoice</a></p>
     </div>
   </div>
 </div>

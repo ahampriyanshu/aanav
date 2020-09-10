@@ -1,14 +1,15 @@
 <?php
-if (!isset($_GET['id']))
-{
-header('location: error.php');
-}
 include('boilerplate.php');
+if (!isset($_GET['id']) || !isset($_SESSION['email']) || !$_SESSION['cart'] ) {
+  echo '<script>
+  location.href="error.php"
+  </script>';
+}
 $id = $_GET['id'];
 $sql = "SELECT * FROM shipping where shipping_id=$id";
 $run = mysqli_query($connect, $sql);
 while ($row = mysqli_fetch_assoc($run)) {
-$_SESSION['shipping'] = $row['shipping_id'];
+  $_SESSION['shipping'] = $row['shipping_id'];
 }
 ?>
 
@@ -104,175 +105,170 @@ $_SESSION['shipping'] = $row['shipping_id'];
 </style>
 
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-            <h2>Payment Method</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <h2>Payment Method</h2>
 
-<div class="form-check">
-  <label>
-    <input type="radio" class="option-input radio" id="COD_radio" name="COD_radio" />
-    Cash On Delivery
-  </label>
-</div>
+        <div class="form-check">
+          <label>
+            <input type="radio" class="option-input radio" id="COD_radio" name="COD_radio" />
+            Cash On Delivery
+          </label>
+        </div>
 
-<div class="pay-container">
-</div>
+        <div class="pay-container">
+        </div>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#COD_radio").change(function() {
-      var shippingValidation = $(this).val();
+        <script type="text/javascript">
+          $(document).ready(function() {
+            $("#COD_radio").change(function() {
+              var shippingValidation = $(this).val();
 
-      if (shippingValidation != '') {
-        $("#loader").show();
-        $(".pay-container").html("");
+              if (shippingValidation != '') {
+                $("#loader").show();
+                $(".pay-container").html("");
 
-        $.ajax({
-          type: 'post',
-          data: {
-            shipping_validation: shippingValidation
-          },
-          url: 'COD.php',
-          success: function(returnData) {
-            $("#loader").hide();
-            $(".pay-container").html(returnData);
-          }
-        });
-      }
+                $.ajax({
+                  type: 'post',
+                  data: {
+                    shipping_validation: shippingValidation
+                  },
+                  url: 'placeOrderCod.php',
+                  success: function(returnData) {
+                    $("#loader").hide();
+                    $(".pay-container").html(returnData);
+                  }
+                });
+              }
 
-    })
-  });
-</script>
-</div>
+            })
+          });
+        </script>
+      </div>
 
-<style type="text/css">
-      .securepayment {
-        font-family: "adihausregular", Helvetica, Verdana, sans-serif;
-        font-size: 14px;
-        line-height: 20px;
-        color: #000;
-        font-weight: normal;
-        padding-top: 0px;
-        margin-top: 4px;
-      }
+      <style type="text/css">
+        .shipping_inner {
+          font-size: 14px;
+          text-align: left;
+          padding-top: 0;
+          background-color: #fff;
+          margin-bottom: 20px;
+        }
 
-      .order-sum {
-        background-color: #f2f3f4;
-        width: auto;
-        height: auto;
+        .shipping_inner_style {
+          padding-left: 8px;
+          margin-left: 10px;
+        }
 
+        .shipping_inner b {
+          display: block;
+          font-size: 14px;
+          margin-bottom: 5px;
+          color: #34495e;
+        }
+      </style>
 
-      }
-
-      .inner-order {
-        background-color: #fff;
-        margin-bottom: 20px;
-
-      }
-
-      .shipping_inner {
-        font-size: 14px;
-        text-align: left;
-        padding-top: 0;
-        background-color: #fff;
-        margin-bottom: 20px;
-      }
-
-      .shipping_inner_style {
-        padding-left: 8px;
-        margin-left: 10px;
-      }
-
-      .shipping_inner b {
-        display: block;
-        font-size: 14px;
-        margin-bottom: 5px;
-        color: #34495e;
-      }
-    </style>
-
-            <div class="col-lg-4">
-            <div class="order-sum">
+      <div class="col-lg-4">
         <div class="container">
           <div class="row">
-            <div class="col-md-12 col-xs-12 col-sm-8">
-              <div class="inner-order">
-                <?php
-                if (isset($_SESSION['cart'])) {
-
-                  $total = 0;
-                  $itemqty = 0;
-
-
-                  foreach ($_SESSION['cart'] as $variant_id => $quantity) {
-
-                    $find_pro_id = mysqli_query($connect,"SELECT * FROM variant WHERE variant_id='$variant_id'");
-                    $pro_data = mysqli_fetch_assoc($find_pro_id);
-                    $product_id = $pro_data['product_id'];
-
-                    $result = "SELECT  name, qty, cost,file FROM product WHERE id = $product_id";
-                    $run = mysqli_query($connect, $result);
-
-                    if ($run) {
-
-                      echo '<ul class="list">';
-                      while ($obj = mysqli_fetch_object($run)) {
-                        $cost = $obj->cost * $quantity;
-                        $total = $total + $cost;
-                        $itemqty = $itemqty + $quantity;
-
-
-                        echo '<li>';
-                        echo '<img src="admin/cover/' . $obj->file . '" width="100" height="140" align="right" align="right" alt="">';
-                        echo '<b>' . $obj->name . '</b>';
-                        echo '<h6 class="my-0">US$' . $obj->cost . '</h6>';
-                        echo '<small>quantity: ' . $quantity . '</small>';
-                        echo '</li>';
-                      }
-                      echo '</ul>';
-                    }
-                  }
-
-                  echo '<table class="table">';
-                  echo '<tr>';
-                  echo '<td>TOTAL(' . $itemqty . ')</td>';
-                  echo '<td></td>';
-                  echo '<td></td>';
-                  echo '<td></td>';
-                  echo '<td><strong>US$' . $total . '</strong></td>';
-                  echo '</tr>';
-                  echo '</table>';
-                  echo '<br>';
-                }
-                ?>
-
-
-              </div>
-              <?php
-              $shipping = $_SESSION['shipping'];
-              $sql = "SELECT * FROM shipping WHERE shipping_id = $shipping";
-              $run = mysqli_query($connect, $sql);
-              $row = mysqli_fetch_assoc($run);
-              ?>
+            <?php
+            $shipping = $_SESSION['shipping'];
+            $sql = "SELECT * FROM shipping WHERE shipping_id = $shipping";
+            $run = mysqli_query($connect, $sql);
+            $row = mysqli_fetch_assoc($run);
+            ?>
+            <?php if ( $row['store_id'] != 0) {
+            ?>
+              
+              <div class="col-sm-12">
               <div class="shipping_inner">
                 <div class="shipping_inner_style">
-                  <b>Delivery Location</b><br>
+           <h3 class="text-left mb-4">
+                <span class="badge badge-light">Delivery Information</span>
+              </h3>
                   <?php echo $row['full_name'] ?><br>
-                  <?php echo $row['street_address'] ?><br>
-                  <?php echo $row['city'] ?> ,
-                  <?php echo $row['state'] ?><br>
-                  <span class="fa fa-phone"></span> <?php echo $row['phone'] ?><br>
-                  <span class="fa fa-email"></span> <?php echo $row['email'] ?><br>
+                  <?php echo $row['phone'] ?><br>
+                  <?php echo $row['email'] ?><br>
+            <?php $sql = "SELECT * FROM store WHERE store_id =".$row['store_id'];
+            $run = mysqli_query($connect, $sql);
+            while ($row = mysqli_fetch_array($run)) {
+            ?>
+            <br>
+              <span class="badge badge-light">Store Details</span> <br>
+                <?php echo $row['store_name'] ?><br>
+                <?php echo $row['email'] ?><br>
+                <?php echo $row['phone'] ?><br>
+                <?php echo $row['address'] ?><br>
+            <?php } ?>
                 </div>
               </div>
+            </div>
+
+            <?php } else { ?>
+           <div class="col-sm-12">
+           <div class="shipping_inner">
+           <div class="shipping_inner_style">
+           <h3 class="text-left mb-4">
+           <span class="badge badge-info">Delivery Information</span>
+           </h3>
+                <?php echo $row['full_name'] ?><br>
+                <?php echo $row['street_address'] ?> ,<br>
+                <?php echo $row['city'] ?><br>
+                <?php echo $row['state'] ?> ,
+                <?php echo $row['pincode'] ?><br>
+                <?php echo $row['phone'] ?><br>
+                <?php echo $row['email'] ?><br>
+                </div>
+              </div>
+            </div>
+            <?php } ?>
+            <div class="col-sm-12">
+              <?php
+              if (isset($_SESSION['cart'])) {
+
+                $total = 0;
+                $itemqty = 0;
+
+
+                foreach ($_SESSION['cart'] as $variant_id => $quantity) {
+
+                  $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE variant_id='$variant_id'");
+                  $pro_data = mysqli_fetch_assoc($find_pro_id);
+                  $product_id = $pro_data['product_id'];
+
+                  $result = "SELECT  name, qty, cost,file FROM product WHERE id = $product_id";
+                  $run = mysqli_query($connect, $result);
+
+                  if ($run) {
+
+                    while ($obj = mysqli_fetch_object($run)) {
+                      $cost = $obj->cost * $quantity;
+                      $total = $total + $cost;
+                      $itemqty = $itemqty + $quantity;
+                    }
+                  }
+                }
+
+                echo '<table class="table">';
+                echo '<tr>';
+                echo '<td>TOTAL(' . $itemqty . ')</td>';
+                echo '<td></td>';
+                echo '<td></td>';
+                echo '<td></td>';
+                echo '<td><strong>US$' . $total . '</strong></td>';
+                echo '</tr>';
+                echo '</table>';
+                echo '<br>';
+              }
+              ?>
             </div>
           </div>
         </div>
       </div>
-   </div>
- </div>
-</div>
+    </div>
+  </div>
+  </div>
 </section>
 
 <style type="text/css">

@@ -1,6 +1,6 @@
 <?php include('boilerplate.php'); ?>
 <?php
-if (!$_SESSION['cart']) {
+if (!$_SESSION['cart'] || !isset($_SESSION['email']) ) {
     echo '<script>
 location.href="error.php"
 </script>';
@@ -186,7 +186,7 @@ location.href="error.php"
                                             echo '<li class="fw-normal">
                                                 <img src="uploads/' . $obj->file . '" width="25" height="30" alt="cover image">
                                                 <b>' . $obj->name . '</b>&nbsp;';  
-                                                 if ($row['value'] == 'white') {
+                                                 if ($color == 'white') {
                                 
                             echo'<a class="badge" style="color:black; background-color:' .$color .';">' . $size .'</a>';  
                              } else { 

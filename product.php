@@ -91,7 +91,7 @@ $section_name = $row2['section_name'];
               <div class="product-thumbs">
                 <div class="product-thumbs-track ps-slider owl-carousel">
                   <div class="pt active" data-imgbigurl="uploads/<?php echo $row2['file'] ?>">
-                  <img height="100" src="uploads/<?php echo $row2['file'] ?>" alt=""></div>
+                  <img src="uploads/<?php echo $row2['file'] ?>" alt=""></div>
                   <?php
                   $sql2 = "SELECT * FROM gallery
                               WHERE product_id = $id";
@@ -100,7 +100,7 @@ $section_name = $row2['section_name'];
                     { 
                   ?>
                     <div class="pt active" data-imgbigurl="uploads/gallery/<?php echo $row2['image'] ?>">
-                      <img height="100" src="uploads/gallery/<?php echo $row2['image'] ?>" alt="gallery"></div>
+                      <img src="uploads/gallery/<?php echo $row2['image'] ?>" alt="gallery"></div>
 
                   <?php } endwhile; ?>
                 </div>

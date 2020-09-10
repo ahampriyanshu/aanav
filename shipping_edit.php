@@ -1,7 +1,8 @@
 <?php
 include('boilerplate.php');
 $id = $_GET['id'];
-$result = mysqli_query($connect, "SELECT * FROM shipping WHERE shipping_id=$id");
+$customer_id = $_SESSION['id'];
+$result = mysqli_query($connect, "SELECT * FROM shipping WHERE customer_id = '$customer_id' AND shipping_id=$id");
 $row = mysqli_fetch_assoc($result);
 ?>
 <div class="col-md-5">

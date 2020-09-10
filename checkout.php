@@ -82,7 +82,7 @@ location.href="error.php"
                                     data: {
                                         shipping_validation: shippingValidation
                                     },
-                                    url: 'shipping_ajax_request.php',
+                                    url: 'formHome.php',
                                     success: function(returnData) {
                                         $(".saved_address").hide();
                                         $(".address-container").html(returnData);
@@ -107,7 +107,7 @@ location.href="error.php"
                                     data: {
                                         shipping_validation: shippingValidation
                                     },
-                                    url: 'store_ajax_request.php',
+                                    url: 'formStore.php',
                                     success: function(returnData) {
                                         $(".saved_address").hide();
                                         $(".address-container").html(returnData);
@@ -126,7 +126,7 @@ location.href="error.php"
 
                     <?php
                     $query = "SELECT * FROM shipping WHERE shipping_type= 'home'
-                        and email = '$customer' ORDER BY shipping_id DESC";
+                        and customer_id = '$customer_id' ORDER BY shipping_id DESC";
                     $result = mysqli_query($connect, $query);
                     while ($row = mysqli_fetch_assoc($result)) {
                         $id = $row['shipping_id']; ?>

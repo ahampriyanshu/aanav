@@ -3,7 +3,7 @@ session_start();
 require_once('essentials/config.php');
 
 if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '') { ?>
-    <form method="post" action="shipping_home.php" enctype="multipart/form-data" class="checkout-form">
+    <form method="post" action="proceedHome.php" enctype="multipart/form-data" class="checkout-form">
         <div class="row">
             <div class="col-lg-12">
                 <h4>Enter Shipping Address</h4>
@@ -12,6 +12,11 @@ if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '')
                     <div class="col-lg-12">
                         <label for="fir">Full Name<span>*</span></label>
                         <input name="name" value="<?php echo $_SESSION['name']; ?>" type="text" id="fir" required>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <label for="fir">Email<span>*</span></label>
+                        <input name="email" value="<?php echo $_SESSION['email']; ?>" type="text" id="fir" required>
                     </div>
 
                     <div class="col-lg-12">
@@ -25,7 +30,7 @@ if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '')
                     </div>
 
                     <div class="col-lg-6">
-                        <label for="pincode">PINCODE</label>
+                        <label for="pincode">PINCODE<span>*</span></label>
                         <input name="pincode" pattern="[0-9]{6}" type="text" id="pincode" required>
                     </div>
 

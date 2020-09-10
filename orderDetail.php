@@ -23,37 +23,107 @@ $order_id = $_GET['id'];
         $orders = mysqli_query($connect, "SELECT * FROM orders WHERE customer_id = '$customer_id' and order_id = '$order_id'");
         $order_prop = mysqli_fetch_assoc($orders);
         ?>
-                        <div class="col-lg-9 mx-auto my-3" >
+                        <div class="col-lg-12 mx-auto my-3" >
+                        <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                            <table class="table table-borderless">
+  			<tr>
+  				<th>Name</th>
+  				<td><?php echo $order_prop['full_name'] ?></td>
+              </tr>
+              <tr>
+  				<th>Email</th>
+  				<td><?php echo $order_prop['email'] ?></td>
+              </tr>
+              <tr>
+  				<th>Phone</th>
+  				<td><?php echo $order_prop['phone'] ?></td>
+              </tr>
+                            <tr>
+  				<th>Order placed at</th>
+  				<td><?php echo $order_prop['created_date'] ?></td>
+              </tr>
+              <tr>
+  				<th>Order updated at</th>
+  				<td><?php echo $order_prop['modified_date'] ?></td>
+              </tr>
+                            <tr>
+  				<th>Quantity</th>
+  				<td><b><?php echo $order_prop['total_qty'] ?></b></td>
+              </tr>
+              <tr>
+  				<th>Total</th>
+  				<td><b>&#x20B9;&nbsp;<?php echo $order_prop['total_amt'] ?></b></td>
+              </tr>
+                       
+  		
+          </table>
+            </div>
+            <div class="col-lg-6">
+                            <table class="table table-borderless">
+                            <?php if ($order_prop['store_id'] == 0) { ?>
+                                <tr>
+              <th>Payment Type</th>
+  				<td><?php echo $order_prop['payment_type'] ?></td>
+              </tr>
+                <tr>
+  				<th>Delivery Type</th>
+  				<td> Home Delivery </td>
+  			</tr>
+  			<tr>
+  				<th>Address</th>
+  				<td><?php echo $order_prop['street_address'] ?></td>
+  			</tr>
+  			<tr>
+  				<th>City</th>
+  				<td><?php echo $order_prop['city'] ?></td>
+              </tr>
+              <tr>
+  				<th>State</th>
+  				<td><?php echo $order_prop['state'] ?></td>
+              </tr>
+              <tr>
+  				<th>Pincode</th>
+  				<td><?php echo $order_prop['pincode'] ?></td>
+              </tr>
+              <tr>
 
-                        <p>
-                        <span class="badge  badge-info pull-right mx-3"><?php echo $order_prop['payment_type'] ?></span>
-                                <?php if ($order_prop['store_id'] == 0) { ?>
-                                    <span class="badge  badge-secondary  pull-right">Store Pickup</span>
-
-                                <?php } else {
-                                    echo '<span class="badge  badge-secondary  pull-right">Home Delivery</span>';
-                                } ?>
-                        <span class="badge  badge-secondary  pull-right"><?php echo $order_prop['total_amt'] ?></span>
-                        <span class="badge  badge-secondary  pull-right"><?php echo $order_prop['total_qty'] ?></span>
-                        <span class="badge  badge-secondary  pull-right"><?php echo $order_prop['created_date'] ?></span>
-                        <span class="badge  badge-secondary  pull-right"><?php echo $order_prop['modified_date'] ?></span>
-                        </p>
-                    
-                            <p><span class="badge  badge-light">
-                            <?php echo $order_prop['full_name'] ?></span></p>
-                            <p><span class="badge  badge-light">
-                            <?php echo $order_prop['email'] ?></span></p>
-                            <p><span class="badge  badge-light">
-                            <?php echo $order_prop['phone'] ?></span></p>
-                            <p>
-                            <span class="badge  badge-light">
-                            <?php echo $order_prop['street_address'] ?>,<?php echo $order_prop['city'] ?>,
-                            <?php echo $order_prop['state'] ?>,<?php echo $order_prop['pincode'] ?></span>
-                            </p>
- 
+                                <?php } else { ?>
+                                    <tr>
+  				<th>Delivery Type</th>
+  				<td>Store Pickup</td>
+              </tr>
+              <?php $store_sql = "SELECT * FROM store WHERE store_id =".$order_prop['store_id'];
+            $store_query = mysqli_query($connect, $store_sql);
+            while ($store_row = mysqli_fetch_array($store_query)) {
+            ?>
+             <tr>
+              <th>Payment Type</th>
+  				<td><?php echo $order_prop['payment_type'] ?></td>
+              </tr>
+  			<tr>
+  				<th>Store Name</th>
+  				<td><?php echo $store_row['store_name'] ?></td>
+  			</tr>
+  			<tr>
+  				<th>Store Email</th>
+  				<td><?php echo $store_row['email'] ?></td>
+              </tr>
+              <tr>
+  				<th>Store Phone</th>
+  				<td><?php echo $store_row['phone'] ?></td>
+              </tr>
+              <tr>
+  				<th>Store Address</th>
+  				<td><?php echo $store_row['address'] ?></td>
+  			</tr>
+                            <?php } } ?>
+                            </table>
+            </div>
                         </div>
 
-                      <div class="col-lg-9 mx-auto">
+                      <div class="col-lg-9 mt-5 mx-auto">
                           <div class="cart-table">
                               <table>
                                   <thead>
@@ -109,8 +179,7 @@ $order_id = $_GET['id'];
                             </td>
                             <td class="cart-title first-row">
                             <a style="color:white; background-color:<?php echo $color ?>;"
-                                                class="badge "><b><?php echo $size ?></b></a>
-                                
+                            class="badge "><b><?php echo $size ?></b></a>
                             </td>
 
                             <td class="cart-title first-row">
@@ -132,6 +201,8 @@ $order_id = $_GET['id'];
 
                     </tbody>
                     </table>
+                          </div>
+                      </div>
             </div>
         </div>
     </div>

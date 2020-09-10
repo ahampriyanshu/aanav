@@ -104,8 +104,7 @@ while ($row = mysqli_fetch_assoc($run)) {
   }
 </style>
 
-<section>
-  <div class="container">
+  <div class="container mb-5">
     <div class="row">
       <div class="col-lg-8">
         <h2>Payment Method</h2>
@@ -117,7 +116,7 @@ while ($row = mysqli_fetch_assoc($run)) {
           </label>
         </div>
 
-        <div class="pay-container">
+        <div class="pay-container mb-5">
         </div>
 
         <script type="text/javascript">
@@ -170,151 +169,83 @@ while ($row = mysqli_fetch_assoc($run)) {
       </style>
 
       <div class="col-lg-4">
-        <div class="container">
-          <div class="row">
             <?php
             $shipping = $_SESSION['shipping'];
             $sql = "SELECT * FROM shipping WHERE shipping_id = $shipping";
             $run = mysqli_query($connect, $sql);
             $row = mysqli_fetch_assoc($run);
             ?>
-            <?php if ( $row['store_id'] != 0) {
+                            <table class="table table-borderless">
+  			<tr>
+  				<th>Name</th>
+  				<td><?php echo $row['full_name'] ?></td>
+              </tr>
+              <tr>
+  				<th>Email</th>
+  				<td><?php echo $row['email'] ?></td>
+              </tr>
+              <tr>
+  				<th>Phone</th>
+  				<td><?php echo $row['phone'] ?></td>
+              </tr>
+
+              <?php if ($row['store_id'] == 0) { ?>
+
+                <tr>
+  				<th>Delivery Type</th>
+  				<td> Home Delivery </td>
+  			</tr>
+  			<tr>
+  				<th>Address</th>
+  				<td><?php echo $row['street_address'] ?></td>
+  			</tr>
+  			<tr>
+  				<th>City</th>
+  				<td><?php echo $row['city'] ?></td>
+              </tr>
+              <tr>
+  				<th>State</th>
+  				<td><?php echo $row['state'] ?></td>
+              </tr>
+              <tr>
+  				<th>Pincode</th>
+  				<td><?php echo $row['pincode'] ?></td>
+              </tr>
+              <tr>
+
+                                <?php } else { ?>
+                                    <tr>
+  				<th>Delivery Type</th>
+  				<td>Store Pickup</td>
+              </tr>
+              <?php $store_sql = "SELECT * FROM store WHERE store_id =".$row['store_id'];
+            $store_query = mysqli_query($connect, $store_sql);
+            while ($store_row = mysqli_fetch_array($store_query)) {
             ?>
-              
-              <div class="col-sm-12">
-              <div class="shipping_inner">
-                <div class="shipping_inner_style">
-           <h3 class="text-left mb-4">
-                <span class="badge badge-light">Delivery Information</span>
-              </h3>
-                  <?php echo $row['full_name'] ?><br>
-                  <?php echo $row['phone'] ?><br>
-                  <?php echo $row['email'] ?><br>
-            <?php $sql = "SELECT * FROM store WHERE store_id =".$row['store_id'];
-            $run = mysqli_query($connect, $sql);
-            while ($row = mysqli_fetch_array($run)) {
-            ?>
-            <br>
-              <span class="badge badge-light">Store Details</span> <br>
-                <?php echo $row['store_name'] ?><br>
-                <?php echo $row['email'] ?><br>
-                <?php echo $row['phone'] ?><br>
-                <?php echo $row['address'] ?><br>
-            <?php } ?>
-                </div>
-              </div>
+            
+  			<tr>
+  				<th>Store Name</th>
+  				<td><?php echo $store_row['store_name'] ?></td>
+  			</tr>
+  			<tr>
+  				<th>Store Email</th>
+  				<td><?php echo $store_row['email'] ?></td>
+              </tr>
+              <tr>
+  				<th>Store Phone</th>
+  				<td><?php echo $store_row['phone'] ?></td>
+              </tr>
+              <tr>
+  				<th>Store Address</th>
+  				<td><?php echo $store_row['address'] ?></td>
+  			</tr>
+                            <?php } 
+                          } ?>
+           
+  		
+          </table>
             </div>
-
-            <?php } else { ?>
-           <div class="col-sm-12">
-           <div class="shipping_inner">
-           <div class="shipping_inner_style">
-           <h3 class="text-left mb-4">
-           <span class="badge badge-info">Delivery Information</span>
-           </h3>
-                <?php echo $row['full_name'] ?><br>
-                <?php echo $row['street_address'] ?> ,<br>
-                <?php echo $row['city'] ?><br>
-                <?php echo $row['state'] ?> ,
-                <?php echo $row['pincode'] ?><br>
-                <?php echo $row['phone'] ?><br>
-                <?php echo $row['email'] ?><br>
-                </div>
-              </div>
-            </div>
-            <?php } ?>
-            <div class="col-sm-12">
-              <?php
-              if (isset($_SESSION['cart'])) {
-
-                $total = 0;
-                $itemqty = 0;
-
-
-                foreach ($_SESSION['cart'] as $variant_id => $quantity) {
-
-                  $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE variant_id='$variant_id'");
-                  $pro_data = mysqli_fetch_assoc($find_pro_id);
-                  $product_id = $pro_data['product_id'];
-
-                  $result = "SELECT  name, qty, cost,file FROM product WHERE id = $product_id";
-                  $run = mysqli_query($connect, $result);
-
-                  if ($run) {
-
-                    while ($obj = mysqli_fetch_object($run)) {
-                      $cost = $obj->cost * $quantity;
-                      $total = $total + $cost;
-                      $itemqty = $itemqty + $quantity;
-                    }
-                  }
-                }
-
-                echo '<table class="table">';
-                echo '<tr>';
-                echo '<td>TOTAL(' . $itemqty . ')</td>';
-                echo '<td></td>';
-                echo '<td></td>';
-                echo '<td></td>';
-                echo '<td><strong>US$' . $total . '</strong></td>';
-                echo '</tr>';
-                echo '</table>';
-                echo '<br>';
-              }
-              ?>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   </div>
-</section>
-
-<style type="text/css">
-  h3 {
-    font-family: AdineuePRO, Helvetica, Verdana, sans-serif;
-    font-style: normal;
-    color: #000;
-    font-size: 18px;
-    margin: 15px 0px;
-    line-height: 100%;
-    font-weight: 600;
-    padding: 4px;
-
-  }
-
-  h1 {
-    color: #5d6d7e;
-    text-align: center;
-  }
-
-  .box {
-    border-radius: 6px;
-    border: 2px solid #009689;
-    margin: 8px;
-    padding: 8px;
-    width: 200px;
-    height: 100px;
-    text-align: center;
-    font-size: 45px;
-    background-color: #009688;
-  }
-
-  .box a {
-    color: white;
-  }
-
-
-  h2 {
-    font-size: 26px;
-    line-height: 24px;
-    letter-spacing: 1.5px;
-    font-family: AdineuePRO, Helvetica, Verdana, sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    color: #000;
-  }
-</style>
 
 <?php include('footer.php'); ?>

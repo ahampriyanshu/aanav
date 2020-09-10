@@ -5,7 +5,7 @@
             <li><a href="about.php">About</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
-        <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i> PriyanshuMay &copy; MIT Licensed</p>
+        <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i> ahampriyanshu &copy; MIT Licensed</p>
         <ul class="social_footer_ul">
             <li><a href="#"><i class="fab fa-2x fa-linkedin"></i></a></li>
             <li><a href="#"><i class="fab fa-2x fa-facebook"></i></a></li>

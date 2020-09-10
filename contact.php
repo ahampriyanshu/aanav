@@ -1,5 +1,42 @@
 <?php
-   include('boilerplate.php');
+include('boilerplate.php');
+?>
+<?php
+include "inc.php";
+$sendEmail  = new sendEmail;
+
+if (isset($_POST['submit'])) {
+
+    $fullName = $_POST['fullName'];
+    $email    = $_POST['email'];
+    $msg      = $_POST['msg'];
+    $phone    = $_POST['phone'];
+    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+    $subject  = 'Thank you';
+    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for .We will contact you as soon as possible</p> 
+    <p><a style="background-color: #66FCF1;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;"
+    href="' . $url . '">Visit Site</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a>Contact Us</a></p>';
+
+    if ($queries->query("INSERT INTO msg (name, email, phone, msg, type, created_date) VALUES
+     ('$fullName', '$email', '$phone', '$msg', 'contact', now()) ")) {
+
+      if ($sendEmail->send($fullName, $email, $subject, $body)) {
+        $_SESSION['accountCreated'] = "Your account has been created successfully. Please verify your email";
+        header("location: index.php");
+      }
+    }
+}
 ?>
  <!-- Map Section Begin -->
  <div class="map carousel-info">
@@ -61,18 +98,20 @@
                     <div class="contact-form">
                         <div class="leave-comment">
                             <h4>Leave A Comment</h4>
-                            <p>I will try to call back later and answer your questions</p>
-                            <form action="#" class="comment-form">
+                            <form method="post"  class="comment-form">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Your name">
+                                    <div class="col-lg-12">
+                                        <input name="fullName" type="text" placeholder="Your name" required />
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" placeholder="Your email">
+                                        <input name="phone" type="number" placeholder="Your mobile" required />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input name="email" type="email" placeholder="Your email" required />
                                     </div>
                                     <div class="col-lg-12">
-                                        <textarea placeholder="Your message"></textarea>
-                                        <button type="submit" class="site-btn">Send message</button>
+                                        <textarea name="msg" placeholder="Your message" required ></textarea>
+                                        <button type="submit"  name="submit" class="site-btn">Send message</button>
                                     </div>
                                 </div>
                             </form>

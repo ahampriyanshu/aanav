@@ -95,7 +95,7 @@ include('boilerplate.php');
 
 <?php include('latest.php'); ?>
 <?php include('trending.php'); ?>
-<?php include('recently-viewed.php'); ?>
+<?php include('recentlyViewed.php'); ?>
 
 <div class="carousel-inner">
     <div class="carousel-item active">

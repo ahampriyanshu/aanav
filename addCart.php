@@ -20,7 +20,7 @@
      if ($row3){
      $variant_id = $row3['variant_id'];
      echo "<script>
-     window.location='update-cart.php?action=add&id=$variant_id';
+     window.location='updateCart.php?action=add&id=$variant_id';
      </script>";
      }
      else

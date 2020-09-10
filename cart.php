@@ -81,9 +81,9 @@ include('boilerplate.php');
                                                       <div class="quantity">
                                                           <div class="pro-qty">
                                                              
-                                                      <a  class="dec qtybtn" href="update-cart.php?action=remove&id=' . $variant_id . '">-</a>
+                                                      <a  class="dec qtybtn" href="updateCart.php?action=remove&id=' . $variant_id . '">-</a>
                                                              <input type="text" value="' . $quantity . '">
-                                                             <a class="inc qtybtn" href="update-cart.php?action=add&id=' . $variant_id . '">+</a>
+                                                             <a class="inc qtybtn" href="updateCart.php?action=add&id=' . $variant_id . '">+</a>
                                                         </div>
                                                       </div>
                                                   </td>';
@@ -95,7 +95,7 @@ include('boilerplate.php');
                 echo '<td class="total-price first-row">&#x20B9;&nbsp;' . $selling_price . '
                                                       <strong style="text-decoration: line-through; color:grey; font-size:.8em;"> &#x20B9;&nbsp;' . $selling_MRP . '</strong></td>
 
-                                                      <td class="close-td first-row"><a style="color:grey" href="update-cart.php?action=del&id=' . $variant_id . '"<i class="far fa-trash-alt"></i></a></td>';
+                                                      <td class="close-td first-row"><a style="color:grey" href="updateCart.php?action=del&id=' . $variant_id . '"<i class="far fa-trash-alt"></i></a></td>';
             }
         }
     }
@@ -107,7 +107,7 @@ include('boilerplate.php');
       <div class="cart-buttons">
       
           <a href="shop.php" class="primary-btn continue-shop">Continue shopping</a>
-          <a href="delete-cart.php" class="primary-btn up-cart">Empty cart</a>
+          <a href="delCart.php" class="primary-btn up-cart">Empty cart</a>
       
       </div>';
     ?>

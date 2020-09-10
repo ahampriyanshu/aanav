@@ -125,7 +125,7 @@ $section_name = $row2['section_name'];
                     <div class="custom-radio-button">
 
 
-                      <form method="post" action="adding-to-cart.php" enctype="multipart/form-data">
+                      <form method="post" action="addCart.php" enctype="multipart/form-data">
 
                         <input type="hidden" name="id" value="<?php echo $id ?>">
 
@@ -367,5 +367,5 @@ $section_name = $row2['section_name'];
   </section>
 
   <?php include('similar.php'); ?>
-  <?php include('recently-viewed.php'); ?>
+  <?php include('recentlyViewed.php'); ?>
   <?php include('footer.php'); ?>

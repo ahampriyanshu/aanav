@@ -43,6 +43,14 @@ if (isset($_POST['submit'])) {
 ?>
   <div class="container">
             <div class="row">
+            <?php if (isset($_SESSION['key'])) : ?>
+         <div class="col-md-6 mx-auto text-center">
+            <div class="alert alert-success">
+               <?php echo $_SESSION['key']; ?>
+            </div>
+         </div>
+      <?php endif; ?>
+      <?php unset($_SESSION['key']); ?>
             <div class="col-lg-12 mx-auto mt-5">
                 <h2 class="text-left mb-4">
                 <span class="badge badge-warning">Regenerate Key</span>
@@ -53,7 +61,7 @@ if (isset($_POST['submit'])) {
                                 <label for="email">Enter Secret Code</label>
                                 <input type="text" name="name" class="form-control" id="email" required />
                             </div>
-                            <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Add">
+                            <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Regerate">
                         </form>
                     </div>
                 </div>

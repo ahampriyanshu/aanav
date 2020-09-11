@@ -6,7 +6,7 @@ $sendEmail  = new sendEmail;
 
 if (!$_GET['id']) {
    echo '<script>
-    location.href="error.php"
+    location.href="logout.php"
     </script>';
 }
 $order_id = $_GET['id'];
@@ -400,7 +400,7 @@ if (isset($_POST['accept'])) {
                         $count = mysqli_num_rows($run);
                         if (!$count) {
                            echo '<script>
-                           location.href="error.php"
+                           location.href="logout.php"
                            </script>';
                         }
                         while ($row = mysqli_fetch_assoc($run)) : {

@@ -3,84 +3,89 @@ require('header.php');
 ?>
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 mx-auto mt-5 text-center">
-                    <a href="addProduct.php" class="m-2 btn btn-sm btn-success">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Add New Product</b></a>
-
-                        <a href="soldOut.php" class="m-2 btn btn-sm btn-danger">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Sold Out Product</b></a>
-
-                        <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-warning">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Deactivated Product</b></a>
-                </div>
-                <div class="col-lg-12 mx-auto mt-5">
+            <div class="col-lg-9 mx-auto my-4 text-center">
+         <h2><span class="badge badge-light">Unverified Accounts</span></h2>
+      </div>
+                <div class="col-lg-12  mt-5">
                     <div class="table-responsive">
                         <table class='table table-borderless text-center'>
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>PRODUCT</th>
                                     <th>NAME</th>
-                                    <th>CODE</th>
-                                    <th>UNITS</th>
-                                    <th>PRICE</th>
-                                    <th>CREATED</th>
-                                    <th>MODIFIED</th>
-                                    <th>UPDATE</th>
-                                    <th>DEL</th>
+                                    <th>EMAIL</th>
+                                    <th>PHONE</th>
+                                    <th>STATUS</th>
+                                    <th>REGISTERED</th>
+                                    <th>LAST LOGIN</th>
+                                    <th>ORDERS</th>
+                                    <th>HISTORY</th>
+                                    <th>ENABLE</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
 
 $per_page = 12;
-
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 } else {
     $page = 1;
 }
-
 $start_from = ($page-1) * $per_page;
-
-                                $query = "SELECT * FROM product WHERE status=1 ORDER BY id ASC LIMIT $start_from, $per_page";
-                                $result = mysqli_query($connect, $query);
-                                while ($row = mysqli_fetch_assoc($result)) {
+$query = "SELECT * FROM customer WHERE status=0 ORDER BY id DESC LIMIT $start_from, $per_page";
+$result = mysqli_query($connect, $query);
+while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
 
                                     <tr>
                                         <td>
                                             <span class="badge  badge-light"><?php echo $row['id'] ?></span>
                                         </td>
-                                        <td>
-                                            <img width="150" height="150" src="../uploads/<?php echo $row['file'] ?>" alt="product image">
-                                        </td>
+                                   
                                         <td>
                                             <span class="badge  badge-light"><?php echo $row['name'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['code'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['email'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['qty'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['phone'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light">&#x20B9;&nbsp;<?php echo $row['cost'] ?></span>
+                                        <?php if ($row['status'] == 0) { ?>
+                                        <span class="badge badge-warning">Unverified</span>
+
+                                    <?php } else if ($row['status'] == 1) { ?>
+                                        <span class="badge badge-success">Active</span>
+
+                                    <?php } else if ($row['status'] == 2) { ?>
+                                        <span class="badge badge-success">Unactive</span>
+
+                                    <?php } else if ($row['status'] == 3) { ?>
+                                        <span class="badge badge-info">Disabled</span>
+
+                                    <?php } else {  ?>
+                                        <span class="badge badge-danger">Error</span>
+                                    <?php  } ?>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['created_date'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['datetym'] ?></span>
                                         </td>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['modified_date'] ?></span>
+                                            <span class="badge  badge-light"><?php echo $row['last_login'] ?></span>
                                         </td>
                                         <td>
-                                            <a style="color: #888;"
-                                             href="editProduct.php?id=<?php echo $row['id'] ?>">
-                                                <i class="far fa-edit"></i></a>
+                                        <a style="color:#F67E29;" href="customerOrder.php?id=<?php echo $row['id']?>" >
+                                         <i class="fas fa-info-circle"></i></a>
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['id'] ?>'>
-                                                <i class="far fa-trash-alt"></i></a>
+                                        <a style="color:#F67E29;" href="customerHistory.php?id=<?php echo $row['id']?>" >
+                                         <i class="fas fa-info-circle"></i></a>
+                                        </td>
+                                        <td>
+                                            <a style="color: red; " class='enable' id='enable_<?= $row['id'] ?>'>
+                                              lk  <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php
@@ -106,13 +111,13 @@ $start_from = ($page-1) * $per_page;
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('.delete').click(function() {
+        $('.enable').click(function() {
             var el = this;
             var id = this.id;
             var splitid = id.split("_");
             var deleteid = splitid[1];
             bootbox.confirm({
-                message: "Do you really want to delete this record ?",
+                message: "Do you really want to activate this account ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -128,7 +133,7 @@ $start_from = ($page-1) * $per_page;
                     if (result) {
 
                         $.ajax({
-                            url: 'delProduct.php',
+                            url: 'enableCustomer.php',
                             type: 'POST',
                             data: {
                                 id: deleteid
@@ -137,7 +142,7 @@ $start_from = ($page-1) * $per_page;
 
 
                                 if (response == 1) {
-                                    $(el).closest('tr').css('background', 'tomato');
+                                    $(el).closest('tr').css('background', 'green');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
                                     });

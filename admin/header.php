@@ -71,10 +71,10 @@ if (!isset($_SESSION['admin'])) {
               <a href="manageStore.php"><i class="fa fa-paper-plane mr-3"></i>Store</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-paper-plane mr-3"></i>Index Carousel</a>
+              <a href="carousel.php"><i class="fa fa-paper-plane mr-3"></i>Index Carousel</a>
             </li>
             <li>
-              <a href="#"><i class="fa fa-paper-plane mr-3"></i>Regenerate Key</a>
+              <a href="key.php"><i class="fa fa-paper-plane mr-3"></i>Regenerate Key</a>
             </li>
           </ul>
 

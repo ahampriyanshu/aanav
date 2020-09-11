@@ -1,28 +1,20 @@
 <?php
 require('header.php');
+
+if (!$_GET['id']) {
+    echo '<script>
+     location.href="logout.php"
+     </script>';
+ }
+ $customer_id = $_GET['id'];
+
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-lg-12 mx-auto mt-5 text-center">
-
-            <a href="soldOut.php" class="m-2 btn btn-sm btn-warning">
-                <i class="fa fa-plus-square mr-2"></i> <b>Unapproved Orders</b></a>
-
-            <a href="addProduct.php" class="m-2 btn btn-sm btn-danger">
-                <i class="fa fa-plus-square mr-2"></i> <b>Cancelled Orders</b></a>
-
-            <a href="soldOut.php" class="m-2 btn btn-sm btn-success">
-                <i class="fa fa-plus-square mr-2"></i> <b>Completed Orders</b></a>
-
-
-            <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-info">
-                <i class="fa fa-plus-square mr-2"></i> <b>Refund Request</b></a>
-
-            <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-info">
-                <i class="fa fa-plus-square mr-2"></i> <b>Refunded Orders</b></a>
-
-        </div>
-        <div class="col-lg-12 mx-auto mt-5">
+    <div class="col-lg-9 mx-auto my-5 text-center">
+         <h2><span class="badge badge-info">Customer No <?php echo $customer_id ?> Orders</span></h2>
+      </div>
+        <div class="col-lg-12 mx-auto">
             <div class="table-responsive">
                 <table class='table table-borderless text-center'>
                     <thead>
@@ -53,7 +45,7 @@ require('header.php');
 
                         $start_from = ($page - 1) * $per_page;
 
-                        $query = "SELECT * FROM orders ORDER BY order_id DESC LIMIT $start_from, $per_page";
+                        $query = "SELECT * FROM orders WHERE customer_id='$customer_id' ORDER BY order_id DESC LIMIT $start_from, $per_page";
                         $result = mysqli_query($connect, $query);
                         while ($row = mysqli_fetch_assoc($result)) {
                         ?>

@@ -1,17 +1,10 @@
 <?php
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
-
- class sendEmail {
-
+class sendEmail {
 public function send($userName, $email, $subject, $body){
-
 require 'PHPMailer/vendor/autoload.php';
-
 $mail = new PHPMailer(true);
-
 try {
     //Server settings
     $mail->SMTPDebug = 0;                                       // Enable verbose debug output

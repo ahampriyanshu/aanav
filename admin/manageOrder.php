@@ -92,7 +92,7 @@ require('header.php');
 
                             <td>
 
-<a style="color:#F67E29;" href="orderDetail.php?id=<?php echo $id ?>" >
+<a style="color:#F67E29;" href="orderDetail.php?id=<?php echo $row['order_id']?>" >
     <i class="fas fa-info-circle"></i></a>
 
 </td>

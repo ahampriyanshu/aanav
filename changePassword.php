@@ -1,125 +1,88 @@
-<?php
-include('boilerplate.php');
-$sql = "SELECT * FROM orders WHERE email = '$customer' ORDER BY created_date DESC";
-$run = mysqli_query($connect, $sql);
-$count = mysqli_num_rows($run);
+<?php include('boilerplate.php');
+include "dbConfig.php";
+$validation = new validation;
+$queries    = new queries;
 
-$sql2 = "SELECT * FROM wishlist WHERE customer_id='$customer_id'";
-$run2 = mysqli_query($connect, $sql2);
-$count_fav = mysqli_num_rows($run2);
+if (isset($_POST['submit'])) {
+  $validation->validate('oldpass', 'Passwords', 'required|min_len|8');
+  $validation->validate('newpass', 'New Password', 'required|min_len|8');
+  $validation->validate('cnfrmpass', 'Confirm Password', 'required|min_len|8');
+  if ($validation->run()) {
 
+    $oldpass = $validation->input('oldpass');
+    $newpass = $validation->input('newpass');
+    $cnfrmpass = $validation->input('cnfrmpass');
+    $id = $_SESSION['id'];
+
+    if ($queries->query("SELECT * FROM customer WHERE id = ? ", [$id])) {
+      if ($queries->count() > 0) {
+        $row = $queries->fetch();
+        $dbPassword = $row->password;
+        if ($newpass == $cnfrmpass) {
+          if (password_verify($oldpass, $dbPassword)) {
+            $newpass = password_hash($newpass, PASSWORD_DEFAULT);
+            $update = mysqli_query($connect, "UPDATE customer SET password = '$newpass' WHERE id='$id'");
+            $_SESSION['emailVerified'] = "Password successfully changed.";
+            echo "<script>
+      document.location='logout.php';
+      </script>";
+          } else {
+            $_SESSION['unmatched'] = "Sorry Wrong Password";
+          }
+        }
+      }
+    }
+    else{
+      $_SESSION['unmatched'] = "New password and confirm password did not match"; 
+    }
+  }
+}
 ?>
-<div class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="contact-widget">
-                    <div class="cw-item">
-                        <div class="ci-icon">
-                            <i class="far fa-address-card"></i>
-                        </div>
-                        <div class="ci-text">
-                            <span>Hello, </span>
-                            <p><?php echo $_SESSION['name']; ?></p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="cw-item">
-                        <div class="ci-icon">
-                            <i class="fas fa-barcode"></i>
-                        </div>
-                        <div class="ci-text">
-                            <span>Manage Orders</span>
-                            <p>Dashboard</p>
-                        </div><br>
-                        <a href="myOrder.php">
-                            <p>My Orders(<?php echo $count ?>)</p>
-                        </a>
-                        <a href='cart.php'>
-                            <p>My Cart(<?php echo $total ?>)</p>
-                        </a>
-                        <a href='wishlist.php'>
-                            <p>My Wishlist(<?php echo $count_fav ?>)</p>
-                        </a>
+  <link rel="stylesheet" href="css/login.css">
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 login-section-wrapper">
+          <?php if (isset($_SESSION['unmatched'])) : ?>
+            <div class="alert alert-danger">
+              <?php echo $_SESSION['unmatched']; ?>
+            </div>
+          <?php endif; ?>
+          <?php unset($_SESSION['unmatched']); ?>
 
-                    </div>
-                    <hr>
-
-                    <div class="cw-item">
-                        <div class="ci-icon">
-                            <i class="fas fa-user-cog"></i>
-                        </div>
-                        <div class="ci-text">
-                            <span>Change</span>
-                            <p>User Setting</p>
-                        </div><br>
-                        <p>Email:&nbsp;<span style="color:#444;"><?php echo $customer ?></span></p>
-                        <p>Phone:&nbsp;<span style="color:#444;"><?php echo $_SESSION['phone']; ?></span></p>
-                        <p>Since:&nbsp;<span style="color:#444;"><?php echo $customer_created  ?></span></p>
-                        <p>Last Visited:&nbsp;<span style="color:#444;"><?php echo $customer_login ?></span></p>
-                        <p><a style="text-decoration: none; color:#444;" href="changePassword.php">Change Password</a></p>
-                        <p><a style="text-decoration: none; color:#444;" href="changePhone.php">Change Phone Number</a></p>
-                        <p><a style="text-decoration: none; color:#444;" href="deactivateAccount.php">Account deactivation</a></p>
-                    </div>
-                    <hr>
-                    <div class="cw-item">
-                        <div class="ci-icon">
-                            <i class="fas fa-toggle-off"></i>
-                        </div>
-                        <div class="ci-text">
-                            <span>Done Shopping,</span>
-                            <a href="logout.php">
-                                <p>Logout</p>
-                            </a>
-                        </div>
-                    </div>
+          <div class="login-wrapper my-auto">
+            <h1 class="login-title">Welcome Back</h1>
+            <form name="signupform" method="post" action="">
+            <div class="form-group mb-4">
+                <label for="oldpass">Old Password</label>
+                <input type="password" name="oldpass" id="oldpass" class="form-control" placeholder="********" required />
+                <div class="error text-danger text-center">
+                  <?php if (!empty($validation->errors['oldpass'])) : echo $validation->errors['oldpass'];
+                  endif; ?>
                 </div>
-            </div>
-
-            <div class="col-md-9">
-                <table class="table table-borderless">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        $customer = $_SESSION['email'];
-                        $c = "SELECT * FROM customer WHERE email = '$customer'";
-                        $r = mysqli_query($connect, $c);
-                        $row_c = mysqli_fetch_assoc($r);
-                        $customer_id = $row_c['id'];
-
-                        $result = mysqli_query($connect, "SELECT distinct product.*,wishlist.product_id,wishlist.customer_id FROM product LEFT JOIN wishlist
-          ON product.id = wishlist.product_id
-          WHERE wishlist.customer_id = '$customer_id'");
-
-                        if ($result) {
-                            while ($obj = mysqli_fetch_object($result)) {
-                                $id = $obj->id; ?>
-                                <tr>
-                                    <td><img src="uploads/<?php echo $obj->file ?>" width="150" height="150" /></td>
-                                    <td>
-                                        <h5><a href="product.php?id=<?php echo  $obj->id ?>"><?php echo $obj->name ?></a></h5>
-                                        <p> <?php echo $obj->cost ?></p>
-                                    </td>
-                                    <td><a href="updateCart.php?action=remove&id=<?php echo $product_id ?>">
-                                            <i class="fas fa-2x fa-cart-plus"></i></a></td>
-                                    <td><a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>">
-                                            <i class="fas fa-2x fa-trash"></i></a></td>
-                                </tr>
-
-                        <?php
-                            }
-                        } ?>
-                    </tbody>
-                </table>
-            </div>
+              </div>
+              <div class="form-group mb-4">
+                <label for="newpass">New Password</label>
+                <input type="password" name="newpass" id="newpass" class="form-control" placeholder="********" required />
+                <div class="error text-danger text-center">
+                  <?php if (!empty($validation->errors['newpass'])) : echo $validation->errors['newpass'];
+                  endif; ?>
+                </div>
+              </div>
+              <div class="form-group mb-4">
+                <label for="cnfrmpass">Confirm Password</label>
+                <input type="password" name="cnfrmpass" id="cnfrmpass" class="form-control" placeholder="********" required />
+                <div class="error text-danger text-center">
+                  <?php if (!empty($validation->errors['cnfrmpass'])) : echo $validation->errors['cnfrmpass'];
+                  endif; ?>
+                </div>
+              </div>
+              <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Proceed">
+            </form>
+            <a href="forgotPassword.php" class="forgot-password-link">Forgot password?</a>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<?php include('footer.php'); ?>
+  </main>
+  <?php include('footer.php'); ?>

@@ -1,7 +1,6 @@
 <?php
  session_start();
  require_once('essentials/config.php');
- 
  $variant_id = $_GET['id'];
  $action = $_GET['action'];
  $product_attribute = $_SESSION['variant'];

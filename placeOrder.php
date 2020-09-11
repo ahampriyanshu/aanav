@@ -1,8 +1,7 @@
 <?php
-include "dbConfig.php";
+session_start();
 require_once('essentials/config.php');
-date_default_timezone_set('Asia/Kolkata');
-$time_now = date("d-m-Y h:i:s A");
+include "dbConfig.php";
 $customer = $_SESSION['email'];
 $customer_id = $_SESSION['id'];
 $shipping = $_SESSION['shipping'];

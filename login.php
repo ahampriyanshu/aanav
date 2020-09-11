@@ -1,10 +1,10 @@
 <?php
+session_start();
 require_once('essentials/config.php');
 include "dbConfig.php";
-if (isset($_SESSION['customer'])) :
-
-  header("location: index.php");
-
+if (isset($_SESSION['email'])) : {
+    header("location: index.php");
+  }
 endif;
 $validation = new validation;
 $queries    = new queries;
@@ -120,9 +120,6 @@ if (isset($_POST['submit'])) {
             <a href="forgotPassword.php" class="forgot-password-link">Forgot password?</a>
             <p class="login-wrapper-footer-text">Don't have an account? <a href="register.php" class="text-reset">Register here</a></p>
           </div>
-        </div>
-        <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="img/work.png" alt="login image" class="login-img">
         </div>
       </div>
     </div>

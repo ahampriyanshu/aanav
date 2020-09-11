@@ -108,65 +108,21 @@ while ($row = mysqli_fetch_assoc($run)) {
     <div class="row">
       <div class="col-lg-8">
         <h2>Payment Method</h2>
-
-        <div class="form-check">
-          <label>
-            <input type="radio" class="option-input radio" id="COD_radio" name="COD_radio" />
-            Cash On Delivery
-          </label>
+        
+        <div class="panel-body my-5">
+              
+                <div class="notice notice-warning">
+                        <p>Dear <?php echo $_SESSION['name'] ?>,</p>
+                        <p>It is to be informed that some of our merchant doesn't support COD for some specific locations.<br>
+                        In some cases the order may get cancelled</p>
+                </div>
+                <a href="placeOrder.php" class="btn btn-sm btn-success pull-right" style="margin-left: 4px">Place Order
+                        <i style=" margin-left: 10px;" class="fas fa-arrow-right"></i></a>
+                <a href="checkout.php" class="btn btn-sm pull-right">
+                        <i style=" margin-right: 10px;" class="fas fa-arrow-left"></i>Back
+                </a>
         </div>
-
-        <div class="pay-container mb-5">
-        </div>
-
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $("#COD_radio").change(function() {
-              var shippingValidation = $(this).val();
-
-              if (shippingValidation != '') {
-                $("#loader").show();
-                $(".pay-container").html("");
-
-                $.ajax({
-                  type: 'post',
-                  data: {
-                    shipping_validation: shippingValidation
-                  },
-                  url: 'placeOrderCod.php',
-                  success: function(returnData) {
-                    $("#loader").hide();
-                    $(".pay-container").html(returnData);
-                  }
-                });
-              }
-
-            })
-          });
-        </script>
       </div>
-
-      <style type="text/css">
-        .shipping_inner {
-          font-size: 14px;
-          text-align: left;
-          padding-top: 0;
-          background-color: #fff;
-          margin-bottom: 20px;
-        }
-
-        .shipping_inner_style {
-          padding-left: 8px;
-          margin-left: 10px;
-        }
-
-        .shipping_inner b {
-          display: block;
-          font-size: 14px;
-          margin-bottom: 5px;
-          color: #34495e;
-        }
-      </style>
 
       <div class="col-lg-4">
             <?php
@@ -176,47 +132,79 @@ while ($row = mysqli_fetch_assoc($run)) {
             $row = mysqli_fetch_assoc($run);
             ?>
                             <table class="table table-borderless">
+                            <?php
+              if (isset($_SESSION['cart'])) {
+
+                $total = 0;
+                $itemqty = 0;
+
+
+                foreach ($_SESSION['cart'] as $variant_id => $quantity) {
+
+                  $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE variant_id='$variant_id'");
+                  $pro_data = mysqli_fetch_assoc($find_pro_id);
+                  $product_id = $pro_data['product_id'];
+
+                  $result = "SELECT qty, cost FROM product WHERE id = $product_id";
+                  $run = mysqli_query($connect, $result);
+
+                  if ($run) {
+
+                    while ($obj = mysqli_fetch_object($run)) {
+                      $cost = $obj->cost * $quantity;
+                      $total = $total + $cost;
+                      $itemqty = $itemqty + $quantity;
+                    }
+                  }
+                }
+              
+              ?>
   			<tr>
-  				<th>Name</th>
-  				<td><?php echo $row['full_name'] ?></td>
+  				<th><span class="badge badge-info"><?php echo $itemqty ?>&nbsp;unit</th>
+  				<td><span class="badge badge-success">&#x20B9;&nbsp;<?php echo $total ?></td>
+          <?php  }  ?>
+          </tr>
+              		<tr>
+  				<th><span class="badge badge-dark">Name</th>
+  				<td><span class="badge badge-light"><?php echo $row['full_name'] ?></td>
               </tr>
               <tr>
-  				<th>Email</th>
-  				<td><?php echo $row['email'] ?></td>
+  				<th><span class="badge badge-dark">Email</th>
+  				<td><span class="badge badge-light"><?php echo $row['email'] ?></td>
               </tr>
               <tr>
-  				<th>Phone</th>
-  				<td><?php echo $row['phone'] ?></td>
+  				<th><span class="badge badge-dark">Phone</th>
+  				<td><span class="badge badge-light"><?php echo $row['phone'] ?></td>
               </tr>
 
               <?php if ($row['store_id'] == 0) { ?>
 
                 <tr>
-  				<th>Delivery Type</th>
-  				<td> Home Delivery </td>
+  				<th><span class="badge badge-dark">Delivery Type</th>
+  				<td><span class="badge badge-light">Home Delivery </td>
   			</tr>
   			<tr>
-  				<th>Address</th>
-  				<td><?php echo $row['street_address'] ?></td>
+  				<th><span class="badge badge-dark">Address</th>
+  				<td><span class="badge badge-light"><?php echo $row['street_address'] ?></td>
   			</tr>
   			<tr>
-  				<th>City</th>
-  				<td><?php echo $row['city'] ?></td>
+  				<th><span class="badge badge-dark">City</th>
+  				<td><span class="badge badge-light"><?php echo $row['city'] ?></td>
               </tr>
               <tr>
-  				<th>State</th>
-  				<td><?php echo $row['state'] ?></td>
+  				<th><span class="badge badge-dark">State</th>
+  				<td><span class="badge badge-light"><?php echo $row['state'] ?></td>
               </tr>
               <tr>
-  				<th>Pincode</th>
-  				<td><?php echo $row['pincode'] ?></td>
+  				<th><span class="badge badge-dark">Pincode</th>
+  				<td><span class="badge badge-light"><?php echo $row['pincode'] ?></td>
               </tr>
               <tr>
 
                                 <?php } else { ?>
                                     <tr>
-  				<th>Delivery Type</th>
-  				<td>Store Pickup</td>
+  				<th><span class="badge badge-dark">Delivery Type</th>
+  				<td><span class="badge badge-light">Store Pickup</td>
               </tr>
               <?php $store_sql = "SELECT * FROM store WHERE store_id =".$row['store_id'];
             $store_query = mysqli_query($connect, $store_sql);
@@ -224,20 +212,20 @@ while ($row = mysqli_fetch_assoc($run)) {
             ?>
             
   			<tr>
-  				<th>Store Name</th>
-  				<td><?php echo $store_row['store_name'] ?></td>
+  				<th><span class="badge badge-dark">Store Name</th>
+  				<td><span class="badge badge-light"><?php echo $store_row['store_name'] ?></td>
   			</tr>
   			<tr>
-  				<th>Store Email</th>
-  				<td><?php echo $store_row['email'] ?></td>
+  				<th><span class="badge badge-dark">Store Email</th>
+  				<td><span class="badge badge-light"><?php echo $store_row['email'] ?></td>
               </tr>
               <tr>
-  				<th>Store Phone</th>
-  				<td><?php echo $store_row['phone'] ?></td>
+  				<th><span class="badge badge-dark">Store Phone</th>
+  				<td><span class="badge badge-light"><?php echo $store_row['phone'] ?></td>
               </tr>
               <tr>
-  				<th>Store Address</th>
-  				<td><?php echo $store_row['address'] ?></td>
+  				<th><span class="badge badge-dark">Store Address</th>
+  				<td><span class="badge badge-light"><?php echo $store_row['address'] ?></td>
   			</tr>
                             <?php } 
                           } ?>

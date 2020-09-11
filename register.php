@@ -1,7 +1,6 @@
 <?php
+session_start();
 require_once('essentials/config.php');
-?>
-<?php
 include "dbConfig.php";
 if (isset($_SESSION['customer'])) :
   header("location: profile.php");
@@ -27,7 +26,6 @@ if (isset($_POST['submit'])) {
     $password = password_hash($password, PASSWORD_DEFAULT);
     $code     = rand();
     $code     = password_hash($code, PASSWORD_DEFAULT);
-    date_default_timezone_set('Asia/Kolkata');
     $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/verifyEmail.php?confirmation=" . $code;
     $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
     $status   = 0;
@@ -126,9 +124,6 @@ if (isset($_POST['submit'])) {
             </form>
             <p class="login-wrapper-footer-text">Already a customer&emsp;<a href="login.php" class="text-reset">Welcome Back</a></p>
           </div>
-        </div>
-        <div class="col-sm-6 px-0 d-none d-sm-block">
-          <img src="img/work.png" alt="login image" class="login-img">
         </div>
       </div>
     </div>

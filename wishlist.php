@@ -53,10 +53,10 @@ $count_fav = mysqli_num_rows($run2);
                             <span>Change</span>
                             <p>User Setting</p>
                         </div><br>
-                        <p>Email:&nbsp;<span style="color:#444;"><?php echo $customer ?></span></p>
-                        <p>Phone:&nbsp;<span style="color:#444;"><?php echo $_SESSION['phone']; ?></span></p>
-                        <p>Since:&nbsp;<span style="color:#444;"><?php echo $customer_created  ?></span></p>
-                        <p>Last Visited:&nbsp;<span style="color:#444;"><?php echo $customer_login ?></span></p>
+                        <p>Email:&nbsp;<span class="badge badge-light"><?php echo $customer ?></span></p>
+                        <p>Phone:&nbsp;<span class="badge badge-light"><?php echo $_SESSION['phone']; ?></span></p>
+                        <p>Since:&nbsp;<span class="badge badge-light"><?php echo $customer_created  ?></span></p>
+                        <p>Last Visited:&nbsp;<span class="badge badge-light"><?php echo $customer_login ?></span></p>
                         <p><a style="text-decoration: none; color:#444;" href="changePassword.php">Change Password</a></p>
                         <p><a style="text-decoration: none; color:#444;" href="changePhone.php">Change Phone Number</a></p>
                         <p><a style="text-decoration: none; color:#444;" href="deactivateAccount.php">Account deactivation</a></p>

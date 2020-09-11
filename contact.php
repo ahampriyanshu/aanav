@@ -2,7 +2,7 @@
 include('boilerplate.php');
 ?>
 <?php
-include "inc.php";
+include "dbConfig.php";
 $sendEmail  = new sendEmail;
 
 if (isset($_POST['submit'])) {

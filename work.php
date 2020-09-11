@@ -2,7 +2,7 @@
 require_once('essentials/config.php');
 ?>
 <?php
-include "inc.php";
+include "dbConfig.php";
 $validation = new validation;
 $queries    = new queries;
 $sendEmail  = new sendEmail;

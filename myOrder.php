@@ -44,15 +44,18 @@ $count = mysqli_num_rows($run);
 
                                 <?php } else if ($row['status'] == 2) { ?>
                                     <span class="badge  badge-success">Approved</span>
-
-                                <?php } else if ($row['status'] == 3) { ?>
-                                    <span class="badge  badge-info">Deliverd</span>
+                      
+                                    <?php } else if ($row['status'] == 3) { ?>
+                                    <span class="badge  badge-info">Shipped</span>
 
                                 <?php } else if ($row['status'] == 4) { ?>
-                                    <span class="badge  badge-success">Requested Refund</span>
+                                    <span class="badge  badge-success">Deliverd</span>
 
                                 <?php } else if ($row['status'] == 5) { ?>
-                                    <span class="badge  badge-danger">Refunded</span>
+                                    <span class="badge  badge-info">Refund Requested</span>
+
+                                 <?php } else if ($row['status'] == 6) { ?>
+                                    <span class="badge  badge-success">Refunded</span>
 
                                 <?php } else {  ?>
                                     <span class="badge  badge-danger">Error</span>

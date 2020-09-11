@@ -1,5 +1,5 @@
 <?php
-include "inc.php";
+include "dbConfig.php";
 require_once('essentials/config.php');
 date_default_timezone_set('Asia/Kolkata');
 $time_now = date("d-m-Y h:i:s A");
@@ -59,6 +59,7 @@ if (isset($_SESSION['cart'])) {
 }
 
 $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/myOrder.php?id=" . $order_id;
+$url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
 $subject  = 'New Order successfully placed';
 $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $full_name . '</p><p 
  style="color:grey; font-size: 16px;" > Your order worth <span style="color:green;" > &#x20B9;&nbsp; ' . $total . '</span> was placed successfully at 
@@ -75,7 +76,7 @@ $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $full_name . '</p><
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;"
-    href="' . $url . '">View Order Details</a></p><p  style="color:grey; font-size: 10px;" > Ordered by mistake ? <a style="color:red; font-family:bolder; font-size: 10px;text-decoration: none;"  href="' . $url . '"> Contact Admin </a></p>';
+    href="' . $url . '">View Order Details</a></p><p  style="color:grey; font-size: 10px;" > Ordered by mistake ? <a style="color:red; font-family:bolder; font-size: 10px;text-decoration: none;"  href="' . $url2 . '"> Contact Admin </a></p>';
 
 
 $sendEmail->send($full_name, $customer, $subject, $body);

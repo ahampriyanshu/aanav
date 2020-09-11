@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('../essentials/config.php');
-include "../inc.php";
+include "../dbConfig.php";
 if (isset($_SESSION['customer'])) :
   header("location: logout.php");
 endif;

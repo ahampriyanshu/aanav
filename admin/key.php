@@ -1,6 +1,6 @@
 <?php
 require('header.php');
-include "../inc.php";
+include "../dbConfig.php";
 if (isset($_POST['submit'])) {
     $admin = $_POST['name'];
     

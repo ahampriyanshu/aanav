@@ -1,6 +1,6 @@
 <?php
 require_once('essentials/config.php');
-include "inc.php";
+include "dbConfig.php";
 if (isset($_SESSION['customer'])) :
 
   header("location: index.php");

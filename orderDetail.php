@@ -13,17 +13,18 @@ if (!$_GET['id']) {
 }
 $order_id = $_GET['id'];
 
-include "inc.php";
+include "dbConfig.php";
 $queries    = new queries;
 $sendEmail  = new sendEmail;
 
 if (isset($_POST['cancel'])) {
 
-    $fullName = $_SESSION['email'];
+    $fullName = $_SESSION['name'];
     $email    = $_SESSION['email'];
-    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=".$order_id;
+    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
     $subject  = 'Thank you';
-    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for .We will contact you as soon as possible</p> 
+    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order has been cancelled successfully.</p> 
     <p><a style="background-color: #66FCF1;
     border: none;
     color: white;
@@ -36,25 +37,26 @@ if (isset($_POST['cancel'])) {
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;"
-    href="' . $url . '">Visit Site</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a>Contact Us</a></p>';
+    href="' . $url . '">Order Details</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a href="' . $url2 . '" >Contact Us</a></p>';
 
     $sql = "UPDATE orders SET status='0',modified_date=now() WHERE order_id=".$order_id;
 
     if (mysqli_query($connect, $sql)) {
 
       if ($sendEmail->send($fullName, $email, $subject, $body)) {
-        $_SESSION['order'] = "Your account has been created successfully. Please verify your email";
+        $_SESSION['order'] = "Your order has been cancelled successfully.";
       }
     }
 }
 
 if (isset($_POST['return'])) {
 
-   $fullName = $_SESSION['email'];
+   $fullName = $_SESSION['name'];
    $email    = $_SESSION['email'];
-   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=".$order_id;
+   $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
    $subject  = 'Thank you';
-   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for .We will contact you as soon as possible</p> 
+   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your refund request has been registered successfully.We will contact you soon.</p> 
    <p><a style="background-color: #66FCF1;
    border: none;
    color: white;
@@ -67,14 +69,14 @@ if (isset($_POST['return'])) {
    cursor: pointer;
    -webkit-transition-duration: 0.4s;
    transition-duration: 0.4s;"
-   href="' . $url . '">Visit Site</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a>Contact Us</a></p>';
+   href="' . $url . '">Order Details</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a href="' . $url2 . '">Contact Us</a></p>';
 
    $sql = "UPDATE orders SET status='5',modified_date=now() WHERE order_id=".$order_id;
 
    if (mysqli_query($connect, $sql)) {
 
      if ($sendEmail->send($fullName, $email, $subject, $body)) {
-       $_SESSION['order'] = "Your account has been created successfully. Please verify your email";
+       $_SESSION['order'] =  "Your refund request has been registered successfully.We will contact you soon.";
      }
    }
 }
@@ -82,6 +84,15 @@ if (isset($_POST['return'])) {
 <section class="borderless-table carousel-info">
    <div class="container">
       <div class="row">
+
+      <?php if (isset($_SESSION['order'])) : ?>
+        <div class="col-md-6 mx-auto text-center">
+            <div class="alert alert-success">
+                <?php echo $_SESSION['order']; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php unset($_SESSION['order']); ?>
 
          <?php
          $orders = mysqli_query($connect, "SELECT * FROM orders WHERE customer_id = '$customer_id' and order_id = '$order_id'");
@@ -247,20 +258,20 @@ if (isset($_POST['return'])) {
                      </table>
                   </div>
                </div>
-               <div class="col-lg-9 mx-auto mt-5 text-center">
+               <div class="col-lg-6 mx-auto mt-5 text-center">
 
                     <a href="invoice.php?id=<?php echo $order_id ?>" class="m-2 btn btn-sm btn-success">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Download Invoice</b></a>
+                        <i class="fa fa-download mr-2"></i> <b>Download Invoice</b></a>
 
                         <?php if ($order_prop['status'] > 0 && $order_prop['status'] < 4 ) { ?>
                             <form method="post"  class="comment-form">         
                            <button type="submit" name="cancel" class="m-2 btn btn-sm btn-danger">
-                        <i class="fa fa-plus-square mr-2"></i><b>Cancel Order</b></button>
+                        <i class="fa fa-window-close mr-2"></i><b>Cancel Order</b></button>
                             </form>
                                 <?php } else if ($order_prop['status'] == 4) { ?>
                                  <form method="post"  class="comment-form">         
                            <button type="submit" name="return" class="m-2 btn btn-sm btn-info">
-                        <i class="fa fa-plus-square mr-2"></i><b>Request Refund</b></button>
+                        <i class="fa fa-undo mr-2"></i><b>Request Refund</b></button>
                             </form>
                                 <?php }  ?>
                        

@@ -2,7 +2,7 @@
 require_once('essentials/config.php');
 ?>
 <?php
-include "inc.php";
+include "dbConfig.php";
 if (isset($_SESSION['customer'])) :
   header("location: profile.php");
 endif;
@@ -29,6 +29,7 @@ if (isset($_POST['submit'])) {
     $code     = password_hash($code, PASSWORD_DEFAULT);
     date_default_timezone_set('Asia/Kolkata');
     $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/verifyEmail.php?confirmation=" . $code;
+    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
     $status   = 0;
     $subject  = 'Please confirm your Email';
     $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > You are almost done.Click below to verify your email address</p> 
@@ -44,7 +45,7 @@ if (isset($_POST['submit'])) {
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;"
-    href="' . $url . '">Verify Email</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a  href="' . $url . '">Contact Us</a></p>';
+    href="' . $url . '">Verify Email</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a  href="' . $url2 . '">Contact Us</a></p>';
 
     if ($queries->query("INSERT INTO customer (name, email, password, phone, code, status, datetym) VALUES
      ('$fullName', '$email', '$password', '$phone', '$code', '$status', now()) ")) {

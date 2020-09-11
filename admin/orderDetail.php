@@ -1,11 +1,6 @@
 <?php
-include('boilerplate.php');
+require('header.php');
 
-if (!$customer_id) {
-   echo '<script>
-location.href="login.php"
-</script>';
-}
 if (!$_GET['id']) {
    echo '<script>
     location.href="error.php"
@@ -13,7 +8,7 @@ if (!$_GET['id']) {
 }
 $order_id = $_GET['id'];
 
-include "dbConfig.php";
+include "../dbConfig.php";
 $queries    = new queries;
 $sendEmail  = new sendEmail;
 
@@ -79,6 +74,9 @@ if (isset($_POST['return'])) {
      }
    }
 ?>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 mx-auto mt-5">
 <section class="borderless-table carousel-info">
    <div class="container">
       <div class="row">
@@ -349,7 +347,6 @@ if (isset($_POST['return'])) {
                                  </tr>
                            <?php }
                            endwhile; ?>
-
                         </tbody>
                      </table>
                   </div>
@@ -359,4 +356,8 @@ if (isset($_POST['return'])) {
       </div>
    </div>
 </section>
+        </div>
+    </div>
+</div>
+                        </div>
 <?php include('footer.php'); ?>

@@ -11,9 +11,73 @@ if (!$_GET['id']) {
     location.href="error.php"
     </script>';
 }
-
 $order_id = $_GET['id'];
 
+include "inc.php";
+$queries    = new queries;
+$sendEmail  = new sendEmail;
+
+if (isset($_POST['cancel'])) {
+
+    $fullName = $_SESSION['email'];
+    $email    = $_SESSION['email'];
+    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+    $subject  = 'Thank you';
+    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for .We will contact you as soon as possible</p> 
+    <p><a style="background-color: #66FCF1;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;"
+    href="' . $url . '">Visit Site</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a>Contact Us</a></p>';
+
+    $sql = "UPDATE orders SET status='0',modified_date=now() WHERE order_id=".$order_id;
+
+    if (mysqli_query($connect, $sql)) {
+
+      if ($sendEmail->send($fullName, $email, $subject, $body)) {
+        $_SESSION['order'] = "Your account has been created successfully. Please verify your email";
+      }
+    }
+}
+
+if (isset($_POST['return'])) {
+
+   $fullName = $_SESSION['email'];
+   $email    = $_SESSION['email'];
+   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+   $subject  = 'Thank you';
+   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for .We will contact you as soon as possible</p> 
+   <p><a style="background-color: #66FCF1;
+   border: none;
+   color: white;
+   padding: 15px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   cursor: pointer;
+   -webkit-transition-duration: 0.4s;
+   transition-duration: 0.4s;"
+   href="' . $url . '">Visit Site</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a>Contact Us</a></p>';
+
+   $sql = "UPDATE orders SET status='5',modified_date=now() WHERE order_id=".$order_id;
+
+   if (mysqli_query($connect, $sql)) {
+
+     if ($sendEmail->send($fullName, $email, $subject, $body)) {
+       $_SESSION['order'] = "Your account has been created successfully. Please verify your email";
+     }
+   }
+}
 ?>
 <section class="borderless-table carousel-info">
    <div class="container">
@@ -55,7 +119,6 @@ $order_id = $_GET['id'];
                         <tr>
                            <th>Total</th>
                            <td><span class="badge badge-success">&#x20B9;&nbsp;<?php echo $order_prop['total_amt'] ?></span>
-                           <a href="invoice.php?id=<?php echo $order_id ?>" class="login-wrapper-footer-text text-reset">Invoice</a>
                         </td>
                         </tr>
                      </table>
@@ -76,13 +139,16 @@ $order_id = $_GET['id'];
                                     <span class="badge  badge-success">Approved</span>
 
                                 <?php } else if ($order_prop['status'] == 3) { ?>
-                                    <span class="badge  badge-info">Deliverd</span>
+                                    <span class="badge  badge-info">Shipped</span>
 
                                 <?php } else if ($order_prop['status'] == 4) { ?>
-                                    <span class="badge  badge-success">Requested Refund</span>
+                                    <span class="badge  badge-success">Deliverd</span>
 
                                 <?php } else if ($order_prop['status'] == 5) { ?>
-                                    <span class="badge  badge-danger">Refunded</span>
+                                    <span class="badge  badge-info">Refund Requested</span>
+
+                                 <?php } else if ($order_prop['status'] == 6) { ?>
+                                    <span class="badge  badge-success">Refunded</span>
 
                                 <?php } else {  ?>
                                     <span class="badge  badge-danger">Error</span>
@@ -130,13 +196,16 @@ $order_id = $_GET['id'];
                                     <span class="badge  badge-success">Approved</span>
 
                                 <?php } else if ($order_prop['status'] == 3) { ?>
-                                    <span class="badge  badge-info">Deliverd</span>
+                                    <span class="badge  badge-info">Shipped</span>
 
                                 <?php } else if ($order_prop['status'] == 4) { ?>
-                                    <span class="badge  badge-success">Requested Refund</span>
+                                    <span class="badge  badge-success">Deliverd</span>
 
                                 <?php } else if ($order_prop['status'] == 5) { ?>
-                                    <span class="badge  badge-danger">Refunded</span>
+                                    <span class="badge  badge-info">Refund Requested</span>
+
+                                 <?php } else if ($order_prop['status'] == 6) { ?>
+                                    <span class="badge  badge-success">Refunded</span>
 
                                 <?php } else {  ?>
                                     <span class="badge  badge-danger">Error</span>
@@ -178,7 +247,24 @@ $order_id = $_GET['id'];
                      </table>
                   </div>
                </div>
+               <div class="col-lg-9 mx-auto mt-5 text-center">
 
+                    <a href="invoice.php?id=<?php echo $order_id ?>" class="m-2 btn btn-sm btn-success">
+                        <i class="fa fa-plus-square mr-2"></i> <b>Download Invoice</b></a>
+
+                        <?php if ($order_prop['status'] > 0 && $order_prop['status'] < 4 ) { ?>
+                            <form method="post"  class="comment-form">         
+                           <button type="submit" name="cancel" class="m-2 btn btn-sm btn-danger">
+                        <i class="fa fa-plus-square mr-2"></i><b>Cancel Order</b></button>
+                            </form>
+                                <?php } else if ($order_prop['status'] == 4) { ?>
+                                 <form method="post"  class="comment-form">         
+                           <button type="submit" name="return" class="m-2 btn btn-sm btn-info">
+                        <i class="fa fa-plus-square mr-2"></i><b>Request Refund</b></button>
+                            </form>
+                                <?php }  ?>
+                       
+                </div>
                <div class="col-lg-9 mt-5 mx-auto">
                   <div class="cart-table">
                      <table>

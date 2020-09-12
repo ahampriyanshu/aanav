@@ -34,6 +34,8 @@ $section_name = $row2['section_name'];
   $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
   $product = mysqli_fetch_assoc($result);
   ?>
+  
+  <link rel="icon" href="uploads/<?php echo $product['file']; ?>" sizes="16x16" type="image/png">
   <meta name="description" content="<?php echo $product['description']; ?>">
   <meta name="keywords" content="ecommerce, php, wholesale, html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

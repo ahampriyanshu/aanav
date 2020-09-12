@@ -26,6 +26,7 @@ if (!isset($_SESSION['admin'])) {
   <link rel="stylesheet" href="css/admin.css">
 
 </head>
+
 <body>
 
   <div class="container-fluid">
@@ -53,6 +54,9 @@ if (!isset($_SESSION['admin'])) {
               <a href="manageProduct.php"><i class="fa fa-suitcase mr-3"></i>Product</a>
             </li>
             <li>
+              <a href="manageCarousel.php"><i class="fa fa-paper-plane mr-3"></i>Carousel</a>
+            </li>
+            <li>
               <a href="manageColorSize.php"><i class="fa fa-cogs mr-3"></i>Color & Size</a>
             </li>
             <li>
@@ -71,13 +75,9 @@ if (!isset($_SESSION['admin'])) {
               <a href="manageStore.php"><i class="fa fa-paper-plane mr-3"></i>Store</a>
             </li>
             <li>
-              <a href="manageCarousel.php"><i class="fa fa-paper-plane mr-3"></i>Index Carousel</a>
-            </li>
-            <li>
               <a href="key.php"><i class="fa fa-paper-plane mr-3"></i>Regenerate Key</a>
             </li>
           </ul>
-
           <div class="footer">
             <p class="text-center" style="font-size:1.2em;"><a href="logout.php"><i class="fas fa-toggle-off"></i>&nbsp;Logout</a></p>
             <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i>ahmampriyanshu &copy; MIT Licensed</p>

@@ -37,7 +37,6 @@ require('header.php');
                         } else {
                             $page = 1;
                         }
-
                         $start_from = ($page - 1) * $per_page;
 
                         $query = "SELECT * FROM carousel  ORDER BY carousel_id ASC LIMIT $start_from, $per_page";

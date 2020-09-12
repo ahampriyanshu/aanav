@@ -3,54 +3,23 @@ include('boilerplate.php');
 ?>
 <section class="hero-section">
     <div class="hero-items owl-carousel">
-        <div class="single-hero-items set-bg" data-setbg="img/cover/1.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <h1>Top Brands</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
+        <?php
+        $query = "SELECT * FROM carousel ORDER BY carousel_id ASC ";
+        $result = mysqli_query($connect, $query);
+        while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+            <div class="single-hero-items set-bg" data-setbg="uploads/<?php echo $row['file'] ?>">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <h1><?php echo $row['heading'] ?></h1>
+                            <p><?php echo $row['subheading'] ?></p>
+                            <a href="<?php echo $row['link'] ?>" class="primary-btn"><?php echo $row['text'] ?></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="single-hero-items set-bg" data-setbg="img/cover/2.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <h1>Quality Prodects</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="single-hero-items set-bg" data-setbg="img/cover/3.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <h1>Best Rates</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="single-hero-items set-bg" data-setbg="img/cover/4.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <h1>Quality</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore</p>
-                        <a href="#" class="primary-btn">Shop Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </section>
 
@@ -111,7 +80,6 @@ include('boilerplate.php');
                 </div>
             </div>
         </div>
-
         <div class="d-block d-md-none">
             <div style="bottom: 15%;" class="carousel-caption">
                 <div class="float-lg-left">

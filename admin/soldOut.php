@@ -5,7 +5,7 @@ require('header.php');
             <div class="row">
                 <div class="col-lg-12 mx-auto mt-5">
                 <h2 class="text-center mb-4">
-                <span class="badge badge-warning">Sold Out Products</span>
+                <span class="badge badge-danger"> <i class="fa fa-box-open mr-2"></i> Sold Out Products</span>
               </h2>
                     <div class="table-responsive">
                         <table class='table table-borderless text-center'>
@@ -20,7 +20,7 @@ require('header.php');
                                     <th>CREATED</th>
                                     <th>MODIFIED</th>
                                     <th>UPDATE</th>
-                                    <th>RENEW</th>
+                                    <th>DISABLE</th>
                                 </tr>
                             </thead>
                             <tbody>

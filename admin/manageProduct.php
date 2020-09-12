@@ -3,15 +3,18 @@ require('header.php');
 ?>
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 mx-auto mt-5 text-center">
+            <div class="col-lg-9 mx-auto my-4 text-center">
+         <h2><span class="badge badge-light">Manage Product</span></h2>
+      </div>
+                <div class="col-lg-9 mx-auto text-center">
                     <a href="addProduct.php" class="m-2 btn btn-sm btn-success">
                         <i class="fa fa-plus-square mr-2"></i> <b>Add New Product</b></a>
 
                         <a href="soldOut.php" class="m-2 btn btn-sm btn-danger">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Sold Out Product</b></a>
+                        <i class="fa fa-box-open mr-2"></i> <b>Sold Out Product</b></a>
 
                         <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-warning">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Deactivated Product</b></a>
+                        <i class="fa fa-ban mr-2"></i> <b>Deactivated Product</b></a>
                 </div>
                 <div class="col-lg-12 mx-auto mt-5">
                     <div class="table-responsive">

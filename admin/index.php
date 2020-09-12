@@ -16,6 +16,30 @@ require('header.php');
           </div>
           <!-- /.info-box -->
         </div>
+
+        <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="notification-info">
+                                                    <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
+                                                        <div class="notification-date">2 days ago</div>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="text-muted">Affiliate Revenue</h5>
+                                        <div class="metric-value d-inline-block">
+                                            <h1 class="mb-1">$12099</h1>
+                                        </div>
+                                        <div class="metric-label d-inline-block float-right text-success font-weight-bold">
+                                            <span><i class="fa fa-fw fa-arrow-up"></i></span><span>5.86%</span>
+                                        </div>
+                                    </div>
+                                    <div id="sparkline-revenue2"></div>
+                                </div>
+                            </div>
         </div>
             </div>
 </div>

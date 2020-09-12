@@ -4,7 +4,7 @@ require('header.php');
         <div class="container">
             <div class="row">
             <div class="col-lg-9 mx-auto my-4 text-center">
-         <h2><span class="badge badge-light">Unactive Accounts</span></h2>
+         <h2><span class="badge badge-secondary"> <i class="fa fa-bell-slash mr-2"></i> Unactive Accounts</span></h2>
       </div>
                 <div class="col-lg-12  mt-5">
                     <div class="table-responsive">
@@ -20,7 +20,7 @@ require('header.php');
                                     <th>LAST LOGIN</th>
                                     <th>ORDERS</th>
                                     <th>HISTORY</th>
-                                    <th>ENABLE</th>
+                                    <th>UPDATE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,16 +76,21 @@ while ($row = mysqli_fetch_assoc($result)) {
                                             <span class="badge  badge-light"><?php echo $row['last_login'] ?></span>
                                         </td>
                                         <td>
-                                        <a style="color:#F67E29;" href="customerOrder.php?id=<?php echo $row['id']?>" >
-                                         <i class="fas fa-info-circle"></i></a>
+                                        <a style="color:#333;" href="customerOrder.php?id=<?php echo $row['id']?>" >
+                                         <i class="fas fa-box"></i></a>
                                         </td>
                                         <td>
-                                        <a style="color:#F67E29;" href="customerHistory.php?id=<?php echo $row['id']?>" >
-                                         <i class="fas fa-info-circle"></i></a>
+                                        <a style="color:#888;" href="customerHistory.php?id=<?php echo $row['id']?>" >
+                                         <i class="fas fa-search-location"></i></a>
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='enable' id='enable_<?= $row['id'] ?>'>
-                                              lk  <i class="far fa-trash-alt"></i></a>
+                                        <?php if( $row['status'] !=3 ){  ?>
+                                            <a style="color: red; " class='disable' id='disable_<?= $row['id'] ?>'>
+                                            <i class="fas fa-user-slash"></i></a>
+                                        <?php } else {?>
+                                            <a style="color: green; " class='enable' id='enable_<?= $row['id'] ?>'>
+                                            <i class="fas fa-user-plus"></i></a>
+                                        <?php } ?>
                                         </td>
                                     </tr>
                                 <?php

@@ -5,7 +5,7 @@ require('header.php');
             <div class="row">
                 <div class="col-lg-12 mx-auto mt-5">
                 <h2 class="text-center mb-4">
-                <span class="badge badge-danger">Deactivated Products</span>
+                <span class="badge badge-warning"><i class="fa fa-ban mr-2"></i> Deactivated Products</span>
               </h2>
                     <div class="table-responsive">
                         <table class='table table-borderless text-center'>
@@ -20,7 +20,7 @@ require('header.php');
                                     <th>CREATED</th>
                                     <th>MODIFIED</th>
                                     <th>UPDATE</th>
-                                    <th>RENEW</th>
+                                    <th>ENABLE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,8 +71,8 @@ $start_from = ($page-1) * $per_page;
                                                 <i class="far fa-edit"></i></a>
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['id'] ?>'>
-                                            <i class="far fa-trash-alt"></i></a>
+                                            <a style="color: green; " class='delete' id='del_<?= $row['id'] ?>'>
+                                            <i class="fas fa-dolly"></i></a>
                                         </td>
                                     </tr>
                                 <?php

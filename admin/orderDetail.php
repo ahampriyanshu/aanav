@@ -10,12 +10,10 @@ if (!$_GET['id']) {
     </script>';
 }
 $order_id = $_GET['id'];
-
 $orders = mysqli_query($connect, "SELECT * FROM orders WHERE order_id = '$order_id'");
 $order_prop = mysqli_fetch_assoc($orders);
 $customer_id = $order_prop['customer_id'];
 $total = $order_prop['total_amt'];
-
 $find_data = "SELECT email,name FROM customer WHERE id = '$customer_id' ";
 $found_data = $connect->query($find_data);
 $customer_id_array = $found_data->fetch_assoc();
@@ -28,8 +26,8 @@ if (isset($_POST['cancel'])) {
    $email    = $customer_email;
    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
-   $subject  = 'Important update for your order  ORD_'.$order_id;
-   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_'.$order_id.' worth <span style="color:green;" >&#x20B9; ' . $total . '</span> has been cancelled by the vendor.</p> 
+   $subject  = 'Important update for your order  ORD_' . $order_id;
+   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_' . $order_id . ' worth <span style="color:green;" >&#x20B9; ' . $total . '</span> has been cancelled by the vendor.</p> 
     <p><a style="background-color: #66FCF1;
     border: none;
     color: white;
@@ -49,8 +47,9 @@ if (isset($_POST['cancel'])) {
    if (mysqli_query($connect, $sql)) {
 
       $sendEmail->send($fullName, $email, $subject, $body);
-     $_SESSION['order'] = "Order has been updated";
-   echo '<script>location.href="orderDetail.php?id='.$order_id.'"</script>'; }
+      $_SESSION['order'] = "Order has been updated";
+      echo '<script>location.href="orderDetail.php?id=' . $order_id . '"</script>';
+   }
 }
 
 if (isset($_POST['approve'])) {
@@ -59,8 +58,8 @@ if (isset($_POST['approve'])) {
    $email    = $customer_email;
    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
-   $subject  = 'Important update for your order  ORD_'.$order_id;
-   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_'.$order_id.' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been approved.</p> 
+   $subject  = 'Important update for your order  ORD_' . $order_id;
+   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_' . $order_id . ' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been approved.</p> 
     <p><a style="background-color: #66FCF1;
     border: none;
     color: white;
@@ -80,8 +79,9 @@ if (isset($_POST['approve'])) {
    if (mysqli_query($connect, $sql)) {
 
       $sendEmail->send($fullName, $email, $subject, $body);
-     $_SESSION['order'] = "Order has been updated";
-   echo '<script>location.href="orderDetail.php?id='.$order_id.'"</script>'; }
+      $_SESSION['order'] = "Order has been updated";
+      echo '<script>location.href="orderDetail.php?id=' . $order_id . '"</script>';
+   }
 }
 
 if (isset($_POST['ship'])) {
@@ -90,8 +90,8 @@ if (isset($_POST['ship'])) {
    $email    = $customer_email;
    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
-   $subject  = 'Important update for your order  ORD_'.$order_id;
-   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_'.$order_id.' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been shipped successfully.</p> 
+   $subject  = 'Important update for your order  ORD_' . $order_id;
+   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_' . $order_id . ' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been shipped successfully.</p> 
     <p><a style="background-color: #66FCF1;
     border: none;
     color: white;
@@ -111,8 +111,9 @@ if (isset($_POST['ship'])) {
    if (mysqli_query($connect, $sql)) {
 
       $sendEmail->send($fullName, $email, $subject, $body);
-     $_SESSION['order'] = "Order has been updated";
-   echo '<script>location.href="orderDetail.php?id='.$order_id.'"</script>'; }
+      $_SESSION['order'] = "Order has been updated";
+      echo '<script>location.href="orderDetail.php?id=' . $order_id . '"</script>';
+   }
 }
 
 if (isset($_POST['delivery'])) {
@@ -121,8 +122,8 @@ if (isset($_POST['delivery'])) {
    $email    = $customer_email;
    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
-   $subject  = 'Important update for your order  ORD_'.$order_id;
-   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_'.$order_id.' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been delivered successfully.</p> 
+   $subject  = 'Important update for your order  ORD_' . $order_id;
+   $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_' . $order_id . ' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been delivered successfully.</p> 
     <p><a style="background-color: #66FCF1;
     border: none;
     color: white;
@@ -142,8 +143,9 @@ if (isset($_POST['delivery'])) {
    if (mysqli_query($connect, $sql)) {
 
       $sendEmail->send($fullName, $email, $subject, $body);
-     $_SESSION['order'] = "Order has been updated";
-   echo '<script>location.href="orderDetail.php?id='.$order_id.'"</script>'; }
+      $_SESSION['order'] = "Order has been updated";
+      echo '<script>location.href="orderDetail.php?id=' . $order_id . '"</script>';
+   }
 }
 
 if (isset($_POST['accept'])) {
@@ -152,7 +154,7 @@ if (isset($_POST['accept'])) {
    $email    = $customer_email;
    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
-   $subject  = 'Important update for your order  ORD_'.$order_id;
+   $subject  = 'Important update for your order  ORD_' . $order_id;
    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your refund has been initiated successfully</p> 
    <p><a style="background-color: #66FCF1;
    border: none;
@@ -173,15 +175,16 @@ if (isset($_POST['accept'])) {
    if (mysqli_query($connect, $sql)) {
 
       $sendEmail->send($fullName, $email, $subject, $body);
-     $_SESSION['order'] = "Order has been updated";
-   echo '<script>location.href="orderDetail.php?id='.$order_id.'"</script>'; }
+      $_SESSION['order'] = "Order has been updated";
+      echo '<script>location.href="orderDetail.php?id=' . $order_id . '"</script>';
+   }
 }
 ?>
 
 <div class="container">
    <div class="row">
       <div class="col-lg-9 mx-auto my-5 text-center">
-         <h2><span class="badge badge-primary">Order Information</span></h2>
+         <h2><span class="badge badge-info"><i class="fas fa-box"></i> Order Information</span></h2>
       </div>
       <?php if (isset($_SESSION['order'])) : ?>
          <div class="col-md-6 mx-auto text-center">
@@ -366,22 +369,22 @@ if (isset($_POST['accept'])) {
                <?php if ($order_prop['status'] == 1) { ?>
                   <form method="post" class="comment-form">
                      <button type="submit" name="approve" class="m-2 btn btn-sm btn-info">
-                     <i class="fas fa-check"></i><b>&nbsp;Approve Order</b></button>
+                        <i class="fas fa-check"></i><b>&nbsp;Approve Order</b></button>
                   </form>
                <?php } else if ($order_prop['status'] == 2) { ?>
                   <form method="post" class="comment-form">
                      <button type="submit" name="ship" class="m-2 btn btn-sm btn-info">
-                     <i class="fas fa-dolly"></i><b>&nbsp;Confirm Shipping</b></button>
+                        <i class="fas fa-dolly"></i><b>&nbsp;Confirm Shipping</b></button>
                   </form>
                <?php } else if ($order_prop['status'] == 3) { ?>
                   <form method="post" class="comment-form">
                      <button type="submit" name="delivery" class="m-2 btn btn-sm btn-info">
-                     <i class="fas fa-truck"></i><b>&nbsp;Confirm Delivery</b></button>
+                        <i class="fas fa-truck"></i><b>&nbsp;Confirm Delivery</b></button>
                   </form>
                <?php } else if ($order_prop['status'] == 5) { ?>
                   <form method="post" class="comment-form">
                      <button type="submit" name="accept" class="m-2 btn btn-sm btn-info">
-                     <i class="fas fa-exchange-alt"></i><b>&nbsp;Confirm Return</b></button>
+                        <i class="fas fa-exchange-alt"></i><b>&nbsp;Confirm Return</b></button>
                   </form>
                <?php }  ?>
 
@@ -474,5 +477,4 @@ if (isset($_POST['accept'])) {
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
-<script src="js/bootbox.min.js"></script>
 </html>

@@ -1,31 +1,28 @@
 <?php 
 session_start();
-
-require_once("essentials/config.php");
-if (!$_SESSION['id']) {
+require('../fpdf/fpdf.php');
+require_once("../essentials/config.php");
+if (!$_SESSION['admin']) {
   echo '<script>
-  location.href="login.php"
+  location.href="logout.php"
   </script>';
   }
   if (!$_GET['id']) {
       echo '<script>
-      location.href="error.php"
+      location.href="logout.php"
       </script>';
   }
   
 $order_id = $_GET['id'];
-$customer_id = $_SESSION['id'];
-
-require('fpdf/fpdf.php');
 
 class PDF extends FPDF
 {
 function Header()
 {
-$this->Image('logo.png',80,0,45);
+$this->Image('../img/logo.png',80,0,45);
 $this->Ln(20);
 }
-function populate_table($customer_id,$order_id,$connect){
+function populate_table($order_id,$connect){
   $x=$this->GetX();
   $y=$this->GetY();
   $this->setXY($x,$y);
@@ -42,7 +39,7 @@ function populate_table($customer_id,$order_id,$connect){
   $this->Cell(30,7,'Total Price',1,2,'L');
   $i=1;
   $total=0;
-  $sql = "SELECT * FROM order_detail WHERE order_id = '$order_id' and customer_id = '$customer_id' ";
+  $sql = "SELECT * FROM order_detail WHERE order_id = '$order_id' ";
   $result = mysqli_query($connect, $sql);
   while($d = mysqli_fetch_assoc($result)) 
   {
@@ -110,7 +107,7 @@ $pdf->Cell(0,8,'Aanav Pvt Ltd',0,1,'C');
 $pdf->Cell(0,8,'ahampriyanshu@gmail.com',0,1,'C');
 $pdf->Cell(0,20,'',0,1,'C');
 $pdf->SetFont('Arial','',12);
-$sql = "SELECT * FROM orders WHERE order_id = '$order_id' and customer_id = '$customer_id' ";
+$sql = "SELECT * FROM orders WHERE order_id = '$order_id' ";
 $result = mysqli_query($connect, $sql);
 while($row = mysqli_fetch_assoc($result)) 
 {
@@ -131,7 +128,7 @@ while($row = mysqli_fetch_assoc($result))
   }
 
 $pdf->Cell(0,10,'',0,1,'C');
-$pdf->populate_table($customer_id,$order_id,$connect);
+$pdf->populate_table($order_id,$connect);
 $pdf->Cell(0,10,'',0,1,'C');
 $pdf->Cell(0,8,'Payment Type : '.$row['payment_type'],0,1,'L');
 

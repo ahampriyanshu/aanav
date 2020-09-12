@@ -4,32 +4,8 @@ require('header.php');
 <div class="container">
     <div class="row">
     <div class="col-lg-9 mx-auto my-4 text-center">
-         <h2><span class="badge badge-light">Manage Order</span></h2>
+         <h2><span class="badge badge-success">Completed Orders</span></h2>
       </div>
-        <div class="col-lg-12 mx-auto text-center">
-
-            <a href="cancelledOrder.php" class="m-2 btn btn-sm btn-danger">
-            <i class="fa fa-window-close mr-2"></i></i> <b>Cancelled</b></a>
-
-            <a href="unapprovedOrder.php" class="m-2 btn btn-sm btn-warning">
-            <i class="fas fa-exclamation"></i> <b>Unapproved</b></a>
-
-            <a href="approvedOrder.php" class="m-2 btn btn-sm btn-success">
-            <i class="fas fa-check"></i> <b>Approved</b></a>
-
-            <a href="shippedOrder.php" class="m-2 btn btn-sm btn-secondary">
-            <i class="fas fa-dolly"></i> <b>Shipped</b></a>
-
-            <a href="completedOrder.php" class="m-2 btn btn-sm btn-success">
-            <i class="fas fa-truck"></i> <b>Completed</b></a>
-
-            <a href="refundRequest.php" class="m-2 btn btn-sm btn-info">
-            <i class="fas fa-undo-alt"></i> <b>Refund Request</b></a>
-
-            <a href="refundedOrder.php" class="m-2 btn btn-sm btn-success">
-            <i class="fas fa-exchange-alt"></i> <b>Refunded</b></a>
-
-        </div>
         <div class="col-lg-12 mx-auto mt-5">
             <div class="table-responsive">
                 <table class='table table-borderless text-center'>
@@ -61,7 +37,7 @@ require('header.php');
 
                         $start_from = ($page - 1) * $per_page;
 
-                        $query = "SELECT * FROM orders ORDER BY order_id DESC LIMIT $start_from, $per_page";
+                        $query = "SELECT * FROM orders WHERE status=4 ORDER BY order_id DESC LIMIT $start_from, $per_page";
                         $result = mysqli_query($connect, $query);
                         while ($row = mysqli_fetch_assoc($result)) {
                         ?>
@@ -97,12 +73,12 @@ require('header.php');
                                     <?php  } ?>
                                 </td>
 
-                                <td>
+                            <td>
 
-                                    <a style="color:#F67E29;" href="orderDetail.php?id=<?php echo $row['order_id'] ?>">
-                                        <i class="fas fa-info-circle"></i></a>
+<a style="color:#F67E29;" href="orderDetail.php?id=<?php echo $row['order_id']?>" >
+    <i class="fas fa-info-circle"></i></a>
 
-                                </td>
+</td>
                                 <td>
                                     <span class="badge badge-light"><?php echo $row['full_name'] ?></span>
                                 </td>
@@ -151,5 +127,4 @@ require('header.php');
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
 <script src="js/bootbox.min.js"></script>
-
 </html>

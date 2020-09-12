@@ -33,18 +33,7 @@ $sql = "UPDATE admin SET name='$name',code='$code',section='$section',categories
     ,brand='$brand',supplier='$supplier',description='$description',MRP='$MRP',cost='$cost',file='$file',modified_date=now() WHERE id = $id ";
 
 $run = mysqli_query($connect, $sql);
-
-if ($run) {
-  echo "<script>	alert('<?php echo $password . ' is your new key'; ?>');window.open('manageProduct.php','_self')</script>";
-} else {
-  echo "Error description: " . mysqli_error($connect);
-}
-
-if ($queries->query("INSERT INTO customer (name, email, password, phone, code, status, datetym) VALUES
-     ('$fullName', '$email', '$password', '$phone', '$code', '$status', now()) ")) {
-
-  $sendEmail->send($fullName, $email, $subject, $body);
-  $_SESSION['key'] = "Your New Key is ".$code;
-}
+$sendEmail->send($fullName, $email, $subject, $body);
+$_SESSION['key'] = "Your New Key is " . $code;
 
 echo 1;

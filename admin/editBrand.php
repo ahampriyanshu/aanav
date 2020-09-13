@@ -1,9 +1,13 @@
 <?php
 require('header.php');
+
+$id = $_GET['id'];
+$result = mysqli_query($connect, "SELECT * FROM brand WHERE brand_id=$id ");
+$row = mysqli_fetch_assoc($result);
 ?>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 login-section-wrapper pl-5 ">
+                <div class="col-sm-6 mt-5 login-section-wrapper pl-5 ">
                     <div class="login-wrapper">
                     <h1 class="login-title mb-4">Edit Brand</h1>
                         <form class="form-horizontal" method="post" action="updateBrand.php" enctype="multipart/form-data">

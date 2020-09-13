@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin'])) {
     header('location:logout.php');
 }
 
-$query = "DELETE FROM brand WHERE brand_id=" . $id;
+$query = "UPDATE brand SET status=0 WHERE brand_id = " . $id;
 mysqli_query($connect, $query);
 
 echo 1;

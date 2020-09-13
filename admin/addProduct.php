@@ -55,7 +55,7 @@ require('header.php');
                   <label for="password">Section</label>
                   <select id="email" class="form-control" name="cat">
                     <?php
-                    $get_cat = "SELECT * FROM section";
+                    $get_cat = "SELECT * FROM section WHERE status=1 ";
                     $run_cat = mysqli_query($connect, $get_cat);
                     while ($row_cat = mysqli_fetch_array($run_cat)) {
                       $id = $row_cat['section_id'];
@@ -71,7 +71,7 @@ require('header.php');
                   <label for="password">Category</label>
                   <select id="email" class="form-control" name="categories">
                     <?php
-                    $get_categories = "SELECT * FROM categories";
+                    $get_categories = "SELECT * FROM categories WHERE status=1 ";
                     $run_categories = mysqli_query($connect, $get_categories);
                     while ($row_categories = mysqli_fetch_array($run_categories)) {
                       $category_id = $row_categories['category_id'];
@@ -87,7 +87,7 @@ require('header.php');
                   <select class="form-control" name="brand">
                     <?php
 
-                    $get_brand = "SELECT * FROM brand";
+                    $get_brand = "SELECT * FROM brand WHERE status=1 ";
                     $run_brand = mysqli_query($connect, $get_brand);
                     while ($row_brand = mysqli_fetch_array($run_brand)) {
                       $brand_id = $row_brand['brand_id'];
@@ -104,7 +104,7 @@ require('header.php');
                   <select class="form-control" name="supplier">
                     <?php
 
-                    $get_brand = "SELECT * FROM supplier";
+                    $get_brand = "SELECT * FROM supplier WHERE status=1 ";
                     $run_brand = mysqli_query($connect, $get_brand);
                     while ($row_brand = mysqli_fetch_array($run_brand)) {
                       $supplier_id = $row_brand['supplier_id'];

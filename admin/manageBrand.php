@@ -43,11 +43,11 @@ require('header.php');
                                         <td>
                                             <a style="color: #888; 
                                             " href="editBrand.php?id=<?php echo $row['brand_id'] ?>">
-                                                <i class="far fa-edit"></i></a>
+                                               uu <i class="far fa-edit"></i></a>
                                         </td>
                                         <td>
                                             <a style="color: red; " class='delete' id='del_<?= $row['brand_id'] ?>'>
-                                                <i class="far fa-trash-alt"></i></a>
+                                            dd    <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php

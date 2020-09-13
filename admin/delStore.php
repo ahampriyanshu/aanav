@@ -5,8 +5,7 @@ $id = $_POST['id'];
 if (!isset($_SESSION['admin'])) {
     header('location:logout.php');
 }
-
-$query = "DELETE FROM store WHERE store_id=" . $id;
+$query = "UPDATE store SET status=0 WHERE store_id = " . $id;
 mysqli_query($connect, $query);
 
 echo 1;

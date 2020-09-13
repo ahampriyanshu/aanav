@@ -41,6 +41,9 @@ if (!isset($_SESSION['admin'])) {
         <div class="p-4">
           <h1><a href="index.php" class="logo">Hello, Admin</a></h1>
           <ul class="list-unstyled components">
+          <li>
+              <a href="index.php"><i class="fa fa-paper-plane mr-3"></i>Home</a>
+            </li>
             <li>
               <a href="manageCustomer.php"><i class="fa fa-user mr-3"></i>Customers</a>
             </li>
@@ -76,6 +79,9 @@ if (!isset($_SESSION['admin'])) {
             </li>
             <li>
               <a href="key.php"><i class="fa fa-paper-plane mr-3"></i>Regenerate Key</a>
+            </li>
+            <li>
+              <a href="vendorMessages.php"><i class="fa fa-paper-plane mr-3"></i>Messages</a>
             </li>
           </ul>
           <div class="footer">

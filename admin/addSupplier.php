@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-                        <h1 class="login-title mb-4">Add New Supplier</h1>
+                        <h1 class="login-title my-4">Add New Supplier</h1>
                         <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="email">Supplier Title</label>

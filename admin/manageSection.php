@@ -14,10 +14,11 @@ require('header.php');
                                 <tr>
                                     <th>ID</th>
                                     <th>NAME</th>
+                                    <th>STATUS</th>
                                     <th>CREATED</th>
                                     <th>MODIFIED</th>
+                                    <th>EDIT</th>
                                     <th>UPDATE</th>
-                                    <th>DEL</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,8 +38,17 @@ require('header.php');
                                             <span class="badge  badge-info"><?php echo $row['section_name'] ?></span>
                                         </td>
                                         <td>
+                                        <?php if ($row['status'] == 0) { ?>
+                                        <span class="badge badge-danger">Disabled</span>
+
+                                    <?php } else if ($row['status'] == 1) { ?>
+                                        <span class="badge badge-success">Active</span>
+                                    <?php } ?>
+                                        </td>
+                                        <td>
                                             <span class="badge  badge-light"><?php echo $row['created_date'] ?></span>
                                         </td>
+                                     
                                         <td>
                                             <span class="badge  badge-light"><?php echo $row['modified_date'] ?></span>
                                         </td>
@@ -49,9 +59,14 @@ require('header.php');
 
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['section_id'] ?>'>
-                                                <i class="far fa-trash-alt"></i></a>
-                                        </td>
+                                    <?php if ($row['status'] == 1) {  ?>
+                                        <a style="color: red; " class='disable' id='disable_<?= $row['section_id'] ?>'>
+                                            <i class="fas fa-times-circle"></i></a>
+                                    <?php } else { ?>
+                                        <a style="color: green; " class='enable' id='enable_<?= $row['section_id'] ?>'>
+                                            <i class="fas fa-undo"></i></a>
+                                    <?php } ?>
+                                </td>
                                     </tr>
                                 <?php
 
@@ -75,7 +90,7 @@ require('header.php');
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('.delete').click(function() {
+        $('.disable').click(function() {
             var el = this;
             var id = this.id;
             var splitid = id.split("_");

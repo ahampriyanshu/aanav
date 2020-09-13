@@ -99,6 +99,7 @@
                 <label for="<?php echo $name['brand_name']; ?>">
                             <input type="checkbox"  id="<?php echo $name['brand_name']; ?>" class="filter_all brand" value="<?php echo $row['brand']; ?>">
                             <span class="checkmark"></span>
+                            
                             <p class="sublist"><?php echo $name['brand_name']; ?></p>
                         </label>
                     </div>

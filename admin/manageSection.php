@@ -96,7 +96,7 @@ require('header.php');
             var splitid = id.split("_");
             var deleteid = splitid[1];
             bootbox.confirm({
-                message: "Do you really want to delete this record ?",
+                message: "Do you really want to disable this section ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -141,5 +141,58 @@ require('header.php');
 
     });
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
 
+        $('.enable').click(function() {
+            var el = this;
+            var id = this.id;
+            var splitid = id.split("_");
+            var deleteid = splitid[1];
+            bootbox.confirm({
+                message: "Do you really want to enable this section ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result) {
+
+                    if (result) {
+
+                        $.ajax({
+                            url: 'enableSection.php',
+                            type: 'POST',
+                            data: {
+                                id: deleteid
+                            },
+                            success: function(response) {
+
+
+                                if (response == 1) {
+                                    $(el).closest('tr').css('background', 'green');
+                                    $(el).closest('tr').fadeOut(800, function() {
+                                        $(this).remove();
+                                    });
+                                } else {
+                                    bootbox.alert('Error ! Record not deleted');
+                                }
+
+                            }
+                        });
+                    }
+
+                }
+            });
+
+        });
+
+
+    });
+</script>
 </html>

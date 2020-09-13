@@ -61,10 +61,10 @@ require('header.php');
 
                                 <td>
                                     <a style="color:#333;" href="MessagesOrder.php?id=<?php echo $row['msg_id'] ?>">
-                                        <i class="fas fa-box"></i></a>
+                                        <i class="fas fa-envelope-open-text"></i></a>
                                 </td>
                                 <td>
-                                <a style="color: green; " class='disable' id='disable_<?= $row['id'] ?>'>
+                                <a style="color: green; " class='disable' id='disable_<?= $row['msg_id'] ?>'>
                                             <i class="fas fa-user-plus"></i></a>
                                 </td>
                                 
@@ -99,7 +99,7 @@ require('header.php');
             var splitid = id.split("_");
             var deleteid = splitid[1];
             bootbox.confirm({
-                message: "Do you really want to disable this account ?",
+                message: "Do you really want to delete this message ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',

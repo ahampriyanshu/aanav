@@ -14,13 +14,14 @@ require('header.php');
                                 <tr>
                                     <th>ID</th>
                                     <th>NAME</th>
+                                    <th>STATUS</th>
                                     <th>EMAIL</th>
                                     <th>PHONE</th>
                                     <th>ADDRESS</th>
                                     <th>CREATED</th>
                                     <th>MODIFIED</th>
+                                    <th>EDIT</th>
                                     <th>UPDATE</th>
-                                    <th>DEL</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,6 +37,14 @@ require('header.php');
                                         </td>
                                         <td>
                                             <span class="badge  badge-info"><?php echo $row['supplier_name'] ?></span>
+                                        </td>
+                                        <td>
+                                        <?php if ($row['status'] == 0) { ?>
+                                        <span class="badge badge-danger">Disabled</span>
+
+                                    <?php } else if ($row['status'] == 1) { ?>
+                                        <span class="badge badge-success">Active</span>
+                                    <?php } ?>
                                         </td>
                                         <td>
                                             <span class="badge  badge-light"><?php echo $row['email'] ?></span>
@@ -58,9 +67,14 @@ require('header.php');
                                                 <i class="far fa-edit"></i></a>
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['supplier_id'] ?>'>
-                                                <i class="far fa-trash-alt"></i></a>
-                                        </td>
+                                    <?php if ($row['status'] == 1) {  ?>
+                                        <a style="color: red; " class='disable' id='disable_<?= $row['supplier_id'] ?>'>
+                                            <i class="fas fa-times-circle"></i></a>
+                                    <?php } else { ?>
+                                        <a style="color: green; " class='enable' id='enable_<?= $row['supplier_id'] ?>'>
+                                            <i class="fas fa-undo"></i></a>
+                                    <?php } ?>
+                                </td>
                                     </tr>
                                 <?php
 
@@ -83,13 +97,14 @@ require('header.php');
 <script src="js/bootbox.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.delete').click(function() {
+
+        $('.disable').click(function() {
             var el = this;
             var id = this.id;
             var splitid = id.split("_");
             var deleteid = splitid[1];
             bootbox.confirm({
-                message: "Do you really want to delete this record ?",
+                message: "Do you really want to disable this supplier ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -112,9 +127,62 @@ require('header.php');
                             },
                             success: function(response) {
 
-
                                 if (response == 1) {
                                     $(el).closest('tr').css('background', 'tomato');
+                                    $(el).closest('tr').fadeOut(800, function() {
+                                        $(this).remove();
+                                    });
+                                } else {
+                                    bootbox.alert('Error ! Record not deleted');
+                                }
+
+                            }
+                        });
+                    }
+
+                }
+            });
+
+        });
+
+
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('.enable').click(function() {
+            var el = this;
+            var id = this.id;
+            var splitid = id.split("_");
+            var deleteid = splitid[1];
+            bootbox.confirm({
+                message: "Do you really want to enable this supplier ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result) {
+
+                    if (result) {
+
+                        $.ajax({
+                            url: 'enableSupplier.php',
+                            type: 'POST',
+                            data: {
+                                id: deleteid
+                            },
+                            success: function(response) {
+
+
+                                if (response == 1) {
+                                    $(el).closest('tr').css('background', 'green');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
                                     });

@@ -14,10 +14,11 @@ require('header.php');
                                 <tr>
                                     <th>ID</th>
                                     <th>NAME</th>
+                                    <th>STATUS</th>
                                     <th>CREATED</th>
                                     <th>MODIFIED</th>
+                                    <th>EDIT</th>
                                     <th>UPDATE</th>
-                                    <th>DEL</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,6 +36,14 @@ require('header.php');
                                             <span class="badge  badge-info"><?php echo $row['brand_name'] ?></span>
                                         </td>
                                         <td>
+                                        <?php if ($row['status'] == 0) { ?>
+                                        <span class="badge badge-danger">Disabled</span>
+
+                                    <?php } else if ($row['status'] == 1) { ?>
+                                        <span class="badge badge-success">Active</span>
+                                    <?php } ?>
+                                        </td>
+                                        <td>
                                             <span class="badge  badge-light"><?php echo $row['created_date'] ?></span>
                                         </td>
                                         <td>
@@ -43,12 +52,17 @@ require('header.php');
                                         <td>
                                             <a style="color: #888; 
                                             " href="editBrand.php?id=<?php echo $row['brand_id'] ?>">
-                                               uu <i class="far fa-edit"></i></a>
+                                            <i class="far fa-edit"></i></a>
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['brand_id'] ?>'>
-                                            dd    <i class="far fa-trash-alt"></i></a>
-                                        </td>
+                                    <?php if ($row['status'] == 1) {  ?>
+                                        <a style="color: red; " class='disable' id='disable_<?= $row['brand_id'] ?>'>
+                                            <i class="fas fa-times-circle"></i></a>
+                                    <?php } else { ?>
+                                        <a style="color: green; " class='enable' id='enable_<?= $row['brand_id'] ?>'>
+                                            <i class="fas fa-undo"></i></a>
+                                    <?php } ?>
+                                </td>
                                     </tr>
                                 <?php
 
@@ -72,13 +86,13 @@ require('header.php');
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('.delete').click(function() {
+        $('.disable').click(function() {
             var el = this;
             var id = this.id;
             var splitid = id.split("_");
             var deleteid = splitid[1];
             bootbox.confirm({
-                message: "Do you really want to delete this record ?",
+                message: "Do you really want to disable this brand ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -123,5 +137,58 @@ require('header.php');
 
     });
 </script>
+<script type="text/javascript">
+    $(document).ready(function() {
 
+        $('.enable').click(function() {
+            var el = this;
+            var id = this.id;
+            var splitid = id.split("_");
+            var deleteid = splitid[1];
+            bootbox.confirm({
+                message: "Do you really want to enable this brand ?",
+                buttons: {
+                    confirm: {
+                        label: 'Yes',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'No',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function(result) {
+
+                    if (result) {
+
+                        $.ajax({
+                            url: 'enableBrand.php',
+                            type: 'POST',
+                            data: {
+                                id: deleteid
+                            },
+                            success: function(response) {
+
+
+                                if (response == 1) {
+                                    $(el).closest('tr').css('background', 'green');
+                                    $(el).closest('tr').fadeOut(800, function() {
+                                        $(this).remove();
+                                    });
+                                } else {
+                                    bootbox.alert('Error ! Record not deleted');
+                                }
+
+                            }
+                        });
+                    }
+
+                }
+            });
+
+        });
+
+
+    });
+</script>
 </html>

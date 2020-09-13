@@ -2,8 +2,8 @@
 require('header.php');
 include "../dbConfig.php";
 if (isset($_POST['submit'])) {
-    $admin = $_POST['name'];
-    
+    $admin = $_POST['admin'];
+    echo $admin;
     $sendEmail  = new sendEmail;
     $fullName = "Admin";
     $email = "tiwarimay2002@gmail.com";
@@ -27,24 +27,30 @@ if (isset($_POST['submit'])) {
     transition-duration: 0.4s;"
     href="' . $url . '">Admin Login</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a  href="' . $url2 . '">Contact Us</a></p>';
 
-    $sql = "UPDATE admin SET password='$password' WHERE admin='$admin' ";
-
-    $run = mysqli_query($connect, $sql);
-
-    if ($run) {
-        $sendEmail->send($fullName, $email, $subject, $body);
-        echo "	alert('<?php echo $password . ' is your new key'; ?>');
-        <script>window.open('index.php','_self')</script>";
-       
+    $sql = "INSERT INTO admin (admin) VALUES ('$admin')";
+    
+    $q = "SELECT * FROM admin WHERE admin = '$admin' ";
+    
+    $result = mysqli_query($connect,$q);
+    $num = mysqli_num_rows($result);
+    
+    if ($num == 1) {
+    
+        $sql=mysqli_query($connect,"UPDATE admin SET password = '$password' WHERE admin='$admin'");
+    $sendEmail->send($fullName, $email, $subject, $body);
+    $_SESSION['key'] = "Your New Key has been successfully sent to your mail ";
+        
     } else {
-        echo "Error description: " . mysqli_error($connect) ;
+        echo "<script>
+        document.location='logout.php';
+    </script>";  
     }
 }
 ?>
   <div class="container">
             <div class="row">
             <?php if (isset($_SESSION['key'])) : ?>
-         <div class="col-md-6 mx-auto text-center">
+         <div class="col-md-9 mx-auto  mt-4 text-center">
             <div class="alert alert-success">
                <?php echo $_SESSION['key']; ?>
             </div>
@@ -59,7 +65,7 @@ if (isset($_POST['submit'])) {
                         <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="email">Enter Secret Code</label>
-                                <input type="text" name="name" class="form-control" id="email" required />
+                                <input type="text" name="admin" class="form-control" id="email" required />
                             </div>
                             <input type="submit" name="submit" id="submit login" class="btn btn-block login-btn" value="Regerate">
                         </form>

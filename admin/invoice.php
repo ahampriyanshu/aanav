@@ -114,17 +114,31 @@ while($row = mysqli_fetch_assoc($result))
   $pdf->Cell(0,8,'Name : '.$row['full_name'],0,1,'L');
   $pdf->Cell(0,8,'Email : '.$row['email'],0,1,'L');
   $pdf->Cell(0,8,'Phone : '.$row['phone'],0,1,'L');
-  if ($row['store_id'] != 0 )
+  if ($row['store_id'] == 0 )
   {
-  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
-  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
-  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
+  $store_sql = "SELECT * FROM store WHERE store_id =" . $row['store_id'];
+                        $store_query = mysqli_query($connect, $store_sql);
+                        $store_row = mysqli_fetch_array($store_query); 
+                    
+
+    $pdf->Cell(0,8,'Store Name : '.$store_row['store_name'],0,1,'L');
+    $pdf->Cell(0,8,'Store Address : '. $store_row['address'],0,1,'L');
+    $pdf->Cell(0,8,'                 '.$store_row['email'],0,1,'L');
+    $pdf->Cell(0,8,'                 '.$store_row['phone'],0,1,'L');
+    
   }
   else
   {
-  $pdf->Cell(0,8,'Address : '.$row['street_address']." , ",0,1,'L');
-  $pdf->Cell(0,8,'            '.$row['city']." , ".$row['state'],0,1,'L');
-  $pdf->Cell(0,8,'            '.$row['pincode'],0,1,'L');
+
+    $pdf->Cell(0,8,'Address : '.$row['street_address'],0,1,'L');
+    $pdf->Cell(0,8,'City : '.$row['city'],0,1,'L');
+    $pdf->Cell(0,8,'City : '.$row['state'],0,1,'L');
+    $pdf->Cell(0,8,'Pincode : '.$row['pincode'],0,1,'L');
+    
+    $pdf->Cell(0,8,'Store Name : '.$store_row['store_name'],0,1,'L');
+  $pdf->Cell(0,8,'Store Address : '. $store_row['address'],0,1,'L');
+  $pdf->Cell(0,8,'                 '.$store_row['email'],0,1,'L');
+  $pdf->Cell(0,8,'                 '.$store_row['phone'],0,1,'L');
   }
 
 $pdf->Cell(0,10,'',0,1,'C');

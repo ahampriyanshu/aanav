@@ -1,138 +1,172 @@
-<?php 
-session_start();
-require('../fpdf/fpdf.php');
-require_once("../essentials/config.php");
-if (!$_SESSION['admin']) {
-  echo '<script>
-  location.href="logout.php"
-  </script>';
-  }
-
-class PDF extends FPDF
-{
-function Header()
-{
-$this->Image('../img/logo.png',80,0,45);
-$this->Ln(20);
-}
-function populate_table($connect){
-  $x=$this->GetX();
-  $y=$this->GetY();
-  $this->setXY($x,$y);
-  $this->Cell(10,7,'Ord No',1,2,'L');
-  $this->setXY($x+10,$y);
-  $this->Cell(40,7,'Name',1,2,'L');
-  $this->setXY($x+50,$y);
-  $this->Cell(10,7,'Cus Id',1,2,'L');
-  $this->setXY($x+60,$y);
-  $this->Cell(25,7,'Phone',1,2,'L');
-  $this->setXY($x+85,$y);
-  $this->Cell(15,7,'Type',1,2,'L');
-  $this->setXY($x+100,$y);
-  $this->Cell(15,7,'Payment',1,2,'L');
-  $this->setXY($x+115,$y);
-  $this->Cell(30,7,'Date',1,2,'L');
-  $this->setXY($x+145,$y);
-  $this->Cell(20,7,'Status',1,2,'L');
-  $this->setXY($x+165,$y);
-  $this->Cell(10,7,'Qty',1,2,'L');
-  $this->setXY($x+175,$y);
-  $this->Cell(15,7,'Total Price',1,2,'L');
-  $total=0;
-  $sql = "SELECT * FROM orders ";
-  $result = mysqli_query($connect, $sql);
-  while($d = mysqli_fetch_assoc($result)) 
-  {
+<?php
+require('header.php');
+?>
+<?php
+	if(isset($_POST['search'])){
+		$start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
     
-                        $this->Ln(0);
-                        $x=$this->GetX();
-                        $y=$this->GetY();
-                        $this->setXY($x,$y);
-                        $this->Cell(10,7,$d["order_id"],1,2,'L');
-                        $this->setXY($x+10,$y);
-                        $this->Cell(40,7,$d["full_name"],1,2,'L');
-                        $this->setXY($x+50,$y);
-                        $this->Cell(10,7,$d["customer_id"],1,2,'L');
-                        $this->setXY($x+60,$y);
-                        $this->Cell(25,7,$d["phone"],1,2,'L');
-                        $this->setXY($x+85,$y);
+		$fromdate = date('Y-m-d',strtotime($start_date));
+    $todate = date('Y-m-d',strtotime($end_date));
 
-                        if ($d['store_id'] == 0) {
-                          $this->Cell(15,7,'Home',1,2,'L');
-                      
-                      } else {
-                        $this->Cell(15,7,'Store',1,2,'L');
-                      
-                      }
-                      
-                       
-                        $this->setXY($x+100,$y);
-                        $this->Cell(15,7,$d["payment_type"],1,2,'L');
-                        $this->setXY($x+115,$y);
-                        $this->Cell(30,7,$d["created_date"],1,2,'L');
-                        $this->setXY($x+145,$y);
+    $query = "SELECT * FROM orders WHERE created_date Between '$fromdate' and '$todate'
+     ORDER BY order_id DESC";
+    $result = mysqli_query($connect, $query);
+		
+	}
+?>
+<div class="container">
+    <div class="row">
+    <div class="col-lg-9 mx-auto my-4 text-center">
+         <h2><span class="badge badge-light">Sales Report</span></h2>
+      </div>
+        <div class="col-lg-12 mx-auto text-center">
 
-                         if ($d['status'] == 0) {
-                            $this->Cell(20,7,'Cancelled',1,2,'L'); 
-                        
-                        } else if ($d['status'] == 1) {
-                           $this->Cell(20,7,'Placed',1,2,'L'); 
-                        
-                        } else if ($d['status'] == 2) {
-                           $this->Cell(20,7,'Approved',1,2,'L'); 
-                        
-                        } else if ($d['status'] == 3) {
-                           $this->Cell(20,7,'Shipped',1,2,'L'); 
-                        
-                        } else if ($d['status'] == 4) {
-                           $this->Cell(20,7,'Deliverd',1,2,'L'); 
-                        
-                        } else if ($d['status'] == 5) {
-                           $this->Cell(20,7,'Refund Req.',1,2,'L'); 
-                        
-                        } else if ($d['status'] == 6) {
-                           $this->Cell(20,7,'Refunded',1,2,'L'); 
-                        
-                        } else {  
-                          $this->Cell(20,7,'Error',1,2,'L'); 
-                         } 
-                        $this->setXY($x+165,$y);
-                        $this->Cell(10,7,$d["total_qty"],1,2,'L');
-                        $this->setXY($x+175,$y);
-                        $this->Cell(15,7,$d["total_amt"],1,2,'L');
-                        $total += $d["total_amt"];
-  }
-  $this->Ln(0);
-  $x=$this->GetX();
-  $y=$this->GetY();
-  $this->setXY($x+145,$y);
-  $this->Cell(30,7,'Grand Total',1,2,'C');
-  $this->setXY($x+175,$y);
-  $this->Cell(15,7,round($total,2),1,2,'L');
- }
- function Footer()
- {
- 
-  $this->SetFont('Arial','',8);
-  $this->SetY(-21);
-  $date = date('Y/d/M h:i:s:A', time());
-  $this->Cell(0,10,'This report is electronically genrated on '.$date.' No signature needed',0,0,'C');
-  $this->SetY(-14);
-  $this->Cell(0,10,'MIT Licensed @ahampriyanshu',0,0,'C');
- $this->SetY(-7);
- $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
- }
-}
+            <a href="customerList.php" class="m-2 btn btn-sm btn-info">
+            <i class="fa fa-download mr-2"></i> <b>Customer List PDF</b></a>
 
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Courier','B',12);
-$pdf->Cell(0,8,'ahampriyanshu@gmail.com',0,1,'C');
-$pdf->Cell(0,20,'',0,1,'C');
-$pdf->SetFont('Courier','B',24);
-$pdf->Cell(0,8,'Order List',0,1,'C');
-$pdf->Cell(0,10,'',0,1,'C');
-$pdf->SetFont('Arial','',8);
-$pdf->populate_table($connect);
-$pdf->Output();
+            <a href="productList.php" class="m-2 btn btn-sm btn-info">
+            <i class="fa fa-download mr-2"></i><b>Product List PDF</b></a>
+
+            <a href="orderList.php" class="m-2 btn btn-sm btn-info">
+            <i class="fa fa-download mr-2"></i><b>Order List PDF</b></a>
+
+        </div>
+        <div class="col-lg-9 mx-auto my-4 text-center">
+         <h2><span class="badge badge-light">View Order</span></h2>
+      </div>
+
+      <div class="col-lg-12 mx-auto my-3 text-center">
+      <div class="table-responsive">
+                <table class='table table-borderless text-center'>
+	<form method="post" action="salesReport.php">
+		<tr>
+			<td><span class="badge badge-light">Starting Date</span></td>
+			<td><input type="date" name="start_date" value="<?php echo date("Y-m-d") ?>"></td>
+
+			<td><span class="badge badge-light">Ending Date</span></td>
+			<td><input type="date" name="end_date" value="<?php echo date("Y-m-d") ?>"></td>
+			<td><input type="submit" name="search" value="Search" class="btn btn-sm btn-success"></td>
+		</tr>
+  </form>
+</table>
+      </div>
+      </div>
+
+      <?php
+	if(isset($_POST['search'])){
+    ?>
+      <div class="col-lg-12 mx-auto my-3 text-center">
+     <h4> <span class="badge badge-light">FROM</span><span class="badge badge-light"> <?php echo "$fromdate"; ?></span>
+      <span class="badge badge-light">TO</span><span class="badge badge-light"><?php echo "$todate"; ?></span> 
+     </h4>
+    </div>
+    
+        <div class="col-lg-12 mx-auto ">
+            <div class="table-responsive">
+                <table class='table table-borderless text-center'>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>STATUS</th>
+                            <th>DETAILS</th>
+                            <th>NAME</th>
+                            <th>EMAIL</th>
+                            <th>TYPE</th>
+                            <th>PAYMENT</th>
+                            <th>UNITS</th>
+                            <th>PRICE</th>
+                            <th>CREATED</th>
+                            <th>MODIFIED</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($row = mysqli_fetch_assoc($result)):
+                        ?>
+
+                            <tr>
+                                <td>
+                                    <span class="badge badge-light"><?php echo $row['order_id'] ?></span>
+                                </td>
+                                <td>
+                                    <?php if ($row['status'] == 0) { ?>
+                                        <span class="badge  badge-danger">Cancelled</span>
+
+                                    <?php } else if ($row['status'] == 1) { ?>
+                                        <span class="badge  badge-warning">Placed</span>
+
+                                    <?php } else if ($row['status'] == 2) { ?>
+                                        <span class="badge  badge-success">Approved</span>
+
+                                    <?php } else if ($row['status'] == 3) { ?>
+                                        <span class="badge  badge-info">Shipped</span>
+
+                                    <?php } else if ($row['status'] == 4) { ?>
+                                        <span class="badge  badge-success">Deliverd</span>
+
+                                    <?php } else if ($row['status'] == 5) { ?>
+                                        <span class="badge  badge-info">Refund Requested</span>
+
+                                    <?php } else if ($row['status'] == 6) { ?>
+                                        <span class="badge  badge-success">Refunded</span>
+
+                                    <?php } else {  ?>
+                                        <span class="badge  badge-danger">Error</span>
+                                    <?php  } ?>
+                                </td>
+
+                                <td>
+
+                                    <a style="color:#F67E29;" href="orderDetail.php?id=<?php echo $row['order_id'] ?>">
+                                        <i class="fas fa-info-circle"></i></a>
+
+                                </td>
+                                <td>
+                                    <span class="badge badge-light"><?php echo $row['full_name'] ?></span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light"><?php echo $row['email'] ?></span>
+                                </td>
+                                <td>
+                                    <?php if ($row['store_id'] == 0) { ?>
+                                        <span class="badge badge-light">Store Pickup</span>
+
+                                    <?php } else {
+                                        echo '<span class="badge badge-light">Home Delivery</span>';
+                                    } ?>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light"><?php echo $row['payment_type'] ?></span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light"><?php echo $row['total_qty'] ?></span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light">&#x20B9;&nbsp;<?php echo $row['total_amt'] ?></span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light"><?php echo $row['created_date'] ?></span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-light"><?php echo $row['modified_date'] ?></span>
+                                </td>
+                            </tr>
+                        <?php
+                       endwhile;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <?php  } ?>
+    </div>
+</div>
+</div>
+</body>
+<script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+</html>

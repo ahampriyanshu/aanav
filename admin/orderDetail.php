@@ -331,7 +331,7 @@ if (isset($_POST['accept'])) {
                         </tr>
                         <?php $store_sql = "SELECT * FROM store WHERE store_id =" . $order_prop['store_id'];
                         $store_query = mysqli_query($connect, $store_sql);
-                        while ($store_row = mysqli_fetch_array($store_query)) {
+                        $store_row = mysqli_fetch_array($store_query)
                         ?>
 
                            <tr>
@@ -351,7 +351,7 @@ if (isset($_POST['accept'])) {
                               <td><span class="badge badge-light"><?php echo $store_row['address'] ?></td>
                            </tr>
                      <?php }
-                     } ?>
+                      ?>
                   </table>
                </div>
             </div>

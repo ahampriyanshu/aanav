@@ -1202,7 +1202,7 @@ ol {
 
 .product-item .pi-text {
   text-align: center;
-  padding-top: 26px;
+  padding-top: 16px;
 }
 
 .product-item .pi-text .catagory-name {
@@ -1214,21 +1214,13 @@ ol {
   margin-bottom: 10px;
 }
 
-.product-item .pi-text a {
-  display: block;
-}
-
-.product-item .pi-text a h5 {
-  color: #252525;
-}
-
 .product-item .pi-text .product-price {
   color: #66fcf1;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 }
 
-.product-item .pi-text .product-price span {
+.product-item .pi-text .product-price .MRP {
   font-size: 14px;
   font-weight: 400;
   color: #b2b2b2;

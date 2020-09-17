@@ -45,28 +45,27 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
     $output    = '';
     if ($total_row > 0) {
         foreach ($result as $row) {
-            $output .= '
+            $output .= '<a href="product.php?id=' .  $row['id'] . '">
             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                    <a href="product.php?id=' .  $row['id'] . '">
-                                        <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '"></a>
+                                    
+                                        <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '">
                                         <div class="icon">
                                         <i class="far fa-heart"></i>
                                         </div>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">' .  $row['code'] . '</div>
-                                        <a href="#">
-                                        <h5>' .  $row['name'] . '</h5>
+                                    <h4><span class="badge badge-light">' .  $row['name'] . '</span></h4>
                                         </a>
                                         <div class="product-price">
-                                        &#x20B9;' .  $row['cost'] . '&nbsp;
-                                        <span>&#x20B9;' .  $row['MRP'] . '</span>
+                                        &#x20B9; ' .  $row['cost'] . '&nbsp;
+                                        <span class="MRP"> &#x20B9; ' .  $row['MRP'] . '</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>';
+                            </div>
+                            </a>';
         }
     } else {
         $output = '<div  class="container">

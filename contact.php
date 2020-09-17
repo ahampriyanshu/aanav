@@ -1,9 +1,8 @@
 <?php
 include('boilerplate.php');
-?>
-<?php
 include "dbConfig.php";
 $sendEmail  = new sendEmail;
+$queries = new queries;
 
 if (isset($_POST['submit'])) {
 
@@ -12,8 +11,9 @@ if (isset($_POST['submit'])) {
     $msg      = $_POST['msg'];
     $phone    = $_POST['phone'];
     $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
     $subject  = 'Thank you';
-    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for .We will contact you as soon as possible</p> 
+    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for contacting us.We will reply you as soon as possible</p> 
     <p><a style="background-color: #66FCF1;
     border: none;
     color: white;
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;"
-    href="' . $url . '">Visit Site</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a>Contact Us</a></p>';
+    href="' . $url . '">Latest Co-ordinator</a></p><p  style="color:red; font-size: 10px;"  href="' . $url2 . '"> Need Help ? <a>Contact Us</a></p>';
 
     if ($queries->query("INSERT INTO msg (name, email, phone, msg, type, created_date) VALUES
      ('$fullName', '$email', '$phone', '$msg', 'contact', now()) ")) {
@@ -38,7 +38,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
- <!-- Map Section Begin -->
  <div class="map carousel-info">
         <div class="container">
             <div class="map-inner">
@@ -53,9 +52,7 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
-    <!-- Map Section Begin -->
 
-    <!-- Contact Section Begin -->
     <section class="contact-section carousel-info">
         <div class="container">
             <div class="row">
@@ -121,6 +118,5 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </section>
-
-    <?php include('footer.php'); ?></body>
+<?php include('footer.php'); ?></body>
 </html>

@@ -51,9 +51,6 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
                                     <div class="pi-pic">
                                     
                                         <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '">
-                                        <div class="icon">
-                                        <i class="far fa-heart"></i>
-                                        </div>
                                     </div>
                                     <div class="pi-text">
                                     <h4><span class="badge badge-light">' .  $row['name'] . '</span></h4>

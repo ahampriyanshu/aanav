@@ -65,7 +65,7 @@ include('boilerplate.php');
 <?php include('latest.php'); ?>
 <?php include('trending.php'); ?>
 <?php include('recentlyViewed.php'); ?>
-
+<?php include('bestSeller.php'); ?>
 <div class="carousel-inner">
     <div class="carousel-item active">
         <img class="float-lg-right" src="img/work.png" alt="work">

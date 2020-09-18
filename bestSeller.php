@@ -1,12 +1,19 @@
 <?php
- 
-     $result = mysqli_query($connect, "SELECT product.*,order_detail.product_id, SUM(order_detail.units) AS TotalQuantity
-     FROM product 
-     LEFT JOIN order_detail 
-     ON product.id = order_detail.product_id
-     GROUP BY order_detail.product_id
-     ORDER BY TotalQuantity ASC LIMIT 0,12");
-           ?>
+
+    $result = mysqli_query($connect, "SELECT product.*,order_detail.product_id,
+    SUM(order_detail.units) AS TotalQuantity
+    FROM product
+     INNER JOIN order_detail 
+    ON product.id = order_detail.product_id
+    GROUP BY order_detail.product_id
+    ORDER BY TotalQuantity ASC LIMIT 0,12");
+
+    if($result === FALSE){
+        mysqli_close($connect);
+}
+else {
+
+?>
 
 <section class="carousel-banner carousel-info">
         <div class="container"> 
@@ -45,14 +52,14 @@
 </div>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name"><?php echo $row_bestseller['code']; ?></div>
-                                <a href="#">
-                                    <h5><strong><?php echo $row_bestseller['name']; ?></strong></h5>
-                                </a>
+                                <a href="product.php?id=<?php echo $row_bestseller['id']; ?>">
+                                <h4><span class="badge badge-light"><?php echo $row_bestseller['name']; ?>
+                            </span></h4>
                                 <div class="product-price">
                                 &#x20B9;&nbsp;<?php echo $row_bestseller['cost']; ?>
-                                <span>&#x20B9;&nbsp;<?php echo $row_bestseller['MRP']; ?></span>
+                                <span class="MRP">&#x20B9;&nbsp;<?php echo $row_bestseller['MRP']; ?></span>
                                 </div>
+                                </a>
                             </div>
                         </div>
 
@@ -65,3 +72,6 @@
     </section>
     <br>
     <br>
+    <?php     
+}
+?>

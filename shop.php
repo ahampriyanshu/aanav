@@ -57,7 +57,7 @@ $start_from = ($page - 1) * $per_page;
             </div>
 
             <div class="filter-widget">
-                <h3 class="fw-title">Sections</h3>
+                <h3 class="fw-title"><span class="badge badge-dark">SECTIONS</span></h3>
                 <div class="fw-brand-check">
                     <?php
                     $query = "
@@ -84,6 +84,36 @@ $start_from = ($page - 1) * $per_page;
                     <?php
                     }
                     ?>
+                </div>
+            </div>
+
+
+            <div class="filter-widget">
+                <h3 class="fw-title"><span class="badge badge-dark">CATEGORIES</span></h3>
+                <div class="fw-brand-check">
+                    <?php
+
+                    $query = "
+            SELECT DISTINCT(categories) FROM product ORDER BY categories ASC
+            ";
+                    $statement = $con->prepare($query);
+                    $statement->execute();
+                    $result = $statement->fetchAll();
+                    foreach ($result as $row) {
+                        $sql = "
+            SELECT category_name FROM categories WHERE category_id = '$row[0]'
+            ";
+                        $exe = $connect->query($sql);
+                        $name = $exe->fetch_assoc();
+                    ?>
+                        <div class="bc-item">
+                            <label for="<?php echo $name['category_name']; ?>">
+                                <input type="checkbox" id="<?php echo $name['category_name']; ?>" class="filter_all categories" value="<?php echo $row['categories']; ?>">
+                                <span class="checkmark"></span>
+                                <p class="sublist"><?php echo $name['category_name']; ?></p>
+                            </label>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
 
@@ -119,34 +149,6 @@ $start_from = ($page - 1) * $per_page;
                 </div>
             </div>
 
-            <div class="filter-widget">
-                <h3 class="fw-title"><span class="badge badge-dark">CATEGORIES</span></h3>
-                <div class="fw-brand-check">
-                    <?php
-
-                    $query = "
-            SELECT DISTINCT(categories) FROM product ORDER BY categories ASC
-            ";
-                    $statement = $con->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach ($result as $row) {
-                        $sql = "
-            SELECT category_name FROM categories WHERE category_id = '$row[0]'
-            ";
-                        $exe = $connect->query($sql);
-                        $name = $exe->fetch_assoc();
-                    ?>
-                        <div class="bc-item">
-                            <label for="<?php echo $name['category_name']; ?>">
-                                <input type="checkbox" id="<?php echo $name['category_name']; ?>" class="filter_all categories" value="<?php echo $row['categories']; ?>">
-                                <span class="checkmark"></span>
-                                <p class="sublist"><?php echo $name['category_name']; ?></p>
-                            </label>
-                        </div>
-                    <?php } ?>
-                </div>
-            </div>
 
         </div>
         <div class="col-lg-9">

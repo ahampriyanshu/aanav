@@ -1,5 +1,4 @@
 <?php
-
     $result = mysqli_query($connect, "SELECT * FROM product WHERE section='$section' ORDER BY id DESC LIMIT 0,4");
 ?>
 
@@ -37,19 +36,17 @@
 </div>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name"><?php echo $row_product ['code']; ?></div>
-                                <a href="#">
-                                    <h5><strong><?php echo $row_product ['name']; ?></strong></h5>
+                            <a href="product.php?id=<?php echo $row_product['id']; ?>">
+                            <h4><span class="badge badge-light"><?php echo $row_product['name']; ?>
+                            </span></h4>
                                 </a>
                                 <div class="product-price">
-                                &#x20B9;&nbsp;<?php echo $row_product ['cost']; ?>
-                                <span>&#x20B9;&nbsp;<?php echo $row_product ['MRP']; ?></span>
+                                &#x20B9;&nbsp;<?php echo $row_product['cost']; ?>
+                                <span class="MRP">&#x20B9;&nbsp;<?php echo $row_product['MRP']; ?></span>
                                 </div>
                             </div>
                         </div>
-
                         <?php endwhile; ?>
-
                     </div>
                 </div>
             </div>

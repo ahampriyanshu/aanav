@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('essentials/config.php');
 
 
@@ -45,12 +46,23 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
     $output    = '';
     if ($total_row > 0) {
         foreach ($result as $row) {
+          $product_id =  $row['id'];
+          $customer_id = $_SESSION['id'];
+          $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
+          $run_fav = mysqli_query($connect, $sql_fav);
+          $row_fav = mysqli_fetch_assoc($run_fav);
+
+          if (!$row_fav) {
+
             $output .= '<a href="product.php?id=' .  $row['id'] . '">
             <div class="col-lg-4 col-sm-6">
                                 <div class="product-item">
                                     <div class="pi-pic">
                                     
                                         <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '">
+                                        <div class="icon">
+                                        <a href="update-wishlist.php?user='.$customer_id.'&action=add&id='.$product_id.'" ><i class="far fa-heart" style="color:red"></i></a>
+                                        </div>
                                     </div>
                                     <div class="pi-text">
                                     <h4><span class="badge badge-light">' .  $row['name'] . '</span></h4>
@@ -64,7 +76,31 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
                             </div>
                             </a>';
         }
-    } else {
+        else{
+          $output .= '<a href="product.php?id=' .  $row['id'] . '">
+          <div class="col-lg-4 col-sm-6">
+                              <div class="product-item">
+                                  <div class="pi-pic">
+                                  
+                                      <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '">
+                                      <div class="icon">
+                                      <a href="update-wishlist.php?user='.$customer_id.'&action=remove&id='.$product_id.'" ><i class="fas fa-heart" style="color:red"></i></a> 
+                                      </div>
+                                  </div>
+                                  <div class="pi-text">
+                                  <h4><span class="badge badge-light">' .  $row['name'] . '</span></h4>
+                                      </a>
+                                      <div class="product-price">
+                                      &#x20B9; ' .  $row['cost'] . '&nbsp;
+                                      <span class="MRP"> &#x20B9; ' .  $row['MRP'] . '</span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          </a>'; 
+        }
+    } 
+  }else {
         $output = '<div  class="container">
         <div style="margin-top:40px;" class="row">
           <div class="col-md-12 text-center">

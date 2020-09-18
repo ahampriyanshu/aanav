@@ -42,13 +42,13 @@
 </div>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name"><?php echo $product_id_array ['code']; ?></div>
-                                <a href="#">
-                                    <h5><strong><?php echo $product_id_array ['name']; ?></strong></h5>
+                                <a href="product.php?id=<?php echo $product_id_array ['id']; ?>">
+                                <h4><span class="badge badge-light"><?php echo $product_id_array['name']; ?>
+                                </span></h4>
                                 </a>
                                 <div class="product-price">
                                 &#x20B9;&nbsp;<?php echo $product_id_array ['cost']; ?>
-                                <span>&#x20B9;&nbsp;<?php echo $product_id_array ['MRP']; ?></span>
+                                <span class="MRP">&#x20B9;&nbsp;<?php echo $product_id_array ['MRP']; ?></span>
                                 </div>
                             </div>
                         </div>

@@ -1,7 +1,10 @@
 <?php
 session_start();
 unset($_SESSION['email']);
-unset($_SESSION['customer_email']);;
+unset($_SESSION['id']);
+unset($_SESSION['phone']);
+unset($_SESSION['admin']);
+unset($_SESSION['name']);
 unset($_SESSION['admin']);
 header("location: login.php");
 ?>

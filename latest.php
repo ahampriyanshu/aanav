@@ -1,5 +1,4 @@
 <?php
- 
     $result = mysqli_query($connect, "SELECT * FROM product ORDER BY id DESC LIMIT 0,12");
 ?>
 
@@ -15,11 +14,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product-slider owl-carousel">
-                    
                     <?php while ($row_latest = mysqli_fetch_assoc($result)):
                     $product_id = $row_latest['id'];
                         ?>
-
                         <div class="product-item">
                             <div class="pi-pic">
                             <a href="product.php?id=<?php echo $row_latest['id']; ?>">
@@ -39,13 +36,13 @@
 </div>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name"><?php echo $row_latest['code']; ?></div>
-                                <a href="#">
-                                    <h5><strong><?php echo $row_latest['name']; ?></strong></h5>
+                                <a href="product.php?id=<?php echo $row_latest['id']; ?>">
+                                <h4><span class="badge badge-light"><?php echo $row_latest['name']; ?>
+                            </span></h4>
                                 </a>
                                 <div class="product-price">
                                 &#x20B9;&nbsp;<?php echo $row_latest['cost']; ?>
-                                <span>&#x20B9;&nbsp;<?php echo $row_latest['MRP']; ?></span>
+                                <span class="MRP">&#x20B9;&nbsp;<?php echo $row_latest['MRP']; ?></span>
                                 </div>
                             </div>
                         </div>

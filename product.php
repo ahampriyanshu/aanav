@@ -74,6 +74,7 @@ $section_name = $row2['section_name'];
   $qty = $row['qty'];
   ?>
   <section class="product-shop carousel-info page-details">
+
   <?php if (isset($_SESSION['alertMsg'])) : ?>
         <div class="col-md-6 mx-auto text-center">
             <div class="alert alert-danger">
@@ -82,6 +83,25 @@ $section_name = $row2['section_name'];
         </div>
     <?php endif; ?>
     <?php unset($_SESSION['alertMsg']); ?>
+
+    <?php if (isset($_SESSION['soldOut'])) : ?>
+        <div class="col-md-6 mx-auto text-center">
+            <div class="alert alert-success">
+                <?php echo $_SESSION['soldOut']; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php unset($_SESSION['soldOut']); ?>
+
+    <?php if (isset($_SESSION['exist'])) : ?>
+        <div class="col-md-6 mx-auto text-center">
+            <div class="alert alert-warning">
+                <?php echo $_SESSION['exist']; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php unset($_SESSION['exist']); ?>
+
     <div class="container">
       <div class="row">
         <div class="col-lg-9">
@@ -233,7 +253,6 @@ $section_name = $row2['section_name'];
                 $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
                 $run_fav = mysqli_query($connect, $sql_fav);
                 $row_fav = mysqli_fetch_assoc($run_fav);
-                $fav = $row_fav['fav_id'];
                 ?>
 
                 <p> <?php if ($product['qty'] < 0) {
@@ -252,7 +271,7 @@ $section_name = $row2['section_name'];
                     ?>
                   <br><br>
 
-                  <?php if ($fav == null) { ?>
+                  <?php if (!$row_fav) { ?>
                     <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=add&id=<?php echo $product_id ?>"><i class="far fa-2x fa-heart" style="color:red"></i></a>
                   <?php } else { ?>
                     <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>"><i class="fas fa-2x fa-heart" style="color:red"></i></a>

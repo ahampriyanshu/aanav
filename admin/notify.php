@@ -3,9 +3,11 @@ require('header.php');
 ?>
         <div class="container">
             <div class="row">
+
             <div class="col-lg-9 mx-auto my-4 text-center">
-         <h2><span class="badge badge-light">Manage Product</span></h2>
+         <h2><span class="badge badge-light">Sold Out </span></h2>
       </div>
+
             <div class="col-lg-9 mx-auto text-center">
                     <a href="addProduct.php" class="m-2 btn btn-sm btn-success">
                         <i class="fa fa-plus-square mr-2"></i> <b>Add New Product</b></a>
@@ -19,8 +21,8 @@ require('header.php');
                         <a href="notify.php" class="m-2 btn btn-sm btn-info">
                         <i class="fas fa-bell mr-2"></i> <b>Out Of Stock Notification</b></a>
                 </div>
+
                 <div class="col-lg-12 mx-auto mt-5">
-            
                     <div class="table-responsive">
                         <table class='table table-borderless text-center'>
                             <thead>
@@ -33,8 +35,8 @@ require('header.php');
                                     <th>PRICE</th>
                                     <th>CREATED</th>
                                     <th>MODIFIED</th>
-                                    <th>UPDATE</th>
-                                    <th>DISABLE</th>
+                                    <th>EDIT</th>
+                                    <th>ENABLE</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,13 +52,13 @@ if (isset($_GET['page'])) {
 
 $start_from = ($page-1) * $per_page;
 
-                                $query = "SELECT * FROM product WHERE qty=0 ORDER BY id ASC LIMIT $start_from, $per_page";
+                                $query = "SELECT * FROM product WHERE status=0 ORDER BY id ASC LIMIT $start_from, $per_page";
                                 $result = mysqli_query($connect, $query);
                                 while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
                                     <tr>
                                         <td>
-                                            <span class="badge  badge-light"><?php echo $row['id'] ?></span>
+                                            <span class="badge badge-light"><?php echo $row['id'] ?></span>
                                         </td>
                                         <td>
                                             <img width="150" height="150" src="../uploads/<?php echo $row['file'] ?>" alt="product image">
@@ -85,8 +87,8 @@ $start_from = ($page-1) * $per_page;
                                                 <i class="far fa-edit"></i></a>
                                         </td>
                                         <td>
-                                            <a style="color: red; " class='delete' id='del_<?= $row['id'] ?>'>
-                                            <i class="far fa-trash-alt"></i></a>
+                                            <a style="color: green; " class='delete' id='del_<?= $row['id'] ?>'>
+                                            <i class="fas fa-undo"></i></a>
                                         </td>
                                     </tr>
                                 <?php
@@ -100,84 +102,11 @@ $start_from = ($page-1) * $per_page;
             </div>
         </div>
     </div>
-    <?php
-$query = "SELECT * FROM product WHERE qty=0 ";
-$result = mysqli_query($connect, $query);
-$total_posts = mysqli_num_rows($result);
-$total_pages = ceil($total_posts / $per_page);
-$page_url = $_SERVER['PHP_SELF'];
-
-
-echo "<div class='center'><div class='pagination justify-content-center'><a href ='$page_url?page=1'>First</a>";
-
-for ($i = 1; $i <= $total_pages; $i++) : ?>
-
-	<a class="<?php if ($page == $i) {
-					echo 'active';
-				} ?>" href="<?php echo $page_url ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
-
-<?php endfor;
-echo "<a href='$page_url?page=$total_pages' >Last</a></div></div>";
-?>
+    <?php include('pagination.php'); ?>
 </body>
 <script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script>
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>
-<script src="js/bootbox.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-
-        $('.delete').click(function() {
-            var el = this;
-            var id = this.id;
-            var splitid = id.split("_");
-            var deleteid = splitid[1];
-            bootbox.confirm({
-                message: "Do you really want to delete this record ?",
-                buttons: {
-                    confirm: {
-                        label: 'Yes',
-                        className: 'btn-success'
-                    },
-                    cancel: {
-                        label: 'No',
-                        className: 'btn-danger'
-                    }
-                },
-                callback: function(result) {
-
-                    if (result) {
-
-                        $.ajax({
-                            url: 'enableProduct.php',
-                            type: 'POST',
-                            data: {
-                                id: deleteid
-                            },
-                            success: function(response) {
-
-
-                                if (response == 1) {
-                                    $(el).closest('tr').css('background', 'tomato');
-                                    $(el).closest('tr').fadeOut(800, function() {
-                                        $(this).remove();
-                                    });
-                                } else {
-                                    bootbox.alert('Error! Query Not Executed');
-                                }
-
-                            }
-                        });
-                    }
-
-                }
-            });
-
-        });
-
-
-    });
-</script>
 </html>

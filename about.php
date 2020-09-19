@@ -49,7 +49,7 @@ include('boilerplate.php');
             <div class="block-38-header">
               <img width="225" height="400" src="img//section/b.jpg" alt="Image placeholder" class="mb-4">
               <h3 class="block-38-heading h4">Tyrion Lannister</h3>
-              <p class="block-38-subheading">Post B</p>
+              <p class="block-38-subheading">Hand of the Queen</p>
             </div>
             <div class="block-38-body">
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p>

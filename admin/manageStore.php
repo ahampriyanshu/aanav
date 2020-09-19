@@ -86,7 +86,6 @@ require('header.php');
             </div>
         </div>
     </div>
-
 </body>
 <script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script>
 <script src="js/jquery.min.js"></script>

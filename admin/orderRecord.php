@@ -31,7 +31,6 @@ $this->Ln(20);
  $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
  }
 }
-
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
@@ -40,7 +39,5 @@ $pdf->Cell(0,8,'Aanav Pvt Ltd',0,1,'C');
 $pdf->Cell(0,8,'ahampriyanshu@gmail.com',0,1,'C');
 $pdf->Cell(0,20,'',0,1,'C');
 $pdf->SetFont('Arial','',12);
-
-
 $pdf->Output();
 ?>

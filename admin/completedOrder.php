@@ -119,7 +119,25 @@ require('header.php');
     </div>
 </div>
 </div>
-<?php include('pagination.php'); ?>
+<?php
+$query = "SELECT * FROM orders WHERE status=4";
+$result = mysqli_query($connect, $query);
+$total_posts = mysqli_num_rows($result);
+$total_pages = ceil($total_posts / $per_page);
+$page_url = $_SERVER['PHP_SELF'];
+
+
+echo "<div class='center'><div class='pagination justify-content-center'><a href ='$page_url?page=1'>First</a>";
+
+for ($i = 1; $i <= $total_pages; $i++) : ?>
+
+	<a class="<?php if ($page == $i) {
+					echo 'active';
+				} ?>" href="<?php echo $page_url ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+
+<?php endfor;
+echo "<a href='$page_url?page=$total_pages' >Last</a></div></div>";
+?>
 </body>
 <script src="https://kit.fontawesome.com/77f6dfd46f.js" crossorigin="anonymous"></script>
 <script src="js/jquery.min.js"></script>

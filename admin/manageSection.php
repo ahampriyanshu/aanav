@@ -69,7 +69,6 @@ require('header.php');
                                 </td>
                                     </tr>
                                 <?php
-
                                 }
                                 ?>
                             </tbody>
@@ -125,6 +124,7 @@ require('header.php');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
                                     });
+                                    window.location.reload();
                                 } else {
                                     bootbox.alert('Error! Query Not Executed');
                                 }
@@ -179,6 +179,7 @@ require('header.php');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
                                     });
+                                    window.location.reload();
                                 } else {
                                     bootbox.alert('Error! Query Not Executed');
                                 }

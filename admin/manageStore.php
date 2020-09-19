@@ -103,7 +103,7 @@ require('header.php');
             var splitid = id.split("_");
             var deleteid = splitid[1];
             bootbox.confirm({
-                message: "Do you really want to delete this record ?",
+                message: "Do you really want to disable this store ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -131,6 +131,7 @@ require('header.php');
                                     $(el).closest('tr').css('background', 'tomato');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
+                                        window.location.reload();
                                     });
                                 } else {
                                     bootbox.alert('Error! Query Not Executed');
@@ -157,7 +158,7 @@ require('header.php');
             var splitid = id.split("_");
             var deleteid = splitid[1];
             bootbox.confirm({
-                message: "Do you really want to activate this account ?",
+                message: "Do you really want to activate this store ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -186,6 +187,7 @@ require('header.php');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
                                     });
+                                    window.location.reload();
                                 } else {
                                     bootbox.alert('Error! Query Not Executed');
                                 }

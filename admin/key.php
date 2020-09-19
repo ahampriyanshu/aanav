@@ -3,7 +3,6 @@ require('header.php');
 include "../dbConfig.php";
 if (isset($_POST['submit'])) {
     $admin = $_POST['admin'];
-    echo $admin;
     $sendEmail  = new sendEmail;
     $fullName = "Admin";
     $email = "tiwarimay2002@gmail.com";

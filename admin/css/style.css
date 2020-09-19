@@ -8134,11 +8134,6 @@ body {
   background: #fafafa;
   color: gray; }
 
-a {
-  -webkit-transition: .3s all ease;
-  -o-transition: .3s all ease;
-  transition: .3s all ease;
-  color: #000; }
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -8205,19 +8200,19 @@ h1, h2, h3, h4, h5,
   #sidebar.active {
     margin-left: -270px; }
   #sidebar h1 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-weight: 700;
     font-size: 30px; }
     #sidebar h1 .logo {
       color: #5c5edc; }
       #sidebar h1 .logo span {
-        font-size: 14px;
+        font-size: 12px;
         color: #cecece;
         display: block; }
   #sidebar ul.components {
     padding: 0; }
   #sidebar ul li {
-    font-size: 18px; }
+    font-size: 17px; }
     #sidebar ul li > ul {
       margin-left: 10px; }
       #sidebar ul li > ul li {

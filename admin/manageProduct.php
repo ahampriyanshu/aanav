@@ -15,6 +15,9 @@ require('header.php');
 
                         <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-warning">
                         <i class="fa fa-ban mr-2"></i> <b>Deactivated Product</b></a>
+
+                        <a href="notify.php" class="m-2 btn btn-sm btn-info">
+                        <i class="fas fa-bell mr-2"></i> <b>Out Of Stock Notification</b></a>
                 </div>
                 <div class="col-lg-12 mx-auto mt-5">
                     <div class="table-responsive">
@@ -29,8 +32,8 @@ require('header.php');
                                     <th>PRICE</th>
                                     <th>CREATED</th>
                                     <th>MODIFIED</th>
-                                    <th>UPDATE</th>
-                                    <th>DEL</th>
+                                    <th>EDIT</th>
+                                    <th>DISABLE</th>
                                 </tr>
                             </thead>
                             <tbody>

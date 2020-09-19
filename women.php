@@ -120,8 +120,7 @@ $start_from = ($page - 1) * $per_page;
         </div>
         <div class="col-lg-9">
             <div class="row filter_data"></div>
-            <div class="row">
-                <div class="col-lg-12 col-md-10 col-xs-8 ">
+           
                 <style>
 	.center {
 	text-align: center;
@@ -175,8 +174,7 @@ for ($i = 1; $i <= $total_pages; $i++) : ?>
 echo "<a href='$page_url?page=$total_pages' >Last</a>";
 echo "</div></div>";
 ?>
-                </div>
-            </div>
+               
         </div>
     </div>
 </div>

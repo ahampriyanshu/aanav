@@ -5,10 +5,8 @@
   $email = $_POST['email'];
   $id = $_POST['id'];
 
-  $result = mysqli_query($connect, "SELECT sold_out_id FROM sold_out WHERE email = '$email' AND product_id = '$id' ");
+  $result = mysqli_query($connect, "SELECT * FROM sold_out WHERE email = '$email' AND product_id = '$id' ");
   $num = mysqli_num_rows($result);
-
-  echo $num;
 
   if ($num > 1) {
     $_SESSION['exist'] = "You have been already notified for this product";

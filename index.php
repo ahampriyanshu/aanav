@@ -23,12 +23,26 @@ include('boilerplate.php');
     </div>
 </section>
 
+<style>
+.single-banner {
+
+  transition: transform .3s; /* Animation */
+  opacity: 0.8;
+}
+
+.single-banner:hover {
+  transform: scale(1.05);
+  opacity: 1; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+</style>
+
 <div class="banner-section carousel-info">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-4">
                 <div class="single-banner">
-                    <img src="img/section/men.png" height='300' alt="">
+                    <img src="img/section/men.png" height='300' alt="men section">
                     <div class="inner-text">
                         <h4>Men’s</h4>
                     </div>
@@ -36,7 +50,7 @@ include('boilerplate.php');
             </div>
             <div class="col-lg-4">
                 <div class="single-banner">
-                    <img src="img/section/women.png" height='300' alt="">
+                    <img src="img/section/women.png" height='300' alt="women section">
                     <div class="inner-text">
                         <h4>Women’s</h4>
                     </div>
@@ -44,7 +58,7 @@ include('boilerplate.php');
             </div>
             <div class="col-lg-4">
                 <div class="single-banner">
-                    <img src="img/section/kid.png" height='300' alt="">
+                    <img src="img/section/kid.png" height='300' alt="kid section">
                     <div class="inner-text">
                         <h4>Kid’s</h4>
                     </div>

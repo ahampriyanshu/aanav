@@ -41,18 +41,17 @@ $start_from = ($page - 1) * $per_page;
         font-weight: bolder;
         text-transform: uppercase;
     }
-
 </style>
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-8 produts-sidebar-filter">
 
             <div class="filter-widget">
-                
+
                 <h3 class="fw-title"><span class="badge badge-dark">PRICE</span></h3>
                 <input type="hidden" id="min_price_hide" value="1" />
                 <input type="hidden" id="max_price_hide" value="5000" />
-                <p id="price_show" class="pricelist" >&#x20B9; 1 - &#x20B9; 5000</p>
+                <p id="price_show" class="pricelist">&#x20B9; 1 - &#x20B9; 5000</p>
                 <div id="price_range"></div>
             </div>
 
@@ -144,22 +143,20 @@ $start_from = ($page - 1) * $per_page;
                         </div>
                     <?php
                     }
-
                     ?>
                 </div>
             </div>
         </div>
         <div class="col-lg-9">
             <div class="row filter_data"></div>
-            
-                    <?php include('pagination.php'); ?>
-              
+            <?php include('pagination.php'); ?>
         </div>
     </div>
 </div>
 <script>
     $(document).ready(function() {
         filter_data();
+
         function filter_data() {
             $('.filter_data');
             var action = 'fetch_data';
@@ -188,6 +185,7 @@ $start_from = ($page - 1) * $per_page;
                 }
             });
         }
+
         function get_filter(class_name) {
             var filter = [];
             $('.' + class_name + ':checked').each(function() {

@@ -121,8 +121,9 @@ require('header.php');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
                                     });
+                                    window.location.reload();
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
 
                             }
@@ -175,8 +176,9 @@ require('header.php');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
                                     });
+                                    window.location.reload();
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
                             }
                         });

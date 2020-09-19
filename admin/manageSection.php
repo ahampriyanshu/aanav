@@ -126,7 +126,7 @@ require('header.php');
                                         $(this).remove();
                                     });
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
 
                             }
@@ -180,7 +180,7 @@ require('header.php');
                                         $(this).remove();
                                     });
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
 
                             }

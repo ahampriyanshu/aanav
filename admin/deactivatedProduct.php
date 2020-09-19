@@ -103,7 +103,7 @@ $start_from = ($page-1) * $per_page;
             var splitid = id.split("_");
             var deleteid = splitid[1];
             bootbox.confirm({
-                message: "Do you really want to delete this record ?",
+                message: "Do you really want to enable this product ?",
                 buttons: {
                     confirm: {
                         label: 'Yes',
@@ -119,7 +119,7 @@ $start_from = ($page-1) * $per_page;
                     if (result) {
 
                         $.ajax({
-                            url: 'renewProduct.php',
+                            url: 'enableProduct.php',
                             type: 'POST',
                             data: {
                                 id: deleteid
@@ -128,12 +128,12 @@ $start_from = ($page-1) * $per_page;
 
 
                                 if (response == 1) {
-                                    $(el).closest('tr').css('background', 'tomato');
+                                    $(el).closest('tr').css('background', 'green');
                                     $(el).closest('tr').fadeOut(800, function() {
                                         $(this).remove();
                                     });
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
 
                             }

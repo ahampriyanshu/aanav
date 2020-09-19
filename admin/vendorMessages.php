@@ -60,18 +60,15 @@ require('header.php');
                                 </td>
 
                                 <td>
-                                    <a style="color:#333;" href="MessagesOrder.php?id=<?php echo $row['msg_id'] ?>">
+                                    <a style="color:#333;" href="viewMessage.php?id=<?php echo $row['msg_id'] ?>">
                                         <i class="fas fa-envelope-open-text"></i></a>
                                 </td>
                                 <td>
-                                <a style="color: green; " class='disable' id='disable_<?= $row['msg_id'] ?>'>
-                                            <i class="fas fa-user-plus"></i></a>
+                                <a style="color: red; " class='disable' id='disable_<?= $row['msg_id'] ?>'>
+                                <i class="far fa-trash-alt"></i></i></a>
                                 </td>
-                                
-                              
                             </tr>
                         <?php
-
                         }
                         ?>
                     </tbody>
@@ -115,7 +112,7 @@ require('header.php');
                     if (result) {
 
                         $.ajax({
-                            url: 'delMessages.php',
+                            url: 'delMessage.php',
                             type: 'POST',
                             data: {
                                 id: deleteid
@@ -129,7 +126,7 @@ require('header.php');
                                         $(this).remove();
                                     });
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
 
                             }

@@ -145,7 +145,7 @@ $start_from = ($page-1) * $per_page;
                                         $(this).remove();
                                     });
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
 
                             }

@@ -119,7 +119,7 @@ $start_from = ($page-1) * $per_page;
                     if (result) {
 
                         $.ajax({
-                            url: 'renewProduct.php',
+                            url: 'enableProduct.php',
                             type: 'POST',
                             data: {
                                 id: deleteid
@@ -133,7 +133,7 @@ $start_from = ($page-1) * $per_page;
                                         $(this).remove();
                                     });
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
 
                             }

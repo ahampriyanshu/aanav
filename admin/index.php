@@ -13,7 +13,7 @@ if (!isset($_SESSION['admin'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Admin Panel</title>
+    <title>Admin Home</title>
 
     <link rel="icon" href="../img/favicon.ico" sizes="16x16" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
@@ -24,16 +24,9 @@ if (!isset($_SESSION['admin'])) {
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/chart.css">
-    <style>
-        hr{
-  border: 1px solid lightslategray;
-}
-</style>
 
 </head>
-
 <body>
-
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebar">
@@ -98,7 +91,7 @@ if (!isset($_SESSION['admin'])) {
 
             <div class="container align-content-center text-center">
                 <div class="col-lg-9 mx-auto my-4 text-center">
-                    <h1><span class="badge badge-light">Admin Dashboard</span></h1>
+                    <h1><span class="badge badge-dark">Admin Dashboard</span></h1>
                 </div>
 
 
@@ -114,11 +107,10 @@ if (!isset($_SESSION['admin'])) {
                         <div class="card mb-3 widget-content bg-grow-early">
                             <div class="widget-content-wrapper text-white">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">order</div>
-                                    <div class="widget-subheading">People Interested</div>
-                                </div>
+                                    <div class="widget-heading">Total Orders</div>
+                                              </div>
                                 <div class="widget-content-right">
-                                    <div class="widget-numbers text-dark"><span><?php echo $orders ?></span></div>
+                                    <div class="widget-numbers text-white"><span><?php echo $orders ?></span></div>
                                 </div>
                             </div>
                         </div>
@@ -134,9 +126,8 @@ if (!isset($_SESSION['admin'])) {
                         <div class="card mb-3 widget-content bg-midnight-bloom">
                             <div class="widget-content-wrapper text-white">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Clients</div>
-                                    <div class="widget-subheading">Total Clients Profit</div>
-                                </div>
+                                    <div class="widget-heading">Total Customers</div>
+                                              </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-white"><span><?php echo $customer ?></span></div>
                                 </div>
@@ -156,8 +147,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper text-white">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Products Sold</div>
-                                    <div class="widget-subheading">Total revenue streams</div>
-                                </div>
+                                              </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-warning">&#x20B9;&nbsp;<span><?php echo $sum / 1000 ?>K</span></div>
                                 </div>
@@ -166,10 +156,8 @@ if (!isset($_SESSION['admin'])) {
                     </div>
                 </div>
 
-<hr>
-
                 <div class="col-lg-9 mx-auto mt-2 mb-5 text-center">
-                    <h5><span class="badge badge-light">New Orders</span></h5>
+                    <h5><span class="badge badge-dark">New Orders</span></h5>
                 </div>
 
                 <div class="row">
@@ -183,9 +171,8 @@ if (!isset($_SESSION['admin'])) {
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Total deliverd$delivered</div>
-                                    <div class="widget-subheading">Last year expenses</div>
-                                </div>
+                                    <div class="widget-heading">Orders Delivered</div>
+                                              </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-success"><span><?php echo $delivered ?></span></div>
                                 </div>
@@ -202,9 +189,8 @@ if (!isset($_SESSION['admin'])) {
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Clients</div>
-                                    <div class="widget-subheading">Total Clients Profit</div>
-                                </div>
+                                    <div class="widget-heading">Orders Cancelled</div>
+                                              </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-danger"><span><?php echo $orders ?></span></div>
                                 </div>
@@ -221,11 +207,10 @@ if (!isset($_SESSION['admin'])) {
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Products Sold</div>
-                                    <div class="widget-subheading">Total revenue streams</div>
-                                </div>
+                                    <div class="widget-heading">Orders Refunded</div>
+                                              </div>
                                 <div class="widget-content-right">
-                                    <div class="widget-numbers text-warning"><span><?php echo $orders ?></span></div>
+                                    <div class="widget-numbers text-info"><span><?php echo $orders ?></span></div>
                                 </div>
                             </div>
                         </div>
@@ -334,28 +319,25 @@ if (!isset($_SESSION['admin'])) {
                 </div>
 
 
-<hr>
-
                 <div class="col-lg-9 mx-auto mt-2 mb-5 text-center">
-                    <h5><span class="badge badge-light">New Customer</span></h5>
+                    <h5><span class="badge badge-dark">New Customer</span></h5>
                 </div>
 
                 <div class="row">
 
                     <?php
-                    $result = mysqli_query($connect, "SELECT * FROM customer WHERE status = 4 ");
-                    $delivered = mysqli_num_rows($result);
+                    $result = mysqli_query($connect, "SELECT * FROM customer WHERE status = 1 ");
+                    $active = mysqli_num_rows($result);
                     ?>
 
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Total deliverd$delivered</div>
-                                    <div class="widget-subheading">Last year expenses</div>
-                                </div>
+                                    <div class="widget-heading">Active Account</div>
+                                              </div>
                                 <div class="widget-content-right">
-                                    <div class="widget-numbers text-success"><span><?php echo $delivered ?></span></div>
+                                    <div class="widget-numbers text-success"><span><?php echo $active ?></span></div>
                                 </div>
                             </div>
                         </div>
@@ -363,37 +345,35 @@ if (!isset($_SESSION['admin'])) {
 
                     <?php
                     $result = mysqli_query($connect, "SELECT * FROM customer WHERE status = 0 ");
-                    $customer = mysqli_num_rows($result);
+                    $unverified = mysqli_num_rows($result);
                     ?>
 
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Clients</div>
-                                    <div class="widget-subheading">Total Clients Profit</div>
-                                </div>
+                                    <div class="widget-heading">Unverified Account</div>
+                                              </div>
                                 <div class="widget-content-right">
-                                    <div class="widget-numbers text-danger"><span><?php echo $customer ?></span></div>
+                                    <div class="widget-numbers text-warning"><span><?php echo $unverified ?></span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <?php
-                    $result = mysqli_query($connect, "SELECT * FROM customer WHERE status = 6 ");
-                    $orders = mysqli_num_rows($result);
+                    $result = mysqli_query($connect, "SELECT * FROM customer WHERE status > 1 ");
+                    $unactive = mysqli_num_rows($result);
                     ?>
 
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Products Sold</div>
-                                    <div class="widget-subheading">Total revenue streams</div>
-                                </div>
+                                    <div class="widget-heading">Unactive Account</div>
+                                              </div>
                                 <div class="widget-content-right">
-                                    <div class="widget-numbers text-warning"><span><?php echo $orders ?></span></div>
+                                    <div class="widget-numbers text-danger"><span><?php echo $unactive ?></span></div>
                                 </div>
                             </div>
                         </div>
@@ -472,66 +452,61 @@ if (!isset($_SESSION['admin'])) {
         </div>
 
 
-<hr>
-
                 <div class="col-lg-9 mx-auto mt-2 mb-5 text-center">
-                    <h5><span class="badge badge-light">New Product</span></h5>
+                    <h5><span class="badge badge-dark">New Products</span></h5>
                 </div>
 
                 <div class="row">
 
                     <?php
-                    $result = mysqli_query($connect, "SELECT * FROM orders WHERE status = 4 ");
-                    $delivered = mysqli_num_rows($result);
+                    $result = mysqli_query($connect, "SELECT * FROM product WHERE status =  1");
+                    $actPro = mysqli_num_rows($result);
                     ?>
 
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Total deliverd$delivered</div>
-                                    <div class="widget-subheading">Last year expenses</div>
-                                </div>
+                                    <div class="widget-heading">Active Product</div>
+                                              </div>
                                 <div class="widget-content-right">
-                                    <div class="widget-numbers text-success"><span><?php echo $delivered ?></span></div>
+                                    <div class="widget-numbers text-success"><span><?php echo $actPro ?></span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <?php
-                    $result = mysqli_query($connect, "SELECT * FROM orders WHERE status = 0 ");
-                    $orders = mysqli_num_rows($result);
+                    $result = mysqli_query($connect, "SELECT * FROM product WHERE status = 0 ");
+                    $unacPro = mysqli_num_rows($result);
                     ?>
 
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Clients</div>
-                                    <div class="widget-subheading">Total Clients Profit</div>
-                                </div>
+                                    <div class="widget-heading">Unactive Product</div>
+                                              </div>
                                 <div class="widget-content-right">
-                                    <div class="widget-numbers text-danger"><span><?php echo $orders ?></span></div>
+                                    <div class="widget-numbers text-warning"><span><?php echo $unacPro ?></span></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <?php
-                    $result = mysqli_query($connect, "SELECT * FROM orders WHERE status = 6 ");
-                    $orders = mysqli_num_rows($result);
+                    $result = mysqli_query($connect, "SELECT * FROM product WHERE qty = 0 ");
+                    $soldOut = mysqli_num_rows($result);
                     ?>
 
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-3 widget-content">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
-                                    <div class="widget-heading">Products Sold</div>
-                                    <div class="widget-subheading">Total revenue streams</div>
-                                </div>
+                                    <div class="widget-heading">Sold Out Product</div>
+                                              </div>
                                 <div class="widget-content-right">
-                                    <div class="widget-numbers text-warning"><span><?php echo $orders ?></span></div>
+                                    <div class="widget-numbers text-danger"><span><?php echo $soldOut ?></span></div>
                                 </div>
                             </div>
                         </div>

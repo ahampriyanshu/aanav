@@ -152,7 +152,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                                         $(this).remove();
                                     });
                                 } else {
-                                    bootbox.alert('Error ! Record not deleted');
+                                    bootbox.alert('Error! Query Not Executed');
                                 }
 
                             }

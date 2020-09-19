@@ -4,9 +4,26 @@ require_once('essentials/config.php');
 
 
 if (isset($_POST["action"])) {
+  if (isset($_POST["men"])) {
+    $query = "
+  SELECT * FROM product WHERE status = 1 AND section = 1
+ ";
+  } else
+  if (isset($_POST["women"])) {
+    $query = "
+  SELECT * FROM product WHERE status = 1 AND section = 2
+ ";
+  }
+  else if (isset($_POST["kid"])) {
+    $query = "
+  SELECT * FROM product WHERE status = 1 AND section = 3
+ ";
+  }
+  else{
     $query = "
   SELECT * FROM product WHERE status = 1
  ";
+}
     if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
         $query .= "
    AND cost BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'
@@ -68,8 +85,8 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
                                     <h4><span class="badge badge-light">' .  $row['name'] . '</span></h4>
                                         </a>
                                         <div class="product-price">
-                                        &#x20B9; ' .  $row['cost'] . '&nbsp;
-                                        <span class="MRP"> &#x20B9; ' .  $row['MRP'] . '</span>
+                                        &#x20B9;' .  $row['cost'] . '&nbsp;
+                                        <span class="MRP">&#x20B9;' .  $row['MRP'] . '</span>
                                         </div>
                                     </div>
                                 </div>
@@ -91,8 +108,8 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
                                   <h4><span class="badge badge-light">' .  $row['name'] . '</span></h4>
                                       </a>
                                       <div class="product-price">
-                                      &#x20B9; ' .  $row['cost'] . '&nbsp;
-                                      <span class="MRP"> &#x20B9; ' .  $row['MRP'] . '</span>
+                                      &#x20B9;' .  $row['cost'] . '&nbsp;
+                                      <span class="MRP">&#x20B9; ' .  $row['MRP'] . '</span>
                                       </div>
                                   </div>
                               </div>
@@ -105,7 +122,7 @@ ORDER BY 1 DESC LIMIT $start_from, $per_page
         <div style="margin-top:40px;" class="row">
           <div class="col-md-12 text-center">
           <span class="icon-exclamation-triangle display-3 text-danger"></span>
-          <h2 class="display-4 text-black">No matching items found !</h2>
+          <h3><span class="badge badge-light">No matching items found !</span></h3>
           <p class="display-5 mb-5">Alter your filters and try again</p>
         </div>
         </div>

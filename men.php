@@ -56,37 +56,6 @@ $start_from = ($page - 1) * $per_page;
                 <div id="price_range"></div>
             </div>
 
-            <div class="filter-widget">
-                <h3 class="fw-title"><span class="badge badge-dark">SECTIONS</span></h3>
-                <div class="fw-brand-check">
-                    <?php
-                    $query = "
-            SELECT DISTINCT(section) FROM product ORDER BY section ASC
-            ";
-                    $statement = $con->prepare($query);
-                    $statement->execute();
-                    $result = $statement->fetchAll();
-                    foreach ($result as $row) {
-                        $sql = "
-            SELECT section_name FROM section WHERE section_id = '$row[0]'
-            ";
-                        $exe = $connect->query($sql);
-                        $name = $exe->fetch_assoc();
-
-                    ?>
-                        <div class="bc-item">
-                            <label for="<?php echo $name['section_name']; ?>">
-                                <input type="checkbox" id="<?php echo $name['section_name']; ?>" class="filter_all section" value="<?php echo $row['section']; ?>">
-                                <span class="checkmark"></span>
-                                <p class="sublist"><?php echo $name['section_name']; ?></p>
-                            </label>
-                        </div>
-                    <?php
-                    }
-                    ?>
-                </div>
-            </div>
-
 
             <div class="filter-widget">
                 <h3 class="fw-title"><span class="badge badge-dark">CATEGORIES</span></h3>
@@ -151,9 +120,59 @@ $start_from = ($page - 1) * $per_page;
         </div>
         <div class="col-lg-9">
             <div class="row filter_data"></div>
-            
-                    <?php include('pagination.php'); ?>
-              
+            <style>
+	.center {
+	text-align: center;
+	}
+
+	.pagination {
+		display: inline-block;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+
+	.pagination a {
+		color: grey;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: .3s;
+	}
+
+	.pagination a.active {
+		background-color: #66fcf1;
+		color: black;
+
+	}
+
+	.pagination a:hover:not(.active) {
+		background-color: #66fcf1;
+		color: black;
+	}
+</style>
+
+<?php
+$query = "SELECT * FROM product WHERE section =1";
+$result = mysqli_query($connect, $query);
+$total_posts = mysqli_num_rows($result);
+$total_pages = ceil($total_posts / $per_page);
+$page_url = $_SERVER['PHP_SELF'];
+
+
+echo "<div class='center'><div class='pagination justify-content-center'>";
+echo "
+	<a  href ='$page_url?page=1'>First</a>";
+
+for ($i = 1; $i <= $total_pages; $i++) : ?>
+
+	<a class="<?php if ($page == $i) {
+					echo 'active';
+				} ?>" href="<?php echo $page_url ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+
+<?php endfor;
+echo "<a href='$page_url?page=$total_pages' >Last</a>";
+echo "</div></div>";
+?>
         </div>
     </div>
 </div>
@@ -163,6 +182,7 @@ $start_from = ($page - 1) * $per_page;
         function filter_data() {
             $('.filter_data');
             var action = 'fetch_data';
+            var men = 'men';
             var start_from = <?php echo $start_from; ?>;
             var per_page = <?php echo $per_page; ?>;
             var minimum_price = $('#min_price_hide').val();
@@ -175,6 +195,7 @@ $start_from = ($page - 1) * $per_page;
                 method: "POST",
                 data: {
                     action: action,
+                    men: men,
                     start_from: start_from,
                     per_page: per_page,
                     minimum_price: minimum_price,

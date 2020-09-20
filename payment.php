@@ -113,8 +113,7 @@ while ($row = mysqli_fetch_assoc($run)) {
               
                 <div class="notice notice-warning">
                         <p>Dear <?php echo $_SESSION['name'] ?>,</p>
-                        <p>It is to be informed that some of our merchant doesn't support COD for some specific locations.<br>
-                        In some cases the order may get cancelled</p>
+                        <p>It is to be informed that some of our merchant doesn't support COD for some specific locations , in some cases the order may get cancelled</p>
                 </div>
                 <a href="placeOrder.php" class="btn btn-sm btn-success pull-right" style="margin-left: 4px">Place Order
                         <i style=" margin-left: 10px;" class="fas fa-arrow-right"></i></a>

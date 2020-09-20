@@ -110,7 +110,7 @@ $pdf->Cell(0,8,'Aanav Pvt Ltd',0,1,'C');
 $pdf->Cell(0,8,'ahampriyanshu@gmail.com',0,1,'C');
 $pdf->Cell(0,20,'',0,1,'C');
 $pdf->SetFont('Arial','',12);
-$sql = "SELECT * FROM orders WHERE order_id = '$order_id' and customer_id = '$customer_id' ";
+$sql = "SELECT * FROM orders WHERE order_id = '$order_id' ";
 $result = mysqli_query($connect, $sql);
 while($row = mysqli_fetch_assoc($result)) 
 {
@@ -119,15 +119,25 @@ while($row = mysqli_fetch_assoc($result))
   $pdf->Cell(0,8,'Phone : '.$row['phone'],0,1,'L');
   if ($row['store_id'] != 0 )
   {
-  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
-  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
-  $pdf->Cell(0,8,'  '.$row['email'],0,1,'L');
+  $store_sql = "SELECT * FROM store WHERE store_id =" . $row['store_id'];
+                        $store_query = mysqli_query($connect, $store_sql);
+                        $store_row = mysqli_fetch_array($store_query); 
+                    
+
+    $pdf->Cell(0,8,'Store Name : '.$store_row['store_name'],0,1,'L');
+    $pdf->Cell(0,8,'Store Address : '. $store_row['address'],0,1,'L');
+    $pdf->Cell(0,8,'                         '.$store_row['email'],0,1,'L');
+    $pdf->Cell(0,8,'                         '.$store_row['phone'],0,1,'L');
+    
   }
   else
   {
-  $pdf->Cell(0,8,'Address : '.$row['street_address']." , ",0,1,'L');
-  $pdf->Cell(0,8,'            '.$row['city']." , ".$row['state'],0,1,'L');
-  $pdf->Cell(0,8,'            '.$row['pincode'],0,1,'L');
+
+    $pdf->Cell(0,8,'Address : '.$row['street_address'],0,1,'L');
+    $pdf->Cell(0,8,'City : '.$row['city'],0,1,'L');
+    $pdf->Cell(0,8,'City : '.$row['state'],0,1,'L');
+    $pdf->Cell(0,8,'Pincode : '.$row['pincode'],0,1,'L');
+
   }
 
 $pdf->Cell(0,10,'',0,1,'C');
@@ -135,16 +145,19 @@ $pdf->populate_table($customer_id,$order_id,$connect);
 $pdf->Cell(0,10,'',0,1,'C');
 $pdf->Cell(0,8,'Payment Type : '.$row['payment_type'],0,1,'L');
 
-if ($row['status'] != 4 )
+if ($row['status'] < 2 )
   {
-    $pdf->Cell(0,8,'Payment Status : Not Received',0,1,'L');
+    $pdf->Cell(0,8,'Payment Status :Not Received',0,1,'L');
   }
-  else
+  else if ($row['status'] >=2 &&  $row['status'] <=5)
   {
-    $pdf->Cell(0,8,'Payment Status : Received',0,1,'L');
+    $pdf->Cell(0,8,'Payment Status :Received',0,1,'L');
+  }
+  else if ($row['status'] == 6 )
+  {
+    $pdf->Cell(0,8,'Payment Status : Refunded',0,1,'L');
   }
 
 $pdf->Cell(0,8,'Order Placed On :'.$row['created_date'],0,1,'L');
 }
 $pdf->Output();
-?>

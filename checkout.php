@@ -1,8 +1,13 @@
 <?php include('boilerplate.php'); ?>
 <?php
-if (!$_SESSION['cart'] || !isset($_SESSION['email']) ) {
+if (!$_SESSION['cart'] ) {
     echo '<script>
-location.href="error.php"
+location.href="cart.php"
+</script>';
+}
+if (!isset($_SESSION['email']) ) {
+    echo '<script>
+location.href="login.php"
 </script>';
 }
 ?>
@@ -135,7 +140,7 @@ location.href="error.php"
                                 <a style="color: #888; margin-left: 10px;" href="delAddress.php?id=<?php echo $row['shipping_id'] ?>" class='pull-right' id='del_<?= $id ?>'>
                                     <i class="far fa-trash-alt"></i></a>
                                 <a style="color: #888;  margin-left: 10px;" href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" class="pull-right">
-                                    <i class="far fa-edit"></i></a>
+                                    <i class="fas fa-wrench"></i></a>
                             </p>
                             <input type="hidden" value="<?php echo $row['shipping_id'] ?>">
                             <p><?php echo $row['full_name'] ?></p>

@@ -2,8 +2,8 @@
 session_start();
 require_once('essentials/config.php');
 include "dbConfig.php";
-if (isset($_SESSION['customer'])) :
-  header("location: profile.php");
+if (isset($_SESSION['email'])) :
+  header("location: index.php");
 endif;
 $validation = new validation;
 $queries    = new queries;
@@ -26,8 +26,8 @@ if (isset($_POST['submit'])) {
     $password = password_hash($password, PASSWORD_DEFAULT);
     $code     = rand();
     $code     = password_hash($code, PASSWORD_DEFAULT);
-    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/verifyEmail.php?confirmation=" . $code;
-    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+    $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/verifyEmail.php?confirmation=" . $code;
+    $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
     $status   = 0;
     $subject  = 'Please confirm your Email';
     $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > You are almost done.Click below to verify your email address</p> 

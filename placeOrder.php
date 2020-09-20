@@ -57,8 +57,8 @@ if (isset($_SESSION['cart'])) {
   }
 }
 
-$url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/myOrder.php?id=" . $order_id;
-$url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+$url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/myOrder.php?id=" . $order_id;
+$url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
 $subject  = 'New Order successfully placed';
 $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi ' . $full_name . '</p><p 
  style="color:grey; font-size: 16px;" > Your order worth <span style="color:green;" > &#x20B9;&nbsp; ' . $total . '</span> was placed successfully at 

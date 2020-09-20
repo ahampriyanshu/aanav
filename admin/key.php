@@ -8,8 +8,8 @@ if (isset($_POST['submit'])) {
     $email = "tiwarimay2002@gmail.com";
     $password     = rand();
     $password     = password_hash($password, PASSWORD_DEFAULT);
-    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/admin/2B0A3Wu4JOdrx85RJe1nKed.php?password=" . $password;
-    $url2      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+    $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/admin/2B0A3Wu4JOdrx85RJe1nKed.php?password=" . $password;
+    $url2      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
     $subject  = 'Login Key has been updated';
     $body = '<p style="color:#66FCF1; font-size: 32px;" > Hi Admin</p><p  style="color:grey; font-size: 16px;" > Your new login key is '.$password.'</p> 
     <p><a style="background-color: #66FCF1;
@@ -25,8 +25,6 @@ if (isset($_POST['submit'])) {
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;"
     href="' . $url . '">Admin Login</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a  href="' . $url2 . '">Contact Us</a></p>';
-
-    $sql = "INSERT INTO admin (admin) VALUES ('$admin')";
     
     $q = "SELECT * FROM admin WHERE admin = '$admin' ";
     

@@ -17,7 +17,7 @@ $count = mysqli_num_rows($run);
                                       <tr>
                                           <th>Order No</th>
                                           <th>Status</th>
-                                          <th>Payment</th>
+                                          <th>Shipping</th>
                                           <th>Qty</th>
                                           <th>Total</th>
                                           <th>Time</th>

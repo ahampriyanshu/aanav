@@ -80,7 +80,6 @@ if (isset($_POST['submit'])) {
           <?php endif; ?>
           <?php unset($_SESSION['accountCreated']); ?>
 
-          <!-- User account has been verified successfully -->
           <?php if (isset($_SESSION['emailVerified'])) : ?>
             <div class="alert alert-success">
               <?php echo $_SESSION['emailVerified']; ?>

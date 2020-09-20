@@ -1,47 +1,60 @@
-<?php include('boilerplate.php');
+<?php
+require_once('essentials/config.php');
 include "dbConfig.php";
+if (isset($_SESSION['email'])) :
+    header("location: index.php");
+  endif;
+if(isset($_GET['code'])){
+$code = $_GET['code'];
+
+$verify = mysqli_query($connect, "SELECT * FROM customer WHERE code='$code' and status <= 1");
+if (mysqli_num_rows($verify) < 1) {
+  echo 'error';
+    header('location:error.php');
+}
+}
+else
+{
+    header('location:error.php');
+}
+
 $validation = new validation;
 $queries    = new queries;
 
 if (isset($_POST['submit'])) {
-  $validation->validate('oldpass', 'Passwords', 'required|min_len|6');
   $validation->validate('newpass', 'New Password', 'required|min_len|6');
   $validation->validate('cnfrmpass', 'Confirm Password', 'required|min_len|6');
   if ($validation->run()) {
 
-    $oldpass = $validation->input('oldpass');
     $newpass = $validation->input('newpass');
     $cnfrmpass = $validation->input('cnfrmpass');
-    $id = $_SESSION['id'];
 
-    if ($queries->query("SELECT * FROM customer WHERE id = ? ", [$id])) {
-      if ($queries->count() > 0) {
-        $row = $queries->fetch();
-        $dbPassword = $row->password;
         if ($newpass == $cnfrmpass) {
-          if (password_verify($oldpass, $dbPassword)) {
             $newpass = password_hash($newpass, PASSWORD_DEFAULT);
-            $update = mysqli_query($connect, "UPDATE customer SET password = '$newpass' WHERE id='$id'");
-            $_SESSION['emailVerified'] = "Password successfully changed.";
-            echo "<script>
-      document.location='logout.php';
-      </script>";
-          } else {
-            $_SESSION['unmatched'] = "Sorry Wrong Password";
+            $update = mysqli_query($connect, "UPDATE customer SET password = '$newpass' WHERE code='$code' ");
+            $_SESSION['emailVerified'] = "Password successfully updated.";
+            header('location: login.php');
           }
         }
         else{
           $_SESSION['unmatched'] = "New password and confirm password did not match"; 
         }
-      }
-    }
-    else{
-      $_SESSION['unmatched'] = "Invalid Credentials"; 
-    }
   }
-}
 ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
   <main>
     <div class="container-fluid">
       <div class="row">
@@ -54,16 +67,8 @@ if (isset($_POST['submit'])) {
           <?php unset($_SESSION['unmatched']); ?>
 
           <div class="login-wrapper my-auto">
-            <h1 class="login-title">Welcome Back</h1>
+            <h1 class="login-title">Set New Password</h1>
             <form method="post" action="">
-            <div class="form-group mb-4">
-                <label for="oldpass">Old Password</label>
-                <input type="password" name="oldpass" id="oldpass" class="form-control" placeholder="********" required />
-                <div class="error text-danger text-center">
-                  <?php if (!empty($validation->errors['oldpass'])) : echo $validation->errors['oldpass'];
-                  endif; ?>
-                </div>
-              </div>
               <div class="form-group mb-4">
                 <label for="newpass">New Password</label>
                 <input type="password" name="newpass" id="newpass" class="form-control" placeholder="********" required />
@@ -87,4 +92,3 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
   </main>
-  <?php include('footer.php'); ?>

@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $email    = $validation->input('email');
     $msg      = $validation->input('msg');
     $phone    = $validation->input('phone');
-    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+    $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
     $subject  = 'Thank you';
     $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for .We will contact you as soon as possible</p> 
     <p><a style="background-color: #66FCF1;

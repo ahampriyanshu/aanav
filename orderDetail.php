@@ -21,8 +21,8 @@ if (isset($_POST['cancel'])) {
 
     $fullName = $_SESSION['name'];
     $email    = $_SESSION['email'];
-    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=".$order_id;
-    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+    $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=".$order_id;
+    $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
     $subject  = 'Thank you';
     $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order has been cancelled successfully.</p> 
     <p><a style="background-color: #66FCF1;
@@ -52,8 +52,8 @@ if (isset($_POST['return'])) {
 
    $fullName = $_SESSION['name'];
    $email    = $_SESSION['email'];
-   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=".$order_id;
-   $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+   $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=".$order_id;
+   $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
    $subject  = 'Thank you';
    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your refund request has been registered successfully.We will contact you soon.</p> 
    <p><a style="background-color: #66FCF1;

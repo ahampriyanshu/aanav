@@ -10,8 +10,8 @@ if (isset($_POST['submit'])) {
     $email    = $_POST['email'];
     $msg      = $_POST['msg'];
     $phone    = $_POST['phone'];
-    $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
-    $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+    $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+    $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
     $subject  = 'Thank you';
     $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for contacting us.We will reply you as soon as possible</p> 
     <p><a style="background-color: #66FCF1;
@@ -32,8 +32,7 @@ if (isset($_POST['submit'])) {
      ('$fullName', '$email', '$phone', '$msg', 'contact', now()) ")) {
 
       if ($sendEmail->send($fullName, $email, $subject, $body)) {
-        $_SESSION['accountCreated'] = "Your account has been created successfully. Please verify your email";
-        header("location: index.php");
+        $_SESSION['msgSent'] = "Thank you for contacting us.";
       }
     }
 }
@@ -52,6 +51,14 @@ if (isset($_POST['submit'])) {
             </div>
         </div>
     </div>
+    <?php if (isset($_SESSION['msgSent'])) : ?>
+        <div class="col-md-6 mx-auto mt-3 text-center">
+            <div class="alert alert-success">
+              <?php echo $_SESSION['msgSent']; ?>
+            </div>
+        </div>
+          <?php endif; ?>
+          <?php unset($_SESSION['msgSent']); ?>
 
     <section class="contact-section carousel-info">
         <div class="container">
@@ -91,6 +98,7 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                 </div>
+       
                 <div class="col-lg-6 offset-lg-1">
                     <div class="contact-form">
                         <div class="leave-comment">

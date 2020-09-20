@@ -24,8 +24,8 @@ if (isset($_POST['cancel'])) {
 
    $fullName = $customer_name;
    $email    = $customer_email;
-   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
-   $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+   $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
+   $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
    $subject  = 'Important update for your order  ORD_' . $order_id;
    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_' . $order_id . ' worth <span style="color:green;" >&#x20B9; ' . $total . '</span> has been cancelled by the vendor.</p> 
     <p><a style="background-color: #66FCF1;
@@ -56,8 +56,8 @@ if (isset($_POST['approve'])) {
 
    $fullName = $customer_name;
    $email    = $customer_email;
-   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
-   $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+   $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
+   $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
    $subject  = 'Important update for your order  ORD_' . $order_id;
    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_' . $order_id . ' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been approved.</p> 
     <p><a style="background-color: #66FCF1;
@@ -88,8 +88,8 @@ if (isset($_POST['ship'])) {
 
    $fullName = $customer_name;
    $email    = $customer_email;
-   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
-   $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+   $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
+   $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
    $subject  = 'Important update for your order  ORD_' . $order_id;
    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_' . $order_id . ' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been shipped successfully.</p> 
     <p><a style="background-color: #66FCF1;
@@ -120,8 +120,8 @@ if (isset($_POST['delivery'])) {
 
    $fullName = $customer_name;
    $email    = $customer_email;
-   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
-   $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+   $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
+   $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
    $subject  = 'Important update for your order  ORD_' . $order_id;
    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your order ORD_' . $order_id . ' worth <span style="color:green;" >&#x20B9; ' . $total . '</span>  has been delivered successfully.</p> 
     <p><a style="background-color: #66FCF1;
@@ -152,8 +152,8 @@ if (isset($_POST['accept'])) {
 
    $fullName = $customer_name;
    $email    = $customer_email;
-   $url      = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
-   $url2     = "http://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+   $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/orderDetail.php?id=" . $order_id;
+   $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
    $subject  = 'Important update for your order  ORD_' . $order_id;
    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" >Your refund has been initiated successfully</p> 
    <p><a style="background-color: #66FCF1;

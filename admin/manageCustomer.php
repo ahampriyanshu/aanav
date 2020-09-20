@@ -91,7 +91,7 @@ require('header.php');
                                 </td>
                                 <td>
                                     <a style="color:#888;" href="customerHistory.php?id=<?php echo $row['id'] ?>">
-                                        <i class="fas fa-search-location"></i></a>
+                                        <i class="fa fa-history"></i></a>
                                 </td>
                                 <td>
                                     <?php if ($row['status'] != 3) {  ?>

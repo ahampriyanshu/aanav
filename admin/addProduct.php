@@ -30,7 +30,7 @@ require('header.php');
         if ($run) {
           echo "<script>window.open('addImage.php','_self')</script>";
         } else {
-          echo "error";
+          echo "<script>document.location='logout.php';</script>";
         }
       }
       ?>

@@ -84,7 +84,7 @@ $start_from = ($page-1) * $per_page;
                                         <td>
                                             <a style="color: #888; 
                                             " href="editSection.php?id=<?php echo $row['id'] ?>">
-                                                <i class="far fa-edit"></i></a>
+                                                <i class="fas fa-wrench"></i></a>
                                         </td>
                                         <td>
                                             <a style="color: green; " class='delete' id='del_<?= $row['id'] ?>'>

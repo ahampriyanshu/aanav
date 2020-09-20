@@ -55,7 +55,7 @@ require('header.php');
                                         <td>
                                             <a style="color: #888; 
                                             " href="editSection.php?id=<?php echo $row['section_id'] ?>">
-                                                <i class="far fa-edit"></i></a>
+                                                <i class="fas fa-wrench"></i></a>
 
                                         </td>
                                         <td>

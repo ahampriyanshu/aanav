@@ -17,8 +17,7 @@ for ($i = 1; $i <= $total; $i++) {
 
 
 
-	$sql = "INSERT INTO variant(product_id,color,size,qty) 
-	        VALUES('" . $id . "','" . $color_id . "','" . $size_id . "','" . $qty . "')";
+	$sql = "INSERT INTO variant (product_id,color,size,qty) VALUES('" . $id . "','" . $color_id . "','" . $size_id . "','" . $qty . "')";
 	$sql = $connect->query($sql);
 	$total_qty += $qty;
 	
@@ -27,14 +26,14 @@ if ($connect->query("UPDATE product SET qty = " . $total_qty . " WHERE id = " . 
 if ($sql) {
 ?>
 	<script>
-		alert('<?php echo $total . " records was inserted !!!"; ?>');
+		alert('<?php echo $total . " variants were inserted !!!"; ?>');
 		window.location.href = 'manageProduct.php';
 	</script>
 <?php
 } else {
 ?>
 	<script>
-		alert('error while inserting , TRY AGAIN');
+		alert('Some error occured !');
 	</script>
 <?php
 }

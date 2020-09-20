@@ -10,10 +10,6 @@ require('header.php');
             </h2>
 
             <?php
-            $sql = "SELECT * FROM product
-        ORDER BY id DESC LIMIT 1";
-            $run = mysqli_query($connect, $sql);
-            $row2 = mysqli_fetch_assoc($run);
 
             if (isset($_POST['submit'])) {
 
@@ -25,7 +21,7 @@ require('header.php');
               foreach ($_FILES as $file => $fileArray) {
 
                 if (!empty($fileArray['name']) && $fileArray['error'] == 0) {
-                  $getFileExtension = pathinfo($fileArray['name'], PATHINFO_EXTENSION);;
+                  $getFileExtension = pathinfo($fileArray['name'], PATHINFO_EXTENSION);   
 
                   if (($getFileExtension == 'jpg') || ($getFileExtension == 'jpeg') || ($getFileExtension == 'png') || ($getFileExtension == 'gif') || ($getFileExtension == 'PNG')) {
                     if ($fileArray["size"] <= 5000000) {
@@ -35,11 +31,11 @@ require('header.php');
                       $newFileName = strtotime("now") . "." . $imageOldExt;
                       $targetPath = $targetFolder . "/" . $newFileName;
                       if (move_uploaded_file($fileArray["tmp_name"], $targetPath)) {
-                        $qry = "insert into gallery (product_id,image) values ('" . $id . "','" . $newFileName . "')";
+                        $qry = "INSERT INTO gallery (product_id,image) values ('" . $id . "','" . $newFileName . "')";
                         $rs  = mysqli_query($connect, $qry);
 
                         if ($rs) {
-                          $successMsg[$file] = "Image is uploaded successfully";
+                          $successMsg[$file] = "Image uploaded successfully";
                         } else {
                           $errorMsg[$file] = "Unable to save " . $file . " file ";
                         }
@@ -81,8 +77,7 @@ require('header.php');
 
             <form name="uploadFile" action="" method="post" enctype="multipart/form-data" id="upload-form">
               <?php
-              $result = mysqli_query($connect, "SELECT * FROM product
-        ORDER BY id DESC LIMIT 1");
+              $result = mysqli_query($connect, "SELECT * FROM product ORDER BY id DESC LIMIT 1");
               $row = mysqli_fetch_assoc($result);
               ?>
               <input type="hidden" name="id" class="form-control" value="<?php echo $row['id'] ?>" />  
@@ -105,7 +100,7 @@ require('header.php');
 	</div>
                 </file> 
               <input type="submit" name="submit" value="Add" class="btn btn-block login-btn">
-            <a href="addVariant.php?id=<?php echo $row['id'] ?>" class="btn btn-block login-btn">Continue</a>
+            <a href="addVariant.php?id=<?php echo $row['id'] ?>" class="btn btn-block login-btn">Next</a>
           </form>
         </div>
       </div>

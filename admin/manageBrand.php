@@ -52,7 +52,7 @@ require('header.php');
                                 <td>
                                     <a style="color: #888; 
                                             " href="editBrand.php?id=<?php echo $row['brand_id'] ?>">
-                                        <i class="far fa-edit"></i></a>
+                                        <i class="fas fa-wrench"></i></a>
                                 </td>
                                 <td>
                                     <?php if ($row['status'] == 1) {  ?>

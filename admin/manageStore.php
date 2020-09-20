@@ -64,7 +64,7 @@ require('header.php');
                                         <td>
                                             <a style="color: #888; 
                                             " href="editStore.php?id=<?php echo $row['store_id'] ?>">
-                                                <i class="far fa-edit"></i></a>
+                                                <i class="fas fa-wrench"></i></a>
                                         </td>
                                         <td>
                                     <?php if ($row['status'] == 1) {  ?>

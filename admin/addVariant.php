@@ -25,17 +25,6 @@ $row = mysqli_fetch_assoc($result);
     </div>
   </div>
 
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-          $("#insert").change(function() {
-              var shippingValidation = $(this).val();
-
-              $("#insert-form").hide();
-            }
-          });
-  </script>
-
   <div class="col-sm-6 login-section-wrapper pl-5 ">
     <div class="login-wrapper">
       <?php

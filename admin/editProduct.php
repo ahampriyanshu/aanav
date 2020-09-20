@@ -43,15 +43,16 @@ if (isset($_POST['submit'])) {
 
 <div class="container-fluid">
     <div class="row">
-    <div class="col-lg-9 mx-auto mt-5 text-center">
-                    <a href="addProduct.php" class="m-2 btn btn-sm btn-success">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Update Quantity</b></a>
+    <div class="col-lg-9 mx-auto mt-4 text-center">
+         <h2><span class="badge badge-light">Edit Product</span></h2>
+      </div>
+    <div class="col-lg-9 mx-auto mt-3 text-center">
+                    <a href="updateVariant.php?id=<?php echo $row['id'] ?>" class="m-2 btn btn-sm btn-success">
+                        <i class="fas fa-wrench mr-2"></i> <b>Update Quantity and Variants</b></a>
 
-                        <a href="editSubImage.php?id=<?php echo $row['id'] ?>" class="m-2 btn btn-sm btn-danger">
+                        <a href="editSubImage.php?id=<?php echo $row['id'] ?>" class="m-2 btn btn-sm btn-info">
                         <i class="fa fa-plus-square mr-2"></i> <b>Update Sub-Images</b></a>
 
-                        <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-warning">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Update Variants</b></a>
                 </div>
         <div class="col-lg-6 login-section-wrapper pl-5 p-md-5 pt-2">
             <div class="login-wrapper ml-5">
@@ -153,7 +154,11 @@ if (isset($_POST['submit'])) {
                     <label for="email">Your's Price</label>
                     <input type="number"  value="<?php echo $row['cost'] ?>" name="cost" class="form-control" id="email" placeholder="750" required />
                 </div>
-                <file class="main_full">
+                <div class="form-group mb-4">
+                    <label for="email">Total Units In Stock</label>
+                    <input type="number" value="<?php echo $row['qty'] ?>" class="form-control" id="email" disabled />
+                 </div>
+               <file class="main_full">
                     <div class="container-file">
                         <div class="panel">
                         <img class="mb-3" width="200" height="200" src="../uploads/<?php echo $row['file'] ?>" alt="product image">

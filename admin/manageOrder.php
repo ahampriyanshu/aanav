@@ -43,7 +43,7 @@ require('header.php');
                             <th>TYPE</th>
                             <th>PAYMENT</th>
                             <th>UNITS</th>
-                            <th>PRICE</th>
+                            <th>TOTAL</th>
                             <th>CREATED</th>
                             <th>MODIFIED</th>
                         </tr>
@@ -99,7 +99,7 @@ require('header.php');
 
                                 <td>
 
-                                    <a style="color:#F67E29;" href="orderDetail.php?id=<?php echo $row['order_id'] ?>">
+                                    <a style="color:green;" href="orderDetail.php?id=<?php echo $row['order_id'] ?>">
                                         <i class="fas fa-info-circle"></i></a>
 
                                 </td>
@@ -111,10 +111,10 @@ require('header.php');
                                 </td>
                                 <td>
                                     <?php if ($row['store_id'] == 0) { ?>
-                                        <span class="badge badge-light">Store Pickup</span>
+                                        <span class="badge badge-light">Home Delivery</span>
 
                                     <?php } else {
-                                        echo '<span class="badge badge-light">Home Delivery</span>';
+                                        echo '<span class="badge badge-light">Store Pickup</span>';
                                     } ?>
                                 </td>
                                 <td>

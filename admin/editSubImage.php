@@ -5,6 +5,17 @@ $id = $_GET['id'];
 ?>
 <div class="container">
     <div class="row">
+    <div class="col-lg-9 mx-auto mt-4 text-center">
+         <h2><span class="badge badge-light">Edit Product</span></h2>
+      </div>
+    <div class="col-lg-9 mx-auto mt-3 text-center">
+                    <a href="updateVariant.php?id=<?php echo $id ?>" class="m-2 btn btn-sm btn-success">
+                        <i class="fas fa-wrench mr-2"></i> <b>Update Quantity and Variants</b></a>
+
+                        <a href="editProduct.php?id=<?php echo $id ?>" class="m-2 btn btn-sm btn-info">
+                        <i class="fas fa-wrench mr-2"></i> <b>Edit Product</b></a>
+
+                </div>
         <div class="col-sm-6 pt-5 ">
             <div class="login-wrapper align-content-center">
                 <h2 class="text-center mb-4 ">
@@ -40,7 +51,7 @@ $id = $_GET['id'];
                                         $rs  = mysqli_query($connect, $qry);
 
                                         if ($rs) {
-                                            $successMsg[$file] = "Image is uploaded successfully";
+                                            $successMsg[$file] = "Image uploaded successfully";
                                         } else {
                                             $errorMsg[$file] = "Unable to save " . $file . " file ";
                                         }
@@ -148,7 +159,7 @@ $start_from = ($page-1) * $per_page;
                                         </td>
                                         <td>
                                             <a style="color: red; " class='delete' id='del_<?= $row['img_id'] ?>'>
-                                               aa <i class="far fa-trash-alt"></i></a>
+                                            <i class="far fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 <?php

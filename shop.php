@@ -88,26 +88,26 @@ $start_from = ($page - 1) * $per_page;
 
 
             <div class="filter-widget">
-                <h3 class="fw-title"><span class="badge badge-dark">CATEGORIES</span></h3>
+                <h3 class="fw-title"><span class="badge badge-dark">CATEGORY</span></h3>
                 <div class="fw-brand-check">
                     <?php
 
                     $query = "
-            SELECT DISTINCT(categories) FROM product ORDER BY categories ASC
+            SELECT DISTINCT(category) FROM product ORDER BY category ASC
             ";
                     $statement = $con->prepare($query);
                     $statement->execute();
                     $result = $statement->fetchAll();
                     foreach ($result as $row) {
                         $sql = "
-            SELECT category_name FROM categories WHERE category_id = '$row[0]'
+            SELECT category_name FROM category WHERE category_id = '$row[0]'
             ";
                         $exe = $connect->query($sql);
                         $name = $exe->fetch_assoc();
                     ?>
                         <div class="bc-item">
                             <label for="<?php echo $name['category_name']; ?>">
-                                <input type="checkbox" id="<?php echo $name['category_name']; ?>" class="filter_all categories" value="<?php echo $row['categories']; ?>">
+                                <input type="checkbox" id="<?php echo $name['category_name']; ?>" class="filter_all category" value="<?php echo $row['category']; ?>">
                                 <span class="checkmark"></span>
                                 <p class="sublist"><?php echo $name['category_name']; ?></p>
                             </label>
@@ -165,7 +165,7 @@ $start_from = ($page - 1) * $per_page;
             var minimum_price = $('#min_price_hide').val();
             var maximum_price = $('#max_price_hide').val();
             var brand = get_filter('brand');
-            var categories = get_filter('categories');
+            var category = get_filter('category');
             var section = get_filter('section');
             $.ajax({
                 url: "fetch.php",
@@ -177,7 +177,7 @@ $start_from = ($page - 1) * $per_page;
                     minimum_price: minimum_price,
                     maximum_price: maximum_price,
                     brand: brand,
-                    categories: categories,
+                    category: category,
                     section: section
                 },
                 success: function(data) {

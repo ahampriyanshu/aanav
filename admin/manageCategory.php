@@ -23,7 +23,7 @@ require('header.php');
                     </thead>
                     <tbody>
                         <?php
-                        $query = "SELECT * FROM categories order by category_id ASC";
+                        $query = "SELECT * FROM category order by category_id ASC";
                         $result = mysqli_query($connect, $query);
                         while ($row = mysqli_fetch_assoc($result)) {
                         ?>

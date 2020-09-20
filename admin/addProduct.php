@@ -8,7 +8,7 @@ require('header.php');
         $name = $_POST['name'];
         $code = $_POST['code'];
         $section = $_POST['cat'];
-        $categories = $_POST['categories'];
+        $category = $_POST['category'];
         $brand = $_POST['brand'];
         $supplier = $_POST['supplier'];
         $MRP = $_POST['MRP'];
@@ -22,8 +22,8 @@ require('header.php');
           move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/" . $file);
         }
 
-        $sql = "INSERT INTO product (name,code,status,section,categories,brand,supplier,description,MRP,cost,qty,file,created_date,modified_date)
-           VALUES ('$name','$code',1,'$section','$categories','$brand','$supplier','$description','$MRP','$cost',0,'$file',NOW(), NOW())";
+        $sql = "INSERT INTO product (name,code,status,section,category,brand,supplier,description,MRP,cost,qty,file,created_date,modified_date)
+           VALUES ('$name','$code',1,'$section','$category','$brand','$supplier','$description','$MRP','$cost',0,'$file',NOW(), NOW())";
 
         $run = mysqli_query($connect, $sql);
 
@@ -69,13 +69,13 @@ require('header.php');
 
                 <div class="form-group mb-4">
                   <label for="password">Category</label>
-                  <select id="email" class="form-control" name="categories">
+                  <select id="email" class="form-control" name="category">
                     <?php
-                    $get_categories = "SELECT * FROM categories WHERE status=1 ";
-                    $run_categories = mysqli_query($connect, $get_categories);
-                    while ($row_categories = mysqli_fetch_array($run_categories)) {
-                      $category_id = $row_categories['category_id'];
-                      $category_name = $row_categories['category_name'];
+                    $get_category = "SELECT * FROM category WHERE status=1 ";
+                    $run_category = mysqli_query($connect, $get_category);
+                    while ($row_category = mysqli_fetch_array($run_category)) {
+                      $category_id = $row_category['category_id'];
+                      $category_name = $row_category['category_name'];
                       echo "<option value='$category_id'>$category_name</option>";
                     }
                     ?>

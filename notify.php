@@ -21,7 +21,7 @@
           <div class="form-group mb-4">
               <label style="color:#222 !important;" for="phone">Enter your email to turn on notification</label>
 </div>
-            <form method="post" action="notify-backend.php" enctype="multipart/form-data">
+            <form method="post" action="notifyUpdate.php" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $id ?>">
               <div class="form-group mb-4">
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required/>

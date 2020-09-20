@@ -35,10 +35,10 @@ if (isset($_POST["action"])) {
    AND brand IN('" . $brand_filter . "')
   ";
     }
-    if (isset($_POST["categories"])) {
-        $categories_filter = implode("','", $_POST["categories"]);
+    if (isset($_POST["category"])) {
+        $category_filter = implode("','", $_POST["category"]);
         $query .= "
-   AND categories IN('" . $categories_filter . "')
+   AND category IN('" . $category_filter . "')
   ";
     }
     if (isset($_POST["section"])) {

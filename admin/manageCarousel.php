@@ -90,7 +90,7 @@ require('header.php');
 </div>
 </div>
 <?php
-$query = "SELECT * FROM product WHERE status=0";
+$query = "SELECT * FROM carousel";
 $result = mysqli_query($connect, $query);
 $total_posts = mysqli_num_rows($result);
 $total_pages = ceil($total_posts / $per_page);

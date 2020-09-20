@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $code = $_POST['code'];
     $section = $_POST['cat'];
-    $categories = $_POST['categories'];
+    $category = $_POST['category'];
     $brand = $_POST['brand'];
     $supplier = $_POST['supplier'];
     $MRP = $_POST['MRP'];
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
         $file = $row['file'];
     }
 
-    $sql = "UPDATE product SET name='$name',code='$code',section='$section',categories='$categories'
+    $sql = "UPDATE product SET name='$name',code='$code',section='$section',category='$category'
     ,brand='$brand',supplier='$supplier',description='$description',MRP='$MRP',cost='$cost',file='$file',modified_date=now() WHERE id = $id ";
 
     $run = mysqli_query($connect, $sql);
@@ -86,13 +86,13 @@ if (isset($_POST['submit'])) {
 
                     <div class="form-group mb-4">
                         <label for="password">Category</label>
-                        <select id="email" class="form-control" name="categories">
+                        <select id="email" class="form-control" name="category">
                             <?php
-                            $get_categories = "SELECT * FROM categories";
-                            $run_categories = mysqli_query($connect, $get_categories);
-                            while ($row_categories = mysqli_fetch_array($run_categories)) {
-                                $category_id = $row_categories['category_id'];
-                                $category_name = $row_categories['category_name'];
+                            $get_category = "SELECT * FROM category";
+                            $run_category = mysqli_query($connect, $get_category);
+                            while ($row_category = mysqli_fetch_array($run_category)) {
+                                $category_id = $row_category['category_id'];
+                                $category_name = $row_category['category_name'];
                                 echo "<option value='$category_id'>$category_name</option>";
                             }
                             ?>

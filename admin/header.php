@@ -62,7 +62,7 @@ if (!isset($_SESSION['admin'])) {
               <a href="manageSection.php"><i class="fa fa-sitemap mr-3"></i>Sections</a>
             </li>
             <li>
-              <a href="manageCategory.php"><i class="fa fa-ethernet mr-3"></i>Categories</a>
+              <a href="manageCategory.php"><i class="fa fa-ethernet mr-3"></i>category</a>
             </li>
             <li>
               <a href="manageBrand.php"><i class="fa fa-cc-mastercard mr-3"></i>Brands</a>

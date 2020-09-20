@@ -1,14 +1,14 @@
 <?php
 require('header.php');
 $id = $_GET['id'];
-$result = mysqli_query($connect, "SELECT * FROM categories WHERE cat_id=$id ");
+$result = mysqli_query($connect, "SELECT * FROM category WHERE cat_id=$id ");
 $row = mysqli_fetch_assoc($result);
 ?>
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 mt-5 login-section-wrapper pl-5 ">
                     <div class="login-wrapper">
-                    <h1 class="login-title mb-4">Edit Categories</h1>
+                    <h1 class="login-title mb-4">Edit category</h1>
                         <form class="form-horizontal" method="post" action="updateCategory.php" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="hidden" name="id" value="<?php echo $row['section_id'] ?>">

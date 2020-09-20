@@ -2,25 +2,39 @@
 include('navbar.php');
 
 $product_id = $_GET['id'];
-$find_product_data = "SELECT * FROM product WHERE id = '$product_id' LIMIT 1";
+$email = $_SESSION['email'];
+
+if (!$product_id) {
+  echo "<script>
+    document.location='error.php';
+    </script>";
+}
+
+$find_product_data = "SELECT * FROM product WHERE id = '$product_id'";
 $found_product_data = $connect->query($find_product_data);
 $product_id_array = $found_product_data->fetch_assoc();
 $product_section = $product_id_array['section'];
 $product_brand = $product_id_array['brand'];
-$product_categories = $product_id_array['categories'];
-$sql = "INSERT INTO search ( product_id, customer_id, section, brand, categories, datetym)
-  			VALUES('$product_id', '$customer_id', '$product_section', '$product_brand ','$product_categories',NOW())";
+$product_category = $product_id_array['category'];
+$product_description = $product_id_array['description'];
+$product_title  = $product_id_array['name'];
+$product_image = $product_id_array['file'];
+$sql = "INSERT INTO search ( product_id, customer_id, section, brand, category, datetym) VALUES ('$product_id', '$customer_id', '$product_section', '$product_brand ','$product_category',NOW())";
+
 mysqli_query($connect, $sql);
 
-?>
-<?php
-$email = $_SESSION['email'];
-$id = $_GET['id'];
-$result = mysqli_query($connect, "SELECT * FROM product LEFT JOIN section 
-    ON section.section_id = product.section WHERE product.id=$id");
+$result = mysqli_query($connect, "SELECT * FROM product LEFT JOIN section ON section.section_id = product.section WHERE product.id='$product_id'");
+
 $row2 = mysqli_fetch_assoc($result);
 $section_id = $row2['section_id'];
 $section_name = $row2['section_name'];
+
+$result = mysqli_query($connect, "SELECT * FROM product WHERE id='$product_id'");
+$product = mysqli_fetch_assoc($result);
+
+$section = $product['section'];
+$qty = $product['qty'];
+
 ?>
 
 <!DOCTYPE html>
@@ -28,24 +42,14 @@ $section_name = $row2['section_name'];
 
 <head>
   <meta charset="UTF-8">
-  <?php
-
-  $id = $_GET['id'];
-  $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
-  $product = mysqli_fetch_assoc($result);
-  ?>
-  
-  <link rel="icon" href="uploads/<?php echo $product['file']; ?>" sizes="16x16" type="image/png">
+  <link rel="icon" href="uploads/<?php echo $product['file'] ?>"  type="image/png">
   <meta name="description" content="<?php echo $product['description']; ?>">
   <meta name="keywords" content="ecommerce, php, wholesale, html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><?php echo $product['name']; ?></title>
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-  <!-- Css Styles -->
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
@@ -58,47 +62,33 @@ $section_name = $row2['section_name'];
 </head>
 
 <body>
-  <?php
-  $id = $_GET['id'];
 
-  if (!$id) {
-    echo "<script>
-    document.location='error.php';
-    </script>";
-  }
-
-  $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
-  $row = mysqli_fetch_assoc($result);
-  $product_id = $row['id'];
-  $section = $row['section'];
-  $qty = $row['qty'];
-  ?>
   <section class="product-shop carousel-info page-details">
 
-  <?php if (isset($_SESSION['alertMsg'])) : ?>
-        <div class="col-md-6 mx-auto text-center">
-            <div class="alert alert-danger">
-                <?php echo $_SESSION['alertMsg']; ?>
-            </div>
+    <?php if (isset($_SESSION['alertMsg'])) : ?>
+      <div class="col-md-6 mx-auto text-center">
+        <div class="alert alert-danger">
+          <?php echo $_SESSION['alertMsg']; ?>
         </div>
+      </div>
     <?php endif; ?>
     <?php unset($_SESSION['alertMsg']); ?>
 
     <?php if (isset($_SESSION['soldOut'])) : ?>
-        <div class="col-md-6 mx-auto text-center">
-            <div class="alert alert-success">
-                <?php echo $_SESSION['soldOut']; ?>
-            </div>
+      <div class="col-md-6 mx-auto text-center">
+        <div class="alert alert-success">
+          <?php echo $_SESSION['soldOut']; ?>
         </div>
+      </div>
     <?php endif; ?>
     <?php unset($_SESSION['soldOut']); ?>
 
     <?php if (isset($_SESSION['exist'])) : ?>
-        <div class="col-md-6 mx-auto text-center">
-            <div class="alert alert-warning">
-                <?php echo $_SESSION['exist']; ?>
-            </div>
+      <div class="col-md-6 mx-auto text-center">
+        <div class="alert alert-warning">
+          <?php echo $_SESSION['exist']; ?>
         </div>
+      </div>
     <?php endif; ?>
     <?php unset($_SESSION['exist']); ?>
 
@@ -113,18 +103,17 @@ $section_name = $row2['section_name'];
               <div class="product-thumbs">
                 <div class="product-thumbs-track ps-slider owl-carousel">
                   <div class="pt active" data-imgbigurl="uploads/<?php echo $row2['file'] ?>">
-                  <img src="uploads/<?php echo $row2['file'] ?>" alt=""></div>
+                    <img src="uploads/<?php echo $row2['file'] ?>" alt="cover_image"></div>
                   <?php
-                  $sql2 = "SELECT * FROM gallery
-                              WHERE product_id = $id";
-                  $run = mysqli_query($connect, $sql2);
-                  while ($row2 = mysqli_fetch_assoc($run)) :
-                    { 
+                  $sql = "SELECT * FROM gallery WHERE product_id = '$product_id' ";
+                  $run = mysqli_query($connect, $sql);
+                  while ($gallery = mysqli_fetch_assoc($run)) : {
                   ?>
-                    <div class="pt active" data-imgbigurl="uploads/gallery/<?php echo $row2['image'] ?>">
-                      <img src="uploads/gallery/<?php echo $row2['image'] ?>" alt="gallery"></div>
+                      <div class="pt active" data-imgbigurl="uploads/gallery/<?php echo $gallery['image'] ?>">
+                        <img src="uploads/gallery/<?php echo $gallery['image'] ?>" alt="gallery"></div>
 
-                  <?php } endwhile; ?>
+                  <?php }
+                  endwhile; ?>
                 </div>
               </div>
             </div>
@@ -149,14 +138,14 @@ $section_name = $row2['section_name'];
 
                       <form method="post" action="addCart.php" enctype="multipart/form-data">
 
-                        <input type="hidden" name="id" value="<?php echo $id ?>">
+                        <input type="hidden" name="id" value="<?php echo $product_id ?>">
 
                         <?php
 
                         $sql = "SELECT DISTINCT a.*,p.color,p.product_id FROM variant p
             LEFT JOIN attribute a
             ON p.color = a.attr_id
-            WHERE p.product_id = '$id'";
+            WHERE p.product_id = '$product_id'";
                         $ret = mysqli_query($connect, $sql);
                         $num_results = mysqli_num_rows($ret);
                         for ($i = 0; $i < $num_results; $i++) {
@@ -224,7 +213,7 @@ $section_name = $row2['section_name'];
                 </div>
                 <div class="pd-size-choose">
                   <?php
-                  $result = "SELECT * FROM variant where product_id = $id";
+                  $result = "SELECT * FROM variant where product_id = $product_id";
                   $sql = mysqli_query($connect, $result);
                   $row = mysqli_fetch_assoc($sql);
 
@@ -232,7 +221,7 @@ $section_name = $row2['section_name'];
                   $sql = "SELECT DISTINCT a.*,p.size,p.product_id FROM variant p
                                      LEFT JOIN attribute a
                                      ON p.size = a.attr_id
-                                     WHERE p.product_id = '$id'";
+                                     WHERE p.product_id = '$product_id'";
 
                   $result = mysqli_query($connect, $sql);
 
@@ -244,33 +233,26 @@ $section_name = $row2['section_name'];
                   }  ?>
                 </div>
                 <?php
-                $s = "SELECT * FROM product WHERE id = '$id'";
-                $r = mysqli_query($connect, $s);
-                $row_r = mysqli_fetch_assoc($r);
-                $product_id = $row_r['id'];
-                $customer = $_SESSION['email'];
-
                 $sql_fav = "SELECT * FROM wishlist WHERE customer_id ='$customer_id' AND product_id = '$product_id'";
                 $run_fav = mysqli_query($connect, $sql_fav);
                 $row_fav = mysqli_fetch_assoc($run_fav);
                 ?>
 
-                <p> <?php if ($product['qty'] < 0) {
+                <p> <?php if ($qty < 0) {
                       echo "<script>window.open('error.php','_self')</script>";
                     } else {
-                      if ( $product['qty'] == 0 ) {
+                      if ($qty == 0) {
                         echo "<span class='badge badge-info'>Sold Out</span>";
                       } else 
-                      if ( $product['qty'] < 0 && $product['qty'] < 10) {
+                      if ($qty > 0 && $qty < 10) {
                         echo "<span class='badge badge-info'>Few Left</span>";
-                      }
-                      else {
+                      } else {
                         echo "<span class='badge badge-success'>In Stock</span>";
                       }
                     }
                     ?>
-                  <br><br>
-
+                  <br>
+                  <br>
                   <?php if (!$row_fav) { ?>
                     <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=add&id=<?php echo $product_id ?>"><i class="far fa-2x fa-heart" style="color:red"></i></a>
                   <?php } else { ?>
@@ -279,17 +261,17 @@ $section_name = $row2['section_name'];
 
                   &emsp;
 
-                  <a rel="noopener noreferrer" href="https://web.whatsapp.com/send?text=urlencodedtext" target="_blank">
+                  <a rel="noopener noreferrer" href="https://web.whatsapp.com/send?text=https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>" target="_blank">
                     <i style="color: green;" class="fab fa-2x fa-whatsapp"></i>
                   </a>
 
                   &emsp;
 
                   <?php
-                  $title = urlencode("REal");
-                  $url = urlencode("https://www.daddydesign.com/how-to-create-a-custom-facebook-share-button-with-a-custom-counter/");
-                  $summary = urlencode("Learn how to create a custom Facebook 'Share' button, complete with a custom counter, for your website!");
-                  $image = urlencode("https://www.daddydesign.com/ClientsTemp/Tutorials/custom-iframe-share-button/images/thumbnail.jpg");
+                  $title = urlencode("$product_title");
+                  $url = urlencode("https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>");
+                  $summary = urlencode("$product_description");
+                  $image = urlencode("uploads/$product_image");
                   ?>
                   <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title; ?>&amp;p[summary]=<?php echo $summary; ?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $image; ?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">
 
@@ -302,11 +284,11 @@ $section_name = $row2['section_name'];
                 $sql = "SELECT DISTINCT a.*,p.color,p.product_id FROM variant p
                      LEFT JOIN attribute a
                      ON p.size = a.attr_id
-                     WHERE p.product_id = '$id'";
+                     WHERE p.product_id = '$product_id'";
 
                 $result = mysqli_query($connect, $sql);
 
-                while ($row = mysqli_fetch_assoc($result)) ?>
+                $row = mysqli_fetch_assoc($result) ?>
 
 
                 <?php if ($qty > 0) { ?>
@@ -315,14 +297,7 @@ $section_name = $row2['section_name'];
                   </form>
 
                 <?php } else { ?>
-                  </form>
 
-                  <?php
-                  $id = $_GET['id'];
-                  $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
-                  $row = mysqli_fetch_assoc($result);
-                  ?>
-                  
                   <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $row['id']; ?>" id="getUser" style="clear:both; background: #48c9b0; 
   border: none; color: #fff; font-size: 14px; padding: 10px;cursor: pointer;">Notify me</button>
                 <?php } ?>
@@ -374,9 +349,7 @@ $section_name = $row2['section_name'];
                           $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
                           $('#modal-loader').hide();
                         });
-
                     });
-
                   });
                 </script>
               </div>
@@ -387,6 +360,6 @@ $section_name = $row2['section_name'];
     </div>
   </section>
 
-  <?php include('similar.php'); ?>
-  <?php include('recentlyViewed.php'); ?>
-  <?php include('footer.php'); ?>
+<?php include('similar.php'); ?>
+<?php include('recentlyViewed.php'); ?>
+<?php include('footer.php'); ?>

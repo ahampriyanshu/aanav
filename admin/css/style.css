@@ -8241,13 +8241,13 @@ h1, h2, h3, h4, h5,
   #sidebar ul.components {
     padding: 0; }
   #sidebar ul li {
-    font-size: 17px; }
+    font-size: 16.5px; }
     #sidebar ul li > ul {
       margin-left: 10px; }
       #sidebar ul li > ul li {
-        font-size: 14px; }
+        font-size: 13.4px; }
     #sidebar ul li a {
-      padding: 8px 0;
+      padding: 7px 0;
       display: block;
       color: #cecece
     }

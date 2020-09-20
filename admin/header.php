@@ -53,6 +53,9 @@ if (!isset($_SESSION['admin'])) {
               <a href="manageProduct.php"><i class="fa fa-cubes mr-3"></i>Product</a>
             </li>
             <li>
+              <a href="history.php"><i class="fa fa-history mr-3"></i>Search History</a>
+            </li>
+            <li>
               <a href="manageCarousel.php"><i class="fa fa-images mr-3"></i>Carousel</a>
             </li>
             <li>

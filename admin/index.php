@@ -26,6 +26,7 @@ if (!isset($_SESSION['admin'])) {
     <link rel="stylesheet" href="css/chart.css">
 
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -53,6 +54,9 @@ if (!isset($_SESSION['admin'])) {
                         </li>
                         <li>
                             <a href="manageProduct.php"><i class="fa fa-cubes mr-3"></i>Product</a>
+                        </li>
+                        <li>
+                            <a href="history.php"><i class="fa fa-history mr-3"></i>Search History</a>
                         </li>
                         <li>
                             <a href="manageCarousel.php"><i class="fa fa-images mr-3"></i>Carousel</a>
@@ -83,15 +87,17 @@ if (!isset($_SESSION['admin'])) {
                         </li>
                     </ul>
                     <div class="footer">
-                        <p class="text-center" style="font-size:1.2em;"><a href="logout.php"><i class="fas fa-toggle-off"></i>&nbsp;Logout</a></p>
-                        <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i>ahmampriyanshu &copy; MIT Licensed</p>
+                        <a href="https://github.com/ahampriyanshu/aanav">
+                            <p class="text-center " style="color:red; font-size:1.2em;"><a href="logout.php"><i class="fas fa-toggle-off"></i>&nbsp;Logout</a></p>
+                            <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i>ahmampriyanshu &copy; MIT Licensed</p>
+                        </a>
                     </div>
                 </div>
             </nav>
 
             <div class="container align-content-center text-center">
                 <div class="col-lg-9 mx-auto my-4 text-center">
-                    <h1><span class="badge badge-dark">Admin Dashboard</span></h1>
+                    <h1><span class="badge badge-dark">Dashboard</span></h1>
                 </div>
 
 
@@ -108,7 +114,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper text-white">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Total Orders</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-white"><span><?php echo $orders ?></span></div>
                                 </div>
@@ -120,14 +126,12 @@ if (!isset($_SESSION['admin'])) {
                     $result = mysqli_query($connect, "SELECT * FROM customer ");
                     $customer = mysqli_num_rows($result);
                     ?>
-
-
                     <div class="col-lg-6 col-xl-4">
                         <div class="card mb-3 widget-content bg-midnight-bloom">
                             <div class="widget-content-wrapper text-white">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Total Customers</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-white"><span><?php echo $customer ?></span></div>
                                 </div>
@@ -147,7 +151,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper text-white">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Products Sold</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-warning">&#x20B9;&nbsp;<span><?php echo $sum / 1000 ?>K</span></div>
                                 </div>
@@ -172,7 +176,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Orders Delivered</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-success"><span><?php echo $delivered ?></span></div>
                                 </div>
@@ -190,7 +194,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Orders Cancelled</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-danger"><span><?php echo $orders ?></span></div>
                                 </div>
@@ -208,7 +212,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Orders Refunded</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-info"><span><?php echo $orders ?></span></div>
                                 </div>
@@ -335,7 +339,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Active Account</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-success"><span><?php echo $active ?></span></div>
                                 </div>
@@ -353,7 +357,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Unverified Account</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-warning"><span><?php echo $unverified ?></span></div>
                                 </div>
@@ -371,7 +375,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Unactive Account</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-danger"><span><?php echo $unactive ?></span></div>
                                 </div>
@@ -383,73 +387,73 @@ if (!isset($_SESSION['admin'])) {
 
                 <div class="col-lg-12 mx-auto my-5">
                     <div class="table-responsive">
-                <table class='table table-borderless text-center'>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>NAME</th>
-                            <th>EMAIL</th>
-                            <th>PHONE</th>
-                            <th>STATUS</th>
-                            <th>REGISTERED</th>
-                            <th>LAST LOGIN</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
+                        <table class='table table-borderless text-center'>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NAME</th>
+                                    <th>EMAIL</th>
+                                    <th>PHONE</th>
+                                    <th>STATUS</th>
+                                    <th>REGISTERED</th>
+                                    <th>LAST LOGIN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
 
-                        $query = "SELECT * FROM customer ORDER BY id DESC LIMIT 12";
-                        $result = mysqli_query($connect, $query);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                        ?>
+                                $query = "SELECT * FROM customer ORDER BY id DESC LIMIT 12";
+                                $result = mysqli_query($connect, $query);
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
 
-                            <tr>
-                                <td>
-                                    <span class="badge  badge-light"><?php echo $row['id'] ?></span>
-                                </td>
+                                    <tr>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['id'] ?></span>
+                                        </td>
 
-                                <td>
-                                    <span class="badge  badge-light"><?php echo $row['name'] ?></span>
-                                </td>
-                                <td>
-                                    <span class="badge  badge-light"><?php echo $row['email'] ?></span>
-                                </td>
-                                <td>
-                                    <span class="badge  badge-light"><?php echo $row['phone'] ?></span>
-                                </td>
-                                <td>
-                                    <?php if ($row['status'] == 0) { ?>
-                                        <span class="badge badge-warning">Unverified</span>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['name'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['email'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['phone'] ?></span>
+                                        </td>
+                                        <td>
+                                            <?php if ($row['status'] == 0) { ?>
+                                                <span class="badge badge-warning">Unverified</span>
 
-                                    <?php } else if ($row['status'] == 1) { ?>
-                                        <span class="badge badge-success">Active</span>
+                                            <?php } else if ($row['status'] == 1) { ?>
+                                                <span class="badge badge-success">Active</span>
 
-                                    <?php } else if ($row['status'] == 2) { ?>
-                                        <span class="badge badge-success">Unactive</span>
+                                            <?php } else if ($row['status'] == 2) { ?>
+                                                <span class="badge badge-success">Unactive</span>
 
-                                    <?php } else if ($row['status'] == 3) { ?>
-                                        <span class="badge badge-info">Disabled</span>
+                                            <?php } else if ($row['status'] == 3) { ?>
+                                                <span class="badge badge-info">Disabled</span>
 
-                                    <?php } else {  ?>
-                                        <span class="badge badge-danger">Error</span>
-                                    <?php  } ?>
-                                </td>
-                                <td>
-                                    <span class="badge  badge-light"><?php echo $row['datetym'] ?></span>
-                                </td>
-                                <td>
-                                    <span class="badge  badge-light"><?php echo $row['last_login'] ?></span>
-                                </td>
-                               
-                            </tr>
-                        <?php
+                                            <?php } else {  ?>
+                                                <span class="badge badge-danger">Error</span>
+                                            <?php  } ?>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['datetym'] ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="badge  badge-light"><?php echo $row['last_login'] ?></span>
+                                        </td>
 
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                                    </tr>
+                                <?php
+
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
 
                 <div class="col-lg-9 mx-auto mt-2 mb-5 text-center">
@@ -468,7 +472,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Active Product</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-success"><span><?php echo $actPro ?></span></div>
                                 </div>
@@ -486,7 +490,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Unactive Product</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-warning"><span><?php echo $unacPro ?></span></div>
                                 </div>
@@ -504,7 +508,7 @@ if (!isset($_SESSION['admin'])) {
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left">
                                     <div class="widget-heading">Sold Out Product</div>
-                                              </div>
+                                </div>
                                 <div class="widget-content-right">
                                     <div class="widget-numbers text-danger"><span><?php echo $soldOut ?></span></div>
                                 </div>

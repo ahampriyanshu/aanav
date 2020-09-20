@@ -4,21 +4,8 @@ require('header.php');
 <div class="container">
     <div class="row">
     <div class="col-lg-9 mx-auto my-4 text-center">
-         <h2><span class="badge badge-light">Sold Out Notification</span></h2>
+         <h2><span class="badge badge-light">Search History</span></h2>
       </div>
-                <div class="col-lg-9 mx-auto text-center">
-                    <a href="addProduct.php" class="m-2 btn btn-sm btn-success">
-                        <i class="fa fa-plus-square mr-2"></i> <b>Add New Product</b></a>
-
-                        <a href="soldOut.php" class="m-2 btn btn-sm btn-danger">
-                        <i class="fa fa-box-open mr-2"></i> <b>Sold Out Product</b></a>
-
-                        <a href="deactivatedProduct.php" class="m-2 btn btn-sm btn-warning">
-                        <i class="fa fa-ban mr-2"></i> <b>Deactivated Product</b></a>
-
-                        <a href="manageProduct.php" class="m-2 btn btn-sm btn-info">
-                        <i class="fas fa-wrench mr-2"></i> <b>Manage Product</b></a>
-                </div>
         <div class="col-lg-12 mx-auto mt-5">
             <div class="table-responsive">
                 <table class='table table-borderless text-center'>
@@ -28,7 +15,7 @@ require('header.php');
                             <th>PRODUCT</th>
                             <th>NAME</th>
                             <th>CODE</th>
-                            <th>EMAIL</th>
+                            <th>USER</th>
                             <th>DATED</th>
                             <th>DELETE</th>
                         </tr>
@@ -46,7 +33,7 @@ require('header.php');
 
                         $start_from = ($page - 1) * $per_page;
 
-                        $query = "SELECT * FROM notify ORDER BY notify_id DESC LIMIT $start_from, $per_page";
+                        $query = "SELECT * FROM search ORDER BY search_id ASC LIMIT $start_from, $per_page";
                         $result = mysqli_query($connect, $query);
 
 
@@ -70,13 +57,21 @@ require('header.php');
                                     <span class="badge  badge-light"><?php echo $pro['code'] ?></span>
                                 </td>
                                 <td>
-                                    <span class="badge  badge-light"><?php echo $row['email']  ?></span>
+                                    <?php if ($row['customer_id'] == 0) { ?>
+                                    <span class="badge  badge-light">Unkown</span>
+                                    <?php } else {
+                                        $id =$row['customer_id'];
+                                        $customer_result = mysqli_query($connect, "SELECT name FROM customer where id ='$id' ");
+                                        $customer = mysqli_fetch_assoc($customer_result);
+                                         ?>
+                                        <span class="badge  badge-light"><?php echo $customer['name']  ?></span>
+                                    <?php } ?>
                                 </td>
                                 <td>
-                                    <span class="badge  badge-light"><?php echo $row['created_date']  ?></span>
+                                    <span class="badge  badge-light"><?php echo $row['datetym']  ?></span>
                                 </td>
                                 <td>
-                                    <a style="color: red; " class='delete' id='del_<?= $row['notify_id'] ?>'>
+                                    <a style="color: red; " class='delete' id='del_<?= $row['search_id'] ?>'>
                                         <i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
@@ -92,7 +87,7 @@ require('header.php');
 </div>
 </div>
 <?php
-$query = "SELECT * from notify";
+$query = "SELECT * from search";
 $result = mysqli_query($connect, $query);
 $total_posts = mysqli_num_rows($result);
 $total_pages = ceil($total_posts / $per_page);
@@ -142,7 +137,7 @@ echo "<a href='$page_url?page=$total_pages' >Last</a></div></div>";
                     if (result) {
 
                         $.ajax({
-                            url: 'delNotify.php',
+                            url: 'delHistory.php',
                             type: 'POST',
                             data: {
                                 id: deleteid

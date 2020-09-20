@@ -1,8 +1,5 @@
 <?php
 require('header.php');
-?>
-
-<?php
 $id = $_GET['id'];
 $result = mysqli_query($connect, "SELECT * FROM product where id = $id");
 $row = mysqli_fetch_assoc($result);

@@ -25,10 +25,10 @@ for ($i = 1; $i <= $total; $i++) {
 if ($connect->query("UPDATE product SET qty = " . $total_qty . " WHERE id = " . $id)) {
 if ($sql) {
 ?>
-	<script>
-		alert('<?php echo $total . " variants were inserted !!!"; ?>');
-		window.location.href = 'manageProduct.php';
-	</script>
+<script>
+alert('<?php echo $total . " variants were inserted !!!"; ?>');
+window.location.href = 'manageProduct.php';
+</script>
 <?php
 } else {
 ?>

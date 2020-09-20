@@ -1,5 +1,4 @@
 <?php
-
     $result = mysqli_query($connect, "SELECT product.*,order_detail.product_id,
     SUM(order_detail.units) AS TotalQuantity
     FROM product
@@ -12,7 +11,6 @@
         mysqli_close($connect);
 }
 else {
-
 ?>
 
 <section class="carousel-banner carousel-info">

@@ -34,7 +34,7 @@ require_once('essentials/config.php');
 </style>
 
 <?php
-$query = "SELECT * FROM product";
+$query = "SELECT * FROM product WHERE status = 1";
 $result = mysqli_query($connect, $query);
 $total_posts = mysqli_num_rows($result);
 $total_pages = ceil($total_posts / $per_page);

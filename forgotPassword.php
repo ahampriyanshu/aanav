@@ -2,8 +2,9 @@
 session_start();
 require_once('essentials/config.php');
 include "dbConfig.php";
-if (isset($_SESSION['email'])) :
+if (isset($_SESSION['email'])) : {
   header("location: index.php");
+}
 endif;
 $validation = new validation;
 $queries    = new queries;

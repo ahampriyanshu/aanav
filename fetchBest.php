@@ -19,16 +19,6 @@ if (isset($_POST["action"])) {
   SELECT * FROM product WHERE status = 1 AND section = 3
  ";
   }
-  else if (isset($_POST["best"])) {
-    $query = "
-    SELECT product.*,order_detail.product_id,
-    SUM(order_detail.units) AS TotalQuantity
-    FROM product
-    INNER JOIN order_detail 
-    ON product.id = order_detail.product_id
-    WHERE status = 1
- ";
-  }
   else{
     $query = "
   SELECT * FROM product WHERE status = 1
@@ -61,26 +51,11 @@ if (isset($_POST["action"])) {
     if (isset($_POST["start_from"])) {
         $start_from = $_POST['start_from'];
         $per_page = $_POST['per_page'];
-
-        if (isset($_POST["best"])) 
-        {
-          $query .= "
-          GROUP BY order_detail.product_id
-          ORDER BY TotalQuantity DESC LIMIT $start_from, $per_page
-            ";
-        } else  if (isset($_POST["newArrival"])) {
-          $query .= "
-          ORDER BY 1 DESC LIMIT $start_from, $per_page
-            ";
-        }
-        else
-        { 
         $query .= "
 ORDER BY 1 ASC LIMIT $start_from, $per_page
   ";
-        }
     }
-echo $query;
+
     $statement = $con->prepare($query);
     $statement->execute();
     $result    = $statement->fetchAll();

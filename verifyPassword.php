@@ -1,21 +1,22 @@
 <?php
+session_start();
 require_once('essentials/config.php');
 include "dbConfig.php";
-if (isset($_SESSION['email'])) :
-    header("location: index.php");
-  endif;
-if(isset($_GET['code'])){
+if (isset($_SESSION['email'])) : {
+  header("location: index.php");
+}
+endif;
+if(isset($_GET['code']) && $_GET['code'] != 0){
 $code = $_GET['code'];
 
 $verify = mysqli_query($connect, "SELECT * FROM customer WHERE code='$code' and status <= 1");
 if (mysqli_num_rows($verify) < 1) {
-  echo 'error';
-    header('location:error.php');
+    header('location: error.php');
 }
 }
 else
 {
-    header('location:error.php');
+    header('location: error.php');
 }
 
 $validation = new validation;
@@ -32,12 +33,18 @@ if (isset($_POST['submit'])) {
         if ($newpass == $cnfrmpass) {
             $newpass = password_hash($newpass, PASSWORD_DEFAULT);
             $update = mysqli_query($connect, "UPDATE customer SET password = '$newpass' WHERE code='$code' ");
-            $_SESSION['emailVerified'] = "Password successfully updated.";
-            header('location: login.php');
+            if ($update){
+            $deleteCode = mysqli_query($connect, "UPDATE customer SET code = 0 WHERE code='$code' ");
+            header("location:login.php");
+            }
+            else
+            {
+              header('location: error.php');
+            }
           }
         }
         else{
-          $_SESSION['unmatched'] = "New password and confirm password did not match"; 
+          echo 'New Password and Confirm Password does not match';
         }
   }
 ?>
@@ -59,6 +66,7 @@ if (isset($_POST['submit'])) {
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-6 login-section-wrapper">
+
           <?php if (isset($_SESSION['unmatched'])) : ?>
             <div class="alert alert-danger">
               <?php echo $_SESSION['unmatched']; ?>

@@ -1,7 +1,10 @@
 <?php
     $result = mysqli_query($connect, "SELECT DISTINCT(product_id) FROM search ORDER BY product_id DESC LIMIT 0,12");
+    if($result === FALSE){
+        mysqli_close($connect);
+}
+else {
 ?>
-
 <section class="carousel-banner carousel-info">
         <div class="container"> 
         <div class="row">
@@ -60,3 +63,4 @@
             </div>
         </div>
     </section>
+    <?php  } ?>

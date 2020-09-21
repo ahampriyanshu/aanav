@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(E_ALL);
+error_reporting(0);
 require_once('essentials/config.php');
 date_default_timezone_set('Asia/Kolkata');
 if ($_SESSION['email']) {
@@ -132,7 +132,7 @@ input {
                     <span class="count"><?php echo $total; ?></span>
                   </a>
                 </li>
-                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><i class="fa fa-icon-menu"></i></a></li>
               </ul>
             </div>
           </div>

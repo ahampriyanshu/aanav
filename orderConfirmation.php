@@ -1,9 +1,14 @@
 <?php
+include('boilerplate.php');
+if (!isset($_SESSION['email']) ) {
+  echo '<script>
+  location.href="error.php"
+  </script>';
+}
 if (!isset($_GET['id']))
 {
 header('location: error.php');
 }
-include('boilerplate.php');
 $id = $_GET['id'];
 $sql = "SELECT * FROM shipping where shipping_id=$id";
 $run = mysqli_query($connect, $sql);

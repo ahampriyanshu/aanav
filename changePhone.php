@@ -1,4 +1,9 @@
 <?php include('boilerplate.php');
+if (!isset($_SESSION['email']) ) {
+  echo '<script>
+  location.href="error.php"
+  </script>';
+}
 include "dbConfig.php";
 $validation = new validation;
 $queries    = new queries;

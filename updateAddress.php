@@ -1,5 +1,10 @@
 <?php
 include('boilerplate.php');
+if (!isset($_SESSION['email']) ) {
+  echo '<script>
+  location.href="error.php"
+  </script>';
+}
 $id = $_GET['id'];
 $customer_id = $_SESSION['id'];
 $result = mysqli_query($connect, "SELECT * FROM shipping WHERE customer_id = '$customer_id' AND shipping_id=$id");

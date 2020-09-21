@@ -1,6 +1,11 @@
 <?php
 session_start();
 require_once('essentials/config.php');
+if (!isset($_SESSION['email']) ) {
+  echo '<script>
+  location.href="error.php"
+  </script>';
+}
 
 if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '') { ?>
   <h3>Contact Information</h3>

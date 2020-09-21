@@ -1,7 +1,11 @@
 <?php
     $result = mysqli_query($connect, "SELECT * FROM product WHERE section='$section' ORDER BY id DESC LIMIT 0,4");
-?>
 
+    if($result === FALSE){
+        mysqli_close($connect);
+}
+else {
+?>
 <section class="carousel-banner carousel-info">
         <div class="container"> 
         <div class="row">
@@ -52,3 +56,5 @@
             </div>
         </div>
     </section>
+
+<?php } ?>

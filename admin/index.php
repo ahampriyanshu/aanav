@@ -87,7 +87,7 @@ if (!isset($_SESSION['admin'])) {
                         </li>
                     </ul>
                     <div class="footer">
-                        <a href="https://github.com/ahampriyanshu/aanav">
+                        <a href="https://github.com/ahampriyanshu">
                             <p class="text-center " style="color:red; font-size:1.2em;"><a href="logout.php"><i class="fas fa-toggle-off"></i>&nbsp;Logout</a></p>
                             <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i>ahmampriyanshu &copy; MIT Licensed</p>
                         </a>

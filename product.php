@@ -61,14 +61,14 @@ $qty = $product['qty'];
 
 <head>
   <meta charset="UTF-8">
-  <link rel=“icon” type=“image/x-icon” href="img/favicon.ico" />
+  <link rel="icon" href="favicon.ico" sizes="16x16" type="image/png">
   <meta name="description" content="<?php echo $product['description']; ?>">
   <meta name="keywords" content="ecommerce, php, wholesale, html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><?php echo $product['name']; ?></title>
-
   <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="css/themify-icons.css" type="text/css">
@@ -78,6 +78,15 @@ $qty = $product['qty'];
   <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
   <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
   <link rel="stylesheet" href="css/style.css" type="text/css">
+  <link rel="stylesheet" href="essentials/fonts/icomoon/style.css">
+  <link rel="stylesheet" href="essentials/css/bootstrap.min.css">
+  <link rel="stylesheet" href="essentials/css/magnific-popup.css">
+  <link rel="stylesheet" href="essentials/css/jquery-ui.css">
+  <link rel="stylesheet" href="essentials/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="essentials/css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="essentials/css/aos.css">
+  <link rel="stylesheet" href="essentials/css/style.css">
+
 </head>
 
 <body>
@@ -121,16 +130,6 @@ $qty = $product['qty'];
       color: black !important;
     }
   </style>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
-  <link rel="stylesheet" href="essentials/fonts/icomoon/style.css">
-  <link rel="stylesheet" href="essentials/css/bootstrap.min.css">
-  <link rel="stylesheet" href="essentials/css/magnific-popup.css">
-  <link rel="stylesheet" href="essentials/css/jquery-ui.css">
-  <link rel="stylesheet" href="essentials/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="essentials/css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="essentials/css/aos.css">
-  <link rel="stylesheet" href="essentials/css/style.css">
-
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
@@ -424,21 +423,14 @@ $qty = $product['qty'];
 
                   &emsp;
 
-                  <a rel="noopener noreferrer" href="https://web.whatsapp.com/send?text=https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>" target="_blank">
+                  <a rel="noopener noreferrer" href="https://wa.me/?text=https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>" target="_blank">
                     <i style="color: green;" class="fab fa-2x fa-whatsapp"></i>
                   </a>
 
                   &emsp;
 
-                  <?php
-                  $title = urlencode("$product_title");
-                  $url = urlencode("https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>");
-                  $summary = urlencode("$product_description");
-                  $image = urlencode("uploads/$product_image");
-                  ?>
-                  <a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $title; ?>&amp;p[summary]=<?php echo $summary; ?>&amp;p[url]=<?php echo $url; ?>&amp;&p[images][0]=<?php echo $image; ?>', 'sharer', 'toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">
-
-                    <i style="color: blue;" class="fab fa-2x fa-facebook"></i>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>&t=<?php echo $product_title ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=900');return false;" target="_blank" title="Share on Facebook" rel="noopener noreferrer">
+                  <i style="color: blue;" class="fab fa-2x fa-facebook"></i>
                   </a>
                 </p>
 

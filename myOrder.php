@@ -1,11 +1,24 @@
 <?php
 include('boilerplate.php');
-$sql = "SELECT * FROM orders WHERE email = '$customer' ORDER BY created_date DESC";
+
+if (!isset($_SESSION['email']) ) {
+    echo '<script>
+    location.href="error.php"
+    </script>';
+}
+
+$per_page = 12;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+$start_from = ($page - 1) * $per_page;
+$sql = "SELECT * FROM orders WHERE customer_id = '$customer_id' ORDER BY created_date DESC LIMIT $start_from, $per_page";
 $run = mysqli_query($connect, $sql);
 $count = mysqli_num_rows($run);
 
-?>
-                <?php if ($count != 0) {
+if ($count != 0) {
 
                     echo '<section class="borderless-table carousel-info">
               <div class="container">
@@ -109,6 +122,59 @@ $count = mysqli_num_rows($run);
     </div>
 </div>
 </section>
+<style>
+	.center {
+	text-align: center;
+	}
+
+	.pagination {
+		display: inline-block;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+
+	.pagination a {
+		color: grey;
+		float: left;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: .3s;
+	}
+
+	.pagination a.active {
+		background-color: #66fcf1;
+		color: black;
+
+	}
+
+	.pagination a:hover:not(.active) {
+		background-color: #66fcf1;
+		color: black;
+	}
+</style>
+
+<?php
+$query = "SELECT * FROM orders WHERE customer_id = '$customer_id'";
+$result = mysqli_query($connect, $query);
+$total_posts = mysqli_num_rows($result);
+$total_pages = ceil($total_posts / $per_page);
+$page_url = $_SERVER['PHP_SELF'];
+
+
+echo "<div class='center'><div class='pagination justify-content-center'>";
+echo "
+	<a  href ='$page_url?page=1'>First</a>";
+
+for ($i = 1; $i <= $total_pages; $i++) : ?>
+
+	<a class="<?php if ($page == $i) {
+					echo 'active';
+				} ?>" href="<?php echo $page_url ?>?page=<?= $i; ?>"> <?= $i; ?> </a>
+
+<?php endfor;
+echo "<a href='$page_url?page=$total_pages' >Last</a>";
+echo "</div></div>";
+?>
 <?php
                 } else {
                     echo '

@@ -1,5 +1,11 @@
 <?php
 include('boilerplate.php');
+if (!isset($_SESSION['email']) ) {
+    echo '<script>
+    location.href="error.php"
+    </script>';
+}
+
 $sql = "SELECT * FROM orders WHERE email = '$customer' ORDER BY created_date DESC";
 $run = mysqli_query($connect, $sql);
 $count = mysqli_num_rows($run);

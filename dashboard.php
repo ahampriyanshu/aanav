@@ -1,5 +1,12 @@
 <?php
 include('boilerplate.php');
+
+if (!isset($_SESSION['email']) ) {
+    echo '<script>
+    location.href="error.php"
+    </script>';
+}
+
 $sql = "SELECT * FROM orders WHERE email = '$customer' ORDER BY created_date DESC";
 $run = mysqli_query($connect, $sql);
 $count = mysqli_num_rows($run);
@@ -7,7 +14,6 @@ $count = mysqli_num_rows($run);
 $sql2 = "SELECT * FROM wishlist WHERE customer_id='$customer_id'";
 $run2 = mysqli_query($connect, $sql2);
 $count_fav = mysqli_num_rows($run2);
-
 ?>
 <div class="container-fluid">
     <div class="container">

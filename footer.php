@@ -5,7 +5,7 @@
             <li><a href="about.php">About</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
-        <a href="https://github.com/ahampriyanshu/aanav">
+        <a href="https://github.com/ahampriyanshu">
         <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i> ahampriyanshu &copy; MIT Licensed</p>
         </a>
         <ul class="socialIcons">

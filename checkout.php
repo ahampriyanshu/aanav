@@ -139,7 +139,7 @@ location.href="login.php"
                             <p>
                                 <a style="color: #888; margin-left: 10px;" href="delAddress.php?id=<?php echo $row['shipping_id'] ?>" class='pull-right' id='del_<?= $id ?>'>
                                     <i class="far fa-trash-alt"></i></a>
-                                <a style="color: #888;  margin-left: 10px;" href="shipping_edit.php?id=<?php echo $row['shipping_id'] ?>" class="pull-right">
+                                <a style="color: #888;  margin-left: 10px;" href="updateAddress.php?id=<?php echo $row['shipping_id'] ?>" class="pull-right">
                                     <i class="fas fa-wrench"></i></a>
                             </p>
                             <input type="hidden" value="<?php echo $row['shipping_id'] ?>">

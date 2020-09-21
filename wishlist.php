@@ -118,7 +118,7 @@ $count_fav = mysqli_num_rows($run2);
                                             &#x20B9;&nbsp;<?php echo $obj->MRP; ?></strong></p>
 
                                     <p>
-                                        <a style="color: #888;  margin-left: 10px;" href="update-wishlist.php?action=remove&id=<?php echo $id ?>">
+                                        <a style="color: #888;  margin-left: 10px;" href="updateWishlist.php?action=remove&id=<?php echo $id ?>">
                                             <i class="far fa-trash-alt"></i></a>
                                     </p>
 

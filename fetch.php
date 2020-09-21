@@ -103,7 +103,7 @@ ORDER BY 1 ASC LIMIT $start_from, $per_page
                                     
                                         <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '">
                                         <div class="icon">
-                                        <a href="update-wishlist.php?user='.$customer_id.'&action=add&id='.$product_id.'" ><i class="far fa-heart" style="color:red"></i></a>
+                                        <a href="updateWishlist.php?user='.$customer_id.'&action=add&id='.$product_id.'" ><i class="far fa-heart" style="color:red"></i></a>
                                         </div>
                                     </div>
                                     <div class="pi-text">
@@ -126,7 +126,7 @@ ORDER BY 1 ASC LIMIT $start_from, $per_page
                                   
                                       <img width="200" height="300" src="uploads/' .  $row['file'] . '" alt="' .  $row['file'] . '">
                                       <div class="icon">
-                                      <a href="update-wishlist.php?user='.$customer_id.'&action=remove&id='.$product_id.'" ><i class="fas fa-heart" style="color:red"></i></a> 
+                                      <a href="updateWishlist.php?user='.$customer_id.'&action=remove&id='.$product_id.'" ><i class="fas fa-heart" style="color:red"></i></a> 
                                       </div>
                                   </div>
                                   <div class="pi-text">

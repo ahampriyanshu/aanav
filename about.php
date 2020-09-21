@@ -14,20 +14,20 @@ include('boilerplate.php');
       </div>
       <div class="col-md-5">
           <h2 class="text-black text-center mb-4">Who I am</h2>
-        <p lass="text-black text-center" >
+        <p class="text-black text-center" >
         This picture describes me the best.
         </p>
-        <p>Now about the wesite.This website uses:
-       
-        <ul class="library">
-        <li>BootStrap 4: Simple yet powerfull cross platform CSS</li>
-        <li>FPDF: Open Source library to generate PDFs</li>
-        <li>PhPMailer: Open Source library to send e-mails using SMTP & POP3</li>
-        <li> BootBox: Open Source JavaScript library to create programmatic dialog boxes</li>
-        <li>ColorLib: For various front-end snippets</li>
-        <li>Jquery: Open Source JavaScript library by google</li>
-        <li>AJAX: To fetch and post asynchronous data</li>
+        <p class="text-black text-center">Now about the wesite. This website uses:
         </p>
+        <ul style="color:grey">
+        <li>BootStrap 4: Simple yet powerfull cross platform CSS</li>
+        <li>FPDF: To generate PDFs(invoice and sales report)</li>
+        <li>PhPMailer: To send e-mails using SMTP & POP3</li>
+        <li> BootBox: To create programmatic dialog boxes</li>
+        <li>ColorLib: For various front-end snippets</li>
+        <li>Jquery: JavaScript library by google</li>
+        <li>AJAX: To fetch and post asynchronous data</li>
+        
       </div>
     </div>
   </div>

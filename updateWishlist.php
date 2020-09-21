@@ -8,9 +8,6 @@ else{
   $customer_id = $_SESSION['id'];
   $product_id = $_GET['id'];
   $action = $_GET['action'];
-
-  echo $customer_id.$action;
-
     switch($action) {
  
       case "add":

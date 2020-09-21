@@ -6,7 +6,6 @@ $result = mysqli_query($connect, "SELECT * FROM shipping WHERE customer_id = '$c
 $row = mysqli_fetch_assoc($result);
 ?>
  <link rel="stylesheet" href="css/login.css">
-<div class="col-md-5">
   <?php
 
   if (isset($_POST['submit'])) {
@@ -21,15 +20,22 @@ $row = mysqli_fetch_assoc($result);
     $sql = "UPDATE shipping SET full_name='$name',street_address='$street',state='$state',city='$city',pincode='$pincode',phone='$phone',modified_date=now() 
           WHERE shipping_id = $id ";
 
-    mysqli_query($connect, $sql);
+    $run = mysqli_query($connect, $sql);
 
-    echo "<div class='alert alert-success'>
-          <strong><span class='fa fa-check'></span><strong>Successful Update</strong>
-          </div>";
+    if ($run) {
+      echo "<script>window.open('checkout.php','_self')</script>"; 
+  } else {
+      echo "Error description: " . mysqli_error($connect) ;
+  }
+
+    
   }
   ?>
-  <h3>Update Shipping Address</h3>
-  <div class="panel-body">
+   <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 login-section-wrapper">
+        <div class="login-wrapper my-auto">
+            <h1 class="login-title">Update Address</h1>
     <form method="post" action="" enctype="multipart/form-data">
       <input type="hidden" name="id" value="<?php echo $row['shipping_id'] ?>">
 
@@ -46,15 +52,17 @@ $row = mysqli_fetch_assoc($result);
       <input type="text" name="city" class="form-control" value="<?php echo $row['city'] ?>" />
 
       <label>Pincode Code : </label>
-      <input type="text" name="pincode" class="form-control" value="<?php echo $row['pincode'] ?>" />
+      <input type="text" name="pincode" pattern="[0-9]{6}" class="form-control" value="<?php echo $row['pincode'] ?>" />
 
       <label>Phone Number : </label>
-      <input type="text" name="phone" class="form-control" value="<?php echo $row['phone'] ?>" />
+      <input type="text" pattern="[0-9]{10}" name="phone" class="form-control" value="<?php echo $row['phone'] ?>" />
 
-      <a href="shipping_info.php" class="my-3 btn btn-default"> Back</a>
+      <a href="checkout.php" class="my-3 btn btn-default"> Back</a>
       <input type="submit" name="submit" value="Update Address" class="btn btn-warning">
 
     </form>
-  </div>
-</div>
+    </div>
+        </div>
+      </div>
+    </div>
 <?php include('footer.php'); ?>

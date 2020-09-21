@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
 
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Welcome Back</h1>
-            <form name="signupform" method="post" action="">
+            <form name="loginform" method="post" action="">
               <div class="form-group">
                 <label for="password">Email</label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter registered Email" required />

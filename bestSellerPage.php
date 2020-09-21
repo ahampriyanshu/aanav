@@ -186,7 +186,9 @@ SUM(order_detail.units) AS TotalQuantity
 FROM product
 INNER JOIN order_detail 
 ON product.id = order_detail.product_id
-WHERE status = 1";
+GROUP BY order_detail.product_id";
+
+
 $result = mysqli_query($connect, $query);
 $total_posts = mysqli_num_rows($result);
 $total_pages = ceil($total_posts / $per_page);

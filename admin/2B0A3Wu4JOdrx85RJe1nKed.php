@@ -17,3 +17,4 @@ if (mysqli_num_rows($verify) < 1) {
 }
 
 // http://localhost/aanav/admin/2B0A3Wu4JOdrx85RJe1nKed.php?password=$2y$10$CKY7WqfPgzuP7T5FOPmoKe2j2BCBvohjmULjnkz3TdzpQOsbFXe9S
+// A0YX=zwHeAe6[U(r

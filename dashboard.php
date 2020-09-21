@@ -109,7 +109,7 @@ $count_fav = mysqli_num_rows($run2);
                                     </td>
                                     <td><a href="updateCart.php?action=remove&id=<?php echo $product_id ?>">
                                             <i class="fas fa-2x fa-cart-plus"></i></a></td>
-                                    <td><a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>">
+                                    <td><a href="updateWishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>">
                                             <i class="fas fa-2x fa-trash"></i></a></td>
                                 </tr>
 

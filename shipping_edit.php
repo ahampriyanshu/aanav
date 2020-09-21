@@ -5,6 +5,7 @@ $customer_id = $_SESSION['id'];
 $result = mysqli_query($connect, "SELECT * FROM shipping WHERE customer_id = '$customer_id' AND shipping_id=$id");
 $row = mysqli_fetch_assoc($result);
 ?>
+ <link rel="stylesheet" href="css/login.css">
 <div class="col-md-5">
   <?php
 
@@ -27,8 +28,7 @@ $row = mysqli_fetch_assoc($result);
           </div>";
   }
   ?>
-
-  <h3>Edit Shipping Address</h3>
+  <h3>Update Shipping Address</h3>
   <div class="panel-body">
     <form method="post" action="" enctype="multipart/form-data">
       <input type="hidden" name="id" value="<?php echo $row['shipping_id'] ?>">
@@ -51,9 +51,10 @@ $row = mysqli_fetch_assoc($result);
       <label>Phone Number : </label>
       <input type="text" name="phone" class="form-control" value="<?php echo $row['phone'] ?>" />
 
-      <a href="shipping_info.php" class="btn btn-default"> Back</a>
+      <a href="shipping_info.php" class="my-3 btn btn-default"> Back</a>
       <input type="submit" name="submit" value="Update Address" class="btn btn-warning">
 
     </form>
   </div>
 </div>
+<?php include('footer.php'); ?>

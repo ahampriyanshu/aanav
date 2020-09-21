@@ -152,7 +152,7 @@ $start_from = ($page - 1) * $per_page;
 </style>
 
 <?php
-$query = "SELECT * FROM product WHERE section =1";
+$query = "SELECT * FROM product WHERE section =1 AND status = 1";
 $result = mysqli_query($connect, $query);
 $total_posts = mysqli_num_rows($result);
 $total_pages = ceil($total_posts / $per_page);

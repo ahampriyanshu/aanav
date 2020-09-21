@@ -80,7 +80,7 @@ ORDER BY 1 ASC LIMIT $start_from, $per_page
   ";
         }
     }
-echo $query;
+    
     $statement = $con->prepare($query);
     $statement->execute();
     $result    = $statement->fetchAll();

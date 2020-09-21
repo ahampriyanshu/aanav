@@ -68,7 +68,7 @@ location.href="login.php"
                         </label>
                         <label for="ship_store">
                             <input type="radio" name="ship" id="ship_store" value="store" required />
-                            <span>Store Pickup<br><i class="fas fa-2x fa-store"></i></span>
+                            <span>Store Pickup<br><i class="fas fa-2x fa-store-alt"></i></span>
                         </label>
                     </div>
                 </div>

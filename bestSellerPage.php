@@ -181,7 +181,12 @@ $start_from = ($page - 1) * $per_page;
 </style>
 
 <?php
-$query = "SELECT * FROM product WHERE section = 2";
+$query = "SELECT product.*,order_detail.product_id,
+SUM(order_detail.units) AS TotalQuantity
+FROM product
+INNER JOIN order_detail 
+ON product.id = order_detail.product_id
+WHERE status = 1";
 $result = mysqli_query($connect, $query);
 $total_posts = mysqli_num_rows($result);
 $total_pages = ceil($total_posts / $per_page);

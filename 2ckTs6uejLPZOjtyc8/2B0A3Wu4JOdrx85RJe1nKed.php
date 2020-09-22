@@ -16,5 +16,5 @@ if (mysqli_num_rows($verify) < 1) {
 }
 }
 
-// http://localhost/aanav/admin/2B0A3Wu4JOdrx85RJe1nKed.php?password=$2y$10$KmUYETr9.2ckTs6uejLPZOjtyc8.qpypvj0S3yKe8h.Xp5Ha9dNnK
+// http://localhost/aanav/2ckTs6uejLPZOjtyc8/2B0A3Wu4JOdrx85RJe1nKed.php?password=$2y$10$KmUYETr9.2ckTs6uejLPZOjtyc8.qpypvj0S3yKe8h.Xp5Ha9dNnK
 // A0YX=zwHeAe6[U(r

@@ -1,14 +1,12 @@
 <?php
 require('header.php');
-?>
-<?php
-
 if (isset($_POST['submit'])) {
 
     $heading = $_POST['heading'];
     $subheading = $_POST['subheading'];
     $link = $_POST['link'];
     $text = $_POST['text'];
+
     $temp = explode(".", $_FILES["file"]["name"]);
     $file = round(microtime(true)) . '.' . end($temp);
     $dirpath = realpath(dirname(getcwd()));
@@ -25,11 +23,10 @@ if (isset($_POST['submit'])) {
     if ($run) {
         echo "<script>window.open('manageCarousel.php','_self')</script>";
     } else {
-        echo "error";
+        echo "Error description: " . mysqli_error($connect);
     }
 }
 ?>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-9 mx-auto my-4 text-center">
@@ -59,9 +56,9 @@ if (isset($_POST['submit'])) {
         </div>
         <div class="col-lg-6 login-section-wrapper p-md-5 pt-2">
             <div class="login-wrapper">
-            <h2 class="text-center mb-4">
-                <span class="badge badge-light">Cover Image</span>
-              </h2>
+                <h2 class="text-center mb-4">
+                    <span class="badge badge-light">Cover Image</span>
+                </h2>
                 <main class="main_full">
                     <div class="container">
                         <div class="panel">
@@ -121,5 +118,4 @@ if (isset($_POST['submit'])) {
         btnOuter.removeClass("file_uploaded");
     });
 </script>
-
 </html>

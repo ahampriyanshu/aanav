@@ -146,7 +146,7 @@ ORDER BY 1 ASC LIMIT $start_from, $per_page
         $output = '<div  class="container">
         <div style="margin-top:40px;" class="row">
           <div class="col-md-12 text-center">
-          <span class="icon-exclamation-triangle display-3 text-danger"></span>
+         <i class="fas fa-3x  text-danger fa-exclamation-triangle"></i>
           <h3><span class="badge badge-light">No matching items found !</span></h3>
           <p class="display-5 mb-5">Alter your filters and try again</p>
         </div>

@@ -99,20 +99,16 @@ include('boilerplate.php');
             }
         }
     }
-    echo '   </tr>
-              </tbody>
-          </table>
-      </div>
-      <div class="row">
-      <div class="cart-buttons">
-      
-          <a href="shop.php" class="primary-btn continue-shop">Continue shopping</a>
-          <a href="delCart.php" class="primary-btn up-cart">Empty cart</a>
-      
-      </div>';
-    ?>
-
-<?php
+    echo '   
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="row">
+    <div class="cart-buttons">
+    <a href="shop.php" class="primary-btn continue-shop">Continue shopping</a>
+    <a href="delCart.php" class="primary-btn up-cart">Empty cart</a>
+    </div>';
     if (isset($_SESSION['cart'])) {
         $total = 0;
         $itemqty = 0;

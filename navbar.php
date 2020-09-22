@@ -71,7 +71,7 @@ input {
 <link rel="stylesheet" href="essentials/css/aos.css">
 <link rel="stylesheet" href="essentials/css/style.css">
 
-<div class="site-wrap">
+<div class="site-wrap mb-4">
   <header class="site-navbar" role="banner">
     <div class="site-navbar-top">
       <div class="container">
@@ -132,7 +132,7 @@ input {
                     <span class="count"><?php echo $total; ?></span>
                   </a>
                 </li>
-                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><i class="fa fa-icon-menu"></i></a></li>
+                <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><i class="fas fa-bars"></i></a></li>
               </ul>
             </div>
           </div>

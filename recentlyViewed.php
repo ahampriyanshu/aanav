@@ -10,9 +10,7 @@ else {
         <div class="container"> 
         <div class="row">
                 <div class="col-lg-12">
-                  
                         <h3 style="text-align: center; color: #5d6d7e; font-weight: bold; padding:20px;">Recently Viewed</h3>
-                    
                 </div>
             </div>
             <div class="row">

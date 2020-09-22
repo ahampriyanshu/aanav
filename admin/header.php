@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('../essentials/config.php');
-error_reporting(E_ALL);
+error_reporting(0);
 if (!isset($_SESSION['admin'])) {
   header('location:logout.php');
 }

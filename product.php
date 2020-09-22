@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(E_ALL);
+error_reporting(0);
 require_once('essentials/config.php');
 date_default_timezone_set('Asia/Kolkata');
 if ($_SESSION['email']) {
@@ -92,7 +92,6 @@ $qty = $product['qty'];
 <body>
   <style type="text/css">
     input {
-
       border: none;
       border: none transparent;
       outline: none;
@@ -130,7 +129,7 @@ $qty = $product['qty'];
       color: black !important;
     }
   </style>
-  <div class="site-wrap">
+  <div class="site-wrap mb-2">
     <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
         <div class="container">
@@ -191,7 +190,7 @@ $qty = $product['qty'];
                       <span class="count"><?php echo $total; ?></span>
                     </a>
                   </li>
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><i class="fas fa-bars"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -297,23 +296,20 @@ $qty = $product['qty'];
 
                     <div class="custom-radio-button">
 
-
                       <form method="post" action="addCart.php" enctype="multipart/form-data">
 
                         <input type="hidden" name="id" value="<?php echo $product_id ?>">
 
                         <?php
-
                         $sql = "SELECT DISTINCT a.*,p.color,p.product_id FROM variant p
-            LEFT JOIN attribute a
-            ON p.color = a.attr_id
-            WHERE p.product_id = '$product_id'";
+                        LEFT JOIN attribute a
+                        ON p.color = a.attr_id
+                        WHERE p.product_id = '$product_id'";
                         $ret = mysqli_query($connect, $sql);
                         $num_results = mysqli_num_rows($ret);
                         for ($i = 0; $i < $num_results; $i++) {
                           $row = mysqli_fetch_array($ret);
                         ?>
-
                           <input type="radio" id="color-<?php echo $row["value"]; ?>" name="radio_color" value="<?php echo $row["value"]; ?>" required>
                           <label for="color-<?php echo $row["value"]; ?>">
                             <span>
@@ -359,13 +355,27 @@ $qty = $product['qty'];
                               background-color: <?php echo $row["value"]; ?>;
                             }
 
-                            .custom-radio-button input[type="radio"]:checked+label span {
+                            <?php if ($row["value"] == 'white') { ?>.custom-radio-button input[type="radio"]:checked+label span {
                               opacity: 1;
-                              background: url("https://www.positronx.io/wp-content/uploads/2019/06/tick-icon-4657-01.png") center center no-repeat;
+                              background: url("img/blackCheck.svg");
+                              background-position: center;
+                              background-repeat: no-repeat;
+                              background-size: 50%;
                               width: 35px;
                               height: 35px;
                               display: inline-block;
                             }
+
+                            <?php } else { ?>.custom-radio-button input[type="radio"]:checked+label span {
+                              opacity: 1;
+                              background: url("img/whiteCheck.png") center center no-repeat;
+
+                              width: 35px;
+                              height: 35px;
+                              display: inline-block;
+                            }
+
+                            <?php } ?>
                           </style>
                         <?php
                         }
@@ -430,7 +440,7 @@ $qty = $product['qty'];
                   &emsp;
 
                   <a href="https://www.facebook.com/sharer/sharer.php?u=https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>&t=<?php echo $product_title ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=900');return false;" target="_blank" title="Share on Facebook" rel="noopener noreferrer">
-                  <i style="color: blue;" class="fab fa-2x fa-facebook"></i>
+                    <i style="color: blue;" class="fab fa-2x fa-facebook"></i>
                   </a>
                 </p>
 

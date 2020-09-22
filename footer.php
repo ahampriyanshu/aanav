@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer mt-4">
     <div class="container">
         <ul class="foote_bottom_ul_amrc">
             <li><a href="index.php">Home</a></li>
@@ -12,7 +12,7 @@
             <li><a href="https://www.reddit.com/user/ahampriyanshu/"><i style="color: white;" class="fab fa-2x fa-reddit-alien"></i></a></li>
             <li><a rel="noopener noreferrer" href="https://wa.me/919917956610?text=Hi%20Priyanshu" target="_blank">
             <i style="color: #63CE52;"  class="fab fa-2x fa-whatsapp"></i></i></a></li>
-            <li  ><a href="www.linkedin.com/in/ahampriyanshu"><i style="color: #0373B1;" class="fab fa-2x fa-linkedin"></i></a></li>
+            <li  ><a href="https://www.linkedin.com/in/ahampriyanshu"><i style="color: #0373B1;" class="fab fa-2x fa-linkedin"></i></a></li>
             <li><a href="https://t.me/ahampriyanshu"><i style="color: #3CBCD1;" class="fab fa-2x fa-telegram-plane"></i></a></li>
         </ul>
     </div>

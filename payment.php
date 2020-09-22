@@ -106,7 +106,7 @@ while ($row = mysqli_fetch_assoc($run)) {
 
   <div class="container mb-5">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-8 mb-4">
         <h2>Payment Method</h2>
         
         <div class="panel-body my-5">

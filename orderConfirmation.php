@@ -21,7 +21,7 @@ $_SESSION['shipping'] = $row['shipping_id'];
 <div class="container">
   <div style="margin-top:40px;" class="row">
     <div class="col-md-12 text-center">
-      <span class="icon-check_circle display-2 text-success"></span>
+      <i class="fas fa-3x text-success fa-check-circle"></i>
       <h2 class="display-5 text-black">Thank you!</h2>
       <p class="text-success mb-5">Your order was successfuly placed</p>
       <p><a href="orderDetail.php?id=<?php echo $id ?>" class="btn btn-sm btn-success">Order Detail</a></p>

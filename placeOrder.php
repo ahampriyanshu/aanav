@@ -17,6 +17,7 @@ $state =     $row['state'];
 $phone =    $row['phone'];
 $pincode = $row['pincode'];
 $sendEmail  = new sendEmail;
+$time_now =  date('Y-m-d H:i:s');
 
 if (isset($_SESSION['cart'])) {
   $total = 0;
@@ -25,7 +26,6 @@ if (isset($_SESSION['cart'])) {
                            VALUES('$customer_id','$email_address','$full_name','$store_id','$phone','$street_address','$state','$city','$pincode',1,0,0,'COD',NOW(),NOW())");
 
   $order_id = mysqli_insert_id($connect);
-  echo $order_id;
 
   foreach ($_SESSION['cart'] as $variant_id => $quantity) {
 
@@ -103,4 +103,6 @@ $sendEmail->send($admin_name, $admin_email, $subject, $body);
 
 unset($_SESSION['shipping']);
 unset($_SESSION['cart']);
-header("location:orderConfirmation.php?id=".$order_id);
+echo '<script>
+  location.href="orderConfirmation.php?id='.$order_id.'"
+  </script>';

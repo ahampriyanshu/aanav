@@ -17,17 +17,17 @@ include('boilerplate.php');
         <p class="text-black text-center" >
         This picture describes me the best.
         </p>
-        <p class="text-black text-center">Now about the wesite. This website uses:
+        <p class="text-black text-left">Now about the wesite. The website uses:
+        BootStrap 4 , a simple yet powerfull cross platform CSS
+        FPDF to generate PDFs(invoice and sales report),
+        PhPMailer to send e-mails using SMTP & POP3,
+        BootBox to create programmatic dialog boxes
+        ColorLib for various front-end snippets
+        Jquery , a powefull JavaScript library by google
+        AJAX to fetch and post asynchronous data ..Most of all of these libraries are Open Sourced and so is 
+        the website.Feel free to modify,add,delete its content.But before using it for commercial purpose read the
+        licenses of all the mentioned libraries and platforms.
         </p>
-        <ul style="color:grey">
-        <li>BootStrap 4: Simple yet powerfull cross platform CSS</li>
-        <li>FPDF: To generate PDFs(invoice and sales report)</li>
-        <li>PhPMailer: To send e-mails using SMTP & POP3</li>
-        <li> BootBox: To create programmatic dialog boxes</li>
-        <li>ColorLib: For various front-end snippets</li>
-        <li>Jquery: JavaScript library by google</li>
-        <li>AJAX: To fetch and post asynchronous data</li>
-        
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@ include('boilerplate.php');
             <div class="block-38-header">
               <img width="225" height="400" src="img/section/a.jpg" alt="Image placeholder" class="mb-4">
               <h3 class="block-38-heading h4">Norm Macdonald</h3>
-              <p class="block-38-subheading">About to get Cancelled</p>
+              <p class="block-38-subheading">Next Louie CK</p>
             </div>           
           </div>
         </div>

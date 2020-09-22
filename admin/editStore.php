@@ -6,7 +6,7 @@ $row = mysqli_fetch_assoc($result);
 ?>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 login-section-wrapper pl-5 ">
+                <div class="col-sm-6 mt-5 login-section-wrapper pl-5 ">
                     <div class="login-wrapper">
                     <h1 class="login-title mb-4">Edit Store</h1>
                         <form class="form-horizontal" method="post" action="updateStore.php" enctype="multipart/form-data">

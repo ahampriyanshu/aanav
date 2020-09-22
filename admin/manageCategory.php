@@ -51,7 +51,7 @@ require('header.php');
                                 </td>
                                 <td>
                                     <a style="color: #888; 
-                                            " href="editSection.php?id=<?php echo $row['category_id'] ?>">
+                                            " href="editCategory.php?id=<?php echo $row['category_id'] ?>">
                                         <i class="fas fa-wrench"></i></a>
                                 </td>
                                 <td>

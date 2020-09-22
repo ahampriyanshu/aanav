@@ -38,7 +38,7 @@ if (isset($_POST['shipping_validation']) && $_POST['shipping_validation'] != '')
 
           <select name="store_id" class="custom-select d-block w-100" id="state" required>
           <?php
-            $sql = "SELECT * FROM store";
+            $sql = "SELECT * FROM store WHERE status=1";
             $run = mysqli_query($connect, $sql);
             while ($row = mysqli_fetch_array($run)) {
               $store_id = $row['store_id'];

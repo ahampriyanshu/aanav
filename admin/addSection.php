@@ -3,7 +3,7 @@ require('header.php');
 ?>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 login-section-wrapper pl-5 ">
+                <div class="col-sm-6 mt-5 login-section-wrapper pl-5 ">
                     <div class="login-wrapper">
                     <?php
 if (isset($_POST['submit'])) {

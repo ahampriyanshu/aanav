@@ -2,7 +2,7 @@
 require('header.php');
 
 $id = $_GET['id'];
-$result = mysqli_query($connect, "SELECT * FROM section WHERE section_id=$id ");
+$result = mysqli_query($connect, "SELECT * FROM section WHERE section_id='$id '");
 $row = mysqli_fetch_assoc($result);
 ?>
         <div class="container">

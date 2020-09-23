@@ -111,7 +111,7 @@
   ) !important;
 }
 .bg-ripe-malin {
-  background-image: linear-gradient(
+  : linear-gradient(
     120deg,
     #f093fb 0%,
     #f5576c 100%

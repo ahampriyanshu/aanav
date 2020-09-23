@@ -25,7 +25,7 @@
         dots: false,
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
-        navText:  ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: true,
@@ -57,28 +57,7 @@ $(".product-slider").owlCarousel({
         }
     });
 
- $(".logo-carousel").owlCarousel({
-        loop: false,
-        margin: 30,
-        nav: false,
-        items: 5,
-        dots: false,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoHeight: false,
-        mouseDrag: false,
-        autoplay: true,
-        responsive: {
-            0: {
-                items: 3,
-            },
-            768: {
-                items: 5,
-            }
-        }
-    });
-
- $(".ps-slider").owlCarousel({
+ $(".").owlCarousel({
         loop: false,
         margin: 10,
         nav: true,

@@ -11,7 +11,7 @@ if(isset($_REQUEST["term"])){
                     . "'width='30px' height='40px'>&emsp;" . $row['name'] . "</p></a>";
                 }
             } else{
-                echo "<a><p style='color:red;' >No matches found</p></a>";
+                echo "<a><p style='color:red; font-weight:bold;' >No matches found</p></a>";
             }
         }
 ?>

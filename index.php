@@ -22,21 +22,18 @@ include('boilerplate.php');
         <?php } ?>
     </div>
 </section>
-
 <style>
-.single-banner {
+    .single-banner {
 
-  transition: transform .3s; 
-  opacity: 1;
-}
+        transition: transform .3s;
+        opacity: 1;
+    }
 
-.single-banner:hover {
-  transform: scale(1.05);
-  opacity: 1; 
-}
-
+    .single-banner:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
 </style>
-
 <div class="banner-section carousel-info">
     <div class="container-fluid">
         <div class="row">
@@ -75,7 +72,6 @@ include('boilerplate.php');
         });
     });
 </script>
-
 <?php include('latest.php'); ?>
 <?php include('trending.php'); ?>
 <?php include('recentlyViewed.php'); ?>
@@ -95,14 +91,14 @@ include('boilerplate.php');
             </div>
         </div>
         <div class="d-block d-md-none text-center">
-        <h1 style=" font-size: 25px; font-weight: 600; color: #2C44A1;">
-                        Grow Your Business Online
-            <div style="bottom: 15%;" class="carousel-caption">
-         
-                <div class="float-lg-left">
-                    <p><a href="work.php" class="btn btn-sm btn-success">Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a></p>
+            <h1 style=" font-size: 25px; font-weight: 600; color: #2C44A1;">
+                Grow Your Business Online
+                <div style="bottom: 15%;" class="carousel-caption">
+
+                    <div class="float-lg-left">
+                        <p><a href="work.php" class="btn btn-sm btn-success">Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a></p>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

@@ -818,10 +818,6 @@ ol {
   display: none;
 }
 
-/*---------------------
-  Hero Section
------------------------*/
-
 .hero-items .single-hero-items {
   height: 725px;
   padding-top: 210px;
@@ -1305,23 +1301,9 @@ ol {
   line-height: 20px;
 }
 
-/*---------------------
-  Partner Logo
------------------------*/
-
 .partner-logo {
   background: #303030;
   padding: 38px 0;
-}
-
-.logo-carousel .logo-item {
-  display: table;
-}
-
-.logo-carousel .logo-item .tablecell-inner {
-  display: table-cell;
-  height: 45px;
-  vertical-align: middle;
 }
 
 .owl-carousel .owl-item img {

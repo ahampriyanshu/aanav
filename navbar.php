@@ -152,12 +152,12 @@ input {
           <?php
                 if ($_SESSION['email'] == null) {
                   echo ' 
-                  <li  style="margin-top: 50px;" class="log_button" ><a href="login.php" style="color:red; font-weight:bolder; " class="btn btn-sm pull-center">
+                  <li  style="margin-top: 50px;" class="log_button" ><a href="login.php" style="color:#66fcf1; font-weight:bolder; " class="btn btn-sm pull-center">
                   signin / signup
         </a></li>';
                 } else {
                   echo ' 
-                  <li  style="margin-top: 50px;" class="log_button" ><a href="logout.php" style="color:red; font-weight:bolder; " class="btn btn-sm pull-center">
+                  <li  style="margin-top: 50px;" class="log_button" ><a href="logout.php" style="color:#66fcf1; font-weight:bolder; " class="btn btn-sm pull-center">
                   Logout
         </a></li>';
                 } ?>
@@ -174,7 +174,7 @@ input {
       var inputVal = $(this).val();
       var resultDropdown = $(this).siblings(".result");
       if (inputVal.length) {
-        $.get("backend-search.php", {
+        $.get("fetchSearch.php", {
           term: inputVal
         }).done(function(data) {
 

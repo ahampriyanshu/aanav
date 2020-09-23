@@ -70,7 +70,7 @@ if (isset($_POST['submit'])) {
       <div class="row">
         <div class="col-sm-6 login-section-wrapper">
           <div class="brand-wrapper">
-            <img src="img/logo_nav.png" alt="logo" class="logo">
+           <a href="index.php"><img src="img/logo_nav.png" alt="logo" class="logo"></a>
           </div>
 
           <?php if (isset($_SESSION['accountCreated'])) : ?>
@@ -118,6 +118,7 @@ if (isset($_POST['submit'])) {
             </form>
             <a href="forgotPassword.php" class="forgot-password-link">Forgot password?</a>
             <p class="login-wrapper-footer-text">Don't have an account? <a href="register.php" class="text-reset">Register here</a></p>
+            <p class="login-wrapper-footer-text"><a href="index.php" class="text-reset">Back to Shopping</a></p>
           </div>
         </div>
       </div>

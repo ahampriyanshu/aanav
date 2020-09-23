@@ -269,7 +269,8 @@ a {
   width: 300px;
   position: fixed;
   right: 0;
-  z-index: 2000;
+  z-index: 20000;
+  opacity: 2;
   padding-top: 20px;
   background: #fff;
   height: calc(100vh);

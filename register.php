@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
       <div class="row">
         <div class="col-sm-6 login-section-wrapper">
           <div class="brand-wrapper">
-            <img src="img/logo_nav.png" alt="logo" class="logo">
+          <a href="index.php"><img src="img/logo_nav.png" alt="logo" class="logo"></a>
           </div>
           <div class="login-wrapper my-auto">
             <h1 class="login-title">Hello New User</h1>
@@ -123,6 +123,7 @@ if (isset($_POST['submit'])) {
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Register">
             </form>
             <p class="login-wrapper-footer-text">Already a customer&emsp;<a href="login.php" class="text-reset">Welcome Back</a></p>
+            <p class="login-wrapper-footer-text"><a href="index.php" class="text-reset">Back to Shopping</a></p>
           </div>
         </div>
       </div>

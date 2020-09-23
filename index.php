@@ -26,13 +26,13 @@ include('boilerplate.php');
 <style>
 .single-banner {
 
-  transition: transform .3s; /* Animation */
-  opacity: 0.8;
+  transition: transform .3s; 
+  opacity: 1;
 }
 
 .single-banner:hover {
   transform: scale(1.05);
-  opacity: 1; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  opacity: 1; 
 }
 
 </style>
@@ -44,7 +44,7 @@ include('boilerplate.php');
                 <div class="single-banner">
                     <img src="img/section/men.png" height='300' alt="men section">
                     <div class="inner-text">
-                        <h4>Men’s</h4>
+                        <h4>Men</h4>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@ include('boilerplate.php');
                 <div class="single-banner">
                     <img src="img/section/women.png" height='300' alt="women section">
                     <div class="inner-text">
-                        <h4>Women’s</h4>
+                        <h4>Women</h4>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@ include('boilerplate.php');
                 <div class="single-banner">
                     <img src="img/section/kid.png" height='300' alt="kid section">
                     <div class="inner-text">
-                        <h4>Kid’s</h4>
+                        <h4>Kids</h4>
                     </div>
                 </div>
             </div>
@@ -94,10 +94,13 @@ include('boilerplate.php');
                 </div>
             </div>
         </div>
-        <div class="d-block d-md-none">
+        <div class="d-block d-md-none text-center">
+        <h1 style=" font-size: 25px; font-weight: 600; color: #2C44A1;">
+                        Grow Your Business Online
             <div style="bottom: 15%;" class="carousel-caption">
+         
                 <div class="float-lg-left">
-                    <p><a href="work_with_us.php" class="btn btn-sm btn-success">Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a></p>
+                    <p><a href="work.php" class="btn btn-sm btn-success">Work With Us<span class="fa fa-arrow-right" style="margin-left: 9px;"></span></a></p>
                 </div>
             </div>
         </div>

@@ -210,12 +210,12 @@ $qty = $product['qty'];
             <?php
             if ($_SESSION['email'] == null) {
               echo ' 
-                  <li  style="margin-top: 50px;" class="log_button" ><a href="login.php" style="color:red; font-weight:bolder; " class="btn btn-sm pull-center">
+                  <li  style="margin-top: 50px;" class="log_button" ><a href="login.php" style="color:#66FCF1; font-weight:bolder; " class="btn btn-sm pull-center">
                   signin / signup
         </a></li>';
             } else {
               echo ' 
-                  <li  style="margin-top: 50px;" class="log_button" ><a href="logout.php" style="color:red; font-weight:bolder; " class="btn btn-sm pull-center">
+                  <li  style="margin-top: 50px;" class="log_button" ><a href="logout.php" style="color:#66FCF1; font-weight:bolder; " class="btn btn-sm pull-center">
                   Logout
         </a></li>';
             } ?>
@@ -434,7 +434,7 @@ $qty = $product['qty'];
                   &emsp;
 
                   <a rel="noopener noreferrer" href="https://wa.me/?text=https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>" target="_blank">
-                    <i style="color: green;" class="fab fa-2x fa-whatsapp"></i>
+                    <i style="color: #62CC52;" class="fab fa-2x fa-whatsapp"></i>
                   </a>
 
                   &emsp;
@@ -500,7 +500,7 @@ $qty = $product['qty'];
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result");
         if (inputVal.length) {
-          $.get("backend-search.php", {
+          $.get("fetchSearch.php", {
             term: inputVal
           }).done(function(data) {
 

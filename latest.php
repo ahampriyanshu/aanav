@@ -6,9 +6,7 @@
         <div class="container"> 
         <div class="row">
                 <div class="col-lg-12">
-                  
                         <h3 style="text-align: center; color: #5d6d7e; font-weight: bold; padding:20px;"><i class="fas fa-bolt"></i> Latest Products</h3>
-                    
                 </div>
             </div>
             <div class="row">

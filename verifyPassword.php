@@ -6,17 +6,17 @@ if (isset($_SESSION['email'])) : {
   header("location: index.php");
 }
 endif;
-if(isset($_GET['code']) && $_GET['code'] != 0){
+if(isset($_GET['code']) && $_GET['code'] != '0'){
 $code = $_GET['code'];
 
 $verify = mysqli_query($connect, "SELECT * FROM customer WHERE code='$code' and status <= 1");
 if (mysqli_num_rows($verify) < 1) {
-    header('location: error.php');
+    header('location: login.php');
 }
 }
 else
 {
-    header('location: error.php');
+    header('location: register.php');
 }
 
 $validation = new validation;

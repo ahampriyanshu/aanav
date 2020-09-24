@@ -135,7 +135,7 @@ while($row = mysqli_fetch_assoc($result))
 
     $pdf->Cell(0,8,'Address : '.$row['street_address'],0,1,'L');
     $pdf->Cell(0,8,'City : '.$row['city'],0,1,'L');
-    $pdf->Cell(0,8,'City : '.$row['state'],0,1,'L');
+    $pdf->Cell(0,8,'State : '.$row['state'],0,1,'L');
     $pdf->Cell(0,8,'Pincode : '.$row['pincode'],0,1,'L');
 
   }

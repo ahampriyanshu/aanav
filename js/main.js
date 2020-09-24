@@ -25,7 +25,7 @@
         dots: false,
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
-        navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: true,
@@ -37,7 +37,7 @@ $(".product-slider").owlCarousel({
         nav: true,
         items: 4,
         dots: true,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: true,
@@ -57,7 +57,7 @@ $(".product-slider").owlCarousel({
         }
     });
 
- $(".").owlCarousel({
+ $(".ps-slider").owlCarousel({
         loop: false,
         margin: 10,
         nav: true,

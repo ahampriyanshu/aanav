@@ -17,7 +17,7 @@ try {
 
     $mail->addReplyTo('priyanshootiwari@gmail.com', 'aanav');
     $mail->setFrom('priyanshootiwari@gmail.com', 'aanav');
-    $mail->addAddress($email, $userName);     // Add a recipient
+    $mail->addAddress($email, $userName);
     $mail->AddEmbeddedImage('img/logo_nav.png', 'logoimg');
 
     $mail->Subject = $subject;

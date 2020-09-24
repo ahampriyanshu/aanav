@@ -210,12 +210,12 @@ $qty = $product['qty'];
             <?php
             if ($_SESSION['email'] == null) {
               echo ' 
-                  <li  style="margin-top: 50px;" class="log_button" ><a href="login.php" style="color:#66FCF1; font-weight:bolder; " class="btn btn-sm pull-center">
+                  <li  style="margin-top: 50px;" class="log_button" ><a href="login.php" style="color:red; font-weight:bolder; " class="btn btn-sm pull-center">
                   signin / signup
         </a></li>';
             } else {
               echo ' 
-                  <li  style="margin-top: 50px;" class="log_button" ><a href="logout.php" style="color:#66FCF1; font-weight:bolder; " class="btn btn-sm pull-center">
+                  <li  style="margin-top: 50px;" class="log_button" ><a href="logout.php" style="color:red; font-weight:bolder; " class="btn btn-sm pull-center">
                   Logout
         </a></li>';
             } ?>
@@ -434,7 +434,7 @@ $qty = $product['qty'];
                   &emsp;
 
                   <a rel="noopener noreferrer" href="https://wa.me/?text=https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>" target="_blank">
-                    <i style="color: #62CC52;" class="fab fa-2x fa-whatsapp"></i>
+                    <i style="color: green;" class="fab fa-2x fa-whatsapp"></i>
                   </a>
 
                   &emsp;
@@ -461,7 +461,12 @@ $qty = $product['qty'];
                   <input type="submit" name="submit" value="Add To Cart" style="clear:both;  border: none;" class="primary-btn pd-cart">
                   </form>
 
-                <?php } else { ?>
+                  <?php } else { 
+
+                  $id = $_GET['id'];
+                  $result = mysqli_query($connect, "SELECT * FROM product WHERE id=$id");
+                  $row = mysqli_fetch_assoc($result);
+                  ?>
 
                   <button data-toggle="modal" data-target="#view-modal" data-id="<?php echo $row['id']; ?>" id="getUser" style="clear:both; background: #48c9b0; 
   border: none; color: #fff; font-size: 14px; padding: 10px;cursor: pointer;">Notify me</button>
@@ -492,15 +497,54 @@ $qty = $product['qty'];
       </div>
     </div>
   </section>
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script type="text/javascript">
+  <script src="essentials/js/jquery-3.3.1.min.js"></script>
+  <script src="essentials/js/jquery-ui.js"></script>
+  <script src="essentials/js/popper.min.js"></script>
+  <script src="essentials/js/bootstrap.min.js"></script>
+  <script src="essentials/js/owl.carousel.min.js"></script>
+  <script src="essentials/js/jquery.magnific-popup.min.js"></script>
+  <script src="essentials/js/aos.js"></script>
+  <script src="essentials/js/main.js"></script>
+  <script>
+    $(document).ready(function() {
+
+      $(document).on('click', '#getUser', function(e) {
+
+        e.preventDefault();
+
+        var uid = $(this).data('id');
+
+        $('#dynamic-content').html('');
+        $('#modal-loader').show();
+        $.ajax({
+            url: 'notify.php',
+            type: 'POST',
+            data: 'id=' + uid,
+            dataType: 'html'
+          })
+          .done(function(data) {
+            console.log(data);
+            $('#dynamic-content').html('');
+            $('#dynamic-content').html(data);
+            $('#modal-loader').hide();
+          })
+          .fail(function() {
+            $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+            $('#modal-loader').hide();
+          });
+
+      });
+
+    });
+  </script>
+    <script type="text/javascript">
     $(document).ready(function() {
       $('.search-box input[type="text"]').on("keyup input", function() {
 
         var inputVal = $(this).val();
         var resultDropdown = $(this).siblings(".result");
         if (inputVal.length) {
-          $.get("fetchSearch.php", {
+          $.get("backend-search.php", {
             term: inputVal
           }).done(function(data) {
 
@@ -517,14 +561,6 @@ $qty = $product['qty'];
       });
     });
   </script>
-  <script src="essentials/js/jquery-3.3.1.min.js"></script>
-  <script src="essentials/js/jquery-ui.js"></script>
-  <script src="essentials/js/popper.min.js"></script>
-  <script src="essentials/js/bootstrap.min.js"></script>
-  <script src="essentials/js/owl.carousel.min.js"></script>
-  <script src="essentials/js/jquery.magnific-popup.min.js"></script>
-  <script src="essentials/js/aos.js"></script>
-  <script src="essentials/js/main.js"></script>
   <?php include('similar.php'); ?>
   <?php include('recentlyViewed.php'); ?>
   <?php include('footer.php'); ?>

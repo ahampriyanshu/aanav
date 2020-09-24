@@ -1,7 +1,42 @@
 <?php
-   include('boilerplate.php');
+include('boilerplate.php');
+include "dbConfig.php";
+$sendEmail  = new sendEmail;
+$queries = new queries;
+
+if (isset($_POST['submit'])) {
+
+    $fullName = $_POST['fullName'];
+    $email    = $_POST['email'];
+    $msg      = $_POST['msg'];
+    $phone    = $_POST['phone'];
+    $url      = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/shop.php";
+    $url2     = "https://" . $_SERVER['SERVER_NAME'] . "/aanav/contact.php";
+    $subject  = 'Thank you';
+    $body = '<p style="color:#66FCF1; font-size: 32px;" >Hi ' . $fullName . '</p><p  style="color:grey; font-size: 16px;" > Thank you for contacting us.We will reply you as soon as possible</p> 
+    <p><a style="background-color: #66FCF1;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;"
+    href="' . $url . '">Latest Co-ordinator</a></p><p  style="color:red; font-size: 10px;"  href="' . $url2 . '"> Need Help ? <a>Contact Us</a></p>';
+
+    if ($queries->query("INSERT INTO msg (name, email, phone, msg, type, created_date) VALUES
+     ('$fullName', '$email', '$phone', '$msg', 'contact', now()) ")) {
+
+      if ($sendEmail->send($fullName, $email, $subject, $body)) {
+        $_SESSION['msgSent'] = "Thank you for contacting us.";
+      }
+    }
+}
 ?>
- <!-- Map Section Begin -->
  <div class="map carousel-info">
         <div class="container">
             <div class="map-inner">
@@ -16,9 +51,15 @@
             </div>
         </div>
     </div>
-    <!-- Map Section Begin -->
+    <?php if (isset($_SESSION['msgSent'])) : ?>
+        <div class="col-md-6 mx-auto mt-3 text-center">
+            <div class="alert alert-success">
+              <?php echo $_SESSION['msgSent']; ?>
+            </div>
+        </div>
+          <?php endif; ?>
+          <?php unset($_SESSION['msgSent']); ?>
 
-    <!-- Contact Section Begin -->
     <section class="contact-section carousel-info">
         <div class="container">
             <div class="row">
@@ -52,27 +93,30 @@
                             </div>
                             <div class="ci-text">
                                 <span>Email:</span>
-                                <p>tiwarimay2002@gmail.com</p>
+                                <p>ahampriyanshu@gmail.com</p>
                             </div>
                         </div>
                     </div>
                 </div>
+       
                 <div class="col-lg-6 offset-lg-1">
                     <div class="contact-form">
                         <div class="leave-comment">
                             <h4>Leave A Comment</h4>
-                            <p>Our staff will call back later and answer your questions.</p>
-                            <form action="#" class="comment-form">
+                            <form method="post"  class="comment-form">
                                 <div class="row">
-                                    <div class="col-lg-6">
-                                        <input type="text" placeholder="Your name">
+                                    <div class="col-lg-12">
+                                        <input name="fullName" type="text" placeholder="Your name" required />
                                     </div>
                                     <div class="col-lg-6">
-                                        <input type="text" placeholder="Your email">
+                                        <input name="phone" type="number" placeholder="Your mobile" required />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input name="email" type="email" placeholder="Your email" required />
                                     </div>
                                     <div class="col-lg-12">
-                                        <textarea placeholder="Your message"></textarea>
-                                        <button type="submit" class="site-btn">Send message</button>
+                                        <textarea name="msg" placeholder="Your message" required ></textarea>
+                                        <button type="submit"  name="submit" class="site-btn">Send message</button>
                                     </div>
                                 </div>
                             </form>
@@ -82,6 +126,5 @@
             </div>
         </div>
     </section>
-
-    <?php include('footer.php'); ?></body>
+<?php include('footer.php'); ?></body>
 </html>

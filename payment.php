@@ -1,14 +1,16 @@
 <?php
 include('boilerplate.php');
-
+if (!isset($_GET['id']) || !isset($_SESSION['email']) || !$_SESSION['cart'] ) {
+  echo '<script>
+  location.href="error.php"
+  </script>';
+}
 $id = $_GET['id'];
 $sql = "SELECT * FROM shipping where shipping_id=$id";
 $run = mysqli_query($connect, $sql);
 while ($row = mysqli_fetch_assoc($run)) {
-
   $_SESSION['shipping'] = $row['shipping_id'];
 }
-
 ?>
 
 <style type="text/css">
@@ -102,252 +104,135 @@ while ($row = mysqli_fetch_assoc($run)) {
   }
 </style>
 
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-            <h2>Payment Method</h2>
-
-<div class="form-check">
-
-  <label>
-    <input type="radio" class="option-input radio" id="COD_radio" name="COD_radio" />
-    Cash On Delivery
-  </label>
-
-  <label>
-    <input type="radio" class="option-input radio" id="Prepaid_radio" name="Prepaid_radio" />
-    Pay With Razorpay
-  </label>
-</div>
-
-<div class="pay-container">
-</div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $("#COD_radio").change(function() {
-      var shippingValidation = $(this).val();
-
-      if (shippingValidation != '') {
-        $("#loader").show();
-        $(".pay-container").html("");
-
-        $.ajax({
-          type: 'post',
-          data: {
-            shipping_validation: shippingValidation
-          },
-          url: 'COD.php',
-          success: function(returnData) {
-            $("#loader").hide();
-            $(".pay-container").html(returnData);
-          }
-        });
-      }
-
-    })
-  });
-
-  $(document).ready(function() {
-    $("#Prepaid_radio").change(function() {
-      var shippingValidation = $(this).val();
-
-      if (shippingValidation != '') {
-        $("#loader").show();
-        $(".pay-container").html("");
-
-        $.ajax({
-          type: 'post',
-          data: {
-            shipping_validation: shippingValidation
-          },
-          url: 'COD.php',
-          success: function(returnData) {
-            $("#loader").hide();
-            $(".pay-container").html(returnData);
-          }
-        });
-      }
-
-    })
-  });
-</script>
-</div>
-
-<style type="text/css">
-      .securepayment {
-        font-family: "adihausregular", Helvetica, Verdana, sans-serif;
-        font-size: 14px;
-        line-height: 20px;
-        color: #000;
-        font-weight: normal;
-        padding-top: 0px;
-        margin-top: 4px;
-      }
-
-      .order-sum {
-        background-color: #f2f3f4;
-        width: auto;
-        height: auto;
-
-
-      }
-
-      .inner-order {
-        background-color: #fff;
-        margin-bottom: 20px;
-
-      }
-
-      .shipping_inner {
-        font-size: 14px;
-        text-align: left;
-        padding-top: 0;
-        background-color: #fff;
-        margin-bottom: 20px;
-      }
-
-      .shipping_inner_style {
-        padding-left: 8px;
-        margin-left: 10px;
-      }
-
-      .shipping_inner b {
-        display: block;
-        font-size: 14px;
-        margin-bottom: 5px;
-        color: #34495e;
-      }
-    </style>
-
-            <div class="col-lg-4">
-            <div class="order-sum">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-xs-12 col-sm-8">
-              <div class="inner-order">
-                <?php
-                if (isset($_SESSION['cart'])) {
-
-                  $total = 0;
-                  $itemqty = 0;
-
-
-                  foreach ($_SESSION['cart'] as $variant_id => $quantity) {
-
-                    $find_pro_id = mysqli_query($connect,"SELECT * FROM variant WHERE pro_attr_id='$variant_id'");
-                    $pro_data = mysqli_fetch_assoc($find_pro_id);
-                    $product_id = $pro_data['product_id'];
-
-                    $result = "SELECT  name, qty, cost,file FROM product WHERE id = $product_id";
-                    $run = mysqli_query($connect, $result);
-
-                    if ($run) {
-
-                      echo '<ul class="list">';
-                      while ($obj = mysqli_fetch_object($run)) {
-                        $cost = $obj->cost * $quantity;
-                        $total = $total + $cost;
-                        $itemqty = $itemqty + $quantity;
-
-
-                        echo '<li>';
-                        echo '<img src="admin/cover/' . $obj->file . '" width="100" height="140" align="right" align="right" alt="">';
-                        echo '<b>' . $obj->name . '</b>';
-                        echo '<h6 class="my-0">US$' . $obj->cost . '</h6>';
-                        echo '<small>quantity: ' . $quantity . '</small>';
-                        echo '</li>';
-                      }
-                      echo '</ul>';
-                    }
-                  }
-
-                  echo '<table class="table">';
-                  echo '<tr>';
-                  echo '<td>TOTAL(' . $itemqty . ')</td>';
-                  echo '<td></td>';
-                  echo '<td></td>';
-                  echo '<td></td>';
-                  echo '<td><strong>US$' . $total . '</strong></td>';
-                  echo '</tr>';
-                  echo '</table>';
-                  echo '<br>';
-                }
-                ?>
-
-
-              </div>
-              <?php
-              $shipping = $_SESSION['shipping'];
-              $sql = "SELECT * FROM shipping WHERE shipping_id = $shipping";
-              $run = mysqli_query($connect, $sql);
-              $row = mysqli_fetch_assoc($run);
-              ?>
-              <div class="shipping_inner">
-                <div class="shipping_inner_style">
-                  <b>Delivery Location</b><br>
-                  <?php echo $row['full_name'] ?><br>
-                  <?php echo $row['street_address'] ?><br>
-                  <?php echo $row['city'] ?> ,
-                  <?php echo $row['state'] ?><br>
-                  <span class="fa fa-phone"></span> <?php echo $row['phone'] ?><br>
-                  <span class="fa fa-email"></span> <?php echo $row['email'] ?><br>
+  <div class="container mb-5">
+    <div class="row">
+      <div class="col-lg-8 mb-4">
+        <h2>Payment Method</h2>
+        
+        <div class="panel-body my-5">
+              
+                <div class="notice notice-warning">
+                        <p>Dear <?php echo $_SESSION['name'] ?>,</p>
+                        <p>It is to be informed that some of our merchant doesn't support COD for some specific locations , in some cases the order may get cancelled</p>
                 </div>
-              </div>
-            </div>
-          </div>
+                <a href="placeOrder.php" class="btn btn-sm btn-success pull-right" style="margin-left: 4px">Place Order
+                        <i style=" margin-left: 10px;" class="fas fa-arrow-right"></i></a>
+                <a href="checkout.php" class="btn btn-sm pull-right">
+                        <i style=" margin-right: 10px;" class="fas fa-arrow-left"></i>Back
+                </a>
         </div>
       </div>
-   </div>
- </div>
-</div>
-</section>
 
-<style type="text/css">
-  h3 {
-    font-family: AdineuePRO, Helvetica, Verdana, sans-serif;
-    font-style: normal;
-    color: #000;
-    font-size: 18px;
-    margin: 15px 0px;
-    line-height: 100%;
-    font-weight: 600;
-    padding: 4px;
+      <div class="col-lg-4">
+            <?php
+            $shipping = $_SESSION['shipping'];
+            $sql = "SELECT * FROM shipping WHERE shipping_id = $shipping";
+            $run = mysqli_query($connect, $sql);
+            $row = mysqli_fetch_assoc($run);
+            ?>
+                            <table class="table table-borderless">
+                            <?php
+              if (isset($_SESSION['cart'])) {
 
-  }
-
-  h1 {
-    color: #5d6d7e;
-    text-align: center;
-  }
-
-  .box {
-    border-radius: 6px;
-    border: 2px solid #009689;
-    margin: 8px;
-    padding: 8px;
-    width: 200px;
-    height: 100px;
-    text-align: center;
-    font-size: 45px;
-    background-color: #009688;
-  }
-
-  .box a {
-    color: white;
-  }
+                $total = 0;
+                $itemqty = 0;
 
 
-  h2 {
-    font-size: 26px;
-    line-height: 24px;
-    letter-spacing: 1.5px;
-    font-family: AdineuePRO, Helvetica, Verdana, sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    color: #000;
-  }
-</style>
+                foreach ($_SESSION['cart'] as $variant_id => $quantity) {
+
+                  $find_pro_id = mysqli_query($connect, "SELECT * FROM variant WHERE variant_id='$variant_id'");
+                  $pro_data = mysqli_fetch_assoc($find_pro_id);
+                  $product_id = $pro_data['product_id'];
+
+                  $result = "SELECT qty, cost FROM product WHERE id = $product_id";
+                  $run = mysqli_query($connect, $result);
+
+                  if ($run) {
+
+                    while ($obj = mysqli_fetch_object($run)) {
+                      $cost = $obj->cost * $quantity;
+                      $total = $total + $cost;
+                      $itemqty = $itemqty + $quantity;
+                    }
+                  }
+                }
+              
+              ?>
+  			<tr>
+  				<th><span class="badge badge-info"><?php echo $itemqty ?>&nbsp;unit</th>
+  				<td><span class="badge badge-success">&#x20B9;&nbsp;<?php echo $total ?></td>
+          <?php  }  ?>
+          </tr>
+              		<tr>
+  				<th><span class="badge badge-dark">Name</th>
+  				<td><span class="badge badge-light"><?php echo $row['full_name'] ?></td>
+              </tr>
+              <tr>
+  				<th><span class="badge badge-dark">Email</th>
+  				<td><span class="badge badge-light"><?php echo $row['email'] ?></td>
+              </tr>
+              <tr>
+  				<th><span class="badge badge-dark">Phone</th>
+  				<td><span class="badge badge-light"><?php echo $row['phone'] ?></td>
+              </tr>
+
+              <?php if ($row['store_id'] == 0) { ?>
+
+                <tr>
+  				<th><span class="badge badge-dark">Delivery Type</th>
+  				<td><span class="badge badge-light">Home Delivery </td>
+  			</tr>
+  			<tr>
+  				<th><span class="badge badge-dark">Address</th>
+  				<td><span class="badge badge-light"><?php echo $row['street_address'] ?></td>
+  			</tr>
+  			<tr>
+  				<th><span class="badge badge-dark">City</th>
+  				<td><span class="badge badge-light"><?php echo $row['city'] ?></td>
+              </tr>
+              <tr>
+  				<th><span class="badge badge-dark">State</th>
+  				<td><span class="badge badge-light"><?php echo $row['state'] ?></td>
+              </tr>
+              <tr>
+  				<th><span class="badge badge-dark">Pincode</th>
+  				<td><span class="badge badge-light"><?php echo $row['pincode'] ?></td>
+              </tr>
+              <tr>
+
+                                <?php } else { ?>
+                                    <tr>
+  				<th><span class="badge badge-dark">Delivery Type</th>
+  				<td><span class="badge badge-light">Store Pickup</td>
+              </tr>
+              <?php $store_sql = "SELECT * FROM store WHERE store_id =".$row['store_id'];
+            $store_query = mysqli_query($connect, $store_sql);
+            while ($store_row = mysqli_fetch_array($store_query)) {
+            ?>
+            
+  			<tr>
+  				<th><span class="badge badge-dark">Store Name</th>
+  				<td><span class="badge badge-light"><?php echo $store_row['store_name'] ?></td>
+  			</tr>
+  			<tr>
+  				<th><span class="badge badge-dark">Store Email</th>
+  				<td><span class="badge badge-light"><?php echo $store_row['email'] ?></td>
+              </tr>
+              <tr>
+  				<th><span class="badge badge-dark">Store Phone</th>
+  				<td><span class="badge badge-light"><?php echo $store_row['phone'] ?></td>
+              </tr>
+              <tr>
+  				<th><span class="badge badge-dark">Store Address</th>
+  				<td><span class="badge badge-light"><?php echo $store_row['address'] ?></td>
+  			</tr>
+                            <?php } 
+                          } ?>
+           
+  		
+          </table>
+            </div>
+  </div>
+  </div>
 
 <?php include('footer.php'); ?>

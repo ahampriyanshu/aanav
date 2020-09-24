@@ -108,7 +108,7 @@ a {
     margin-right: 10px; }
   .site-navbar .site-search-icon a:hover {
     text-decoration: none; }
-  .site-navbar .site-logo a {
+  .site-navbar .site-logo a {classclass
     text-transform: uppercase;
     color: #25262a;
     letter-spacing: .2em;
@@ -169,6 +169,9 @@ a {
     margin-bottom: 0; }
     .site-navbar .site-navigation .site-menu .active > a {
       color: #66FCF1; }
+      .site-navbar .site-navigation .site-menu .log_button {
+        display:none;
+      }
     .site-navbar .site-navigation .site-menu a {
       text-decoration: none !important;
       font-size: 15px;
@@ -266,7 +269,8 @@ a {
   width: 300px;
   position: fixed;
   right: 0;
-  z-index: 2000;
+  z-index: 20000;
+  opacity: 2;
   padding-top: 20px;
   background: #fff;
   height: calc(100vh);
@@ -314,8 +318,7 @@ a {
         letter-spacing: .2em;
         font-size: 20px;
         padding-left: 10px;
-        padding-right: 10px;
-        border: 2px solid #25262a; }
+        padding-right: 10px;}
         .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a:hover {
           text-decoration: none; }
   .site-mobile-menu .site-mobile-menu-body {

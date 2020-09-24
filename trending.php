@@ -1,7 +1,10 @@
 <?php
     $result = mysqli_query($connect, "SELECT DISTINCT(product_id) FROM search ORDER BY product_id DESC LIMIT 0,12");
+    if($result === FALSE){
+        mysqli_close($connect);
+}
+else {
 ?>
-
 <section class="carousel-banner carousel-info">
         <div class="container"> 
         <div class="row">
@@ -35,20 +38,20 @@
                                     $row_fav = mysqli_fetch_assoc($run_fav);
                                   
                                      if ($row_fav['fav_id'] == null) { ?>
-                                        <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=add&id=<?php echo $product_id ?>" ><i class="far fa-heart" style="color:red"></i></a>
+                                        <a href="updateWishlist.php?user=<?php echo $customer_id ?>&action=add&id=<?php echo $product_id ?>" ><i class="far fa-heart" style="color:red"></i></a>
                  <?php } else { ?>
-                    <a href="update-wishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>" ><i class="fas fa-heart" style="color:red"></i></a>    
+                    <a href="updateWishlist.php?user=<?php echo $customer_id ?>&action=remove&id=<?php echo $product_id ?>" ><i class="fas fa-heart" style="color:red"></i></a>    
                  <?php } ?>
 </div>
                             </div>
                             <div class="pi-text">
-                                <div class="catagory-name"><?php echo $product_id_array ['code']; ?></div>
-                                <a href="#">
-                                    <h5><strong><?php echo $product_id_array ['name']; ?></strong></h5>
+                                <a href="product.php?id=<?php echo $product_id_array ['id']; ?>">
+                                <h4><span class="badge badge-light"><?php echo $product_id_array['name']; ?>
+                                </span></h4>
                                 </a>
                                 <div class="product-price">
                                 &#x20B9;&nbsp;<?php echo $product_id_array ['cost']; ?>
-                                <span>&#x20B9;&nbsp;<?php echo $product_id_array ['MRP']; ?></span>
+                                <span class="MRP">&#x20B9;&nbsp;<?php echo $product_id_array ['MRP']; ?></span>
                                 </div>
                             </div>
                         </div>
@@ -60,3 +63,4 @@
             </div>
         </div>
     </section>
+    <?php  } ?>

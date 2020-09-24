@@ -2,24 +2,14 @@
 	session_start();
   require_once('essentials/config.php');
   $id = intval($_REQUEST['id']);
+  
 ?>
+
     
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
-
-<!-- <form method="post" action="notify-backend.php" enctype="multipart/form-data">
-  <input type="hidden" name="id" value="<?php echo $id ?>">
-  <div class="form-group">
-    <label for="">Email Address*</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email Address">
-    <small id="emailHelp" class="form-text text-muted"></small>
-  </div>
-    
-  	<button type="submit" name="submit" class="btn btn-dark pull-right" style="background-color: #000;">Send</button>
-    <a href="" class="btn btn-outline-dark pull-right" style="margin-right: 5px;">NO THANKS</a>
-</form> -->
 
     <div class="container-fluid ">
   <div class="row">
@@ -31,17 +21,11 @@
           <div class="form-group mb-4">
               <label style="color:#222 !important;" for="phone">Enter your email to turn on notification</label>
 </div>
-            <form method="post" action="notify-backend.php" enctype="multipart/form-data">
+            <form method="post" action="notifyUpdate.php" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?php echo $id ?>">
               <div class="form-group mb-4">
                 <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required/>
                </div>
-              <?php  
-		  if(isset($found))
-		  {
-		  	echo '<p  style="color:#7EF9FF;"><center>You have already subscribed for this product</center></p>';
-		  }
-	?>
               <input name="submit" id="login" class="btn btn-block login-btn" type="submit" value="Notify">
             </form>
           </div>

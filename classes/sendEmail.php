@@ -1,39 +1,31 @@
 <?php
-error_reporting(E_ALL);
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
- class sendEmail {
-
-    public function send($userName, $email, $url){
-
-       // Load Composer's autoloader
-require 'phpmailer/vendor/autoload.php';
-
-// Instantiation and passing `true` enables exceptions
+class sendEmail {
+public function send($userName, $email, $subject, $body){
+require 'PHPMailer/vendor/autoload.php';
 $mail = new PHPMailer(true);
-
 try {
-    //Server settings
-    $mail->SMTPDebug = 0;                                       // Enable verbose debug output
-    $mail->isSMTP();                                            // Set mailer to use SMTP
-    $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'priyanshootiwari@gmail.com';                     // SMTP username
-    $mail->Password   = 'Django@1212';                               // SMTP password
-    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-    $mail->Port       = 587;                                    // TCP port to connect to
+    $mail->SMTPDebug = 0;                                      
+    $mail->isSMTP();                                           
+    $mail->Host       = 'smtp.gmail.com';                      
+    $mail->SMTPAuth   = true;                                  
+    $mail->Username   = '**********@gmail.com';         
+    $mail->Password   = '******';                         
+    $mail->SMTPSecure = 'tls';                           
+    $mail->Port       = 587;      
 
-    //Recipients
-    $mail->setFrom('emailsenderudemy@gmail.com', 'shakil khan team');
+    $mail->addReplyTo('priyanshootiwari@gmail.com', 'aanav');
+    $mail->setFrom('priyanshootiwari@gmail.com', 'aanav');
     $mail->addAddress($email, $userName);     // Add a recipient
+    $mail->AddEmbeddedImage('img/logo_nav.png', 'logoimg');
 
-    // Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Confirm your email';
-    $mail->Body    = '<p> Hi ' . $userName . ' please confirm your email click on the below link</p> <p><a href="'. $url .'">Confirm email</a></p><p> OR copy an paste this link '. $url .'</p>';
-    $mail->AltBody = '<p> Hi ' . $userName . ' please confirm your email click on the below link</p> <p><a href="'. $url .'">Confirm email</a></p><p> OR copy an paste this link '. $url .'</p>';
-
+    $mail->Subject = $subject;
+    $mail->Body    = "<center><p><img width=\"200\" height=\"95\" src=\"cid:logoimg\" /></p>".$body."</center>";
+    $mail->AltBody = "<center><p><img width=\"200\" height=\"95\" src=\"cid:logoimg\" /></p>".$body."</center>";
+    $mail->isHTML(true);
     $mail->send();
+
     return true;
 } catch (Exception $e) {
     return false;
@@ -42,6 +34,3 @@ try {
     }
 
  }
-
-
-?>

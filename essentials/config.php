@@ -1,4 +1,5 @@
 <?php
+    date_default_timezone_set('Asia/Kolkata');
     $host = "localhost";
     $db_user = "root";
     $db_pass = "Django@1212";

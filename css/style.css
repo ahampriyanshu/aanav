@@ -818,10 +818,6 @@ ol {
   display: none;
 }
 
-/*---------------------
-  Hero Section
------------------------*/
-
 .hero-items .single-hero-items {
   height: 725px;
   padding-top: 210px;
@@ -995,9 +991,6 @@ ol {
   border-radius: 2px;
 }
 
-/*---------------------
-  Women Banner Section
------------------------*/
 
 .women-banner {
   padding-right: 65px;
@@ -1202,7 +1195,7 @@ ol {
 
 .product-item .pi-text {
   text-align: center;
-  padding-top: 26px;
+  padding-top: 16px;
 }
 
 .product-item .pi-text .catagory-name {
@@ -1214,21 +1207,13 @@ ol {
   margin-bottom: 10px;
 }
 
-.product-item .pi-text a {
-  display: block;
-}
-
-.product-item .pi-text a h5 {
-  color: #252525;
-}
-
 .product-item .pi-text .product-price {
   color: #66fcf1;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 }
 
-.product-item .pi-text .product-price span {
+.product-item .pi-text .product-price .MRP {
   font-size: 14px;
   font-weight: 400;
   color: #b2b2b2;
@@ -1316,23 +1301,9 @@ ol {
   line-height: 20px;
 }
 
-/*---------------------
-  Partner Logo
------------------------*/
-
 .partner-logo {
   background: #303030;
   padding: 38px 0;
-}
-
-.logo-carousel .logo-item {
-  display: table;
-}
-
-.logo-carousel .logo-item .tablecell-inner {
-  display: table-cell;
-  height: 45px;
-  vertical-align: middle;
 }
 
 .owl-carousel .owl-item img {
@@ -1728,10 +1699,6 @@ ol {
   background: #66fcf1;
   content: "";
 }
-
-/*---------------------
-  Product Details
------------------------*/
 
 .product-shop.page-details {
   padding-bottom: 60px;
@@ -2284,10 +2251,6 @@ ol {
   margin-bottom: 45px;
 }
 
-/*---------------------
-  Related Products
------------------------*/
-
 .related-products {
   padding-top: 0;
   padding-bottom: 50px;
@@ -2301,30 +2264,24 @@ ol {
   display: none;
 }
 
-/*---------------------
-  Shopping Cart
------------------------*/
-
-.shopping-cart {
-  padding-top: 80px;
-  padding-bottom: 60px;
+.borderless-table {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .cart-table {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .cart-table table {
   width: 100%;
   min-width: 480px;
-  border: 1px solid #ebebeb;
 }
 
 .cart-table table tr th {
   font-size: 16px;
   color: #252525;
   font-weight: 700;
-  border-bottom: 1px solid #ebebeb;
   text-align: center;
   padding: 18px 0 19px;
   text-transform: uppercase;
@@ -2332,15 +2289,15 @@ ol {
 
 .cart-table table tr td {
   text-align: center;
-  padding-bottom: 34px;
+  padding-bottom: 15px;
 }
 
 .cart-table table tr td.first-row {
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 .cart-table table tr td.cart-pic {
-  width: 21%;
+  width: 31%;
 }
 
 .cart-table table tr td.cart-title h5 {
@@ -3373,17 +3330,18 @@ footer p {
   margin: 0 12px;
 }
 
-.social_footer_ul {
+.socialIcons {
   display: table;
   margin: 15px auto 0 auto;
   list-style-type: none;
 }
-.social_footer_ul li {
-  padding-left: 20px;
+.socialIcons li {
+  
+  margin-right: 30px;
   padding-top: 10px;
   float: left;
 }
-.social_footer_ul li i {
+.socialIcons li i {
   width: 20px;
   height: 20px;
   text-align: center;

@@ -25,7 +25,7 @@
         dots: false,
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
-        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
+        navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: true,
@@ -37,7 +37,7 @@ $(".product-slider").owlCarousel({
         nav: true,
         items: 4,
         dots: true,
-        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
+        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: true,
@@ -57,28 +57,7 @@ $(".product-slider").owlCarousel({
         }
     });
 
- $(".logo-carousel").owlCarousel({
-        loop: false,
-        margin: 30,
-        nav: false,
-        items: 5,
-        dots: false,
-        navText: ['<i class="ti-angle-left"></i>', '<i class="ti-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoHeight: false,
-        mouseDrag: false,
-        autoplay: true,
-        responsive: {
-            0: {
-                items: 3,
-            },
-            768: {
-                items: 5,
-            }
-        }
-    });
-
- $(".ps-slider").owlCarousel({
+ $(".").owlCarousel({
         loop: false,
         margin: 10,
         nav: true,
@@ -90,30 +69,13 @@ $(".product-slider").owlCarousel({
         autoplay: true,
     });
     
-    // For demo preview
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    var yyyy = today.getFullYear();
 
-    if(mm == 12) {
-        mm = '01';
-        yyyy = yyyy + 1;
-    } else {
-        mm = parseInt(mm) + 1;
-        mm = String(mm).padStart(2, '0');
-    }
-    var timerdate = mm + '/' + dd + '/' + yyyy;
-
-
-
-	$("#countdown").countdown(timerdate, function(event) {
-        $(this).html(event.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>" + "<div class='cd-item'><span>%H</span> <p>Hrs</p> </div>" + "<div class='cd-item'><span>%M</span> <p>Mins</p> </div>" + "<div class='cd-item'><span>%S</span> <p>Secs</p> </div>"));
-    });
-
-        
  $(document).ready(function(e) {
-    //no use
+
+    if(window.matchMedia("(min-width: 767px)").matches){
+        $('.product-pic-zoom').zoom();
+    }
+
     try {
         var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
             var val = data.value;
@@ -126,31 +88,13 @@ $(".product-slider").owlCarousel({
         pages.setIndexByValue(pagename[pagename.length-1]);
         $("#ver").html(msBeautify.version.msDropdown);
     } catch(e) {
-        // console.log(e);
+    console.log(e);
     }
     $("#ver").html(msBeautify.version.msDropdown);
 
-    //convert
     $(".language_drop").msDropdown({roundedBorder:false});
         $("#tech").data("dd");
     });
-	var rangeSlider = $(".price-range"),
-		minamount = $("#minamount"),
-		maxamount = $("#maxamount"),
-		minPrice = rangeSlider.data('min'),
-		maxPrice = rangeSlider.data('max');
-	    rangeSlider.slider({
-		range: true,
-		min: minPrice,
-        max: maxPrice,
-		values: [minPrice, maxPrice],
-		slide: function (event, ui) {
-			minamount.val('$' + ui.values[0]);
-			maxamount.val('$' + ui.values[1]);
-		}
-	});
-	minamount.val('$' + rangeSlider.slider("values", 0));
-    maxamount.val('$' + rangeSlider.slider("values", 1));
 
  $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").on('click', function () {
         $(".fw-size-choose .sc-item label, .pd-size-choose .sc-item label").removeClass('active');
@@ -168,27 +112,6 @@ $(".product-slider").owlCarousel({
 			$('.product-big-img').attr({src: imgurl});
 			$('.zoomImg').attr({src: imgurl});
 		}
-	});
-
-    $('.product-pic-zoom').zoom();
-    
- var proQty = $('.pro-qty');
-	proQty.prepend('');
-	proQty.append('');
-	proQty.on('click', '.qtybtn', function () {
-		var $button = $(this);
-		var oldValue = $button.parent().find('input').val();
-		if ($button.hasClass('inc')) {
-			var newVal = parseFloat(oldValue) + 1;
-		} else {
-			// Don't allow decrementing below zero
-			if (oldValue > 0) {
-				var newVal = parseFloat(oldValue) - 1;
-			} else {
-				newVal = 0;
-			}
-		}
-		$button.parent().find('input').val(newVal);
-	});
+    });
 
 })(jQuery);

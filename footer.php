@@ -1,26 +1,21 @@
-<footer class="footer">
-
+<footer class="footer mt-4">
     <div class="container">
-
         <ul class="foote_bottom_ul_amrc">
             <li><a href="index.php">Home</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="contact.php">Contact</a></li>
         </ul>
-
-        <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i> PriyanshuMay &copy; MIT Licensed</p>
-
-        <ul class="social_footer_ul">
-            <li><a href="#"><i class="fab fa-2x fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fab fa-2x fa-facebook"></i></a></li>
-            <li><a rel="noopener noreferrer" href="https://wa.me/919917956610?text=Hi%20Team%20@aanav" target="_blank">
-                    <i class="fab fa-2x fa-whatsapp"></i></i></a></li>
-            <li><a href="#"><i class="fab fa-2x fa-instagram"></i></i></a></li>
-
+        <a href="https://github.com/ahampriyanshu">
+        <p class="text-center" style="font-size:0.8em;"><i class="fab fa-github"></i> ahampriyanshu &copy; MIT Licensed</p>
+        </a>
+        <ul class="socialIcons">
+            <li><a href="https://www.reddit.com/user/ahampriyanshu/"><i style="color: white;" class="fab fa-2x fa-reddit-alien"></i></a></li>
+            <li><a rel="noopener noreferrer" href="https://wa.me/919917956610?text=Hi%20Priyanshu" target="_blank">
+            <i style="color: #63CE52;"  class="fab fa-2x fa-whatsapp"></i></i></a></li>
+            <li  ><a href="https://www.linkedin.com/in/ahampriyanshu"><i style="color: #0373B1;" class="fab fa-2x fa-linkedin"></i></a></li>
+            <li><a href="https://t.me/ahampriyanshu"><i style="color: #3CBCD1;" class="fab fa-2x fa-telegram-plane"></i></a></li>
         </ul>
-
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

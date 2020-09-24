@@ -1,0 +1,1 @@
+This is a MIT Licensed E-commerce website with integrated Admin Panel.

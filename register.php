@@ -43,7 +43,9 @@ if (isset($_POST['submit'])) {
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;"
-    href="' . $url . '">Verify Email</a></p><p  style="color:red; font-size: 10px;" > Need Help ? <a  href="' . $url2 . '">Contact Us</a></p>';
+    href="' . $url . '">Verify Email</a></p>
+    <p>Or copy this link :'.$url.'</p>
+    <p style="color:red; font-size: 10px;" > Need Help ? <a  href="' . $url2 . '">Contact Us</a></p>';
 
     if ($queries->query("INSERT INTO customer (name, email, password, phone, code, status, datetym) VALUES
      ('$fullName', '$email', '$password', '$phone', '$code', '$status', now()) ")) {

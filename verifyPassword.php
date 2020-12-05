@@ -11,12 +11,14 @@ $code = $_GET['code'];
 
 $verify = mysqli_query($connect, "SELECT * FROM customer WHERE code='$code' and status <= 1");
 if (mysqli_num_rows($verify) < 1) {
-    header('location: login.php');
+  $_SESSION['notActive'] = "Some error occured";
+  header('location: login.php');
 }
 }
 else
 {
-    header('location: register.php');
+  $_SESSION['notActive'] = "Some error occured";
+  header('location: login.php');
 }
 
 $validation = new validation;
@@ -35,16 +37,19 @@ if (isset($_POST['submit'])) {
             $update = mysqli_query($connect, "UPDATE customer SET password = '$newpass' WHERE code='$code' ");
             if ($update){
             $deleteCode = mysqli_query($connect, "UPDATE customer SET code = 0 WHERE code='$code' ");
+            $_SESSION['emailVerified'] = "Your password has been changed successfully";
             header("location:login.php");
             }
             else
             {
-              header('location: error.php');
+              $_SESSION['notActive'] = "New and confirm password doesn't match";
+              header("location: login.php");
             }
           }
         }
         else{
-          echo 'New Password and Confirm Password does not match';
+          $_SESSION['notActive'] = "Some error occured";
+          header('location: login.php');
         }
   }
 ?>

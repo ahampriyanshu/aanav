@@ -14,23 +14,20 @@ try {
     $mail->Password   = '******';                         
     $mail->SMTPSecure = 'tls';                           
     $mail->Port       = 587;      
-
-    $mail->addReplyTo('priyanshootiwari@gmail.com', 'aanav');
-    $mail->setFrom('priyanshootiwari@gmail.com', 'aanav');
+    $mail->addReplyTo('**********@gmail.com', 'aanav');
+    $mail->setFrom('**********@gmail.com', 'aanav');
     $mail->addAddress($email, $userName);
     $mail->AddEmbeddedImage('img/logo_nav.png', 'logoimg');
-
     $mail->Subject = $subject;
     $mail->Body    = "<center><p><img width=\"200\" height=\"95\" src=\"cid:logoimg\" /></p>".$body."</center>";
     $mail->AltBody = "<center><p><img width=\"200\" height=\"95\" src=\"cid:logoimg\" /></p>".$body."</center>";
     $mail->isHTML(true);
     $mail->send();
-
+    
     return true;
+
 } catch (Exception $e) {
     return false;
 }
-
     }
-
  }

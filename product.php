@@ -433,7 +433,7 @@ $qty = $product['qty'];
 
                   &emsp;
 
-                  <a rel="noopener noreferrer" href="https://wa.me/?text=https://ahampriyanshu.000webhostapp.com/aanav/product.php?=<?php echo $product_id ?>" target="_blank">
+                  <a rel="noopener noreferrer" href="https://wa.me/?text=https://ahampriyanshu.000webhostapp.com/aanav/product.php?id=<?php echo $product_id ?>" target="_blank">
                     <i style="color: green;" class="fab fa-2x fa-whatsapp"></i>
                   </a>
 
